@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="Body_Factory_Manager.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <connectionStrings>
+        <add name="Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"
+            connectionString="Data Source=localhost;Initial Catalog=StardustEssentials;Persist Security Info=True;User ID=stardust;Password=21082004;Pooling=False"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>
+    <applicationSettings>
+        <Body_Factory_Manager.Properties.Settings>
+            <setting name="CorreoRecover" serializeAs="String">
+                <value>alexjhoel7@hotmail.com</value>
+            </setting>
+            <setting name="PasswordRecover" serializeAs="String">
+                <value>21082004leo</value>
+            </setting>
+            <setting name="Key" serializeAs="String">
+                <value>#bSEJNDMW3y%3lP4</value>
+            </setting>
+        </Body_Factory_Manager.Properties.Settings>
+    </applicationSettings>
+</configuration>
