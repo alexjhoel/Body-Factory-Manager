@@ -145,9 +145,6 @@
   <data name="outfull" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\Images\outfull.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="92235727_1924930150974559_3254188169175760896_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\92235727_1924930150974559_3254188169175760896_o.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="close_FILL0_wght400_GRAD0_opsz48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\close_FILL0_wght400_GRAD0_opsz48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
