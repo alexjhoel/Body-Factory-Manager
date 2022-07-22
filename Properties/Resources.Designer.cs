@@ -73,16 +73,6 @@ namespace Body_Factory_Manager.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _92235727_1924930150974559_3254188169175760896_o {
-            get {
-                object obj = ResourceManager.GetObject("92235727_1924930150974559_3254188169175760896_o", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap build_FILL0_wght400_GRAD0_opsz48 {
             get {
                 object obj = ResourceManager.GetObject("build_FILL0_wght400_GRAD0_opsz48", resourceCulture);

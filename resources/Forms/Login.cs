@@ -12,6 +12,7 @@ namespace Body_Factory_Manager
 {
     public partial class Login : Form
     {
+        //Link de archivo (.mdf) de base de datos en la raiz del proyecto
         public DataTable datosUsuario;
         private SQL sql;
         public Login()
