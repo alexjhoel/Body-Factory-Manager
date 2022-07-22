@@ -60,8 +60,6 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.loginPrincipal1);
             this.Name = "Login";
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
-            this.Enter += new System.EventHandler(this.Login_Enter);
             this.ResumeLayout(false);
 
         }

@@ -12,6 +12,7 @@ namespace Body_Factory_Manager
 {
     public partial class Principal : Form
     {
+        //Link de archivo (.mdf) de base de datos en la raiz del proyecto
         Transicion menuTransicion = new Transicion();
         SQL sql;
         Point offset;

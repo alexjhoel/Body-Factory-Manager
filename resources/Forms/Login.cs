@@ -23,16 +23,6 @@ namespace Body_Factory_Manager
 
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Login_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
         public SQL ObtenerSQL()
         {
             return sql;
