@@ -16,12 +16,27 @@ namespace Body_Factory_Manager
         Transicion menuTransicion = new Transicion();
         SQL sql;
         Point offset;
-        public Principal()
+        public Principal(DataTable datosUsuario)
         {
             InitializeComponent();
-            timedLogin.Start();
             menuTransicion.Establecer(40, 185, 0.05f);
-            timerMenuPNL.Start();
+
+            if (datosUsuario == null)
+            {
+                this.Close();
+                return;
+            }
+            if (datosUsuario.Rows.Count == 0)
+            {
+                this.Close();
+                return;
+            }
+            DataTable datosDeUsuario = datosUsuario;
+            nombreUsuarioLBL.Text = datosDeUsuario.Rows[0]["usuario"].ToString();
+
+            sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
+
+            CambiarSección(new Clientes());
         }
 
         private void CambiarSección(UserControl userControl)
@@ -31,39 +46,10 @@ namespace Body_Factory_Manager
             userControl.Size = paginasPNL.Size;
             userControl.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
         }
-        private void Login()
-        {
-            Login loginForm;
-            loginForm = new Login();
-            loginForm.ShowDialog();
-            if (loginForm.datosUsuario == null)
-            {
-                this.Close();
-                return;
-            }
-            if (loginForm.datosUsuario.Rows.Count == 0)
-            {
-                this.Close();
-                return;
-            }
-            DataTable datosDeUsuario = loginForm.datosUsuario;
-            nombreUsuarioLBL.Text = datosDeUsuario.Rows[0]["usuario"].ToString();
-
-            sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
-
-            CambiarSección(new Clientes());
-        }
 
         private void timerMenuPNL_Tick(object sender, EventArgs e)
         {
             menuPNL.Width = (int)menuTransicion.Avanzar();
-        }
-
-        private void timedLogin_Tick(object sender, EventArgs e)
-        {
-            timedLogin.Stop();
-            Login();
-
         }
 
 
@@ -102,16 +88,6 @@ namespace Body_Factory_Manager
         private void asistenciasBTN_Click(object sender, EventArgs e)
         {
             CambiarSección(new Asistencias());
-        }
-
-        private void Principal_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Principal_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void controlTBLPNL_MouseMove(object sender, MouseEventArgs e)

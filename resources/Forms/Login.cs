@@ -32,7 +32,17 @@ namespace Body_Factory_Manager
         public void ConfirmarLogin(DataTable datosUsuario = null)
         {
             this.datosUsuario = datosUsuario;
+            if(datosUsuario != null)
+            {
+                using (Principal principal = new Principal(datosUsuario))
+                {
+                    this.Hide();
+                    principal.ShowDialog();
+                }
+            }
             this.Close();
+            
+            
         }
 
         public void MostrarAjustes()

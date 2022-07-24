@@ -166,6 +166,12 @@
     <Compile Include="resources\User Controls\Login\LoginPrincipal.Designer.cs">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\User Controls\Principal\MenuClientes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Principal\MenuClientes.Designer.cs">
+      <DependentUpon>MenuClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\User Controls\Principal\Pagos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Principal\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Principal\MenuClientes.resx">
+      <DependentUpon>MenuClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Principal\Pagos.resx">
       <DependentUpon>Pagos.cs</DependentUpon>
@@ -328,6 +337,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\LoginV4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resources\User Controls\Clientes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

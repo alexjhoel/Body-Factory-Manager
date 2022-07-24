@@ -196,7 +196,6 @@ namespace Body_Factory_Manager
             // timedLogin
             // 
             this.timedLogin.Interval = 1000;
-            this.timedLogin.Tick += new System.EventHandler(this.timedLogin_Tick);
             // 
             // paginasPNL
             // 
@@ -311,8 +310,6 @@ namespace Body_Factory_Manager
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Principal";
             this.Text = "  ";
-            this.Load += new System.EventHandler(this.Principal_Load);
-            this.Enter += new System.EventHandler(this.Principal_Enter);
             this.controlTBLPNL.ResumeLayout(false);
             this.controlTBLPNL.PerformLayout();
             this.menuPNL.ResumeLayout(false);
