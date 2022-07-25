@@ -20,7 +20,7 @@ namespace Body_Factory_Manager
         {
             InitializeComponent();
             menuTransicion.Establecer(40, 185, 0.05f);
-
+            timerMenuPNL.Start();
             if (datosUsuario == null)
             {
                 this.Close();
@@ -47,8 +47,10 @@ namespace Body_Factory_Manager
             userControl.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
         }
 
+        #region Eventos
         private void timerMenuPNL_Tick(object sender, EventArgs e)
         {
+            Console.WriteLine("a");
             menuPNL.Width = (int)menuTransicion.Avanzar();
         }
 
@@ -67,7 +69,7 @@ namespace Body_Factory_Manager
 
         private void clientesBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new Clientes());
+            CambiarSección(new MenuClientes());
         }
 
         private void inicioBTN_Click(object sender, EventArgs e)
@@ -106,9 +108,20 @@ namespace Body_Factory_Manager
 
         private void cerrarVentanaBTN_Click(object sender, EventArgs e)
         {
-            this.Dispose();
             this.Close();
         }
 
+        private void minimizarVentanaBTN_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void maximizarVentanaBTN_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Maximized;
+            else this.WindowState = FormWindowState.Normal;
+        }
+
+        #endregion
     }
 }

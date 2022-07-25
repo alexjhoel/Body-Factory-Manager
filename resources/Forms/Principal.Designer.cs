@@ -45,40 +45,40 @@ namespace Body_Factory_Manager
             this.inicioBTN = new System.Windows.Forms.Button();
             this.logoMenuPBX = new System.Windows.Forms.PictureBox();
             this.menuBTN = new System.Windows.Forms.PictureBox();
+            this.roundPictureBox1 = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.cerrarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.maximizarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.minimizarVentanaBTN = new System.Windows.Forms.PictureBox();
-            this.roundPictureBox1 = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.controlTBLPNL.SuspendLayout();
             this.menuPNL.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoMenuPBX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuBTN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cerrarVentanaBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximizarVentanaBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizarVentanaBTN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // controlTBLPNL
             // 
             this.controlTBLPNL.BackColor = System.Drawing.Color.Red;
-            this.controlTBLPNL.ColumnCount = 8;
+            this.controlTBLPNL.ColumnCount = 7;
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.18243F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.81757F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.controlTBLPNL.Controls.Add(this.menuBTN, 0, 0);
             this.controlTBLPNL.Controls.Add(this.label2, 1, 0);
             this.controlTBLPNL.Controls.Add(this.nombreUsuarioLBL, 2, 0);
             this.controlTBLPNL.Controls.Add(this.roundPictureBox1, 3, 0);
-            this.controlTBLPNL.Controls.Add(this.cerrarVentanaBTN, 7, 0);
-            this.controlTBLPNL.Controls.Add(this.maximizarVentanaBTN, 6, 0);
-            this.controlTBLPNL.Controls.Add(this.minimizarVentanaBTN, 5, 0);
+            this.controlTBLPNL.Controls.Add(this.cerrarVentanaBTN, 6, 0);
+            this.controlTBLPNL.Controls.Add(this.maximizarVentanaBTN, 5, 0);
+            this.controlTBLPNL.Controls.Add(this.minimizarVentanaBTN, 4, 0);
             this.controlTBLPNL.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTBLPNL.Location = new System.Drawing.Point(0, 0);
             this.controlTBLPNL.Name = "controlTBLPNL";
@@ -99,9 +99,9 @@ namespace Body_Factory_Manager
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label2.Location = new System.Drawing.Point(51, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 44);
+            this.label2.Size = new System.Drawing.Size(162, 39);
             this.label2.TabIndex = 8;
             this.label2.Text = "BODY FACTORY MANAGER";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -113,7 +113,7 @@ namespace Body_Factory_Manager
             this.nombreUsuarioLBL.Dock = System.Windows.Forms.DockStyle.Right;
             this.nombreUsuarioLBL.Font = new System.Drawing.Font("Montserrat", 12F);
             this.nombreUsuarioLBL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nombreUsuarioLBL.Location = new System.Drawing.Point(561, 0);
+            this.nombreUsuarioLBL.Location = new System.Drawing.Point(604, 0);
             this.nombreUsuarioLBL.Name = "nombreUsuarioLBL";
             this.nombreUsuarioLBL.Size = new System.Drawing.Size(71, 44);
             this.nombreUsuarioLBL.TabIndex = 7;
@@ -239,21 +239,36 @@ namespace Body_Factory_Manager
             // menuBTN
             // 
             this.menuBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.menuBTN.Image = global::Body_Factory_Manager.Properties.Resources.outfull;
-            this.menuBTN.Location = new System.Drawing.Point(14, 3);
+            this.menuBTN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menuBTN.Image = global::Body_Factory_Manager.Properties.Resources.menu;
+            this.menuBTN.Location = new System.Drawing.Point(18, 4);
             this.menuBTN.Name = "menuBTN";
-            this.menuBTN.Size = new System.Drawing.Size(34, 38);
+            this.menuBTN.Size = new System.Drawing.Size(25, 35);
             this.menuBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.menuBTN.TabIndex = 10;
             this.menuBTN.TabStop = false;
             this.menuBTN.Click += new System.EventHandler(this.menuBTN_Click);
+            // 
+            // roundPictureBox1
+            // 
+            this.roundPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.roundPictureBox1.BackColor = System.Drawing.Color.DarkGray;
+            this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.tatu;
+            this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.tatu;
+            this.roundPictureBox1.Location = new System.Drawing.Point(686, 3);
+            this.roundPictureBox1.Name = "roundPictureBox1";
+            this.roundPictureBox1.Size = new System.Drawing.Size(37, 37);
+            this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.roundPictureBox1.TabIndex = 9;
+            this.roundPictureBox1.TabStop = false;
             // 
             // cerrarVentanaBTN
             // 
             this.cerrarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cerrarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cerrarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.close_FILL0_wght400_GRAD0_opsz481;
-            this.cerrarVentanaBTN.Location = new System.Drawing.Point(825, 3);
+            this.cerrarVentanaBTN.Location = new System.Drawing.Point(826, 3);
             this.cerrarVentanaBTN.Name = "cerrarVentanaBTN";
             this.cerrarVentanaBTN.Size = new System.Drawing.Size(34, 38);
             this.cerrarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -266,38 +281,26 @@ namespace Body_Factory_Manager
             this.maximizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.maximizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.maximizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.outfull;
-            this.maximizarVentanaBTN.Location = new System.Drawing.Point(779, 3);
+            this.maximizarVentanaBTN.Location = new System.Drawing.Point(781, 3);
             this.maximizarVentanaBTN.Name = "maximizarVentanaBTN";
             this.maximizarVentanaBTN.Size = new System.Drawing.Size(34, 38);
             this.maximizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.maximizarVentanaBTN.TabIndex = 12;
             this.maximizarVentanaBTN.TabStop = false;
+            this.maximizarVentanaBTN.Click += new System.EventHandler(this.maximizarVentanaBTN_Click);
             // 
             // minimizarVentanaBTN
             // 
             this.minimizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.minimizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.minimizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.outfull;
-            this.minimizarVentanaBTN.Location = new System.Drawing.Point(735, 3);
+            this.minimizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.minimize_png;
+            this.minimizarVentanaBTN.Location = new System.Drawing.Point(735, 5);
             this.minimizarVentanaBTN.Name = "minimizarVentanaBTN";
-            this.minimizarVentanaBTN.Size = new System.Drawing.Size(34, 38);
+            this.minimizarVentanaBTN.Size = new System.Drawing.Size(38, 34);
             this.minimizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.minimizarVentanaBTN.TabIndex = 13;
             this.minimizarVentanaBTN.TabStop = false;
-            // 
-            // roundPictureBox1
-            // 
-            this.roundPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.roundPictureBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.Location = new System.Drawing.Point(643, 3);
-            this.roundPictureBox1.Name = "roundPictureBox1";
-            this.roundPictureBox1.Size = new System.Drawing.Size(37, 37);
-            this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.roundPictureBox1.TabIndex = 9;
-            this.roundPictureBox1.TabStop = false;
+            this.minimizarVentanaBTN.Click += new System.EventHandler(this.minimizarVentanaBTN_Click);
             // 
             // Principal
             // 
@@ -309,6 +312,7 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.controlTBLPNL);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  ";
             this.controlTBLPNL.ResumeLayout(false);
             this.controlTBLPNL.PerformLayout();
@@ -316,10 +320,10 @@ namespace Body_Factory_Manager
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoMenuPBX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuBTN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cerrarVentanaBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximizarVentanaBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizarVentanaBTN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
