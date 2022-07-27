@@ -36,7 +36,7 @@ namespace Body_Factory_Manager
 
             sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
 
-            CambiarSección(new Clientes());
+            CambiarSección(new MenuClientes());
         }
 
         private void CambiarSección(UserControl userControl)
@@ -84,7 +84,7 @@ namespace Body_Factory_Manager
 
         private void pagosBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new Pagos());
+            CambiarSección(new MenuPagos());
         }
 
         private void asistenciasBTN_Click(object sender, EventArgs e)

@@ -110,10 +110,10 @@
     <Compile Include="resources\Forms\Configuracion.Designer.cs">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\DatosCliente.cs">
+    <Compile Include="resources\Forms\Clientes\DatosCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="resources\Forms\DatosCliente.Designer.cs">
+    <Compile Include="resources\Forms\Clientes\DatosCliente.Designer.cs">
       <DependentUpon>DatosCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Login.cs">
@@ -130,10 +130,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="resources\Forms\DatosPago.cs">
+    <Compile Include="resources\Forms\Pagos\DatosPago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="resources\Forms\DatosPago.Designer.cs">
+    <Compile Include="resources\Forms\Pagos\DatosPago.Designer.cs">
       <DependentUpon>DatosPago.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Login\LoginConfiguracion.cs">
@@ -148,10 +148,10 @@
     <Compile Include="resources\User Controls\Principal\Asistencias.Designer.cs">
       <DependentUpon>Asistencias.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Clientes.cs">
+    <Compile Include="resources\User Controls\Clientes\Clientes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Clientes.Designer.cs">
+    <Compile Include="resources\User Controls\Clientes\Clientes.Designer.cs">
       <DependentUpon>Clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Custom\BotonA.cs">
@@ -172,16 +172,22 @@
     <Compile Include="resources\User Controls\Login\LoginPrincipal.Designer.cs">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuClientes.cs">
+    <Compile Include="resources\User Controls\Clientes\MenuClientes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuClientes.Designer.cs">
+    <Compile Include="resources\User Controls\Clientes\MenuClientes.Designer.cs">
       <DependentUpon>MenuClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Pagos.cs">
+    <Compile Include="resources\User Controls\Pagos\MenuPagos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Pagos.Designer.cs">
+    <Compile Include="resources\User Controls\Pagos\MenuPagos.Designer.cs">
+      <DependentUpon>MenuPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\User Controls\Pagos\Pagos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Pagos\Pagos.Designer.cs">
       <DependentUpon>Pagos.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Principal\Rutinas.cs">
@@ -212,7 +218,7 @@
     <EmbeddedResource Include="resources\Forms\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\DatosCliente.resx">
+    <EmbeddedResource Include="resources\Forms\Clientes\DatosCliente.resx">
       <DependentUpon>DatosCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Login.resx">
@@ -231,7 +237,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="resources\Forms\DatosPago.resx">
+    <EmbeddedResource Include="resources\Forms\Pagos\DatosPago.resx">
       <DependentUpon>DatosPago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Login\LoginConfiguracion.resx">
@@ -243,13 +249,16 @@
     <EmbeddedResource Include="resources\User Controls\Principal\Asistencias.resx">
       <DependentUpon>Asistencias.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\Clientes.resx">
+    <EmbeddedResource Include="resources\User Controls\Clientes\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\MenuClientes.resx">
+    <EmbeddedResource Include="resources\User Controls\Clientes\MenuClientes.resx">
       <DependentUpon>MenuClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\Pagos.resx">
+    <EmbeddedResource Include="resources\User Controls\Pagos\MenuPagos.resx">
+      <DependentUpon>MenuPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Pagos\Pagos.resx">
       <DependentUpon>Pagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Principal\Rutinas.resx">
@@ -347,9 +356,7 @@
   <ItemGroup>
     <None Include="resources\LoginV4.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\User Controls\Clientes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="resources\menu.png" />
   </ItemGroup>

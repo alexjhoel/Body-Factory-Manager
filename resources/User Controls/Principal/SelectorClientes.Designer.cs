@@ -31,12 +31,11 @@ namespace Body_Factory_Manager
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tablaDGV = new System.Windows.Forms.DataGridView();
-            this.nombreTBX = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreTBX = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@ namespace Body_Factory_Manager
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.agregarBTN = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).BeginInit();
             this.SuspendLayout();
@@ -75,35 +75,8 @@ namespace Body_Factory_Manager
             this.tablaDGV.ReadOnly = true;
             this.tablaDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaDGV.ShowEditingIcon = false;
-            this.tablaDGV.Size = new System.Drawing.Size(418, 138);
+            this.tablaDGV.Size = new System.Drawing.Size(416, 136);
             this.tablaDGV.TabIndex = 1;
-            // 
-            // nombreTBX
-            // 
-            this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombreTBX.Location = new System.Drawing.Point(15, 71);
-            this.nombreTBX.Name = "nombreTBX";
-            this.nombreTBX.Size = new System.Drawing.Size(186, 26);
-            this.nombreTBX.TabIndex = 21;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(11, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 23);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Cliente:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Cédula";
             // 
             // cedula
             // 
@@ -122,6 +95,23 @@ namespace Body_Factory_Manager
             this.Apellido.HeaderText = "Apellido";
             this.Apellido.Name = "Apellido";
             this.Apellido.ReadOnly = true;
+            // 
+            // nombreTBX
+            // 
+            this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombreTBX.Location = new System.Drawing.Point(15, 71);
+            this.nombreTBX.Name = "nombreTBX";
+            this.nombreTBX.Size = new System.Drawing.Size(186, 26);
+            this.nombreTBX.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Cédula";
             // 
             // textBox1
             // 
@@ -176,22 +166,34 @@ namespace Body_Factory_Manager
             // 
             // agregarBTN
             // 
+            this.agregarBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.agregarBTN.BackColor = System.Drawing.Color.Red;
             this.agregarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.agregarBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agregarBTN.Location = new System.Drawing.Point(232, 196);
+            this.agregarBTN.Location = new System.Drawing.Point(232, 194);
             this.agregarBTN.Name = "agregarBTN";
             this.agregarBTN.Size = new System.Drawing.Size(78, 40);
             this.agregarBTN.TabIndex = 30;
             this.agregarBTN.Text = "Buscar";
             this.agregarBTN.UseVisualStyleBackColor = false;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(11, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 23);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Cliente:";
+            // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(316, 196);
+            this.button1.Location = new System.Drawing.Point(316, 194);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 40);
             this.button1.TabIndex = 31;
@@ -202,6 +204,7 @@ namespace Body_Factory_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.agregarBTN);
             this.Controls.Add(this.label3);
@@ -215,7 +218,7 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.nombreTBX);
             this.Controls.Add(this.tablaDGV);
             this.Name = "SelectorClientes";
-            this.Size = new System.Drawing.Size(662, 244);
+            this.Size = new System.Drawing.Size(660, 242);
             this.Load += new System.EventHandler(this.SelectorClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).EndInit();
             this.ResumeLayout(false);
@@ -227,7 +230,6 @@ namespace Body_Factory_Manager
 
         private System.Windows.Forms.DataGridView tablaDGV;
         private System.Windows.Forms.TextBox nombreTBX;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
@@ -239,6 +241,7 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button agregarBTN;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
     }
 }

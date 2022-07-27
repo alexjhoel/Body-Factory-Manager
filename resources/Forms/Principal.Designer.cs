@@ -70,7 +70,7 @@ namespace Body_Factory_Manager
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.controlTBLPNL.Controls.Add(this.menuBTN, 0, 0);
             this.controlTBLPNL.Controls.Add(this.label2, 1, 0);
@@ -113,7 +113,7 @@ namespace Body_Factory_Manager
             this.nombreUsuarioLBL.Dock = System.Windows.Forms.DockStyle.Right;
             this.nombreUsuarioLBL.Font = new System.Drawing.Font("Montserrat", 12F);
             this.nombreUsuarioLBL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nombreUsuarioLBL.Location = new System.Drawing.Point(604, 0);
+            this.nombreUsuarioLBL.Location = new System.Drawing.Point(602, 0);
             this.nombreUsuarioLBL.Name = "nombreUsuarioLBL";
             this.nombreUsuarioLBL.Size = new System.Drawing.Size(71, 44);
             this.nombreUsuarioLBL.TabIndex = 7;
@@ -256,7 +256,7 @@ namespace Body_Factory_Manager
             this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.tatu;
             this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.Location = new System.Drawing.Point(686, 3);
+            this.roundPictureBox1.Location = new System.Drawing.Point(684, 3);
             this.roundPictureBox1.Name = "roundPictureBox1";
             this.roundPictureBox1.Size = new System.Drawing.Size(37, 37);
             this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -268,7 +268,7 @@ namespace Body_Factory_Manager
             this.cerrarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cerrarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cerrarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.close_FILL0_wght400_GRAD0_opsz481;
-            this.cerrarVentanaBTN.Location = new System.Drawing.Point(826, 3);
+            this.cerrarVentanaBTN.Location = new System.Drawing.Point(825, 3);
             this.cerrarVentanaBTN.Name = "cerrarVentanaBTN";
             this.cerrarVentanaBTN.Size = new System.Drawing.Size(34, 38);
             this.cerrarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -281,7 +281,7 @@ namespace Body_Factory_Manager
             this.maximizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.maximizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.maximizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.outfull;
-            this.maximizarVentanaBTN.Location = new System.Drawing.Point(781, 3);
+            this.maximizarVentanaBTN.Location = new System.Drawing.Point(779, 3);
             this.maximizarVentanaBTN.Name = "maximizarVentanaBTN";
             this.maximizarVentanaBTN.Size = new System.Drawing.Size(34, 38);
             this.maximizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -294,7 +294,7 @@ namespace Body_Factory_Manager
             this.minimizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.minimizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.minimizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.minimize_png;
-            this.minimizarVentanaBTN.Location = new System.Drawing.Point(735, 5);
+            this.minimizarVentanaBTN.Location = new System.Drawing.Point(733, 5);
             this.minimizarVentanaBTN.Name = "minimizarVentanaBTN";
             this.minimizarVentanaBTN.Size = new System.Drawing.Size(38, 34);
             this.minimizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
