@@ -38,7 +38,7 @@ namespace Body_Factory_Manager
             this.cedulaTBX = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.nacimientoDP = new System.Windows.Forms.DateTimePicker();
+            this.nacimientoDTP = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.telefonoTBX = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,19 +48,19 @@ namespace Body_Factory_Manager
             this.guardarBTN = new System.Windows.Forms.Button();
             this.descartarBTN = new System.Windows.Forms.Button();
             this.enviarMensajeBTN = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.direccionTBX = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.patologiasTbx = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.grupoSanguineoCBX = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.revisarEsto = new System.Windows.Forms.TextBox();
+            this.observacionesTbx = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.perfilPBX = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +80,7 @@ namespace Body_Factory_Manager
             this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreTBX.Location = new System.Drawing.Point(7, 73);
             this.nombreTBX.Name = "nombreTBX";
-            this.nombreTBX.Size = new System.Drawing.Size(186, 26);
+            this.nombreTBX.Size = new System.Drawing.Size(216, 26);
             this.nombreTBX.TabIndex = 2;
             this.nombreTBX.TextChanged += new System.EventHandler(this.nombreTBX_TextChanged);
             // 
@@ -106,35 +106,36 @@ namespace Body_Factory_Manager
             // apellidoTBX
             // 
             this.apellidoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apellidoTBX.Location = new System.Drawing.Point(225, 73);
+            this.apellidoTBX.Location = new System.Drawing.Point(229, 73);
             this.apellidoTBX.Name = "apellidoTBX";
-            this.apellidoTBX.Size = new System.Drawing.Size(186, 26);
+            this.apellidoTBX.Size = new System.Drawing.Size(406, 26);
             this.apellidoTBX.TabIndex = 5;
             this.apellidoTBX.TextChanged += new System.EventHandler(this.apellidoTBX_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(220, 56);
+            this.label3.Location = new System.Drawing.Point(226, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Apellido";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // cedulaTBX
             // 
             this.cedulaTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cedulaTBX.Location = new System.Drawing.Point(443, 72);
+            this.cedulaTBX.Location = new System.Drawing.Point(7, 140);
             this.cedulaTBX.MaxLength = 8;
             this.cedulaTBX.Name = "cedulaTBX";
-            this.cedulaTBX.Size = new System.Drawing.Size(186, 26);
+            this.cedulaTBX.Size = new System.Drawing.Size(185, 26);
             this.cedulaTBX.TabIndex = 7;
             this.cedulaTBX.TextChanged += new System.EventHandler(this.cedulaTBX_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(440, 55);
+            this.label4.Location = new System.Drawing.Point(8, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 8;
@@ -151,22 +152,23 @@ namespace Body_Factory_Manager
             this.label5.TabIndex = 9;
             this.label5.Text = "Contacto:";
             // 
-            // nacimientoDP
+            // nacimientoDTP
             // 
-            this.nacimientoDP.CalendarForeColor = System.Drawing.Color.White;
-            this.nacimientoDP.CalendarMonthBackground = System.Drawing.Color.Red;
-            this.nacimientoDP.CalendarTitleBackColor = System.Drawing.Color.Red;
-            this.nacimientoDP.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.nacimientoDP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nacimientoDP.Location = new System.Drawing.Point(7, 140);
-            this.nacimientoDP.Name = "nacimientoDP";
-            this.nacimientoDP.Size = new System.Drawing.Size(404, 26);
-            this.nacimientoDP.TabIndex = 10;
+            this.nacimientoDTP.CalendarForeColor = System.Drawing.Color.White;
+            this.nacimientoDTP.CalendarMonthBackground = System.Drawing.Color.Red;
+            this.nacimientoDTP.CalendarTitleBackColor = System.Drawing.Color.Red;
+            this.nacimientoDTP.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.nacimientoDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nacimientoDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.nacimientoDTP.Location = new System.Drawing.Point(198, 140);
+            this.nacimientoDTP.Name = "nacimientoDTP";
+            this.nacimientoDTP.Size = new System.Drawing.Size(121, 26);
+            this.nacimientoDTP.TabIndex = 10;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 124);
+            this.label6.Location = new System.Drawing.Point(195, 124);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 13);
             this.label6.TabIndex = 11;
@@ -249,18 +251,19 @@ namespace Body_Factory_Manager
             this.enviarMensajeBTN.UseVisualStyleBackColor = true;
             this.enviarMensajeBTN.Click += new System.EventHandler(this.enviarMensajeBTN_Click);
             // 
-            // textBox1
+            // direccionTBX
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(443, 140);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 26);
-            this.textBox1.TabIndex = 19;
+            this.direccionTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.direccionTBX.Location = new System.Drawing.Point(325, 140);
+            this.direccionTBX.Name = "direccionTBX";
+            this.direccionTBX.Size = new System.Drawing.Size(310, 26);
+            this.direccionTBX.TabIndex = 19;
+            this.direccionTBX.TextChanged += new System.EventHandler(this.direccionTBX_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(440, 124);
+            this.label9.Location = new System.Drawing.Point(322, 124);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 13);
             this.label9.TabIndex = 20;
@@ -285,14 +288,14 @@ namespace Body_Factory_Manager
             this.label11.TabIndex = 23;
             this.label11.Text = "Grupo sanguíneo";
             // 
-            // textBox3
+            // patologiasTbx
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(229, 391);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 95);
-            this.textBox3.TabIndex = 24;
+            this.patologiasTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patologiasTbx.Location = new System.Drawing.Point(229, 391);
+            this.patologiasTbx.Multiline = true;
+            this.patologiasTbx.Name = "patologiasTbx";
+            this.patologiasTbx.Size = new System.Drawing.Size(186, 95);
+            this.patologiasTbx.TabIndex = 24;
             // 
             // label12
             // 
@@ -303,11 +306,11 @@ namespace Body_Factory_Manager
             this.label12.TabIndex = 25;
             this.label12.Text = "Patologías";
             // 
-            // comboBox1
+            // grupoSanguineoCBX
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.grupoSanguineoCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grupoSanguineoCBX.FormattingEnabled = true;
+            this.grupoSanguineoCBX.Items.AddRange(new object[] {
             "No especificado",
             "A+",
             "B+",
@@ -317,10 +320,10 @@ namespace Body_Factory_Manager
             "B-",
             "AB-",
             "O-"});
-            this.comboBox1.Location = new System.Drawing.Point(9, 391);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 28);
-            this.comboBox1.TabIndex = 26;
+            this.grupoSanguineoCBX.Location = new System.Drawing.Point(9, 391);
+            this.grupoSanguineoCBX.Name = "grupoSanguineoCBX";
+            this.grupoSanguineoCBX.Size = new System.Drawing.Size(186, 28);
+            this.grupoSanguineoCBX.TabIndex = 26;
             // 
             // panel1
             // 
@@ -329,15 +332,15 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.revisarEsto);
+            this.panel1.Controls.Add(this.observacionesTbx);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.grupoSanguineoCBX);
             this.panel1.Controls.Add(this.nombreTBX);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.patologiasTbx);
             this.panel1.Controls.Add(this.apellidoTBX);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label3);
@@ -345,10 +348,10 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.cedulaTBX);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.direccionTBX);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.enviarMensajeBTN);
-            this.panel1.Controls.Add(this.nacimientoDP);
+            this.panel1.Controls.Add(this.nacimientoDTP);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.telefonoTBX);
             this.panel1.Controls.Add(this.label8);
@@ -359,6 +362,35 @@ namespace Body_Factory_Manager
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
             this.panel1.Size = new System.Drawing.Size(655, 357);
             this.panel1.TabIndex = 27;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 439);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(120, 13);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "Número centro de salud";
+            // 
+            // revisarEsto
+            // 
+            this.revisarEsto.BackColor = System.Drawing.Color.Red;
+            this.revisarEsto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.revisarEsto.Location = new System.Drawing.Point(9, 455);
+            this.revisarEsto.Name = "revisarEsto";
+            this.revisarEsto.Size = new System.Drawing.Size(186, 26);
+            this.revisarEsto.TabIndex = 29;
+            this.revisarEsto.Text = "EN PROCESO";
+            // 
+            // observacionesTbx
+            // 
+            this.observacionesTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.observacionesTbx.Location = new System.Drawing.Point(443, 393);
+            this.observacionesTbx.Multiline = true;
+            this.observacionesTbx.Name = "observacionesTbx";
+            this.observacionesTbx.Size = new System.Drawing.Size(186, 92);
+            this.observacionesTbx.TabIndex = 28;
             // 
             // label13
             // 
@@ -379,32 +411,6 @@ namespace Body_Factory_Manager
             this.perfilPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.perfilPBX.TabIndex = 0;
             this.perfilPBX.TabStop = false;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(443, 393);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(186, 92);
-            this.textBox2.TabIndex = 28;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 439);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 13);
-            this.label14.TabIndex = 30;
-            this.label14.Text = "Número centro de salud";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(9, 455);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(186, 26);
-            this.textBox4.TabIndex = 29;
             // 
             // DatosCliente
             // 
@@ -439,7 +445,7 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.TextBox cedulaTBX;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker nacimientoDP;
+        private System.Windows.Forms.DateTimePicker nacimientoDTP;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox telefonoTBX;
         private System.Windows.Forms.Label label7;
@@ -449,17 +455,17 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Button guardarBTN;
         private System.Windows.Forms.Button descartarBTN;
         private System.Windows.Forms.Button enviarMensajeBTN;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox direccionTBX;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox patologiasTbx;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox grupoSanguineoCBX;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox observacionesTbx;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox revisarEsto;
     }
 }

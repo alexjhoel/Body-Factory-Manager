@@ -58,6 +58,8 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 1);
@@ -70,6 +72,7 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.Size = new System.Drawing.Size(718, 391);
             this.tableLayoutPanel1.TabIndex = 2;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.tableLayoutPanel1.Resize += new System.EventHandler(this.tableLayoutPanel1_Resize);
             // 
             // flowLayoutPanel2
             // 
@@ -79,7 +82,7 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel2.Controls.Add(this.listarBTN);
             this.flowLayoutPanel2.Controls.Add(this.buscarButton);
             this.flowLayoutPanel2.Controls.Add(this.informesBTN);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(147, 153);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(147, 154);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(424, 106);
@@ -127,7 +130,7 @@ namespace Body_Factory_Manager
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(245, 122);
+            this.label1.Location = new System.Drawing.Point(245, 123);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(228, 26);
@@ -139,7 +142,10 @@ namespace Body_Factory_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.DoubleBuffered = true;
             this.Name = "MenuClientes";
             this.Size = new System.Drawing.Size(718, 391);
             this.tableLayoutPanel1.ResumeLayout(false);

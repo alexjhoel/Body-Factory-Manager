@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Body_Factory_Manager</RootNamespace>
     <AssemblyName>Body Factory Manager</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>D:\Body Factory Manager\Instalador\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -22,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -37,6 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +48,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -55,6 +58,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -64,6 +68,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>ABD7582CECAE88EAE224ED28290E7C59491BC431</ManifestCertificateThumbprint>
@@ -89,8 +94,15 @@
     <Reference Include="System">
       <HintPath>C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -100,6 +112,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="resources\Custom\DoubleBufferPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="resources\Custom\DoubleBufferPanel.Designer.cs">
+      <DependentUpon>DoubleBufferPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\Forms\Clientes\ListadoClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +142,12 @@
     <Compile Include="resources\Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\Forms\Pagos\ListadoPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\Pagos\ListadoPagos.Designer.cs">
+      <DependentUpon>ListadoPagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\Forms\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +167,12 @@
     </Compile>
     <Compile Include="resources\User Controls\Login\LoginConfiguracion.Designer.cs">
       <DependentUpon>LoginConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\User Controls\Pagos\SelectorCuota.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Pagos\SelectorCuota.Designer.cs">
+      <DependentUpon>SelectorCuota.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Principal\Asistencias.cs">
       <SubType>UserControl</SubType>
@@ -198,10 +228,10 @@
     <Compile Include="resources\User Controls\Principal\Rutinas.Designer.cs">
       <DependentUpon>Rutinas.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\SelectorClientes.cs">
+    <Compile Include="resources\User Controls\Clientes\SelectorClientes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\SelectorClientes.Designer.cs">
+    <Compile Include="resources\User Controls\Clientes\SelectorClientes.Designer.cs">
       <DependentUpon>SelectorClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Utilities\DataGridViewExtension.cs" />
@@ -226,6 +256,9 @@
     <EmbeddedResource Include="resources\Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\Pagos\ListadoPagos.resx">
+      <DependentUpon>ListadoPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +281,9 @@
     <EmbeddedResource Include="resources\User Controls\Login\LoginPrincipal.resx">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Pagos\SelectorCuota.resx">
+      <DependentUpon>SelectorCuota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Principal\Asistencias.resx">
       <DependentUpon>Asistencias.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,11 +302,12 @@
     <EmbeddedResource Include="resources\User Controls\Principal\Rutinas.resx">
       <DependentUpon>Rutinas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\SelectorClientes.resx">
+    <EmbeddedResource Include="resources\User Controls\Clientes\SelectorClientes.resx">
       <DependentUpon>SelectorClientes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Body Factory Manager_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -358,7 +395,9 @@
   <ItemGroup>
     <None Include="resources\LoginV4.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="resources\botonPrincipal.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="resources\menu.png" />
   </ItemGroup>
@@ -376,6 +415,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\botonPrincipal1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\hogar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\hogar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\hogar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\hogar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\configuraciones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\dia-de-paga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\portapapeles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\calendario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\signo-de-dolar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\factura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\LogoBodyFactory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\sadsadsadasd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\sadsadsadasd1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

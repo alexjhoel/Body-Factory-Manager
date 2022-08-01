@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -39,11 +35,16 @@ namespace Body_Factory_Manager
 
         private void listarBtn_Click(object sender, EventArgs e)
         {
-            DataTable datos = sql.Obtener("SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes"); 
+            DataTable datos = sql.Obtener("SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes");
             using (ListadoClientes nuevaVentana = new ListadoClientes(datos))
             {
                 nuevaVentana.ShowDialog();
             }
+        }
+
+        private void tableLayoutPanel1_Resize(object sender, EventArgs e)
+        {
+            
         }
     }
 }

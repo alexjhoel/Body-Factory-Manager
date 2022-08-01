@@ -93,6 +93,7 @@ namespace Body_Factory_Manager
             this.listarBTN.TabIndex = 2;
             this.listarBTN.Text = "Listar todos";
             this.listarBTN.UseVisualStyleBackColor = false;
+            this.listarBTN.Click += new System.EventHandler(this.listarBTN_Click);
             // 
             // buscarButton
             // 

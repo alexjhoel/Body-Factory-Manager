@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -13,14 +10,29 @@ namespace Body_Factory_Manager
     public partial class Principal : Form
     {
         //Link de archivo (.mdf) de base de datos en la raiz del proyecto
-        Transicion menuTransicion = new Transicion();
+        Transicion menuTransicion = new Transicion(0);
+        List<BotonMenu> botonesMenu = new List<BotonMenu>();
         SQL sql;
         Point offset;
         public Principal(DataTable datosUsuario)
         {
             InitializeComponent();
             menuTransicion.Establecer(40, 185, 0.05f);
+
+            foreach(Control btn in menuPNL.Controls) {
+                if(btn.GetType() == typeof(Button))
+                {
+                    botonesMenu.Add(new BotonMenu((Button)btn, false, ((Button)btn).Image));
+                    btn.Click += BotonMenu_Click;
+                    btn.MouseHover += BotonMenu_Hover;
+                    btn.MouseLeave += BotonMenu_MouseLeave;
+                    btn.Tag = botonesMenu.Count - 1;
+                }
+                
+            }
             timerMenuPNL.Start();
+
+
             if (datosUsuario == null)
             {
                 this.Close();
@@ -50,7 +62,6 @@ namespace Body_Factory_Manager
         #region Eventos
         private void timerMenuPNL_Tick(object sender, EventArgs e)
         {
-            Console.WriteLine("a");
             menuPNL.Width = (int)menuTransicion.Avanzar();
         }
 
@@ -59,11 +70,11 @@ namespace Body_Factory_Manager
         {
             if (menuPNL.Width == 185)
             {
-                menuTransicion.Establecer(185, 40, 0.02f);
+                menuTransicion.Establecer(185, 50, 0.02f);
             }
-            else if (menuPNL.Width == 40)
+            else if (menuPNL.Width == 50)
             {
-                menuTransicion.Establecer(40, 185, 0.02f);
+                menuTransicion.Establecer(50, 185, 0.02f);
             }
         }
 
@@ -122,6 +133,107 @@ namespace Body_Factory_Manager
             else this.WindowState = FormWindowState.Normal;
         }
 
+        private void BotonMenu_Hover(object sender, EventArgs e)
+        {
+            BotonMenu botonMenu = botonesMenu[(int)((Button)sender).Tag];
+            if (!botonMenu.clickeado)
+            {
+                botonMenu.transicion.Establecer(50, 25, 0.02f);
+            }
+
+        }
+
+        private void BotonMenu_MouseLeave(object sender, EventArgs e)
+        {
+            BotonMenu botonMenu = botonesMenu[(int)((Button)sender).Tag];
+            if (!botonMenu.clickeado)
+            {
+                botonMenu.transicion.Establecer(25, 50, 0.02f);
+            }
+            
+        }
+
+        private void BotonMenu_Click(object sender, EventArgs e)
+        {
+            BotonMenu botonMenu = botonesMenu[(int)((Button)sender).Tag];
+
+            foreach (BotonMenu btn in botonesMenu)
+            {
+                
+                btn.Idle();
+            }
+
+
+            botonMenu.Clickeado();
+        }
+
+
         #endregion
+
+        private void inicioBTN_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void principalHover(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class BotonMenu
+    {
+        public Image img;
+        public Button button { private set; get; }
+        public Transicion transicion { private set; get; }
+        public bool clickeado { private set; get; }
+        private Timer timer;
+
+        public BotonMenu(Button button, bool clickeado, Image img)
+        {
+            this.clickeado = clickeado;
+            transicion = new Transicion(1);
+            transicion.Establecer(50, 50, 0.02f);
+            this.button = button;
+            timer = new Timer() { Interval = 1 };
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            this.img = img;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            
+            button.Image= (Image)(new Bitmap(img,(int)transicion.Avanzar(),(int)transicion.Obtener()));
+            
+        }
+
+        public void Clickeado()
+        {
+            clickeado = true;
+            button.BackColor = Color.White;
+            transicion.Establecer(50, 25, 0.02f);
+        }
+
+        public void Idle()
+        {
+            if (clickeado)
+            {
+                transicion.Establecer(25, 50, 0.02f);
+            }
+            else
+            {
+                transicion.Establecer(50, 50, 0.02f);
+            }
+            
+            clickeado = false;
+            button.BackColor = Color.Red;
+            
+        }
+
+        
+
     }
 }
+
+

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.Security.Principal;
+using System.ServiceProcess;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -17,11 +14,22 @@ namespace Body_Factory_Manager
         private SQL sql;
         public Login()
         {
+            
             string connectionString;
             connectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
             sql = new SQL(connectionString);
             InitializeComponent();
-
+            /*Process proc = new Process();
+            proc.StartInfo.FileName = @"d:\Downloads\SQL Stop.bat.lnk";
+            proc.Start();*/
+            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+            {
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                if (principal.IsInRole(WindowsBuiltInRole.Administrator))
+                {
+                    
+                }
+            }
         }
 
         public SQL ObtenerSQL()
@@ -32,7 +40,7 @@ namespace Body_Factory_Manager
         public void ConfirmarLogin(DataTable datosUsuario = null)
         {
             this.datosUsuario = datosUsuario;
-            if(datosUsuario != null)
+            if (datosUsuario != null)
             {
                 using (Principal principal = new Principal(datosUsuario))
                 {
@@ -41,8 +49,8 @@ namespace Body_Factory_Manager
                 }
             }
             this.Close();
-            
-            
+
+
         }
 
         public void MostrarAjustes()

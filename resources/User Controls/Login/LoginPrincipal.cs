@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -22,7 +17,7 @@ namespace Body_Factory_Manager
         public LoginPrincipal()
         {
             InitializeComponent();
-            
+
         }
 
         private void loginBTN_Click(object sender, EventArgs e) => Loguear();
@@ -41,7 +36,7 @@ namespace Body_Factory_Manager
             else if (!claveTBX.Text.Equals(datosUsuario.Rows[0]["clave"].ToString())) MessageBox.Show(this, "Clave incorrecta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                ((Login) ParentForm).ConfirmarLogin(datosUsuario);
+                ((Login)ParentForm).ConfirmarLogin(datosUsuario);
             }
         }
 
