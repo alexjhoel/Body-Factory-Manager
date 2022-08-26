@@ -14,13 +14,15 @@ namespace Body_Factory_Manager
         List<BotonMenu> botonesMenu = new List<BotonMenu>();
         SQL sql;
         Point offset;
+        string usuario;
         public Principal(DataTable datosUsuario)
         {
             InitializeComponent();
             menuTransicion.Establecer(40, 185, 0.05f);
 
-            foreach(Control btn in menuPNL.Controls) {
-                if(btn.GetType() == typeof(Button))
+            foreach (Control btn in menuPNL.Controls)
+            {
+                if (btn.GetType() == typeof(Button))
                 {
                     botonesMenu.Add(new BotonMenu((Button)btn, false, ((Button)btn).Image));
                     btn.Click += BotonMenu_Click;
@@ -28,7 +30,7 @@ namespace Body_Factory_Manager
                     btn.MouseLeave += BotonMenu_MouseLeave;
                     btn.Tag = botonesMenu.Count - 1;
                 }
-                
+
             }
             timerMenuPNL.Start();
 
@@ -44,11 +46,11 @@ namespace Body_Factory_Manager
                 return;
             }
             DataTable datosDeUsuario = datosUsuario;
-            nombreUsuarioLBL.Text = datosDeUsuario.Rows[0]["usuario"].ToString();
-
+            string usuario = datosDeUsuario.Rows[0]["id"].ToString();
+            nombreUsuarioLBL.Text = usuario;
             sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
 
-            CambiarSección(new MenuClientes());
+            CambiarSección(new MenuClientes(usuario));
         }
 
         private void CambiarSección(UserControl userControl)
@@ -80,7 +82,7 @@ namespace Body_Factory_Manager
 
         private void clientesBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new MenuClientes());
+            CambiarSección(new MenuClientes(usuario));
         }
 
         private void inicioBTN_Click(object sender, EventArgs e)
@@ -90,17 +92,17 @@ namespace Body_Factory_Manager
 
         private void rutinasBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new Rutinas());
+            CambiarSección(new MenuRutinas());
         }
 
-        private void pagosBTN_Click(object sender, EventArgs e)
+        private void cuotasBTN_Click(object sender, EventArgs e)
         {
             CambiarSección(new MenuPagos());
         }
 
         private void asistenciasBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new Asistencias());
+            CambiarSección(new MenuAsistencias());
         }
 
         private void controlTBLPNL_MouseMove(object sender, MouseEventArgs e)
@@ -150,7 +152,7 @@ namespace Body_Factory_Manager
             {
                 botonMenu.transicion.Establecer(25, 50, 0.02f);
             }
-            
+
         }
 
         private void BotonMenu_Click(object sender, EventArgs e)
@@ -159,7 +161,7 @@ namespace Body_Factory_Manager
 
             foreach (BotonMenu btn in botonesMenu)
             {
-                
+
                 btn.Idle();
             }
 
@@ -179,6 +181,14 @@ namespace Body_Factory_Manager
         {
 
         }
+
+        private void adminBTN_Click(object sender, EventArgs e)
+        {
+            AdminTools nueva = new AdminTools();
+            nueva.ShowDialog();
+        }
+
+
     }
 
     public class BotonMenu
@@ -203,15 +213,15 @@ namespace Body_Factory_Manager
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            
-            button.Image= (Image)(new Bitmap(img,(int)transicion.Avanzar(),(int)transicion.Obtener()));
-            
+
+             button.Image = (Image)(new Bitmap(img, (int)transicion.Avanzar(), (int)transicion.Obtener()));
+            button.BackColor = ColorUtilities.ColorFromHSV(0, (transicion.Obtener() - 25) / 25, 1);
+            button.FlatAppearance.MouseOverBackColor = button.BackColor;
         }
 
         public void Clickeado()
         {
             clickeado = true;
-            button.BackColor = Color.White;
             transicion.Establecer(50, 25, 0.02f);
         }
 
@@ -223,15 +233,14 @@ namespace Body_Factory_Manager
             }
             else
             {
-                transicion.Establecer(50, 50, 0.02f);
+                transicion.Establecer(50, 50, 0.00f);
             }
-            
+
             clickeado = false;
-            button.BackColor = Color.Red;
-            
+
         }
 
-        
+
 
     }
 }

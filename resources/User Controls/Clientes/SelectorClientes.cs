@@ -7,16 +7,24 @@ namespace Body_Factory_Manager
 {
     public partial class SelectorClientes : UserControl
     {
-        SQL sql; 
+        SQL sql;
         Action<string> retorno;
 
 
 
-        public SelectorClientes(Action<string> retorno)
+        public SelectorClientes(Action<string> retorno, string cedulaCliente = null)
         {
+
             InitializeComponent();
-            
+
             this.retorno = retorno;
+
+            sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
+
+            if (cedulaCliente != null)
+            {
+                cedulaTBX.Text = cedulaCliente;
+            }
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -31,7 +39,7 @@ namespace Body_Factory_Manager
 
         private void SelectorClientes_Load(object sender, EventArgs e)
         {
-            sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
+
         }
 
 
@@ -50,6 +58,23 @@ namespace Body_Factory_Manager
             }
 
             nombreTBX.Text = "N/A";
+        }
+
+        private void agregarBTN_Click(object sender, EventArgs e)
+        {
+            BuscadorClientes buscadorClientes = new BuscadorClientes();
+            buscadorClientes.ShowDialog();
+            if(buscadorClientes.DialogResult == DialogResult.OK)
+            {
+                using (ListadoClientes listado = new ListadoClientes("SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes WHERE " + buscadorClientes.filtro1.ObtenerWhereConsulta(), true))
+                {
+                    listado.ShowDialog();
+                    if (listado.DialogResult == DialogResult.OK)
+                    {
+                        cedulaTBX.Text = listado.cedula;
+                    }
+                }
+            }
         }
     }
 }

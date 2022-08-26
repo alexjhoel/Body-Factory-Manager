@@ -58,9 +58,12 @@ namespace Body_Factory_Manager
             this.ClientSize = new System.Drawing.Size(558, 517);
             this.Controls.Add(this.loginConfiguracion1);
             this.Controls.Add(this.loginPrincipal1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
 
         }

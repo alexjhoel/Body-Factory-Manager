@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Body_Factory_Manager
 {
@@ -19,7 +18,7 @@ namespace Body_Factory_Manager
         private float final = 0;
         private float xAbsoluta = 0;
         private float intervalo = 0.1f;
-        TipoTransicion[] Transiciones = new TipoTransicion[] {new Bounce(), new Fade1()};
+        TipoTransicion[] Transiciones = new TipoTransicion[] { new Bounce(), new Fade1() };
         int transicionIndex = 0;
         private float bounce(float x)
         {
@@ -44,7 +43,7 @@ namespace Body_Factory_Manager
             }
         }
 
-        
+
         public void Establecer(float inicio, float final, float intervalo = -1f)
         {
             this.inicio = inicio;
@@ -107,7 +106,7 @@ namespace Body_Factory_Manager
     {
         public float calculo(float x)
         {
-            return (float) Math.Sin((x * Math.PI) / 2);
+            return (float)Math.Sin((x * Math.PI) / 2);
         }
     }
 }

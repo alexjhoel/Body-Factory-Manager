@@ -1,8 +1,6 @@
 ﻿using System.Configuration;
 using System.Data;
-using System.Diagnostics;
 using System.Security.Principal;
-using System.ServiceProcess;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -14,7 +12,7 @@ namespace Body_Factory_Manager
         private SQL sql;
         public Login()
         {
-            
+
             string connectionString;
             connectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
             sql = new SQL(connectionString);
@@ -27,7 +25,7 @@ namespace Body_Factory_Manager
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
                 if (principal.IsInRole(WindowsBuiltInRole.Administrator))
                 {
-                    
+
                 }
             }
         }
@@ -66,6 +64,11 @@ namespace Body_Factory_Manager
             string connectionString;
             connectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
             sql = new SQL(connectionString);
+        }
+
+        private void Login_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

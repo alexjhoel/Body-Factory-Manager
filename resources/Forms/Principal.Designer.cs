@@ -37,13 +37,14 @@ namespace Body_Factory_Manager
             this.menuBTN = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.nombreUsuarioLBL = new System.Windows.Forms.Label();
+            this.roundPictureBox1 = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.cerrarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.maximizarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.minimizarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.timerMenuPNL = new System.Windows.Forms.Timer(this.components);
             this.timedLogin = new System.Windows.Forms.Timer(this.components);
             this.menuPNL = new Body_Factory_Manager.DoubleBufferPanel();
-            this.pagosBTN = new System.Windows.Forms.Button();
+            this.adminBTN = new System.Windows.Forms.Button();
             this.configBTN = new System.Windows.Forms.Button();
             this.cuotasBTN = new System.Windows.Forms.Button();
             this.asistenciasBTN = new System.Windows.Forms.Button();
@@ -51,17 +52,16 @@ namespace Body_Factory_Manager
             this.inicioBTN = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.logoMenuPBX = new System.Windows.Forms.PictureBox();
-            this.roundPictureBox1 = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.paginasPNL = new Body_Factory_Manager.DoubleBufferPanel();
             this.controlTBLPNL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBTN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cerrarVentanaBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximizarVentanaBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizarVentanaBTN)).BeginInit();
             this.menuPNL.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoMenuPBX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // controlTBLPNL
@@ -74,7 +74,7 @@ namespace Body_Factory_Manager
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.controlTBLPNL.Controls.Add(this.menuBTN, 0, 0);
             this.controlTBLPNL.Controls.Add(this.label2, 1, 0);
@@ -130,19 +130,33 @@ namespace Body_Factory_Manager
             this.nombreUsuarioLBL.Dock = System.Windows.Forms.DockStyle.Right;
             this.nombreUsuarioLBL.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreUsuarioLBL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nombreUsuarioLBL.Location = new System.Drawing.Point(549, 0);
+            this.nombreUsuarioLBL.Location = new System.Drawing.Point(540, 0);
             this.nombreUsuarioLBL.Name = "nombreUsuarioLBL";
             this.nombreUsuarioLBL.Size = new System.Drawing.Size(62, 44);
             this.nombreUsuarioLBL.TabIndex = 7;
             this.nombreUsuarioLBL.Text = "Usuario";
             this.nombreUsuarioLBL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // roundPictureBox1
+            // 
+            this.roundPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.roundPictureBox1.BackColor = System.Drawing.Color.DarkGray;
+            this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.tatu;
+            this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.tatu;
+            this.roundPictureBox1.Location = new System.Drawing.Point(636, 3);
+            this.roundPictureBox1.Name = "roundPictureBox1";
+            this.roundPictureBox1.Size = new System.Drawing.Size(37, 37);
+            this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.roundPictureBox1.TabIndex = 9;
+            this.roundPictureBox1.TabStop = false;
+            // 
             // cerrarVentanaBTN
             // 
             this.cerrarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cerrarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cerrarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.close_FILL0_wght400_GRAD0_opsz481;
-            this.cerrarVentanaBTN.Location = new System.Drawing.Point(818, 3);
+            this.cerrarVentanaBTN.Location = new System.Drawing.Point(814, 3);
             this.cerrarVentanaBTN.Name = "cerrarVentanaBTN";
             this.cerrarVentanaBTN.Size = new System.Drawing.Size(34, 38);
             this.cerrarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -155,7 +169,7 @@ namespace Body_Factory_Manager
             this.maximizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.maximizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.maximizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.outfull;
-            this.maximizarVentanaBTN.Location = new System.Drawing.Point(764, 3);
+            this.maximizarVentanaBTN.Location = new System.Drawing.Point(755, 3);
             this.maximizarVentanaBTN.Name = "maximizarVentanaBTN";
             this.maximizarVentanaBTN.Size = new System.Drawing.Size(34, 38);
             this.maximizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -168,7 +182,7 @@ namespace Body_Factory_Manager
             this.minimizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.minimizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.minimizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.minimize_png;
-            this.minimizarVentanaBTN.Location = new System.Drawing.Point(716, 5);
+            this.minimizarVentanaBTN.Location = new System.Drawing.Point(707, 5);
             this.minimizarVentanaBTN.Name = "minimizarVentanaBTN";
             this.minimizarVentanaBTN.Size = new System.Drawing.Size(38, 34);
             this.minimizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -188,7 +202,7 @@ namespace Body_Factory_Manager
             // menuPNL
             // 
             this.menuPNL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.menuPNL.Controls.Add(this.pagosBTN);
+            this.menuPNL.Controls.Add(this.adminBTN);
             this.menuPNL.Controls.Add(this.configBTN);
             this.menuPNL.Controls.Add(this.cuotasBTN);
             this.menuPNL.Controls.Add(this.asistenciasBTN);
@@ -201,29 +215,29 @@ namespace Body_Factory_Manager
             this.menuPNL.Size = new System.Drawing.Size(186, 397);
             this.menuPNL.TabIndex = 3;
             // 
-            // pagosBTN
+            // adminBTN
             // 
-            this.pagosBTN.BackColor = System.Drawing.Color.Red;
-            this.pagosBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pagosBTN.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.pagosBTN.FlatAppearance.BorderSize = 0;
-            this.pagosBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
-            this.pagosBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.pagosBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pagosBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pagosBTN.ForeColor = System.Drawing.Color.Black;
-            this.pagosBTN.Image = ((System.Drawing.Image)(resources.GetObject("pagosBTN.Image")));
-            this.pagosBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.pagosBTN.Location = new System.Drawing.Point(0, 243);
-            this.pagosBTN.Name = "pagosBTN";
-            this.pagosBTN.Padding = new System.Windows.Forms.Padding(0, 0, 35, 0);
-            this.pagosBTN.Size = new System.Drawing.Size(185, 32);
-            this.pagosBTN.TabIndex = 7;
-            this.pagosBTN.Tag = "1";
-            this.pagosBTN.Text = "Pagos";
-            this.pagosBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.pagosBTN.UseVisualStyleBackColor = true;
-            this.pagosBTN.Click += new System.EventHandler(this.pagosBTN_Click);
+            this.adminBTN.BackColor = System.Drawing.Color.Red;
+            this.adminBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.adminBTN.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.adminBTN.FlatAppearance.BorderSize = 0;
+            this.adminBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.adminBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.adminBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adminBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adminBTN.ForeColor = System.Drawing.Color.Black;
+            this.adminBTN.Image = ((System.Drawing.Image)(resources.GetObject("adminBTN.Image")));
+            this.adminBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.adminBTN.Location = new System.Drawing.Point(0, 319);
+            this.adminBTN.Name = "adminBTN";
+            this.adminBTN.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
+            this.adminBTN.Size = new System.Drawing.Size(185, 32);
+            this.adminBTN.TabIndex = 8;
+            this.adminBTN.Tag = "1";
+            this.adminBTN.Text = "Admin";
+            this.adminBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.adminBTN.UseVisualStyleBackColor = true;
+            this.adminBTN.Click += new System.EventHandler(this.adminBTN_Click);
             // 
             // configBTN
             // 
@@ -238,7 +252,7 @@ namespace Body_Factory_Manager
             this.configBTN.ForeColor = System.Drawing.Color.Black;
             this.configBTN.Image = ((System.Drawing.Image)(resources.GetObject("configBTN.Image")));
             this.configBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.configBTN.Location = new System.Drawing.Point(0, 319);
+            this.configBTN.Location = new System.Drawing.Point(0, 281);
             this.configBTN.Name = "configBTN";
             this.configBTN.Size = new System.Drawing.Size(185, 32);
             this.configBTN.TabIndex = 6;
@@ -260,15 +274,16 @@ namespace Body_Factory_Manager
             this.cuotasBTN.ForeColor = System.Drawing.Color.Black;
             this.cuotasBTN.Image = ((System.Drawing.Image)(resources.GetObject("cuotasBTN.Image")));
             this.cuotasBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cuotasBTN.Location = new System.Drawing.Point(0, 281);
+            this.cuotasBTN.Location = new System.Drawing.Point(0, 243);
             this.cuotasBTN.Name = "cuotasBTN";
             this.cuotasBTN.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.cuotasBTN.Size = new System.Drawing.Size(185, 32);
             this.cuotasBTN.TabIndex = 5;
             this.cuotasBTN.Tag = "1";
-            this.cuotasBTN.Text = "Cuotas";
+            this.cuotasBTN.Text = "Finanzas?";
             this.cuotasBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cuotasBTN.UseVisualStyleBackColor = true;
+            this.cuotasBTN.Click += new System.EventHandler(this.cuotasBTN_Click);
             // 
             // asistenciasBTN
             // 
@@ -364,30 +379,15 @@ namespace Body_Factory_Manager
             this.logoMenuPBX.TabIndex = 1;
             this.logoMenuPBX.TabStop = false;
             // 
-            // roundPictureBox1
-            // 
-            this.roundPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.roundPictureBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.Location = new System.Drawing.Point(645, 3);
-            this.roundPictureBox1.Name = "roundPictureBox1";
-            this.roundPictureBox1.Size = new System.Drawing.Size(37, 37);
-            this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.roundPictureBox1.TabIndex = 9;
-            this.roundPictureBox1.TabStop = false;
-            // 
             // paginasPNL
             // 
             this.paginasPNL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.paginasPNL.BackColor = System.Drawing.Color.Transparent;
             this.paginasPNL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.paginasPNL.Location = new System.Drawing.Point(30, 44);
+            this.paginasPNL.Location = new System.Drawing.Point(44, 44);
             this.paginasPNL.Name = "paginasPNL";
-            this.paginasPNL.Size = new System.Drawing.Size(836, 397);
+            this.paginasPNL.Size = new System.Drawing.Size(822, 397);
             this.paginasPNL.TabIndex = 4;
             // 
             // Principal
@@ -406,13 +406,13 @@ namespace Body_Factory_Manager
             this.controlTBLPNL.ResumeLayout(false);
             this.controlTBLPNL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBTN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cerrarVentanaBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximizarVentanaBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizarVentanaBTN)).EndInit();
             this.menuPNL.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoMenuPBX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -435,9 +435,9 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Button cuotasBTN;
         private System.Windows.Forms.Button asistenciasBTN;
         private System.Windows.Forms.Button clientesBTN;
-        private System.Windows.Forms.Button pagosBTN;
         private DoubleBufferPanel menuPNL;
         private DoubleBufferPanel paginasPNL;
+        private System.Windows.Forms.Button adminBTN;
     }
 }
 

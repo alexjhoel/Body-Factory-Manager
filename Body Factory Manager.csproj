@@ -118,6 +118,18 @@
     <Compile Include="resources\Custom\DoubleBufferPanel.Designer.cs">
       <DependentUpon>DoubleBufferPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\Forms\AdminTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\AdminTools.Designer.cs">
+      <DependentUpon>AdminTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\Forms\BuscadorClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\BuscadorClientes.Designer.cs">
+      <DependentUpon>BuscadorClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\Forms\Clientes\ListadoClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +147,18 @@
     </Compile>
     <Compile Include="resources\Forms\Clientes\DatosCliente.Designer.cs">
       <DependentUpon>DatosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\Forms\Cuotas\DatosMensualidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\Cuotas\DatosMensualidad.Designer.cs">
+      <DependentUpon>DatosMensualidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\Forms\Cuotas\ListadoMensualides.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\Cuotas\ListadoMensualides.Designer.cs">
+      <DependentUpon>ListadoMensualides.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Login.cs">
       <SubType>Form</SubType>
@@ -162,6 +186,18 @@
     <Compile Include="resources\Forms\Pagos\DatosPago.Designer.cs">
       <DependentUpon>DatosPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\User Controls\Buscador.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Buscador.Designer.cs">
+      <DependentUpon>Buscador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\User Controls\Listado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\User Controls\Login\LoginConfiguracion.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,17 +210,11 @@
     <Compile Include="resources\User Controls\Pagos\SelectorCuota.Designer.cs">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Asistencias.cs">
+    <Compile Include="resources\User Controls\Principal\MenuAsistencias.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Asistencias.Designer.cs">
-      <DependentUpon>Asistencias.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\User Controls\Clientes\Clientes.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Clientes\Clientes.Designer.cs">
-      <DependentUpon>Clientes.cs</DependentUpon>
+    <Compile Include="resources\User Controls\Principal\MenuAsistencias.Designer.cs">
+      <DependentUpon>MenuAsistencias.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Custom\BotonA.cs">
       <SubType>Component</SubType>
@@ -204,16 +234,16 @@
     <Compile Include="resources\User Controls\Login\LoginPrincipal.Designer.cs">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Clientes\MenuClientes.cs">
+    <Compile Include="resources\User Controls\Principal\MenuClientes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Clientes\MenuClientes.Designer.cs">
+    <Compile Include="resources\User Controls\Principal\MenuClientes.Designer.cs">
       <DependentUpon>MenuClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Pagos\MenuPagos.cs">
+    <Compile Include="resources\User Controls\Principal\MenuPagos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Pagos\MenuPagos.Designer.cs">
+    <Compile Include="resources\User Controls\Principal\MenuPagos.Designer.cs">
       <DependentUpon>MenuPagos.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Pagos\Pagos.cs">
@@ -222,11 +252,11 @@
     <Compile Include="resources\User Controls\Pagos\Pagos.Designer.cs">
       <DependentUpon>Pagos.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Rutinas.cs">
+    <Compile Include="resources\User Controls\Principal\MenuRutinas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Rutinas.Designer.cs">
-      <DependentUpon>Rutinas.cs</DependentUpon>
+    <Compile Include="resources\User Controls\Principal\MenuRutinas.Designer.cs">
+      <DependentUpon>MenuRutinas.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Clientes\SelectorClientes.cs">
       <SubType>UserControl</SubType>
@@ -234,6 +264,7 @@
     <Compile Include="resources\User Controls\Clientes\SelectorClientes.Designer.cs">
       <DependentUpon>SelectorClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\Utilities\ColorUtilites.cs" />
     <Compile Include="resources\Utilities\DataGridViewExtension.cs" />
     <Compile Include="resources\Utilities\Email.cs" />
     <Compile Include="resources\Utilities\SQL.cs" />
@@ -244,6 +275,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StardustEssentialsDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="resources\Forms\AdminTools.resx">
+      <DependentUpon>AdminTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\BuscadorClientes.resx">
+      <DependentUpon>BuscadorClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Clientes\ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -252,6 +289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Clientes\DatosCliente.resx">
       <DependentUpon>DatosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\Cuotas\DatosMensualidad.resx">
+      <DependentUpon>DatosMensualidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\Cuotas\ListadoMensualides.resx">
+      <DependentUpon>ListadoMensualides.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -275,6 +318,12 @@
     <EmbeddedResource Include="resources\Forms\Pagos\DatosPago.resx">
       <DependentUpon>DatosPago.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Buscador.resx">
+      <DependentUpon>Buscador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Login\LoginConfiguracion.resx">
       <DependentUpon>LoginConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,23 +333,20 @@
     <EmbeddedResource Include="resources\User Controls\Pagos\SelectorCuota.resx">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\Asistencias.resx">
-      <DependentUpon>Asistencias.cs</DependentUpon>
+    <EmbeddedResource Include="resources\User Controls\Principal\MenuAsistencias.resx">
+      <DependentUpon>MenuAsistencias.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Clientes\Clientes.resx">
-      <DependentUpon>Clientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Clientes\MenuClientes.resx">
+    <EmbeddedResource Include="resources\User Controls\Principal\MenuClientes.resx">
       <DependentUpon>MenuClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Pagos\MenuPagos.resx">
+    <EmbeddedResource Include="resources\User Controls\Principal\MenuPagos.resx">
       <DependentUpon>MenuPagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Pagos\Pagos.resx">
       <DependentUpon>Pagos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\Rutinas.resx">
-      <DependentUpon>Rutinas.cs</DependentUpon>
+    <EmbeddedResource Include="resources\User Controls\Principal\MenuRutinas.resx">
+      <DependentUpon>MenuRutinas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Clientes\SelectorClientes.resx">
       <DependentUpon>SelectorClientes.cs</DependentUpon>
@@ -460,6 +506,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\sadsadsadasd1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\fondo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\person_add_FILL0_wght400_GRAD0_opsz48 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\person_add_FILL0_wght400_GRAD0_opsz48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\person_add_FILL0_wght400_GRAD0_opsz48 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\person_add_FILL1_wght400_GRAD0_opsz48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\asdadadsad.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

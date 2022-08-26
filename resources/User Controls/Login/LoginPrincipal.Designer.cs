@@ -41,11 +41,11 @@ namespace Body_Factory_Manager
             this.usuarioTBX.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.usuarioTBX.BackColor = System.Drawing.SystemColors.Desktop;
             this.usuarioTBX.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.usuarioTBX.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usuarioTBX.ForeColor = System.Drawing.SystemColors.Info;
             this.usuarioTBX.Location = new System.Drawing.Point(274, 203);
             this.usuarioTBX.Name = "usuarioTBX";
-            this.usuarioTBX.Size = new System.Drawing.Size(174, 20);
+            this.usuarioTBX.Size = new System.Drawing.Size(174, 19);
             this.usuarioTBX.TabIndex = 5;
             // 
             // recuperarContraseñaBTN
@@ -77,12 +77,13 @@ namespace Body_Factory_Manager
             this.claveTBX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.claveTBX.BackColor = System.Drawing.SystemColors.Desktop;
             this.claveTBX.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.claveTBX.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.claveTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.claveTBX.ForeColor = System.Drawing.SystemColors.Info;
             this.claveTBX.Location = new System.Drawing.Point(273, 245);
             this.claveTBX.Name = "claveTBX";
-            this.claveTBX.Size = new System.Drawing.Size(174, 20);
+            this.claveTBX.Size = new System.Drawing.Size(174, 19);
             this.claveTBX.TabIndex = 6;
+            this.claveTBX.UseSystemPasswordChar = true;
             this.claveTBX.KeyDown += new System.Windows.Forms.KeyEventHandler(this.claveTBX_KeyDown);
             // 
             // configuracionBTN

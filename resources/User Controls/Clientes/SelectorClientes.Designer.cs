@@ -59,21 +59,25 @@ namespace Body_Factory_Manager
             // 
             this.agregarBTN.BackColor = System.Drawing.Color.Red;
             this.agregarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.agregarBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agregarBTN.FlatAppearance.BorderSize = 0;
+            this.agregarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.agregarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agregarBTN.Location = new System.Drawing.Point(90, 12);
             this.agregarBTN.Name = "agregarBTN";
             this.agregarBTN.Size = new System.Drawing.Size(78, 40);
             this.agregarBTN.TabIndex = 30;
             this.agregarBTN.Text = "Buscar";
+            this.agregarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.agregarBTN.UseVisualStyleBackColor = false;
+            this.agregarBTN.Click += new System.EventHandler(this.agregarBTN_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(11, 20);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 23);
+            this.label7.Size = new System.Drawing.Size(80, 29);
             this.label7.TabIndex = 22;
             this.label7.Text = "Cliente:";
             // 

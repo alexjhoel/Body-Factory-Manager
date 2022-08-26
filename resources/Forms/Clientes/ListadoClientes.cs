@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -9,94 +8,87 @@ namespace Body_Factory_Manager
     public partial class ListadoClientes : Form
     {
         SQL sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
-        public ListadoClientes(DataTable tabla = null)
+        string consulta;
+
+        public string cedula;
+        public ListadoClientes(string consulta = null, bool selector = false)
         {
+            this.consulta = consulta;
+
             InitializeComponent();
 
-            tablaDGV.RowTemplate.MinimumHeight = 30;
-
-        }
-
-        private void ListadoClientes_Load(object sender, EventArgs e)
-        {
-            CargarListaClientes();
-        }
-
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tablaDGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-            if (e.ColumnIndex == 4)
+            DialogResult = DialogResult.Cancel;
+            if (this.consulta == null)
             {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-                DataGridViewButtonCell bc = tablaDGV[0, e.RowIndex] as DataGridViewButtonCell;
-                Bitmap ico = new Bitmap(Properties.Resources.editar);
-                e.Graphics.DrawImage(ico, e.CellBounds.Left + 3, e.CellBounds.Top + 3, 20, 20);
-
-                e.Handled = true;
-                return;
+                this.consulta = "SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes";
             }
 
-            if (e.ColumnIndex == 5)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-                DataGridViewButtonCell bc = tablaDGV[0, e.RowIndex] as DataGridViewButtonCell;
-                Bitmap ico = new Bitmap(Properties.Resources.eliminar);
-                e.Graphics.DrawImage(ico, e.CellBounds.Left + 5, e.CellBounds.Top + 5, 20, 20);
 
-                e.Handled = true;
-                return;
-            }
-        }
 
-        private void tablaDGV_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-            if (e.ColumnIndex < 4) return;
-            string cedula = ((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index]["Cédula"].ToString();
-            string nombre = ((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index]["Nombre"].ToString();
-            if (e.ColumnIndex == 4)
-            {
-                DatosCliente nuevaVentana = new DatosCliente(((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index]["Cédula"].ToString());
-                nuevaVentana.ShowDialog();
-            }
-            else if (e.ColumnIndex == 5 && ((DialogResult)MessageBox.Show(this, "¿Desea el eliminar el cliente " + nombre + " de cédula " + cedula + "? (Los datos no se recuperaran)", "BORRAR CLIENTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) == DialogResult.Yes)
-            {
 
-                sql.Modificar("DELETE FROM Clientes WHERE cedula= " + cedula);
+            List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
+            if (selector)
+            {
+                buttonDatos.Add(new ListadoButtonDatos("Listo", Body_Factory_Manager.Properties.Resources.check, this.Seleccionar));
+                buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.Editar));
 
             }
+            else
+            {
+                buttonDatos.Add(new ListadoButtonDatos("Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
+                buttonDatos.Add(new ListadoButtonDatos("Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
+                buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Eliminar));
+            }
+            
+
+            listado = new Listado("Cédula", buttonDatos);
+            this.Controls.Add(listado);
+            listado.Dock = DockStyle.Fill;
             CargarListaClientes();
 
 
+
+        }
+
+
+        private void Eliminar(string cedula)
+        {
+            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            sql.Modificar("DELETE FROM Clientes WHERE cedula= " + cedula);
+            CargarListaClientes();
         }
 
         private void CargarListaClientes()
         {
-            tablaDGV.Columns.Clear();
-            DataTable datos = sql.Obtener("SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes");
-            tablaDGV.DataSource = datos;
-            using (DataGridViewButtonColumn editar = new DataGridViewButtonColumn())
-            {
-                editar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                editar.Width = 30;
-                editar.MinimumWidth = 30;
-                tablaDGV.Columns.Add(editar);
-            }
+            listado.datos = sql.Obtener(consulta);
+            listado.Recargar();
+        }
 
-            using (DataGridViewButtonColumn eliminar = new DataGridViewButtonColumn())
+        private void Editar(string cedula)
+        {
+            using (DatosCliente nuevaVentana = new DatosCliente("", cedula))
             {
-                eliminar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                eliminar.Width = 30;
-                eliminar.MinimumWidth = 30;
-                tablaDGV.Columns.Add(eliminar);
+                nuevaVentana.ShowDialog();
             }
         }
+
+        private void Seleccionar(string cedula)
+        {
+            DialogResult = DialogResult.OK;
+            this.cedula = cedula;
+            this.Close();
+        }
+
+        private void PagarCuota(string cedula)
+        {
+            
+
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(cedula, TipoPagoMensualidad.PagarCuotaDesdeClientes))
+            {
+                nuevaVentana.ShowDialog();
+            }
+        }
+
+        
     }
 }

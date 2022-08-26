@@ -24,7 +24,7 @@ namespace Body_Factory_Manager
 
         private void CrearUsuario()
         {
-            sql.Modificar("INSERT INTO Usuarios (usuario, clave, correoElectronico, nombre, apellido) VALUES('admin', ENCRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', 'admin'),'alexanderalmeida20@gmail.com', 'admin', 'admin')");
+            sql.Modificar("INSERT INTO Usuarios (id, contrasena, correoElectronico, nombre, apellido) VALUES('admin', ENCRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', 'admin'),'alexanderalmeida20@gmail.com', 'admin', 'admin')");
         }
 
         private void Loguear()
@@ -33,7 +33,7 @@ namespace Body_Factory_Manager
             //simpleSound.Play();
             datosUsuario = ObtenerUsuario();
             if (datosUsuario.Rows.Count == 0) MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (!claveTBX.Text.Equals(datosUsuario.Rows[0]["clave"].ToString())) MessageBox.Show(this, "Clave incorrecta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (!claveTBX.Text.Equals(datosUsuario.Rows[0]["contrasena"].ToString())) MessageBox.Show(this, "Clave incorrecta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 ((Login)ParentForm).ConfirmarLogin(datosUsuario);
@@ -44,7 +44,7 @@ namespace Body_Factory_Manager
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
             parametros.Add("@usuario", usuarioTBX.Text);
-            datosUsuario = sql.Obtener("SELECT usuario, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', clave)) AS clave, correoElectronico FROM Usuarios WHERE usuario=@usuario", parametros);
+            datosUsuario = sql.Obtener("SELECT id, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', contrasena)) AS contrasena, correoElectronico FROM Usuarios WHERE id=@usuario", parametros);
 
             return datosUsuario;
         }
@@ -79,8 +79,8 @@ namespace Body_Factory_Manager
                 MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            email.Mensaje(Properties.Settings.Default.CorreoRecover, datosUsuario.Rows[0]["correoElectronico"].ToString(), "Recupera tu contraseña", "-Recuperación de contraseña-\n Usuario: " + datosUsuario.Rows[0]["Usuario"] +
-                "\nContraeña:" + datosUsuario.Rows[0]["clave"] + "\n\nAtentamente,\n el equipo de Stardust Essentials");
+            email.Mensaje(Properties.Settings.Default.CorreoRecover, datosUsuario.Rows[0]["correoElectronico"].ToString(), "Recupera tu contraseña", "-Recuperación de contraseña-\n Usuario: " + datosUsuario.Rows[0]["id"] +
+                "\nContraeña:" + datosUsuario.Rows[0]["contrasena"] + "\n\nAtentamente,\n el equipo de Stardust Essentials");
             SetearInterfaz(false);
             if (email.Enviar())
             {

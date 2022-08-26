@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -83,7 +79,7 @@ namespace Body_Factory_Manager
         {
             tablaDGV.Columns.Clear();
             //DataTable datos = sql.Obtener("SELECT id, monto as 'Monto', descuento as 'Descuento', cedula as 'Cédula', fechaVigencia as 'Fecha de Vigencia', CONCAT( nombre, ' ' apellido, ' - ', cedula) as 'Cliente' FROM Clientes INNER JOIN Pagos ON Pagos.idCliente = Clientes.cedula");
-            DataTable datos = sql.Obtener("SELECT id, monto as 'Monto', descuento as 'Descuento' FROM Pagos", true);
+            DataTable datos = sql.Obtener("SELECT id, monto as 'Monto', descuento as 'Descuento' FROM Pagos");
             tablaDGV.DataSource = datos;
             using (DataGridViewButtonColumn editar = new DataGridViewButtonColumn())
             {

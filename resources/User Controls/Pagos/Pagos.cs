@@ -106,7 +106,7 @@ namespace Body_Factory_Manager
         {
             listaClientesDGV.Columns.Clear();
             string consulta = "SELECT nombre AS Nombre, apellido AS Apellido, cedula as Cédula FROM Clientes";
-            using (DataTable data = sql.Obtener(consulta, true))
+            using (DataTable data = sql.Obtener(consulta))
             {
                 listaClientesDGV.DataSource = data;
             }
@@ -119,7 +119,7 @@ namespace Body_Factory_Manager
                 "FROM Pagos INNER JOIN Mensualidades ON Pagos.idMensualidad=Mensualidades.id " +
                 "WHERE Pagos.idCliente=" + ((DataTable)listaClientesDGV.DataSource).Rows[listaClientesDGV.SelectedRows[0].Index]["Cédula"].ToString();
             Console.WriteLine(consulta);
-            using (DataTable data = sql.Obtener(consulta, false))
+            using (DataTable data = sql.Obtener(consulta))
             {
                 listaPagosDGV.DataSource = data;
 
