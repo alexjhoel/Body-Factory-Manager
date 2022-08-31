@@ -34,7 +34,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.diasTBX = new System.Windows.Forms.TextBox();
+            this.diasNUD = new System.Windows.Forms.NumericUpDown();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.diasNUD)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pagasCBX
@@ -42,7 +45,7 @@
             this.pagasCBX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pagasCBX.AutoSize = true;
             this.pagasCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pagasCBX.Location = new System.Drawing.Point(12, 423);
+            this.pagasCBX.Location = new System.Drawing.Point(3, 7);
             this.pagasCBX.Name = "pagasCBX";
             this.pagasCBX.Size = new System.Drawing.Size(183, 24);
             this.pagasCBX.TabIndex = 0;
@@ -54,7 +57,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(294, 424);
+            this.label1.Location = new System.Drawing.Point(285, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 20);
             this.label1.TabIndex = 1;
@@ -64,7 +67,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(459, 421);
+            this.label2.Location = new System.Drawing.Point(450, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 20);
             this.label2.TabIndex = 2;
@@ -74,7 +77,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(686, 421);
+            this.label3.Location = new System.Drawing.Point(677, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 20);
             this.label3.TabIndex = 3;
@@ -86,7 +89,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button1.FlatAppearance.BorderSize = 3;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(231, 421);
+            this.button1.Location = new System.Drawing.Point(222, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(57, 23);
             this.button1.TabIndex = 4;
@@ -98,36 +101,65 @@
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button2.FlatAppearance.BorderSize = 3;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(396, 421);
+            this.button2.Location = new System.Drawing.Point(387, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(57, 23);
             this.button2.TabIndex = 5;
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // diasTBX
+            // diasNUD
             // 
-            this.diasTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diasTBX.Location = new System.Drawing.Point(616, 418);
-            this.diasTBX.Name = "diasTBX";
-            this.diasTBX.Size = new System.Drawing.Size(64, 26);
-            this.diasTBX.TabIndex = 6;
+            this.diasNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diasNUD.Location = new System.Drawing.Point(616, 5);
+            this.diasNUD.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.diasNUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.diasNUD.Name = "diasNUD";
+            this.diasNUD.Size = new System.Drawing.Size(55, 26);
+            this.diasNUD.TabIndex = 6;
+            this.diasNUD.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.diasNUD.ValueChanged += new System.EventHandler(this.diasNUD_ValueChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.pagasCBX);
+            this.panel1.Controls.Add(this.diasNUD);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Location = new System.Drawing.Point(-1, 407);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(801, 43);
+            this.panel1.TabIndex = 7;
             // 
             // ListadoMensualidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.diasTBX);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pagasCBX);
+            this.Controls.Add(this.panel1);
             this.Name = "ListadoMensualidades";
             this.Text = "ListadoMensualides";
+            this.Load += new System.EventHandler(this.ListadoMensualidades_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.diasNUD)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -140,6 +172,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox diasTBX;
+        private System.Windows.Forms.NumericUpDown diasNUD;
+        private System.Windows.Forms.Panel panel1;
     }
 }

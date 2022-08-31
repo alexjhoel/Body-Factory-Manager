@@ -10,9 +10,9 @@ namespace Body_Factory_Manager
         public FiltroBusqeda filtro2;
 
 
-        private FiltroBusqeda[] filtrosPrefijados = { new FiltroBusqeda("Nombre","Nombre", TipoFiltro.String),
-        new FiltroBusqeda("Apellido","apellido", TipoFiltro.String),
-        new FiltroBusqeda("Cédula","cedula", TipoFiltro.String)};
+        private FiltroBusqeda[] filtrosPrefijados = { new FiltroBusqeda(TipoFiltro.String, "Nombre","Nombre"),
+        new FiltroBusqeda(TipoFiltro.String, "Apellido","apellido"),
+        new FiltroBusqeda(TipoFiltro.String, "Cédula","cedula")};
 
         public BuscadorClientes()
         {

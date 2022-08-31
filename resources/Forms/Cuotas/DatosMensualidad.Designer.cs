@@ -84,7 +84,7 @@
             this.cobroCBX.Name = "cobroCBX";
             this.cobroCBX.Size = new System.Drawing.Size(154, 28);
             this.cobroCBX.TabIndex = 45;
-            this.cobroCBX.SelectedIndexChanged += new System.EventHandler(this.montosCBX_SelectedIndexChanged);
+            this.cobroCBX.SelectionChangeCommitted += new System.EventHandler(this.cobroCBX_SelectionChangeCommitted);
             // 
             // label8
             // 
@@ -117,7 +117,7 @@
             this.descuentosCBX.Name = "descuentosCBX";
             this.descuentosCBX.Size = new System.Drawing.Size(154, 28);
             this.descuentosCBX.TabIndex = 42;
-            this.descuentosCBX.SelectedIndexChanged += new System.EventHandler(this.descuentosCBX_SelectionChangeCommitted);
+            this.descuentosCBX.SelectionChangeCommitted += new System.EventHandler(this.descuentosCBX_SelectionChangeCommitted);
             // 
             // label5
             // 
@@ -313,7 +313,7 @@
             this.entregaCBX.Name = "entregaCBX";
             this.entregaCBX.Size = new System.Drawing.Size(161, 28);
             this.entregaCBX.TabIndex = 49;
-            this.entregaCBX.SelectedIndexChanged += new System.EventHandler(this.pagoCBX_SelectedIndexChanged);
+            this.entregaCBX.SelectionChangeCommitted += new System.EventHandler(this.entregaCBX_SelectionChangeCommitted);
             // 
             // descartarBTN
             // 

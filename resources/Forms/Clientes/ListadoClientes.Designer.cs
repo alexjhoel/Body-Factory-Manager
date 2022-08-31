@@ -44,6 +44,7 @@ namespace Body_Factory_Manager
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lista de clientes";
+            this.Load += new System.EventHandler(this.ListadoClientes_Load);
             this.ResumeLayout(false);
 
         }

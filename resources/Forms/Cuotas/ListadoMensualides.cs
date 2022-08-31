@@ -15,22 +15,25 @@ namespace Body_Factory_Manager
     {
         SQL sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
         string consulta;
+        FiltroBusqeda filtro;
+        SortOrder orden = SortOrder.None;
+        string propiedadOrden;
 
         public string id;
-        public ListadoMensualidades(string consulta = null, bool selector = false)
+
+       
+        public ListadoMensualidades(bool selector = false, FiltroBusqeda filtro = null)
         {
-            this.consulta = consulta;
+            this.filtro = filtro;
+            if (filtro == null)
+            {
+                this.filtro = new FiltroBusqeda(TipoFiltro.Nada);
+            }
 
             InitializeComponent();
 
             DialogResult = DialogResult.Cancel;
-            if (this.consulta == null)
-            {
-                this.consulta = "SELECT TodoMensualidades.id, CONCAT('$',valor) as Cuota, CONCAT(descuento,'%') as Descuento, CONCAT('$',(valor * (1 - descuento / 100))) as Total, CONCAT('$',((valor * (1 - descuento / 100)) - pagado)) as Deuda, vencimiento as Vencimiento " +
-                    "FROM(SELECT Mensualidades.id as id, (ISNULL(SUM(monto), 0)) AS pagado " +
-                    "FROM Mensualidades LEFT JOIN Pagos ON Pagos.idMensualidad = Mensualidades.id " +
-                    "GROUP BY Mensualidades.id) AS TodoMensualidades INNER JOIN Mensualidades ON TodoMensualidades.id = Mensualidades.id";
-            }
+            
 
 
 
@@ -50,12 +53,13 @@ namespace Body_Factory_Manager
             }
 
 
-            listado = new Listado("id", buttonDatos);
+            listado = new Listado("id", buttonDatos, Ordenar);
+            listado.dias = 5;
             this.Controls.Add(listado);
             listado.Location = new Point(0, 0);
             listado.Size = new Size(this.Size.Width,420);
             listado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CargarListaMensualidades();
+            ActualizarConsulta();
 
 
 
@@ -72,7 +76,7 @@ namespace Body_Factory_Manager
         private void CargarListaMensualidades()
         {
             listado.datos = sql.Obtener(consulta);
-            listado.Recargar("id");
+            listado.Recargar("id", (int) diasNUD.Value);
         }
 
         private void Editar(string id)
@@ -90,33 +94,35 @@ namespace Body_Factory_Manager
             this.Close();
         }
 
-        private void PagarCuota(string cedula)
+        private void Ordenar(string propiedadOrden, SortOrder orden)
         {
-
-
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(cedula, TipoPagoMensualidad.PagarCuotaDesdeClientes))
+            this.propiedadOrden = propiedadOrden;
+            this.orden = orden;
+            ActualizarConsulta();
+        }
+        private void PagarCuota(string id)
+        {
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id,TipoPagoMensualidad.PagarCuotaDesdeListado))
             {
                 nuevaVentana.ShowDialog();
             }
         }
         private void ActualizarConsulta()
         {
-            if (pagasCBX.Checked)
+            consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.id, CONCAT('$',valor) as Cuota, CONCAT(descuento,'%') as Descuento, CONCAT('$',(valor * (1 - descuento / 100))) as Total, CONCAT('$',((valor * (1 - descuento / 100)) - pagado)) as Deuda, vencimiento as Vencimiento " +
+                "FROM(SELECT Mensualidades.id, pagado, valor, descuento, fechaCreado, vencimiento, cedulaCliente " +
+                "FROM(SELECT Mensualidades.id, (ISNULL(SUM(monto), 0)) AS pagado " +
+                "FROM Mensualidades " +
+                "LEFT JOIN Pagos ON Pagos.idMensualidad = Mensualidades.id  " +
+                "GROUP BY Mensualidades.id) AS PagosMensualidades " +
+                "INNER JOIN Mensualidades ON PagosMensualidades.id = Mensualidades.id) as FullMensualidades " +
+                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula ";
+            if (!pagasCBX.Checked)
             {
-                consulta = "SELECT TodoMensualidades.id, CONCAT('$',valor) as Cuota, CONCAT(descuento,'%') as Descuento, CONCAT('$',(valor * (1 - descuento / 100))) as Total, CONCAT('$',((valor * (1 - descuento / 100)) - pagado)) as Deuda, vencimiento as Vencimiento " +
-                    "FROM(SELECT Mensualidades.id as id, (ISNULL(SUM(monto), 0)) AS pagado " +
-                    "FROM Mensualidades LEFT JOIN Pagos ON Pagos.idMensualidad = Mensualidades.id " +
-                    "GROUP BY Mensualidades.id) AS TodoMensualidades INNER JOIN Mensualidades ON TodoMensualidades.id = Mensualidades.id";
+                consulta += " WHERE ((valor * (1 - descuento / 100)) - pagado) > 0 AND " + filtro.ObtenerWhereConsulta();
 
             }
-            else
-            {
-                consulta = "SELECT TodoMensualidades.id, CONCAT('$',valor) as Cuota, CONCAT(descuento,'%') as Descuento, CONCAT('$',(valor * (1 - descuento / 100))) as Total, CONCAT('$',((valor * (1 - descuento / 100)) - pagado)) as Deuda, vencimiento as Vencimiento " +
-                    "FROM (SELECT Mensualidades.id as id, (ISNULL(SUM(monto), 0)) AS pagado " +
-                    "FROM Mensualidades LEFT JOIN Pagos ON Pagos.idMensualidad = Mensualidades.id " +
-                    "GROUP BY Mensualidades.id) AS TodoMensualidades INNER JOIN Mensualidades ON TodoMensualidades.id = Mensualidades.id " +
-                    "WHERE ((valor * (1 - descuento / 100)) - pagado) > 0";
-            }
+            if(orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc") ;
             
             CargarListaMensualidades();
         }
@@ -124,6 +130,16 @@ namespace Body_Factory_Manager
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             ActualizarConsulta();
+        }
+
+        private void diasNUD_ValueChanged(object sender, EventArgs e)
+        {
+            ActualizarConsulta();
+        }
+
+        private void ListadoMensualidades_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

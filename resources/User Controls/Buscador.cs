@@ -82,8 +82,7 @@ namespace Body_Factory_Manager
 
         private void buscarBTN_Click(object sender, EventArgs e)
         {
-            FiltroBusqeda filtro1 = new FiltroBusqeda("",filtrosPrefijados[filtro1CBX.SelectedIndex].propiedad,
-                filtrosPrefijados[filtro1CBX.SelectedIndex].tipo);
+            FiltroBusqeda filtro1 = new FiltroBusqeda(filtrosPrefijados[filtro1CBX.SelectedIndex].tipo, "",filtrosPrefijados[filtro1CBX.SelectedIndex].propiedad);
             if(filtro1.tipo == TipoFiltro.String)
             {
                 filtro1.valor1 = busqueda1TBX.Text;
@@ -106,7 +105,7 @@ namespace Body_Factory_Manager
         public string valor2;
         public TipoFiltro tipo = TipoFiltro.Nada;
         
-        public FiltroBusqeda(string textoAMostrar,string propiedad, TipoFiltro tipo)
+        public FiltroBusqeda(TipoFiltro tipo, string textoAMostrar = null,string propiedad = null)
         {
             this.textoAMostrar = textoAMostrar;
             this.propiedad = propiedad;
@@ -119,7 +118,7 @@ namespace Body_Factory_Manager
         {
             if (tipo == TipoFiltro.Nada) return "1=1";
             if (tipo == TipoFiltro.String) return propiedad + " LIKE '%" + valor1 + "%'";
-            if (tipo == TipoFiltro.Fecha) return "CONVERT(DATETIME, " + propiedad + ", 103) ='" + valor1 + "'";
+            if (tipo == TipoFiltro.Fecha) return propiedad + "= '" + valor1 + "'";
             if (tipo == TipoFiltro.Numero) return propiedad + "=" + valor1;
             if (tipo == TipoFiltro.NumeroRango) return propiedad + " BETWEEN " + valor1 + " AND" + valor2;
             if (tipo == TipoFiltro.FechaRango) return propiedad + " BETWEEN '" + valor1 + "' AND '" + valor2 + "'";

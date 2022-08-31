@@ -33,8 +33,8 @@ namespace Body_Factory_Manager
                 apellidoTBX.Text = data.Rows[0]["apellido"].ToString();
                 try
                 {
-                    nacimientoDTP.Value = DateTime.ParseExact(data.Rows[0]["fechaNacimiento"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                    ingresoDTP.Value = DateTime.ParseExact(data.Rows[0]["fechaIngreso"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    nacimientoDTP.Value = (DateTime)data.Rows[0]["fechaNacimiento"];// DateTime.ParseExact(data.Rows[0]["fechaNacimiento"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    ingresoDTP.Value = (DateTime)data.Rows[0]["fechaIngreso"];// DateTime.ParseExact(data.Rows[0]["fechaIngreso"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 }
                 catch
                 {
@@ -114,17 +114,17 @@ namespace Body_Factory_Manager
             valores.Add("@nombre", nombreTBX.Text);
             valores.Add("@apellido", apellidoTBX.Text);
             valores.Add("@cedula", cedulaTBX.Text);
-            valores.Add("@nacimiento", nacimientoDTP.Value.ToString("dd/MM/yyy"));
-            valores.Add("@ingreso", ingresoDTP.Value.ToString("dd/MM/yyyy"));
+            valores.Add("@nacimiento", nacimientoDTP.Value);
+            valores.Add("@ingreso", ingresoDTP.Value);
             valores.Add("@telefono", telefonoTBX.Text);
             valores.Add("@correo", correoTBX.Text);
             valores.Add("@direccion", direccionTBX.Text);
             valores.Add("@patologias", patologiasTbx.Text);
             valores.Add("@observaciones", observacionesTbx.Text);
             valores.Add("@usuario", usuarioLBL.Text);
-            valores.Add("@adjudicado",hoy.ToString("dd/MM/yyy"));
+            valores.Add("@adjudicado",hoy);
             
-            valores.Add("@vencimiento", hoy.AddMonths(1).ToString("dd/MM/yyy"));
+            valores.Add("@vencimiento", hoy.AddMonths(1));
             if (grupoSanguineoCBX.SelectedIndex != 0)
             {
                 valores.Add("@grupoSanguineo", grupoSanguineoCBX.Text);
@@ -205,41 +205,6 @@ namespace Body_Factory_Manager
             {
                 MessageBox.Show("Ventana abierta|");
             }
-
-        }
-
-        private void cedulaTBX_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nombreTBX_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void apellidoTBX_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void direccionTBX_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }

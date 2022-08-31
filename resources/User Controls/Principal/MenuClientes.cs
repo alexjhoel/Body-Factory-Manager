@@ -50,7 +50,7 @@ namespace Body_Factory_Manager
                 nuevaVentana.ShowDialog();
                 if (nuevaVentana.DialogResult == DialogResult.OK)
                 {
-                    using (ListadoClientes listado = new ListadoClientes("SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes WHERE " + nuevaVentana.filtro1.ObtenerWhereConsulta()))
+                    using (ListadoClientes listado = new ListadoClientes(false, nuevaVentana.filtro1))
                     {
                         listado.ShowDialog();
                     }

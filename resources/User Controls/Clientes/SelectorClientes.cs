@@ -66,7 +66,7 @@ namespace Body_Factory_Manager
             buscadorClientes.ShowDialog();
             if(buscadorClientes.DialogResult == DialogResult.OK)
             {
-                using (ListadoClientes listado = new ListadoClientes("SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes WHERE " + buscadorClientes.filtro1.ObtenerWhereConsulta(), true))
+                using (ListadoClientes listado = new ListadoClientes(true, buscadorClientes.filtro1))
                 {
                     listado.ShowDialog();
                     if (listado.DialogResult == DialogResult.OK)

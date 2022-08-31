@@ -1,8 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 
 namespace Body_Factory_Manager
 {
-    static class DataGridViewRowExtensions
+    static class DataGridViewExtensions
     {
         public static void SetVisible(this DataGridViewRow r, bool value)
         {
@@ -10,6 +11,10 @@ namespace Body_Factory_Manager
             currencyManager1.SuspendBinding();
             r.Visible = value;
             currencyManager1.ResumeBinding();
+        }
+        public static object GetCellValueFromColumnHeader(this DataGridViewCellCollection CellCollection, string HeaderText)
+        {
+            return CellCollection.Cast<DataGridViewCell>().First(c => c.OwningColumn.HeaderText == HeaderText).Value;
         }
     }
 }

@@ -9,21 +9,24 @@ namespace Body_Factory_Manager
     {
         SQL sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
         string consulta;
+        FiltroBusqeda filtro;
 
         public string cedula;
-        public ListadoClientes(string consulta = null, bool selector = false)
+        public string propiedadOrden;
+        public SortOrder orden;
+
+        public ListadoClientes(bool selector = false, FiltroBusqeda filtro = null)
         {
-            this.consulta = consulta;
+
+            this.filtro = filtro;
+            if (filtro == null)
+            {
+                this.filtro = new FiltroBusqeda(TipoFiltro.Nada);
+            }
 
             InitializeComponent();
 
             DialogResult = DialogResult.Cancel;
-            if (this.consulta == null)
-            {
-                this.consulta = "SELECT nombre as 'Nombre', apellido as 'Apellido', cedula as 'Cédula', fechaIngreso as 'Fecha de Ingreso' FROM Clientes";
-            }
-
-
 
 
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
@@ -31,7 +34,6 @@ namespace Body_Factory_Manager
             {
                 buttonDatos.Add(new ListadoButtonDatos("Listo", Body_Factory_Manager.Properties.Resources.check, this.Seleccionar));
                 buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.Editar));
-
             }
             else
             {
@@ -39,15 +41,13 @@ namespace Body_Factory_Manager
                 buttonDatos.Add(new ListadoButtonDatos("Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
                 buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Eliminar));
             }
-            
 
-            listado = new Listado("Cédula", buttonDatos);
-            this.Controls.Add(listado);
+            listado = new Listado("Cédula", buttonDatos, Ordenar);
+
             listado.Dock = DockStyle.Fill;
-            CargarListaClientes();
 
-
-
+            this.Controls.Add(listado);
+            ActualizarConsulta();
         }
 
 
@@ -79,6 +79,22 @@ namespace Body_Factory_Manager
             this.Close();
         }
 
+        private void Ordenar(string propiedadOrden, SortOrder orden)
+        {
+            this.propiedadOrden = propiedadOrden;
+            this.orden = orden;
+            ActualizarConsulta();
+        }
+
+        private void ActualizarConsulta()
+        {
+            consulta = "SELECT nombre as Nombre, apellido as Apellido, cedula as 'Cédula', fechaIngreso as 'Fecha de ingreso'  FROM Clientes ";
+            if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
+            consulta += " WHERE " + filtro.ObtenerWhereConsulta();
+            CargarListaClientes();
+        }
+
+
         private void PagarCuota(string cedula)
         {
             
@@ -89,6 +105,9 @@ namespace Body_Factory_Manager
             }
         }
 
-        
+        private void ListadoClientes_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

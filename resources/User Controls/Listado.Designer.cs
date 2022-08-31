@@ -98,6 +98,8 @@
             this.tablaDGV.ShowEditingIcon = false;
             this.tablaDGV.Size = new System.Drawing.Size(751, 417);
             this.tablaDGV.TabIndex = 2;
+            this.tablaDGV.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tablaDGV_ColumnHeaderMouseClick);
+            this.tablaDGV.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.tablaDGV_RowPostPaint);
             // 
             // cedula
             // 
