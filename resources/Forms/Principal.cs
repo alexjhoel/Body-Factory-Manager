@@ -214,7 +214,7 @@ namespace Body_Factory_Manager
         private void Timer_Tick(object sender, EventArgs e)
         {
 
-             button.Image = (Image)(new Bitmap(img, (int)transicion.Avanzar(), (int)transicion.Obtener()));
+            button.Image = (Image)(new Bitmap(img, (int)transicion.Avanzar(), (int)transicion.Obtener()));
             button.BackColor = ColorUtilities.ColorFromHSV(0, (transicion.Obtener() - 25) / 25, 1);
             button.FlatAppearance.MouseOverBackColor = button.BackColor;
         }

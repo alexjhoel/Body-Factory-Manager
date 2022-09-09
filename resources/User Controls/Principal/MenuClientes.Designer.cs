@@ -33,7 +33,6 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.agregarBTN = new System.Windows.Forms.Button();
             this.listarBTN = new System.Windows.Forms.Button();
-            this.buscarButton = new System.Windows.Forms.Button();
             this.informesBTN = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -67,12 +66,11 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel2.AutoSize = true;
             this.flowLayoutPanel2.Controls.Add(this.agregarBTN);
             this.flowLayoutPanel2.Controls.Add(this.listarBTN);
-            this.flowLayoutPanel2.Controls.Add(this.buscarButton);
             this.flowLayoutPanel2.Controls.Add(this.informesBTN);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(147, 154);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(200, 154);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(424, 106);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(318, 106);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
             // agregarBTN
@@ -108,25 +106,12 @@ namespace Body_Factory_Manager
             this.listarBTN.UseVisualStyleBackColor = false;
             this.listarBTN.Click += new System.EventHandler(this.listarBtn_Click);
             // 
-            // buscarButton
-            // 
-            this.buscarButton.BackColor = System.Drawing.Color.Red;
-            this.buscarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buscarButton.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarButton.Location = new System.Drawing.Point(215, 3);
-            this.buscarButton.Name = "buscarButton";
-            this.buscarButton.Size = new System.Drawing.Size(100, 100);
-            this.buscarButton.TabIndex = 3;
-            this.buscarButton.Text = "Buscar";
-            this.buscarButton.UseVisualStyleBackColor = false;
-            this.buscarButton.Click += new System.EventHandler(this.buscarButton_Click);
-            // 
             // informesBTN
             // 
             this.informesBTN.BackColor = System.Drawing.Color.Red;
             this.informesBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.informesBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.informesBTN.Location = new System.Drawing.Point(321, 3);
+            this.informesBTN.Location = new System.Drawing.Point(215, 3);
             this.informesBTN.Name = "informesBTN";
             this.informesBTN.Size = new System.Drawing.Size(100, 100);
             this.informesBTN.TabIndex = 4;
@@ -167,7 +152,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Button agregarBTN;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button listarBTN;
-        private System.Windows.Forms.Button buscarButton;
         private System.Windows.Forms.Button informesBTN;
         private System.Windows.Forms.Label label1;
     }

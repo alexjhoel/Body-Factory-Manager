@@ -123,6 +123,17 @@
   <metadata name="Nombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buscarBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vQAADr0BR/uQrQAAANRJREFUOE+1kTEOAUEUQLeQSBRCpUJDIc7gBAq1S+gdhxs4goRCp1TRC41GQsF7
+        ExuymRUkXvKy+TP758//k/yDItaxFKIPqeEEz3jDK86whW8xcYt7HGMfR4+1I3Ywlyma2AzRkypucB6i
+        CPboVa0YY4i20QhRBofjpleN0UX3eyHK4FQvaI8xBmhyO0QRnOoO7fEVW1rhOkQ5+BwHdDj26FWtaKJV
+        /ZYxF5/DqfpzqhXTA5b49gBxqg4n7dEEEz1ggQX8Cg8w8YQVF77Fij8lZkiSO/s1KpbOPGICAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
   <metadata name="timerTransicion.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

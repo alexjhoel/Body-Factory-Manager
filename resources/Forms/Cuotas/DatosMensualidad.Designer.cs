@@ -57,7 +57,7 @@
             this.guardarBTN = new System.Windows.Forms.Button();
             this.cobroNUD = new System.Windows.Forms.NumericUpDown();
             this.descuentoNUD = new System.Windows.Forms.NumericUpDown();
-            this.agregarBTN = new System.Windows.Forms.Button();
+            this.buscarMensualidadBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.entregaNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobroNUD)).BeginInit();
@@ -317,6 +317,7 @@
             // 
             // descartarBTN
             // 
+            this.descartarBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.descartarBTN.BackColor = System.Drawing.Color.Red;
             this.descartarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.descartarBTN.FlatAppearance.BorderSize = 0;
@@ -351,6 +352,7 @@
             // 
             // guardarBTN
             // 
+            this.guardarBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.guardarBTN.BackColor = System.Drawing.Color.Red;
             this.guardarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.guardarBTN.FlatAppearance.BorderSize = 0;
@@ -399,27 +401,27 @@
             this.descuentoNUD.TabIndex = 56;
             this.descuentoNUD.ValueChanged += new System.EventHandler(this.descuentoNUD_ValueChanged);
             // 
-            // agregarBTN
+            // buscarMensualidadBtn
             // 
-            this.agregarBTN.BackColor = System.Drawing.Color.Red;
-            this.agregarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.agregarBTN.FlatAppearance.BorderSize = 0;
-            this.agregarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.agregarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agregarBTN.Location = new System.Drawing.Point(84, 137);
-            this.agregarBTN.Name = "agregarBTN";
-            this.agregarBTN.Size = new System.Drawing.Size(78, 34);
-            this.agregarBTN.TabIndex = 57;
-            this.agregarBTN.Text = "Buscar";
-            this.agregarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.agregarBTN.UseVisualStyleBackColor = false;
+            this.buscarMensualidadBtn.BackColor = System.Drawing.Color.Red;
+            this.buscarMensualidadBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buscarMensualidadBtn.FlatAppearance.BorderSize = 0;
+            this.buscarMensualidadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buscarMensualidadBtn.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buscarMensualidadBtn.Location = new System.Drawing.Point(84, 137);
+            this.buscarMensualidadBtn.Name = "buscarMensualidadBtn";
+            this.buscarMensualidadBtn.Size = new System.Drawing.Size(78, 34);
+            this.buscarMensualidadBtn.TabIndex = 57;
+            this.buscarMensualidadBtn.Text = "Buscar";
+            this.buscarMensualidadBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buscarMensualidadBtn.UseVisualStyleBackColor = false;
             // 
             // DatosMensualidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(573, 488);
-            this.Controls.Add(this.agregarBTN);
+            this.Controls.Add(this.buscarMensualidadBtn);
             this.Controls.Add(this.descuentoNUD);
             this.Controls.Add(this.cobroNUD);
             this.Controls.Add(this.guardarBTN);
@@ -487,6 +489,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label pagoTituloLBL;
         private System.Windows.Forms.ComboBox entregaCBX;
-        private System.Windows.Forms.Button agregarBTN;
+        private System.Windows.Forms.Button buscarMensualidadBtn;
     }
 }

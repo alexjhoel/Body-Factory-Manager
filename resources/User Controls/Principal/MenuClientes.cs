@@ -43,19 +43,5 @@ namespace Body_Factory_Manager
 
         }
 
-        private void buscarButton_Click(object sender, EventArgs e)
-        {
-            using (BuscadorClientes nuevaVentana = new BuscadorClientes())
-            {
-                nuevaVentana.ShowDialog();
-                if (nuevaVentana.DialogResult == DialogResult.OK)
-                {
-                    using (ListadoClientes listado = new ListadoClientes(false, nuevaVentana.filtro1))
-                    {
-                        listado.ShowDialog();
-                    }
-                }
-            }
-        }
     }
 }

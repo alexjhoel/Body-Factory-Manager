@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -41,8 +40,14 @@ namespace Body_Factory_Manager
                 buttonDatos.Add(new ListadoButtonDatos("Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
                 buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Eliminar));
             }
+            List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
 
-            listado = new Listado("Cédula", buttonDatos, Ordenar);
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Nombre", "nombre"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Apellido", "apellido"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Cédula", "cedula"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha de Ingreso", "fechaIngreso"));
+
+            listado = new Listado("Cédula", buttonDatos, Ordenar, filtros, Filtrar);
 
             listado.Dock = DockStyle.Fill;
 
@@ -86,6 +91,11 @@ namespace Body_Factory_Manager
             ActualizarConsulta();
         }
 
+        private void Filtrar(FiltroBusqeda filtro)
+        {
+            this.filtro = filtro;
+            ActualizarConsulta();
+        }
         private void ActualizarConsulta()
         {
             consulta = "SELECT nombre as Nombre, apellido as Apellido, cedula as 'Cédula', fechaIngreso as 'Fecha de ingreso'  FROM Clientes ";
@@ -97,7 +107,7 @@ namespace Body_Factory_Manager
 
         private void PagarCuota(string cedula)
         {
-            
+
 
             using (DatosMensualidad nuevaVentana = new DatosMensualidad(cedula, TipoPagoMensualidad.PagarCuotaDesdeClientes))
             {

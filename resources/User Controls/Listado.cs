@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -10,7 +9,7 @@ namespace Body_Factory_Manager
     public partial class Listado : UserControl
     {
         public DataTable datos;
-        public int dias = -1;
+        private int dias = -1;
         string identificador;
         Transicion transicion = new Transicion(1);
         bool estado;
@@ -18,20 +17,28 @@ namespace Body_Factory_Manager
         string propiedadOrden;
         SortOrder orden = SortOrder.None;
 
+        List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
+
         private Action<string, SortOrder> Ordenar;
-        public Listado(string identificador, List<ListadoButtonDatos> buttonsDatos, Action<string,SortOrder> Ordenar)
+        private Action<FiltroBusqeda> Filtrar;
+
+        public Listado(string identificador, List<ListadoButtonDatos> buttonsDatos, Action<string, SortOrder> Ordenar, List<FiltroBusqeda> filtros, Action<FiltroBusqeda> Filtrar)
 
         {
+            this.filtros = filtros;
             this.identificador = identificador;
             InitializeComponent();
             tablaDGV.RowTemplate.MinimumHeight = 35;
+
+            foreach (FiltroBusqeda filtro in filtros)
+            {
+                filtrosCbx.Items.Add(filtro.textoAMostrar);
+            }
+
             foreach (ListadoButtonDatos data in buttonsDatos)
             {
                 Button button = new Button();
-                button.Image = new Bitmap(data.icon, new Size(30, 30
-
-
-                    ));
+                button.Image = new Bitmap(data.icon, new Size(30, 30));
                 button.Text = data.texto;
                 button.BackColor = System.Drawing.Color.Red;
                 button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -56,9 +63,12 @@ namespace Body_Factory_Manager
                 };
 
                 opcionesFLP.Controls.Add(button);
-                
+
             }
             this.Ordenar = Ordenar;
+            this.Filtrar = Filtrar;
+
+
         }
 
         public void SetearButtons()
@@ -72,6 +82,7 @@ namespace Body_Factory_Manager
 
         public void Recargar(string ocultar = null, int dias = -1)
         {
+
             int index = 0;
             if (tablaDGV.SelectedRows.Count > 0) index = tablaDGV.SelectedRows[0].Index;
 
@@ -83,12 +94,13 @@ namespace Body_Factory_Manager
             }
             */
             //tablaDGV.Rows[index].Selected = true;
-            if(ocultar != null)
+            if (ocultar != null)
             {
                 tablaDGV.Columns[ocultar].Visible = false;
             }
 
-            if (dias < 0) return;
+
+            if (dias == -1) return;
             for (int i = 0; i < tablaDGV.Rows.Count; i++)
             {
                 DateTime fecha = (DateTime)tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento");
@@ -107,6 +119,11 @@ namespace Body_Factory_Manager
                     tablaDGV.Rows[i].DefaultCellStyle.SelectionForeColor = Color.White;
                 }
 
+                tablaDGV.Rows[i].Selected = false;
+            }
+            if (index < tablaDGV.Rows.Count)
+            {
+                tablaDGV.CurrentCell = tablaDGV.Rows[index].Cells[0];
 
             }
         }
@@ -130,7 +147,7 @@ namespace Body_Factory_Manager
                 estado = true;
             }
             opcionesFLP.Height = (int)transicion.Avanzar();
-            opcionesFLP.Location = new Point(0,this.Height  + (int) transicion.Obtener() * (-1));
+            opcionesFLP.Location = new Point(0, this.Height + (int)transicion.Obtener() * (-1));
         }
 
 
@@ -138,20 +155,27 @@ namespace Body_Factory_Manager
         {
             if (dias == -1) return;
             DateTime fecha = (DateTime)tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento");
-            if (DateTime.Now > fecha)
-            {
-                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Red;
-                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
 
-                return;
-            }
-            if (fecha.Subtract(DateTime.Now).Days <= dias)
+            if (int.Parse(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Deuda($)").ToString()) > 0)
             {
-                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Yellow;
-                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
+                if (DateTime.Now > fecha)
+                {
+                    tablaDGV.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                    tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Red;
+                    tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
+
+                    return;
+                }
+                if (fecha.Subtract(DateTime.Now).Days <= dias)
+                {
+                    tablaDGV.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                    tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Yellow;
+                    tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
+                }
             }
+
+
+
         }
 
         private void tablaDGV_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -164,12 +188,122 @@ namespace Body_Factory_Manager
                 dc.HeaderCell.SortGlyphDirection = SortOrder.None;
             }
             if (propiedadOrden != tablaDGV.Columns[e.ColumnIndex].Name || orden == SortOrder.None) orden = SortOrder.Descending;
-            else if  (orden == SortOrder.Descending) orden = SortOrder.Ascending;
-            else if(orden == SortOrder.Ascending) orden = SortOrder.None;
-            
+            else if (orden == SortOrder.Descending) orden = SortOrder.Ascending;
+            else if (orden == SortOrder.Ascending) orden = SortOrder.None;
+
             tablaDGV.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
             propiedadOrden = tablaDGV.Columns[e.ColumnIndex].Name;
             Ordenar(propiedadOrden, orden);
+        }
+
+        private void buscarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FiltroBusqeda seleccionado = filtros[filtrosCbx.SelectedIndex - 1];
+                FiltroBusqeda filtro = new FiltroBusqeda(seleccionado.tipo, "", seleccionado.propiedad);
+                if (filtro.tipo == TipoFiltro.Fecha)
+                {
+                    filtro.valor1 = valor1DTP.Value.ToString("MM-dd-yyyy");
+                }
+
+                if (filtro.tipo == TipoFiltro.Numero)
+                {
+                    filtro.valor1 = valor1NUD.Value.ToString();
+                }
+
+                if (filtro.tipo == TipoFiltro.String)
+                {
+                    filtro.valor1 = valor1Tbx.Text;
+                }
+
+                if (filtro.tipo == TipoFiltro.NumeroRango)
+                {
+                    filtro.valor1 = valor1NUD.Value.ToString();
+                    filtro.valor2 = valor2NUD.Value.ToString();
+                }
+
+                if (filtro.tipo == TipoFiltro.FechaRango)
+                {
+                    filtro.valor1 = valor1DTP.Value.ToString("MM-dd-yyyy");
+                    filtro.valor2 = valor2DTP.Value.ToString("MM-dd-yyyy");
+                }
+                Filtrar(filtro);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void opcionesFLP_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void filtrosCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            valor1Tbx.Clear();
+            valor2Tbx.Clear();
+            valor1NUD.Value = 0;
+            valor2NUD.Value = 0;
+            valor1DTP.Value = DateTime.Now;
+            valor2DTP.Value = DateTime.Now;
+            valor1Tbx.Hide();
+            valor2Tbx.Hide();
+            valor1NUD.Hide();
+            valor2NUD.Hide();
+            valor1DTP.Hide();
+            valor2DTP.Hide();
+            hastaLBL.Hide();
+
+            if (filtrosCbx.SelectedIndex == 0)
+            {
+                Filtrar(new FiltroBusqeda(TipoFiltro.Nada));
+                return;
+            }
+
+            if (filtros[filtrosCbx.SelectedIndex - 1].tipo == TipoFiltro.Fecha)
+            {
+                valor1DTP.Show();
+                return;
+
+            }
+
+            if (filtros[filtrosCbx.SelectedIndex - 1].tipo == TipoFiltro.FechaRango)
+            {
+                valor1DTP.Show();
+                valor2DTP.Show();
+                hastaLBL.Show();
+                return;
+            }
+
+            if (filtros[filtrosCbx.SelectedIndex - 1].tipo == TipoFiltro.Numero)
+            {
+                valor1NUD.Show();
+                return;
+            }
+
+            if (filtros[filtrosCbx.SelectedIndex - 1].tipo == TipoFiltro.String)
+            {
+                valor1Tbx.Show();
+                return;
+            }
+
+            if (filtros[filtrosCbx.SelectedIndex - 1].tipo == TipoFiltro.NumeroRango)
+            {
+                valor1NUD.Show();
+                valor2NUD.Show();
+                hastaLBL.Show();
+                return;
+            }
+
         }
     }
 
@@ -185,5 +319,46 @@ namespace Body_Factory_Manager
         public Image icon;
         public string texto;
         public Action<string> onClick;
+    }
+
+    public class FiltroBusqeda
+    {
+        public string textoAMostrar = "";
+        public string propiedad;
+        public string valor1;
+        public string valor2;
+        public TipoFiltro tipo = TipoFiltro.Nada;
+
+        public FiltroBusqeda(TipoFiltro tipo, string textoAMostrar = null, string propiedad = null)
+        {
+            this.textoAMostrar = textoAMostrar;
+            this.propiedad = propiedad;
+            this.tipo = tipo;
+            valor1 = " ";
+            valor2 = " ";
+        }
+
+        public string ObtenerWhereConsulta()
+        {
+            if (tipo == TipoFiltro.Nada) return "1=1";
+            if (tipo == TipoFiltro.String) return propiedad + " LIKE '%" + valor1 + "%'";
+            if (tipo == TipoFiltro.Fecha) return propiedad + "= '" + valor1 + "'";
+            if (tipo == TipoFiltro.Numero) return propiedad + "=" + valor1;
+            if (tipo == TipoFiltro.NumeroRango) return propiedad + " BETWEEN " + valor1 + " AND " + valor2;
+            if (tipo == TipoFiltro.FechaRango) return propiedad + " BETWEEN '" + valor1 + "' AND '" + valor2 + "'";
+            return "";
+        }
+
+
+    }
+
+    public enum TipoFiltro
+    {
+        Nada,
+        String,
+        Fecha,
+        Numero,
+        NumeroRango,
+        FechaRango
     }
 }

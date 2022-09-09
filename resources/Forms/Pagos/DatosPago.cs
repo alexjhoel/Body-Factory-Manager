@@ -47,7 +47,7 @@ namespace Body_Factory_Manager
         }
 
 
-        
+
         private void ObtenerDatosCliente(string cedula)
         {
             string consulta = "SELECT Mensualidades.valor, Mensualidades.nombre, Clientes.cedula FROM Mensualidades INNER JOIN Clientes ON Clientes.idMensualidad = Mensualidades.id " +

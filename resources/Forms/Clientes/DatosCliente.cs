@@ -122,9 +122,9 @@ namespace Body_Factory_Manager
             valores.Add("@patologias", patologiasTbx.Text);
             valores.Add("@observaciones", observacionesTbx.Text);
             valores.Add("@usuario", usuarioLBL.Text);
-            valores.Add("@adjudicado",hoy);
-            
-            valores.Add("@vencimiento", hoy.AddMonths(1));
+            valores.Add("@adjudicado", hoy);
+
+            valores.Add("@vencimiento", DateTimeUtilities.NextMonth(hoy));
             if (grupoSanguineoCBX.SelectedIndex != 0)
             {
                 valores.Add("@grupoSanguineo", grupoSanguineoCBX.Text);
@@ -169,7 +169,7 @@ namespace Body_Factory_Manager
 
                 sql.Modificar(consulta, valores);
 
-                DatosMensualidad nuevaVentana = new DatosMensualidad(cedulaTBX.Text,TipoPagoMensualidad.PrimerPago);
+                DatosMensualidad nuevaVentana = new DatosMensualidad(cedulaTBX.Text, TipoPagoMensualidad.PrimerPago);
                 this.Hide();
                 nuevaVentana.ShowDialog();
                 this.Close();

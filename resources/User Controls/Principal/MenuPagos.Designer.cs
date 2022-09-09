@@ -33,12 +33,10 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.nuevaCuotaBTN = new System.Windows.Forms.Button();
             this.listarCuotasBTN = new System.Windows.Forms.Button();
-            this.buscarCuotaBTN = new System.Windows.Forms.Button();
             this.informesCuotaBTN = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.nuevoPagoBTN = new System.Windows.Forms.Button();
             this.listarPagosBTN = new System.Windows.Forms.Button();
-            this.buscarPagoBTN = new System.Windows.Forms.Button();
             this.informesPagosBTN = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,12 +71,11 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel2.AutoSize = true;
             this.flowLayoutPanel2.Controls.Add(this.nuevaCuotaBTN);
             this.flowLayoutPanel2.Controls.Add(this.listarCuotasBTN);
-            this.flowLayoutPanel2.Controls.Add(this.buscarCuotaBTN);
             this.flowLayoutPanel2.Controls.Add(this.informesCuotaBTN);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(137, 75);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(190, 75);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(423, 106);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(317, 106);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
             // nuevaCuotaBTN
@@ -107,24 +104,12 @@ namespace Body_Factory_Manager
             this.listarCuotasBTN.UseVisualStyleBackColor = false;
             this.listarCuotasBTN.Click += new System.EventHandler(this.listarBTN_Click);
             // 
-            // buscarCuotaBTN
-            // 
-            this.buscarCuotaBTN.BackColor = System.Drawing.Color.Red;
-            this.buscarCuotaBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buscarCuotaBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarCuotaBTN.Location = new System.Drawing.Point(214, 3);
-            this.buscarCuotaBTN.Name = "buscarCuotaBTN";
-            this.buscarCuotaBTN.Size = new System.Drawing.Size(100, 100);
-            this.buscarCuotaBTN.TabIndex = 3;
-            this.buscarCuotaBTN.Text = "Buscar cuota";
-            this.buscarCuotaBTN.UseVisualStyleBackColor = false;
-            // 
             // informesCuotaBTN
             // 
             this.informesCuotaBTN.BackColor = System.Drawing.Color.Red;
             this.informesCuotaBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.informesCuotaBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.informesCuotaBTN.Location = new System.Drawing.Point(320, 3);
+            this.informesCuotaBTN.Location = new System.Drawing.Point(214, 3);
             this.informesCuotaBTN.Name = "informesCuotaBTN";
             this.informesCuotaBTN.Size = new System.Drawing.Size(100, 100);
             this.informesCuotaBTN.TabIndex = 4;
@@ -137,12 +122,11 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.nuevoPagoBTN);
             this.flowLayoutPanel1.Controls.Add(this.listarPagosBTN);
-            this.flowLayoutPanel1.Controls.Add(this.buscarPagoBTN);
             this.flowLayoutPanel1.Controls.Add(this.informesPagosBTN);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(136, 227);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(189, 227);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(424, 106);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(318, 106);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
             // nuevoPagoBTN
@@ -169,25 +153,14 @@ namespace Body_Factory_Manager
             this.listarPagosBTN.TabIndex = 2;
             this.listarPagosBTN.Text = "Listar todos";
             this.listarPagosBTN.UseVisualStyleBackColor = false;
-            // 
-            // buscarPagoBTN
-            // 
-            this.buscarPagoBTN.BackColor = System.Drawing.Color.Red;
-            this.buscarPagoBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buscarPagoBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarPagoBTN.Location = new System.Drawing.Point(215, 3);
-            this.buscarPagoBTN.Name = "buscarPagoBTN";
-            this.buscarPagoBTN.Size = new System.Drawing.Size(100, 100);
-            this.buscarPagoBTN.TabIndex = 3;
-            this.buscarPagoBTN.Text = "Buscar pago";
-            this.buscarPagoBTN.UseVisualStyleBackColor = false;
+            this.listarPagosBTN.Click += new System.EventHandler(this.listarPagosBTN_Click);
             // 
             // informesPagosBTN
             // 
             this.informesPagosBTN.BackColor = System.Drawing.Color.Red;
             this.informesPagosBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.informesPagosBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.informesPagosBTN.Location = new System.Drawing.Point(321, 3);
+            this.informesPagosBTN.Location = new System.Drawing.Point(215, 3);
             this.informesPagosBTN.Name = "informesPagosBTN";
             this.informesPagosBTN.Size = new System.Drawing.Size(100, 100);
             this.informesPagosBTN.TabIndex = 4;
@@ -238,13 +211,11 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button nuevaCuotaBTN;
         private System.Windows.Forms.Button listarCuotasBTN;
-        private System.Windows.Forms.Button buscarCuotaBTN;
         private System.Windows.Forms.Button informesCuotaBTN;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button nuevoPagoBTN;
         private System.Windows.Forms.Button listarPagosBTN;
-        private System.Windows.Forms.Button buscarPagoBTN;
         private System.Windows.Forms.Button informesPagosBTN;
         private System.Windows.Forms.Label label2;
     }

@@ -62,17 +62,12 @@ namespace Body_Factory_Manager
 
         private void agregarBTN_Click(object sender, EventArgs e)
         {
-            BuscadorClientes buscadorClientes = new BuscadorClientes();
-            buscadorClientes.ShowDialog();
-            if(buscadorClientes.DialogResult == DialogResult.OK)
+            using (ListadoClientes listado = new ListadoClientes(true))
             {
-                using (ListadoClientes listado = new ListadoClientes(true, buscadorClientes.filtro1))
+                listado.ShowDialog();
+                if (listado.DialogResult == DialogResult.OK)
                 {
-                    listado.ShowDialog();
-                    if (listado.DialogResult == DialogResult.OK)
-                    {
-                        cedulaTBX.Text = listado.cedula;
-                    }
+                    cedulaTBX.Text = listado.cedula;
                 }
             }
         }

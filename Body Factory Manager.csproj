@@ -124,12 +124,6 @@
     <Compile Include="resources\Forms\AdminTools.Designer.cs">
       <DependentUpon>AdminTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\BuscadorClientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="resources\Forms\BuscadorClientes.Designer.cs">
-      <DependentUpon>BuscadorClientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="resources\Forms\Clientes\ListadoClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,12 +179,6 @@
     </Compile>
     <Compile Include="resources\Forms\Pagos\DatosPago.Designer.cs">
       <DependentUpon>DatosPago.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\User Controls\Buscador.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Buscador.Designer.cs">
-      <DependentUpon>Buscador.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Listado.cs">
       <SubType>UserControl</SubType>
@@ -266,6 +254,7 @@
     </Compile>
     <Compile Include="resources\Utilities\ColorUtilites.cs" />
     <Compile Include="resources\Utilities\DataGridViewExtension.cs" />
+    <Compile Include="resources\Utilities\DateTimeUtilities.cs" />
     <Compile Include="resources\Utilities\Email.cs" />
     <Compile Include="resources\Utilities\SQL.cs" />
     <Compile Include="resources\Utilities\Transicion.cs" />
@@ -277,9 +266,6 @@
     </Compile>
     <EmbeddedResource Include="resources\Forms\AdminTools.resx">
       <DependentUpon>AdminTools.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\BuscadorClientes.resx">
-      <DependentUpon>BuscadorClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Clientes\ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
@@ -317,9 +303,6 @@
     </Compile>
     <EmbeddedResource Include="resources\Forms\Pagos\DatosPago.resx">
       <DependentUpon>DatosPago.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Buscador.resx">
-      <DependentUpon>Buscador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
@@ -530,6 +513,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\ver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\lupa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -21,7 +16,7 @@ namespace Body_Factory_Manager
 
         public string id;
 
-       
+
         public ListadoMensualidades(bool selector = false, FiltroBusqeda filtro = null)
         {
             this.filtro = filtro;
@@ -33,7 +28,7 @@ namespace Body_Factory_Manager
             InitializeComponent();
 
             DialogResult = DialogResult.Cancel;
-            
+
 
 
 
@@ -52,12 +47,17 @@ namespace Body_Factory_Manager
                 buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Eliminar));
             }
 
+            List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Nombre del cliente", "CONCAT(nombre, ' ', apellido)"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Cédula del cliente", "cedula"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.NumeroRango, "Rango de valores($)", "valor"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.NumeroRango, "Rango de deudas($)", "((valor * (1 - descuento / 100)) - pagado)"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha de vencimiento", "fecha"));
 
-            listado = new Listado("id", buttonDatos, Ordenar);
-            listado.dias = 5;
+            listado = new Listado("id", buttonDatos, Ordenar, filtros, Filtrar);
             this.Controls.Add(listado);
             listado.Location = new Point(0, 0);
-            listado.Size = new Size(this.Size.Width,420);
+            listado.Size = new Size(this.Size.Width, 420);
             listado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ActualizarConsulta();
 
@@ -76,17 +76,25 @@ namespace Body_Factory_Manager
         private void CargarListaMensualidades()
         {
             listado.datos = sql.Obtener(consulta);
-            listado.Recargar("id", (int) diasNUD.Value);
+            listado.Recargar("id", (int)diasNUD.Value);
         }
 
         private void Editar(string id)
         {
-            using (DatosCliente nuevaVentana = new DatosCliente("", id))
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id, TipoPagoMensualidad.EditarMensualidad))
             {
                 nuevaVentana.ShowDialog();
+
+                ActualizarConsulta();
             }
+
         }
 
+        private void Filtrar(FiltroBusqeda filtro)
+        {
+            this.filtro = filtro;
+            ActualizarConsulta();
+        }
         private void Seleccionar(string id)
         {
             DialogResult = DialogResult.OK;
@@ -98,18 +106,18 @@ namespace Body_Factory_Manager
         {
             this.propiedadOrden = propiedadOrden;
             this.orden = orden;
-            ActualizarConsulta();
+            CargarListaMensualidades();
         }
         private void PagarCuota(string id)
         {
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id,TipoPagoMensualidad.PagarCuotaDesdeListado))
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id, TipoPagoMensualidad.PagarCuotaDesdeListado))
             {
                 nuevaVentana.ShowDialog();
             }
         }
         private void ActualizarConsulta()
         {
-            consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.id, CONCAT('$',valor) as Cuota, CONCAT(descuento,'%') as Descuento, CONCAT('$',(valor * (1 - descuento / 100))) as Total, CONCAT('$',((valor * (1 - descuento / 100)) - pagado)) as Deuda, vencimiento as Vencimiento " +
+            consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.id, valor as 'Cuota($)', descuento as 'Descuento(%)', (valor * (1 - descuento / 100)) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', vencimiento as Vencimiento " +
                 "FROM(SELECT Mensualidades.id, pagado, valor, descuento, fechaCreado, vencimiento, cedulaCliente " +
                 "FROM(SELECT Mensualidades.id, (ISNULL(SUM(monto), 0)) AS pagado " +
                 "FROM Mensualidades " +
@@ -122,8 +130,12 @@ namespace Body_Factory_Manager
                 consulta += " WHERE ((valor * (1 - descuento / 100)) - pagado) > 0 AND " + filtro.ObtenerWhereConsulta();
 
             }
-            if(orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc") ;
-            
+            else
+            {
+                consulta += filtro.ObtenerWhereConsulta();
+            }
+            if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
+
             CargarListaMensualidades();
         }
 
