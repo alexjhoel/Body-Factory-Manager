@@ -32,7 +32,7 @@
             this.cobroCBX = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.descuentosCBX = new System.Windows.Forms.ComboBox();
+            this.descuentoCBX = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.cobroNUD = new System.Windows.Forms.NumericUpDown();
             this.descuentoNUD = new System.Windows.Forms.NumericUpDown();
             this.buscarMensualidadBtn = new System.Windows.Forms.Button();
+            this.pagoMensualidadCBX = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.entregaNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobroNUD)).BeginInit();
@@ -106,18 +107,18 @@
             this.label6.TabIndex = 43;
             this.label6.Text = "%";
             // 
-            // descuentosCBX
+            // descuentoCBX
             // 
-            this.descuentosCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.descuentosCBX.FormattingEnabled = true;
-            this.descuentosCBX.Items.AddRange(new object[] {
+            this.descuentoCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.descuentoCBX.FormattingEnabled = true;
+            this.descuentoCBX.Items.AddRange(new object[] {
             "Sin descuento",
             "Personalizado"});
-            this.descuentosCBX.Location = new System.Drawing.Point(204, 247);
-            this.descuentosCBX.Name = "descuentosCBX";
-            this.descuentosCBX.Size = new System.Drawing.Size(154, 28);
-            this.descuentosCBX.TabIndex = 42;
-            this.descuentosCBX.SelectionChangeCommitted += new System.EventHandler(this.descuentosCBX_SelectionChangeCommitted);
+            this.descuentoCBX.Location = new System.Drawing.Point(204, 247);
+            this.descuentoCBX.Name = "descuentoCBX";
+            this.descuentoCBX.Size = new System.Drawing.Size(154, 28);
+            this.descuentoCBX.TabIndex = 42;
+            this.descuentoCBX.SelectionChangeCommitted += new System.EventHandler(this.descuentosCBX_SelectionChangeCommitted);
             // 
             // label5
             // 
@@ -331,6 +332,7 @@
             this.descartarBTN.TabIndex = 51;
             this.descartarBTN.Text = "Descartar";
             this.descartarBTN.UseVisualStyleBackColor = false;
+            this.descartarBTN.Click += new System.EventHandler(this.descartarBTN_Click);
             // 
             // vencimientoDTP
             // 
@@ -377,11 +379,6 @@
             0,
             0,
             0});
-            this.cobroNUD.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
             this.cobroNUD.Name = "cobroNUD";
             this.cobroNUD.Size = new System.Drawing.Size(143, 26);
             this.cobroNUD.TabIndex = 55;
@@ -415,12 +412,28 @@
             this.buscarMensualidadBtn.Text = "Buscar";
             this.buscarMensualidadBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buscarMensualidadBtn.UseVisualStyleBackColor = false;
+            this.buscarMensualidadBtn.Click += new System.EventHandler(this.buscarMensualidadBtn_Click);
+            // 
+            // pagoMensualidadCBX
+            // 
+            this.pagoMensualidadCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.pagoMensualidadCBX.FormattingEnabled = true;
+            this.pagoMensualidadCBX.Items.AddRange(new object[] {
+            "Pago de cuota",
+            "Pago sin cuota"});
+            this.pagoMensualidadCBX.Location = new System.Drawing.Point(204, 141);
+            this.pagoMensualidadCBX.Name = "pagoMensualidadCBX";
+            this.pagoMensualidadCBX.Size = new System.Drawing.Size(154, 28);
+            this.pagoMensualidadCBX.TabIndex = 58;
+            this.pagoMensualidadCBX.Visible = false;
+            this.pagoMensualidadCBX.SelectedIndexChanged += new System.EventHandler(this.pagoMensualidadCBX_SelectedIndexChanged);
             // 
             // DatosMensualidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(573, 488);
+            this.Controls.Add(this.pagoMensualidadCBX);
             this.Controls.Add(this.buscarMensualidadBtn);
             this.Controls.Add(this.descuentoNUD);
             this.Controls.Add(this.cobroNUD);
@@ -438,7 +451,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.adjudDTP);
-            this.Controls.Add(this.descuentosCBX);
+            this.Controls.Add(this.descuentoCBX);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -464,7 +477,7 @@
         private System.Windows.Forms.ComboBox cobroCBX;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox descuentosCBX;
+        private System.Windows.Forms.ComboBox descuentoCBX;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
@@ -490,5 +503,6 @@
         private System.Windows.Forms.Label pagoTituloLBL;
         private System.Windows.Forms.ComboBox entregaCBX;
         private System.Windows.Forms.Button buscarMensualidadBtn;
+        private System.Windows.Forms.ComboBox pagoMensualidadCBX;
     }
 }

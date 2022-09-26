@@ -124,6 +124,12 @@
     <Compile Include="resources\Forms\AdminTools.Designer.cs">
       <DependentUpon>AdminTools.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\Forms\Asistencias\DatosAsistencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\Asistencias\DatosAsistencia.Designer.cs">
+      <DependentUpon>DatosAsistencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\Forms\Clientes\ListadoClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,11 +204,11 @@
     <Compile Include="resources\User Controls\Pagos\SelectorCuota.Designer.cs">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuAsistencias.cs">
+    <Compile Include="resources\User Controls\Principal\Asistencias.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuAsistencias.Designer.cs">
-      <DependentUpon>MenuAsistencias.cs</DependentUpon>
+    <Compile Include="resources\User Controls\Principal\Asistencias.Designer.cs">
+      <DependentUpon>Asistencias.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Custom\BotonA.cs">
       <SubType>Component</SubType>
@@ -267,6 +273,9 @@
     <EmbeddedResource Include="resources\Forms\AdminTools.resx">
       <DependentUpon>AdminTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\Asistencias\DatosAsistencia.resx">
+      <DependentUpon>DatosAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Clientes\ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,8 +325,11 @@
     <EmbeddedResource Include="resources\User Controls\Pagos\SelectorCuota.resx">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\MenuAsistencias.resx">
-      <DependentUpon>MenuAsistencias.cs</DependentUpon>
+    <EmbeddedResource Include="resources\User Controls\Principal\Asistencias.resx">
+      <DependentUpon>Asistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Principal\Incio.resx">
+      <DependentUpon>Incio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Principal\MenuClientes.resx">
       <DependentUpon>MenuClientes.cs</DependentUpon>
@@ -516,6 +528,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\lupa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resources\User Controls\Asistencias\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

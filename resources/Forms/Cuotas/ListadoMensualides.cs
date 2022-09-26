@@ -117,23 +117,19 @@ namespace Body_Factory_Manager
         }
         private void ActualizarConsulta()
         {
-            consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.id, valor as 'Cuota($)', descuento as 'Descuento(%)', (valor * (1 - descuento / 100)) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', vencimiento as Vencimiento " +
+            consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.id, valor as 'Cuota($)', descuento as 'Descuento(%)', (CONVERT(DECIMAL(6,2),valor * (1 - descuento / 100))) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', vencimiento as Vencimiento " +
                 "FROM(SELECT Mensualidades.id, pagado, valor, descuento, fechaCreado, vencimiento, cedulaCliente " +
                 "FROM(SELECT Mensualidades.id, (ISNULL(SUM(monto), 0)) AS pagado " +
                 "FROM Mensualidades " +
                 "LEFT JOIN Pagos ON Pagos.idMensualidad = Mensualidades.id  " +
                 "GROUP BY Mensualidades.id) AS PagosMensualidades " +
                 "INNER JOIN Mensualidades ON PagosMensualidades.id = Mensualidades.id) as FullMensualidades " +
-                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula ";
+                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula WHERE ";
             if (!pagasCBX.Checked)
             {
-                consulta += " WHERE ((valor * (1 - descuento / 100)) - pagado) > 0 AND " + filtro.ObtenerWhereConsulta();
-
+                consulta += "((valor * (1 - descuento / 100)) - pagado) > 0 AND ";
             }
-            else
-            {
-                consulta += filtro.ObtenerWhereConsulta();
-            }
+            consulta += filtro.ObtenerWhereConsulta();
             if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
 
             CargarListaMensualidades();

@@ -25,7 +25,7 @@ namespace Body_Factory_Manager
 
         private void nuevaCuotaBTN_Click(object sender, EventArgs e)
         {
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(null, TipoPagoMensualidad.NuevoPago))
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(null, TipoPagoMensualidad.NuevaMensualidad))
             {
                 nuevaVentana.ShowDialog();
             }
@@ -33,7 +33,7 @@ namespace Body_Factory_Manager
 
         private void nuevoPagoBTN_Click(object sender, EventArgs e)
         {
-            using (DatosPago nuevaVentana = new DatosPago(""))
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(null, TipoPagoMensualidad.NuevoPago))
             {
                 nuevaVentana.ShowDialog();
             }

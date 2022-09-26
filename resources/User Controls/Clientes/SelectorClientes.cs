@@ -14,6 +14,7 @@ namespace Body_Factory_Manager
 
         public SelectorClientes(Action<string> retorno, string cedulaCliente = null)
         {
+            
 
             InitializeComponent();
 
@@ -42,7 +43,11 @@ namespace Body_Factory_Manager
 
         }
 
-
+        public void Habilitar(bool estado)
+        {
+            if (estado) agregarBTN.Show(); else agregarBTN.Hide();
+            cedulaTBX.ReadOnly = !estado;
+        }
 
         private void cedulaTBX_TextChanged(object sender, EventArgs e)
         {
@@ -70,6 +75,20 @@ namespace Body_Factory_Manager
                     cedulaTBX.Text = listado.cedula;
                 }
             }
+        }
+
+        public void CambiarCliente(string cedula)
+        {
+            cedulaTBX.Text = cedula;
+            DataTable datos = sql.Obtener("SELECT nombre,apellido FROM Clientes WHERE cedula=" + cedula);
+            if (datos.Rows.Count != 0)
+            {
+                nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
+            }
+            return;
+            
+
+            nombreTBX.Text = "N/A";
         }
     }
 }

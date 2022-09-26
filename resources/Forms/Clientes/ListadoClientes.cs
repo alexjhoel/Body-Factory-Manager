@@ -59,7 +59,7 @@ namespace Body_Factory_Manager
         private void Eliminar(string cedula)
         {
             if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-            sql.Modificar("DELETE FROM Clientes WHERE cedula= " + cedula);
+            sql.Modificar("UPDATE Clientes SET esOculto = 1, esActivo = 0 WHERE cedula= " + cedula);
             CargarListaClientes();
         }
 
@@ -90,6 +90,7 @@ namespace Body_Factory_Manager
             this.orden = orden;
             ActualizarConsulta();
         }
+          
 
         private void Filtrar(FiltroBusqeda filtro)
         {
@@ -100,7 +101,7 @@ namespace Body_Factory_Manager
         {
             consulta = "SELECT nombre as Nombre, apellido as Apellido, cedula as 'Cédula', fechaIngreso as 'Fecha de ingreso'  FROM Clientes ";
             if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
-            consulta += " WHERE " + filtro.ObtenerWhereConsulta();
+            consulta += " WHERE esOculto = 0 AND " + filtro.ObtenerWhereConsulta();
             CargarListaClientes();
         }
 

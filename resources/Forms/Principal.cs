@@ -15,9 +15,22 @@ namespace Body_Factory_Manager
         SQL sql;
         Point offset;
         string usuario;
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+
         public Principal(DataTable datosUsuario)
         {
             InitializeComponent();
+            
             menuTransicion.Establecer(40, 185, 0.05f);
 
             foreach (Control btn in menuPNL.Controls)
@@ -102,7 +115,7 @@ namespace Body_Factory_Manager
 
         private void asistenciasBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new MenuAsistencias());
+            CambiarSección(new Asistencias());
         }
 
         private void controlTBLPNL_MouseMove(object sender, MouseEventArgs e)
@@ -131,6 +144,13 @@ namespace Body_Factory_Manager
 
         private void maximizarVentanaBTN_Click(object sender, EventArgs e)
         {
+            if(this.FormBorderStyle == FormBorderStyle.Sizable)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.MaximumSize = this.Size;
+                this.FormBorderStyle = FormBorderStyle.None;
+            }
+            
             if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Maximized;
             else this.WindowState = FormWindowState.Normal;
         }

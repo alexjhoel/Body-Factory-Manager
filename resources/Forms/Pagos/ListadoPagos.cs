@@ -75,7 +75,9 @@ namespace Body_Factory_Manager
 
         private void Editar(string id)
         {
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id, TipoPagoMensualidad.EditarMensualidad))
+            MessageBox.Show("Esta sección requiere trabajo...");
+            return;
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id, TipoPagoMensualidad.EditarPago))
             {
                 nuevaVentana.ShowDialog();
 
