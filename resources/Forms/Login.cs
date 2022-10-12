@@ -1,33 +1,20 @@
 ﻿using System.Configuration;
 using System.Data;
-using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
 {
     public partial class Login : Form
     {
-        //Link de archivo (.mdf) de base de datos en la raiz del proyecto
+
         public DataTable datosUsuario;
         private SQL sql;
         public Login()
         {
 
             string connectionString;
-            connectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
-            sql = new SQL(connectionString);
+            sql = new SQL(Properties.Settings.Default.ConnectionString);
             InitializeComponent();
-            /*Process proc = new Process();
-            proc.StartInfo.FileName = @"d:\Downloads\SQL Stop.bat.lnk";
-            proc.Start();*/
-            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
-            {
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                if (principal.IsInRole(WindowsBuiltInRole.Administrator))
-                {
-
-                }
-            }
         }
 
         public SQL ObtenerSQL()
@@ -40,7 +27,10 @@ namespace Body_Factory_Manager
             this.datosUsuario = datosUsuario;
             if (datosUsuario != null)
             {
-                using (Principal principal = new Principal(datosUsuario))
+                Properties.Settings.Default.Usuario = datosUsuario.Rows[0]["id"].ToString();
+                Properties.Settings.Default.Save();
+
+                using (Principal principal = new Principal())
                 {
                     this.Hide();
                     principal.ShowDialog();
@@ -62,7 +52,7 @@ namespace Body_Factory_Manager
             loginConfiguracion1.Hide();
             loginPrincipal1.Show();
             string connectionString;
-            connectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
+            connectionString = Properties.Settings.Default.ConnectionString;
             sql = new SQL(connectionString);
         }
 

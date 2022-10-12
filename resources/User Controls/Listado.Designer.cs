@@ -43,7 +43,6 @@ namespace Body_Factory_Manager
             this.panelTabla = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.valor2DTP = new System.Windows.Forms.DateTimePicker();
-            this.valor1DTP = new System.Windows.Forms.DateTimePicker();
             this.valor2NUD = new System.Windows.Forms.NumericUpDown();
             this.valor1NUD = new System.Windows.Forms.NumericUpDown();
             this.hastaLBL = new System.Windows.Forms.Label();
@@ -52,6 +51,7 @@ namespace Body_Factory_Manager
             this.filtrosCbx = new System.Windows.Forms.ComboBox();
             this.valor1Tbx = new System.Windows.Forms.TextBox();
             this.buscarBtn = new System.Windows.Forms.Button();
+            this.valor1DTP = new System.Windows.Forms.DateTimePicker();
             this.timerTransicion = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).BeginInit();
             this.panelTabla.SuspendLayout();
@@ -66,8 +66,8 @@ namespace Body_Factory_Manager
             this.tablaDGV.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.tablaDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -92,14 +92,15 @@ namespace Body_Factory_Manager
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.tablaDGV.DefaultCellStyle = dataGridViewCellStyle3;
             this.tablaDGV.EnableHeadersVisualStyles = false;
             this.tablaDGV.GridColor = System.Drawing.Color.Black;
             this.tablaDGV.Location = new System.Drawing.Point(0, 41);
             this.tablaDGV.Margin = new System.Windows.Forms.Padding(0);
+            this.tablaDGV.MultiSelect = false;
             this.tablaDGV.Name = "tablaDGV";
             this.tablaDGV.ReadOnly = true;
             this.tablaDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -161,7 +162,6 @@ namespace Body_Factory_Manager
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.valor2DTP);
-            this.panel1.Controls.Add(this.valor1DTP);
             this.panel1.Controls.Add(this.valor2NUD);
             this.panel1.Controls.Add(this.valor1NUD);
             this.panel1.Controls.Add(this.hastaLBL);
@@ -170,6 +170,7 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.filtrosCbx);
             this.panel1.Controls.Add(this.valor1Tbx);
             this.panel1.Controls.Add(this.buscarBtn);
+            this.panel1.Controls.Add(this.valor1DTP);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(751, 38);
@@ -186,17 +187,6 @@ namespace Body_Factory_Manager
             this.valor2DTP.TabIndex = 9;
             this.valor2DTP.Visible = false;
             this.valor2DTP.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // valor1DTP
-            // 
-            this.valor1DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor1DTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor1DTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.valor1DTP.Location = new System.Drawing.Point(290, 6);
-            this.valor1DTP.Name = "valor1DTP";
-            this.valor1DTP.Size = new System.Drawing.Size(160, 26);
-            this.valor1DTP.TabIndex = 8;
-            this.valor1DTP.Visible = false;
             // 
             // valor2NUD
             // 
@@ -224,6 +214,7 @@ namespace Body_Factory_Manager
             this.valor1NUD.Name = "valor1NUD";
             this.valor1NUD.Size = new System.Drawing.Size(160, 26);
             this.valor1NUD.TabIndex = 6;
+            this.valor1NUD.Visible = false;
             // 
             // hastaLBL
             // 
@@ -234,6 +225,7 @@ namespace Body_Factory_Manager
             this.hastaLBL.Size = new System.Drawing.Size(36, 17);
             this.hastaLBL.TabIndex = 5;
             this.hastaLBL.Text = "Hasta";
+            this.hastaLBL.Visible = false;
             // 
             // label1
             // 
@@ -261,12 +253,12 @@ namespace Body_Factory_Manager
             this.filtrosCbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filtrosCbx.FormattingEnabled = true;
             this.filtrosCbx.Items.AddRange(new object[] {
-            "Nada"});
+            "Sin filtros(Mostrar todo)"});
             this.filtrosCbx.Location = new System.Drawing.Point(110, 5);
             this.filtrosCbx.Name = "filtrosCbx";
             this.filtrosCbx.Size = new System.Drawing.Size(175, 28);
             this.filtrosCbx.TabIndex = 2;
-            this.filtrosCbx.SelectedIndexChanged += new System.EventHandler(this.filtrosCbx_SelectedIndexChanged);
+            this.filtrosCbx.SelectionChangeCommitted += new System.EventHandler(this.filtrosCbx_SelectedIndexChanged);
             // 
             // valor1Tbx
             // 
@@ -289,6 +281,17 @@ namespace Body_Factory_Manager
             this.buscarBtn.TabIndex = 0;
             this.buscarBtn.UseVisualStyleBackColor = false;
             this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
+            // 
+            // valor1DTP
+            // 
+            this.valor1DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor1DTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor1DTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.valor1DTP.Location = new System.Drawing.Point(290, 6);
+            this.valor1DTP.Name = "valor1DTP";
+            this.valor1DTP.Size = new System.Drawing.Size(160, 26);
+            this.valor1DTP.TabIndex = 8;
+            this.valor1DTP.Visible = false;
             // 
             // timerTransicion
             // 

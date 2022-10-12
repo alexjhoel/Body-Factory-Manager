@@ -68,6 +68,9 @@ namespace Body_Factory_Manager
             this.Ordenar = Ordenar;
             this.Filtrar = Filtrar;
 
+            filtrosCbx.SelectedIndex = 0;
+
+
 
         }
 

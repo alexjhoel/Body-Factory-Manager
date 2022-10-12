@@ -51,25 +51,33 @@ namespace Body_Factory_Manager
             // recuperarContraseñaBTN
             // 
             this.recuperarContraseñaBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.recuperarContraseñaBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recuperarContraseñaBTN.Location = new System.Drawing.Point(215, 469);
+            this.recuperarContraseñaBTN.BackColor = System.Drawing.Color.Black;
+            this.recuperarContraseñaBTN.FlatAppearance.BorderSize = 0;
+            this.recuperarContraseñaBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.recuperarContraseñaBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recuperarContraseñaBTN.ForeColor = System.Drawing.Color.White;
+            this.recuperarContraseñaBTN.Location = new System.Drawing.Point(189, 469);
             this.recuperarContraseñaBTN.Name = "recuperarContraseñaBTN";
-            this.recuperarContraseñaBTN.Size = new System.Drawing.Size(151, 26);
+            this.recuperarContraseñaBTN.Size = new System.Drawing.Size(193, 34);
             this.recuperarContraseñaBTN.TabIndex = 8;
             this.recuperarContraseñaBTN.Text = "Recuperar contraseña";
-            this.recuperarContraseñaBTN.UseVisualStyleBackColor = true;
+            this.recuperarContraseñaBTN.UseVisualStyleBackColor = false;
             this.recuperarContraseñaBTN.Click += new System.EventHandler(this.recuperarContraseñaBTN_Click);
             // 
             // loginBTN
             // 
             this.loginBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.loginBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBTN.BackColor = System.Drawing.Color.Black;
+            this.loginBTN.FlatAppearance.BorderSize = 0;
+            this.loginBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBTN.ForeColor = System.Drawing.Color.White;
             this.loginBTN.Location = new System.Drawing.Point(259, 320);
             this.loginBTN.Name = "loginBTN";
             this.loginBTN.Size = new System.Drawing.Size(177, 32);
             this.loginBTN.TabIndex = 7;
             this.loginBTN.Text = "Iniciar Sesión";
-            this.loginBTN.UseVisualStyleBackColor = true;
+            this.loginBTN.UseVisualStyleBackColor = false;
             this.loginBTN.Click += new System.EventHandler(this.loginBTN_Click);
             // 
             // claveTBX
@@ -89,15 +97,17 @@ namespace Body_Factory_Manager
             // configuracionBTN
             // 
             this.configuracionBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.configuracionBTN.BackColor = System.Drawing.Color.White;
             this.configuracionBTN.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.build_FILL0_wght400_GRAD0_opsz48;
             this.configuracionBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.configuracionBTN.FlatAppearance.BorderSize = 0;
+            this.configuracionBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.configuracionBTN.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.configuracionBTN.Location = new System.Drawing.Point(512, 3);
+            this.configuracionBTN.Location = new System.Drawing.Point(509, 14);
             this.configuracionBTN.Name = "configuracionBTN";
             this.configuracionBTN.Size = new System.Drawing.Size(36, 36);
             this.configuracionBTN.TabIndex = 9;
-            this.configuracionBTN.UseVisualStyleBackColor = true;
-            this.configuracionBTN.Visible = false;
+            this.configuracionBTN.UseVisualStyleBackColor = false;
             this.configuracionBTN.Click += new System.EventHandler(this.configuracionBTN_Click);
             // 
             // LoginPrincipal

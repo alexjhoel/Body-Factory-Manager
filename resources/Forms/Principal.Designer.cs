@@ -34,17 +34,17 @@ namespace Body_Factory_Manager
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.controlTBLPNL = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.menuBTN = new System.Windows.Forms.PictureBox();
             this.nombreUsuarioLBL = new System.Windows.Forms.Label();
+            this.roundPictureBox1 = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.timerMenuPNL = new System.Windows.Forms.Timer(this.components);
             this.timedLogin = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.menuBTN = new System.Windows.Forms.PictureBox();
             this.cerrarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.maximizarVentanaBTN = new System.Windows.Forms.PictureBox();
             this.minimizarVentanaBTN = new System.Windows.Forms.PictureBox();
-            this.roundPictureBox1 = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.menuPNL = new Body_Factory_Manager.DoubleBufferPanel();
+            this.pagosBTN = new System.Windows.Forms.Button();
             this.adminBTN = new System.Windows.Forms.Button();
             this.configBTN = new System.Windows.Forms.Button();
             this.cuotasBTN = new System.Windows.Forms.Button();
@@ -55,12 +55,12 @@ namespace Body_Factory_Manager
             this.logoMenuPBX = new System.Windows.Forms.PictureBox();
             this.paginasPNL = new Body_Factory_Manager.DoubleBufferPanel();
             this.controlTBLPNL.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBTN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrarVentanaBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximizarVentanaBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizarVentanaBTN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).BeginInit();
             this.menuPNL.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoMenuPBX)).BeginInit();
@@ -77,10 +77,9 @@ namespace Body_Factory_Manager
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.18243F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.81757F));
-            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.controlTBLPNL.Controls.Add(this.menuBTN, 0, 0);
-            this.controlTBLPNL.Controls.Add(this.label2, 1, 0);
             this.controlTBLPNL.Controls.Add(this.nombreUsuarioLBL, 2, 0);
             this.controlTBLPNL.Controls.Add(this.roundPictureBox1, 3, 0);
             this.controlTBLPNL.Location = new System.Drawing.Point(3, 3);
@@ -93,21 +92,18 @@ namespace Body_Factory_Manager
             this.controlTBLPNL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.controlTBLPNL_MouseDown);
             this.controlTBLPNL.MouseMove += new System.Windows.Forms.MouseEventHandler(this.controlTBLPNL_MouseMove);
             // 
-            // label2
+            // menuBTN
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Urzeit (Personal Use Only)", 12F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(51, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 27);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "BODY FACTORY MANAGER";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.menuBTN.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.menuBTN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menuBTN.Image = global::Body_Factory_Manager.Properties.Resources.menu;
+            this.menuBTN.Location = new System.Drawing.Point(14, 3);
+            this.menuBTN.Name = "menuBTN";
+            this.menuBTN.Size = new System.Drawing.Size(25, 26);
+            this.menuBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.menuBTN.TabIndex = 10;
+            this.menuBTN.TabStop = false;
+            this.menuBTN.Click += new System.EventHandler(this.menuBTN_Click);
             // 
             // nombreUsuarioLBL
             // 
@@ -116,12 +112,26 @@ namespace Body_Factory_Manager
             this.nombreUsuarioLBL.Dock = System.Windows.Forms.DockStyle.Right;
             this.nombreUsuarioLBL.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreUsuarioLBL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nombreUsuarioLBL.Location = new System.Drawing.Point(591, 0);
+            this.nombreUsuarioLBL.Location = new System.Drawing.Point(581, 0);
             this.nombreUsuarioLBL.Name = "nombreUsuarioLBL";
             this.nombreUsuarioLBL.Size = new System.Drawing.Size(62, 32);
             this.nombreUsuarioLBL.TabIndex = 7;
             this.nombreUsuarioLBL.Text = "Usuario";
             this.nombreUsuarioLBL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // roundPictureBox1
+            // 
+            this.roundPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.roundPictureBox1.BackColor = System.Drawing.Color.DarkGray;
+            this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.clientePortrait;
+            this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.clientePortrait;
+            this.roundPictureBox1.Location = new System.Drawing.Point(670, 3);
+            this.roundPictureBox1.Name = "roundPictureBox1";
+            this.roundPictureBox1.Size = new System.Drawing.Size(29, 26);
+            this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundPictureBox1.TabIndex = 9;
+            this.roundPictureBox1.TabStop = false;
             // 
             // timerMenuPNL
             // 
@@ -144,19 +154,6 @@ namespace Body_Factory_Manager
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(866, 38);
             this.panel1.TabIndex = 5;
-            // 
-            // menuBTN
-            // 
-            this.menuBTN.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.menuBTN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.menuBTN.Image = global::Body_Factory_Manager.Properties.Resources.menu;
-            this.menuBTN.Location = new System.Drawing.Point(18, 3);
-            this.menuBTN.Name = "menuBTN";
-            this.menuBTN.Size = new System.Drawing.Size(25, 26);
-            this.menuBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.menuBTN.TabIndex = 10;
-            this.menuBTN.TabStop = false;
-            this.menuBTN.Click += new System.EventHandler(this.menuBTN_Click);
             // 
             // cerrarVentanaBTN
             // 
@@ -189,33 +186,20 @@ namespace Body_Factory_Manager
             this.minimizarVentanaBTN.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.minimizarVentanaBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.minimizarVentanaBTN.Image = global::Body_Factory_Manager.Properties.Resources.minimize_png;
-            this.minimizarVentanaBTN.Location = new System.Drawing.Point(745, 4);
+            this.minimizarVentanaBTN.Location = new System.Drawing.Point(745, 0);
             this.minimizarVentanaBTN.Name = "minimizarVentanaBTN";
-            this.minimizarVentanaBTN.Size = new System.Drawing.Size(38, 32);
+            this.minimizarVentanaBTN.Size = new System.Drawing.Size(38, 38);
             this.minimizarVentanaBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.minimizarVentanaBTN.TabIndex = 13;
             this.minimizarVentanaBTN.TabStop = false;
             this.minimizarVentanaBTN.Click += new System.EventHandler(this.minimizarVentanaBTN_Click);
-            // 
-            // roundPictureBox1
-            // 
-            this.roundPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.roundPictureBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.roundPictureBox1.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.roundPictureBox1.Image = global::Body_Factory_Manager.Properties.Resources.tatu;
-            this.roundPictureBox1.Location = new System.Drawing.Point(675, 3);
-            this.roundPictureBox1.Name = "roundPictureBox1";
-            this.roundPictureBox1.Size = new System.Drawing.Size(29, 26);
-            this.roundPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.roundPictureBox1.TabIndex = 9;
-            this.roundPictureBox1.TabStop = false;
             // 
             // menuPNL
             // 
             this.menuPNL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.menuPNL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.menuPNL.Controls.Add(this.pagosBTN);
             this.menuPNL.Controls.Add(this.adminBTN);
             this.menuPNL.Controls.Add(this.configBTN);
             this.menuPNL.Controls.Add(this.cuotasBTN);
@@ -227,6 +211,30 @@ namespace Body_Factory_Manager
             this.menuPNL.Name = "menuPNL";
             this.menuPNL.Size = new System.Drawing.Size(186, 403);
             this.menuPNL.TabIndex = 3;
+            // 
+            // pagosBTN
+            // 
+            this.pagosBTN.BackColor = System.Drawing.Color.Red;
+            this.pagosBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pagosBTN.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.pagosBTN.FlatAppearance.BorderSize = 0;
+            this.pagosBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.pagosBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.pagosBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pagosBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pagosBTN.ForeColor = System.Drawing.Color.Black;
+            this.pagosBTN.Image = global::Body_Factory_Manager.Properties.Resources.signo_de_dolar;
+            this.pagosBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pagosBTN.Location = new System.Drawing.Point(1, 281);
+            this.pagosBTN.Name = "pagosBTN";
+            this.pagosBTN.Padding = new System.Windows.Forms.Padding(0, 0, 40, 0);
+            this.pagosBTN.Size = new System.Drawing.Size(185, 32);
+            this.pagosBTN.TabIndex = 9;
+            this.pagosBTN.Tag = "1";
+            this.pagosBTN.Text = "Pagos";
+            this.pagosBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.pagosBTN.UseVisualStyleBackColor = true;
+            this.pagosBTN.Click += new System.EventHandler(this.pagosBTN_Click);
             // 
             // adminBTN
             // 
@@ -241,10 +249,10 @@ namespace Body_Factory_Manager
             this.adminBTN.ForeColor = System.Drawing.Color.Black;
             this.adminBTN.Image = ((System.Drawing.Image)(resources.GetObject("adminBTN.Image")));
             this.adminBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adminBTN.Location = new System.Drawing.Point(0, 319);
+            this.adminBTN.Location = new System.Drawing.Point(-2, 357);
             this.adminBTN.Name = "adminBTN";
             this.adminBTN.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
-            this.adminBTN.Size = new System.Drawing.Size(185, 32);
+            this.adminBTN.Size = new System.Drawing.Size(188, 32);
             this.adminBTN.TabIndex = 8;
             this.adminBTN.Tag = "1";
             this.adminBTN.Text = "Admin";
@@ -265,9 +273,9 @@ namespace Body_Factory_Manager
             this.configBTN.ForeColor = System.Drawing.Color.Black;
             this.configBTN.Image = ((System.Drawing.Image)(resources.GetObject("configBTN.Image")));
             this.configBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.configBTN.Location = new System.Drawing.Point(0, 281);
+            this.configBTN.Location = new System.Drawing.Point(-2, 319);
             this.configBTN.Name = "configBTN";
-            this.configBTN.Size = new System.Drawing.Size(185, 32);
+            this.configBTN.Size = new System.Drawing.Size(188, 32);
             this.configBTN.TabIndex = 6;
             this.configBTN.Tag = "1";
             this.configBTN.Text = "Configuración";
@@ -289,11 +297,10 @@ namespace Body_Factory_Manager
             this.cuotasBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cuotasBTN.Location = new System.Drawing.Point(0, 243);
             this.cuotasBTN.Name = "cuotasBTN";
-            this.cuotasBTN.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.cuotasBTN.Size = new System.Drawing.Size(185, 32);
             this.cuotasBTN.TabIndex = 5;
             this.cuotasBTN.Tag = "1";
-            this.cuotasBTN.Text = "Finanzas?";
+            this.cuotasBTN.Text = "Mensualidades";
             this.cuotasBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cuotasBTN.UseVisualStyleBackColor = true;
             this.cuotasBTN.Click += new System.EventHandler(this.cuotasBTN_Click);
@@ -398,9 +405,9 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.paginasPNL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.paginasPNL.Location = new System.Drawing.Point(44, 38);
+            this.paginasPNL.Location = new System.Drawing.Point(50, 38);
             this.paginasPNL.Name = "paginasPNL";
-            this.paginasPNL.Size = new System.Drawing.Size(822, 403);
+            this.paginasPNL.Size = new System.Drawing.Size(816, 403);
             this.paginasPNL.TabIndex = 4;
             // 
             // Principal
@@ -408,22 +415,26 @@ namespace Body_Factory_Manager
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 441);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuPNL);
             this.Controls.Add(this.paginasPNL);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  ";
+            this.Text = "Body Factory Manager";
             this.controlTBLPNL.ResumeLayout(false);
             this.controlTBLPNL.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.menuBTN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cerrarVentanaBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximizarVentanaBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizarVentanaBTN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundPictureBox1)).EndInit();
             this.menuPNL.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoMenuPBX)).EndInit();
@@ -433,7 +444,6 @@ namespace Body_Factory_Manager
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel controlTBLPNL;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label nombreUsuarioLBL;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox logoMenuPBX;
@@ -453,6 +463,7 @@ namespace Body_Factory_Manager
         private DoubleBufferPanel paginasPNL;
         private System.Windows.Forms.Button adminBTN;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button pagosBTN;
     }
 }
 

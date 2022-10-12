@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -11,7 +10,7 @@ namespace Body_Factory_Manager
         {
             InitializeComponent();
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.ConnectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
+            builder.ConnectionString = Properties.Settings.Default.ConnectionString;
             ipTbx.Text = builder.DataSource;
             usuarioTbx.Text = builder.UserID;
             claveTbx.Text = builder.Password;

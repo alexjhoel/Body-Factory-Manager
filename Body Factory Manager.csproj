@@ -13,7 +13,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>D:\Body Factory Manager\Instalador\</PublishUrl>
+    <PublishUrl>E:\Body Factory Manager\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,9 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -87,8 +88,13 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -103,6 +109,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -130,11 +137,11 @@
     <Compile Include="resources\Forms\Asistencias\DatosAsistencia.Designer.cs">
       <DependentUpon>DatosAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\Clientes\ListadoClientes.cs">
+    <Compile Include="resources\Forms\Clientes\SelectorClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="resources\Forms\Clientes\ListadoClientes.Designer.cs">
-      <DependentUpon>ListadoClientes.cs</DependentUpon>
+    <Compile Include="resources\Forms\Clientes\SelectorClientes.Designer.cs">
+      <DependentUpon>SelectorClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Configuracion.cs">
       <SubType>Form</SubType>
@@ -154,11 +161,11 @@
     <Compile Include="resources\Forms\Cuotas\DatosMensualidad.Designer.cs">
       <DependentUpon>DatosMensualidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\Cuotas\ListadoMensualides.cs">
+    <Compile Include="resources\Forms\Cuotas\SelectorMensualidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="resources\Forms\Cuotas\ListadoMensualides.Designer.cs">
-      <DependentUpon>ListadoMensualides.cs</DependentUpon>
+    <Compile Include="resources\Forms\Cuotas\SelectorMensualidad.Designer.cs">
+      <DependentUpon>SelectorMensualidad.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Login.cs">
       <SubType>Form</SubType>
@@ -166,11 +173,11 @@
     <Compile Include="resources\Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\Pagos\ListadoPagos.cs">
+    <Compile Include="resources\Forms\Pagos\SelectorPagos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="resources\Forms\Pagos\ListadoPagos.Designer.cs">
-      <DependentUpon>ListadoPagos.cs</DependentUpon>
+    <Compile Include="resources\Forms\Pagos\SelectorPagos.Designer.cs">
+      <DependentUpon>SelectorPagos.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Principal.cs">
       <SubType>Form</SubType>
@@ -180,11 +187,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="resources\Forms\Pagos\DatosPago.cs">
-      <SubType>Form</SubType>
+    <Compile Include="resources\User Controls\Clientes\SeccionClientes.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\Forms\Pagos\DatosPago.Designer.cs">
-      <DependentUpon>DatosPago.cs</DependentUpon>
+    <Compile Include="resources\User Controls\Clientes\SeccionClientes.Designer.cs">
+      <DependentUpon>SeccionClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Listado.cs">
       <SubType>UserControl</SubType>
@@ -198,17 +205,29 @@
     <Compile Include="resources\User Controls\Login\LoginConfiguracion.Designer.cs">
       <DependentUpon>LoginConfiguracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\User Controls\Mensualidades\SeccionMensualidades.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Mensualidades\SeccionMensualidades.Designer.cs">
+      <DependentUpon>SeccionMensualidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\User Controls\Pagos\SeccionPagos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Pagos\SeccionPagos.Designer.cs">
+      <DependentUpon>SeccionPagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\User Controls\Pagos\SelectorCuota.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="resources\User Controls\Pagos\SelectorCuota.Designer.cs">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Asistencias.cs">
+    <Compile Include="resources\User Controls\Asistencias\SeccionAsistencias.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Asistencias.Designer.cs">
-      <DependentUpon>Asistencias.cs</DependentUpon>
+    <Compile Include="resources\User Controls\Asistencias\SeccionAsistencias.Designer.cs">
+      <DependentUpon>SeccionAsistencias.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Custom\BotonA.cs">
       <SubType>Component</SubType>
@@ -216,11 +235,11 @@
     <Compile Include="resources\Custom\RoundPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Incio.cs">
+    <Compile Include="resources\User Controls\Principal\Inicio.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\Incio.Designer.cs">
-      <DependentUpon>Incio.cs</DependentUpon>
+    <Compile Include="resources\User Controls\Principal\Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Login\LoginPrincipal.cs">
       <SubType>UserControl</SubType>
@@ -228,40 +247,10 @@
     <Compile Include="resources\User Controls\Login\LoginPrincipal.Designer.cs">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuClientes.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuClientes.Designer.cs">
-      <DependentUpon>MenuClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuPagos.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuPagos.Designer.cs">
-      <DependentUpon>MenuPagos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\User Controls\Pagos\Pagos.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Pagos\Pagos.Designer.cs">
-      <DependentUpon>Pagos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuRutinas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Principal\MenuRutinas.Designer.cs">
-      <DependentUpon>MenuRutinas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\User Controls\Clientes\SelectorClientes.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="resources\User Controls\Clientes\SelectorClientes.Designer.cs">
-      <DependentUpon>SelectorClientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="resources\Utilities\ColorUtilites.cs" />
     <Compile Include="resources\Utilities\DataGridViewExtension.cs" />
     <Compile Include="resources\Utilities\DateTimeUtilities.cs" />
-    <Compile Include="resources\Utilities\Email.cs" />
+    <Compile Include="resources\Utilities\Comunicacion.cs" />
     <Compile Include="resources\Utilities\SQL.cs" />
     <Compile Include="resources\Utilities\Transicion.cs" />
     <Compile Include="Settings.cs" />
@@ -276,8 +265,8 @@
     <EmbeddedResource Include="resources\Forms\Asistencias\DatosAsistencia.resx">
       <DependentUpon>DatosAsistencia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\Clientes\ListadoClientes.resx">
-      <DependentUpon>ListadoClientes.cs</DependentUpon>
+    <EmbeddedResource Include="resources\Forms\Clientes\SelectorClientes.resx">
+      <DependentUpon>SelectorClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
@@ -288,14 +277,14 @@
     <EmbeddedResource Include="resources\Forms\Cuotas\DatosMensualidad.resx">
       <DependentUpon>DatosMensualidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\Cuotas\ListadoMensualides.resx">
-      <DependentUpon>ListadoMensualides.cs</DependentUpon>
+    <EmbeddedResource Include="resources\Forms\Cuotas\SelectorMensualidad.resx">
+      <DependentUpon>SelectorMensualidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\Pagos\ListadoPagos.resx">
-      <DependentUpon>ListadoPagos.cs</DependentUpon>
+    <EmbeddedResource Include="resources\Forms\Pagos\SelectorPagos.resx">
+      <DependentUpon>SelectorPagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -310,9 +299,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="resources\Forms\Pagos\DatosPago.resx">
-      <DependentUpon>DatosPago.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
@@ -322,29 +308,17 @@
     <EmbeddedResource Include="resources\User Controls\Login\LoginPrincipal.resx">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Mensualidades\SeccionMensualidades.resx">
+      <DependentUpon>SeccionMensualidades.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Pagos\SelectorCuota.resx">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\Asistencias.resx">
-      <DependentUpon>Asistencias.cs</DependentUpon>
+    <EmbeddedResource Include="resources\User Controls\Asistencias\SeccionAsistencias.resx">
+      <DependentUpon>SeccionAsistencias.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\Incio.resx">
-      <DependentUpon>Incio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\MenuClientes.resx">
-      <DependentUpon>MenuClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\MenuPagos.resx">
-      <DependentUpon>MenuPagos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Pagos\Pagos.resx">
-      <DependentUpon>Pagos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Principal\MenuRutinas.resx">
-      <DependentUpon>MenuRutinas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\User Controls\Clientes\SelectorClientes.resx">
-      <DependentUpon>SelectorClientes.cs</DependentUpon>
+    <EmbeddedResource Include="resources\User Controls\Principal\Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Body Factory Manager_TemporaryKey.pfx" />
@@ -530,7 +504,19 @@
     <None Include="resources\lupa.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="resources\User Controls\Asistencias\" />
+    <None Include="resources\pagarCuotaBTN.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\clientePortrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\agregarSignoDolar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

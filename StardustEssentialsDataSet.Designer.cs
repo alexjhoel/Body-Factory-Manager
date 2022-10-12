@@ -4526,7 +4526,7 @@ SELECT cedula, nombre, apellido, fechaNacimiento, telefono, correo, nombreServic
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5037,7 +5037,7 @@ SELECT Id, titulo, descripcion, musculo FROM Ejercicio WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5425,7 +5425,7 @@ SELECT idEjercicio, idRutina, diaSemana FROM [Ejercicio-Rutina] WHERE (idEjercic
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5774,7 +5774,7 @@ SELECT Id, fecha, hora, idCliente, realizaPago FROM Entrada WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6224,7 +6224,7 @@ SELECT Id, idCliente, idServicio, estado, entrega, descuento, fechaEmision, fech
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6709,7 +6709,7 @@ SELECT Id, idCliente, idServicio, estado, entrega, descuento, fechaEmision, fech
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7034,7 +7034,7 @@ SELECT nombre, descripcion FROM Servicio WHERE (nombre = @nombre)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7391,7 +7391,7 @@ SELECT usuario, clave, correo, telefono FROM Usuario WHERE (usuario = @usuario)"
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.StardustEssentialsConnectionString;
+            this._connection.ConnectionString = global::Body_Factory_Manager.Properties.Settings.Default.ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing;
+
 namespace Body_Factory_Manager
 {
     partial class DatosCliente
@@ -29,11 +31,10 @@ namespace Body_Factory_Manager
         /// </summary>
         private void InitializeComponent()
         {
-            this.subirFotoBTN = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatosCliente));
             this.abrirFotoFD = new System.Windows.Forms.OpenFileDialog();
             this.guardarBTN = new System.Windows.Forms.Button();
             this.descartarBTN = new System.Windows.Forms.Button();
-            this.perfilPBX = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.ingresoDTP = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -58,26 +59,18 @@ namespace Body_Factory_Manager
             this.label4 = new System.Windows.Forms.Label();
             this.direccionTBX = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.enviarMensajeBTN = new System.Windows.Forms.Button();
             this.nacimientoDTP = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.telefonoTBX = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.correoTBX = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).BeginInit();
+            this.subirFotoBTN = new System.Windows.Forms.Button();
+            this.borrarBTN = new System.Windows.Forms.Button();
+            this.perfilPBX = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).BeginInit();
             this.SuspendLayout();
-            // 
-            // subirFotoBTN
-            // 
-            this.subirFotoBTN.Location = new System.Drawing.Point(12, 198);
-            this.subirFotoBTN.Name = "subirFotoBTN";
-            this.subirFotoBTN.Size = new System.Drawing.Size(128, 23);
-            this.subirFotoBTN.TabIndex = 1;
-            this.subirFotoBTN.Text = "Subir foto";
-            this.subirFotoBTN.UseVisualStyleBackColor = true;
-            this.subirFotoBTN.Click += new System.EventHandler(this.subirFotoBTN_Click);
             // 
             // abrirFotoFD
             // 
@@ -117,22 +110,11 @@ namespace Body_Factory_Manager
             this.descartarBTN.UseVisualStyleBackColor = false;
             this.descartarBTN.Click += new System.EventHandler(this.descartarBTN_Click);
             // 
-            // perfilPBX
-            // 
-            this.perfilPBX.BackColor = System.Drawing.Color.DarkGray;
-            this.perfilPBX.Image = global::Body_Factory_Manager.Properties.Resources.cliente;
-            this.perfilPBX.Location = new System.Drawing.Point(12, 37);
-            this.perfilPBX.Name = "perfilPBX";
-            this.perfilPBX.Size = new System.Drawing.Size(128, 128);
-            this.perfilPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.perfilPBX.TabIndex = 0;
-            this.perfilPBX.TabStop = false;
-            // 
             // ingresoDTP
             // 
             this.ingresoDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ingresoDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ingresoDTP.Location = new System.Drawing.Point(12, 255);
+            this.ingresoDTP.Location = new System.Drawing.Point(12, 244);
             this.ingresoDTP.Name = "ingresoDTP";
             this.ingresoDTP.Size = new System.Drawing.Size(128, 26);
             this.ingresoDTP.TabIndex = 28;
@@ -140,7 +122,7 @@ namespace Body_Factory_Manager
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(9, 239);
+            this.label15.Location = new System.Drawing.Point(9, 228);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(89, 13);
             this.label15.TabIndex = 31;
@@ -149,7 +131,7 @@ namespace Body_Factory_Manager
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 294);
+            this.label16.Location = new System.Drawing.Point(12, 294);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(74, 13);
             this.label16.TabIndex = 32;
@@ -159,7 +141,7 @@ namespace Body_Factory_Manager
             // 
             this.usuarioLBL.AutoSize = true;
             this.usuarioLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usuarioLBL.Location = new System.Drawing.Point(9, 317);
+            this.usuarioLBL.Location = new System.Drawing.Point(12, 317);
             this.usuarioLBL.Name = "usuarioLBL";
             this.usuarioLBL.Size = new System.Drawing.Size(65, 20);
             this.usuarioLBL.TabIndex = 33;
@@ -191,7 +173,6 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.direccionTBX);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.enviarMensajeBTN);
             this.panel1.Controls.Add(this.nacimientoDTP);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.telefonoTBX);
@@ -386,16 +367,6 @@ namespace Body_Factory_Manager
             this.label5.TabIndex = 9;
             this.label5.Text = "Contacto:";
             // 
-            // enviarMensajeBTN
-            // 
-            this.enviarMensajeBTN.Location = new System.Drawing.Point(421, 266);
-            this.enviarMensajeBTN.Name = "enviarMensajeBTN";
-            this.enviarMensajeBTN.Size = new System.Drawing.Size(93, 29);
-            this.enviarMensajeBTN.TabIndex = 18;
-            this.enviarMensajeBTN.Text = "Enviar Mensaje";
-            this.enviarMensajeBTN.UseVisualStyleBackColor = true;
-            this.enviarMensajeBTN.Click += new System.EventHandler(this.enviarMensajeBTN_Click);
-            // 
             // nacimientoDTP
             // 
             this.nacimientoDTP.CalendarForeColor = System.Drawing.Color.White;
@@ -453,11 +424,58 @@ namespace Body_Factory_Manager
             this.correoTBX.Size = new System.Drawing.Size(186, 26);
             this.correoTBX.TabIndex = 14;
             // 
+            // subirFotoBTN
+            // 
+            this.subirFotoBTN.BackColor = System.Drawing.Color.Red;
+            this.subirFotoBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.subirFotoBTN.FlatAppearance.BorderSize = 0;
+            this.subirFotoBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
+            this.subirFotoBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.subirFotoBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold);
+            this.subirFotoBTN.ForeColor = System.Drawing.Color.Black;
+            this.subirFotoBTN.Location = new System.Drawing.Point(12, 171);
+            this.subirFotoBTN.Name = "subirFotoBTN";
+            this.subirFotoBTN.Size = new System.Drawing.Size(86, 26);
+            this.subirFotoBTN.TabIndex = 34;
+            this.subirFotoBTN.Text = "subir foto";
+            this.subirFotoBTN.UseVisualStyleBackColor = false;
+            this.subirFotoBTN.Click += new System.EventHandler(this.subirFotoBTN_Click);
+            // 
+            // borrarBTN
+            // 
+            this.borrarBTN.BackColor = System.Drawing.Color.Red;
+            this.borrarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.borrarBTN.FlatAppearance.BorderSize = 0;
+            this.borrarBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
+            this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold);
+            this.borrarBTN.ForeColor = System.Drawing.Color.Black;
+            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
+            this.borrarBTN.Location = new System.Drawing.Point(104, 167);
+            this.borrarBTN.Name = "borrarBTN";
+            this.borrarBTN.Size = new System.Drawing.Size(36, 34);
+            this.borrarBTN.TabIndex = 35;
+            this.borrarBTN.UseVisualStyleBackColor = false;
+            this.borrarBTN.Click += new System.EventHandler(this.borrarBTN_Click);
+            // 
+            // perfilPBX
+            // 
+            this.perfilPBX.BackColor = System.Drawing.Color.DarkGray;
+            this.perfilPBX.Image = global::Body_Factory_Manager.Properties.Resources.clientePortrait;
+            this.perfilPBX.Location = new System.Drawing.Point(12, 23);
+            this.perfilPBX.Name = "perfilPBX";
+            this.perfilPBX.Size = new System.Drawing.Size(128, 128);
+            this.perfilPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.perfilPBX.TabIndex = 0;
+            this.perfilPBX.TabStop = false;
+            // 
             // DatosCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 442);
+            this.Controls.Add(this.borrarBTN);
+            this.Controls.Add(this.subirFotoBTN);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.usuarioLBL);
             this.Controls.Add(this.label16);
@@ -465,17 +483,17 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.ingresoDTP);
             this.Controls.Add(this.descartarBTN);
             this.Controls.Add(this.guardarBTN);
-            this.Controls.Add(this.subirFotoBTN);
             this.Controls.Add(this.perfilPBX);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DatosCliente";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgregarCliente";
             this.Load += new System.EventHandler(this.DatosCliente_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,7 +502,6 @@ namespace Body_Factory_Manager
         #endregion
 
         private resources.Custom.RoundPictureBox perfilPBX;
-        private System.Windows.Forms.Button subirFotoBTN;
         private System.Windows.Forms.OpenFileDialog abrirFotoFD;
         private System.Windows.Forms.Button guardarBTN;
         private System.Windows.Forms.Button descartarBTN;
@@ -512,12 +529,13 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox direccionTBX;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button enviarMensajeBTN;
         private System.Windows.Forms.DateTimePicker nacimientoDTP;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox telefonoTBX;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox correoTBX;
+        private System.Windows.Forms.Button subirFotoBTN;
+        private System.Windows.Forms.Button borrarBTN;
     }
 }

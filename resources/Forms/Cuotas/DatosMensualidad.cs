@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
 
@@ -8,13 +7,12 @@ namespace Body_Factory_Manager
 {
     public partial class DatosMensualidad : Form
     {
-        SQL sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
+        SQL sql = new SQL(Properties.Settings.Default.ConnectionString);
 
         DataTable datosMensualidad;
         DataTable descuentos;
         DataTable montos;
         TipoPagoMensualidad tipo;
-        SelectorClientes selectorClientes;
 
         string cedulaCliente = null;
         string idPago;
@@ -63,6 +61,7 @@ namespace Body_Factory_Manager
                         consulta = "SELECT * FROM Mensualidades WHERE id = " + id;
                         break;
                     case TipoPagoMensualidad.EditarMensualidad:
+
                         consulta = "SELECT * FROM Mensualidades WHERE id= " + id;
                         this.Width = 390;
                         break;
@@ -71,10 +70,10 @@ namespace Body_Factory_Manager
                         ActivarZonaMensualidad(false);
                         try
                         {
-                            
+
                             DataTable datosPago = sql.Obtener("SELECT * FROM Pagos WHERE id = " + id);
-                            entregaNUD.Value = (decimal) datosPago.Rows[0]["monto"];
-                            pagoFechaDTP.Value = (DateTime) datosPago.Rows[0]["fecha"];
+                            entregaNUD.Value = (decimal)datosPago.Rows[0]["monto"];
+                            pagoFechaDTP.Value = (DateTime)datosPago.Rows[0]["fecha"];
                         }
                         catch (Exception ex)
                         {
@@ -90,7 +89,7 @@ namespace Body_Factory_Manager
 
                 try
                 {
-                    if (tipo != TipoPagoMensualidad.PrimerPago  && tipo != TipoPagoMensualidad.NuevaMensualidad)
+                    if (tipo != TipoPagoMensualidad.PrimerPago && tipo != TipoPagoMensualidad.NuevaMensualidad)
                     {
                         DataTable datos = sql.Obtener(consulta);
                         if (datos == null || datos.Rows.Count == 0)
@@ -115,7 +114,7 @@ namespace Body_Factory_Manager
                         if (tipo == TipoPagoMensualidad.EditarPago)
                         {
                             datosMensualidad.Rows[0]["pagado"] = (decimal)datosMensualidad.Rows[0]["pagado"] - entregaNUD.Value;
-                            
+
                         }
                         descuentoNUD.Value = decimal.Parse(datosMensualidad.Rows[0]["descuento"].ToString());
                         cobroNUD.Value = decimal.Parse(datosMensualidad.Rows[0]["valor"].ToString());
@@ -123,19 +122,21 @@ namespace Body_Factory_Manager
                         vencimientoDTP.Value = (DateTime)datosMensualidad.Rows[0]["vencimiento"];
 
                         totalTbx.Text = (cobroNUD.Value - cobroNUD.Value * (descuentoNUD.Value / 100)) + "";
-                        
+
                         if (tipo != TipoPagoMensualidad.EditarMensualidad && tipo != TipoPagoMensualidad.EditarPago)
                         {
                             entregaNUD.Value = cobroNUD.Value - cobroNUD.Value * (descuentoNUD.Value / 100) - decimal.Parse(datosMensualidad.Rows[0]["pagado"].ToString());
                             deudaLBL.Text = "0";
                         }
-                        
+
+
 
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    this.Close();
                 }
                 finally
                 {
@@ -146,40 +147,19 @@ namespace Body_Factory_Manager
 
 
             EstablecerInterfaz();
-            
-            if (tipo == TipoPagoMensualidad.NuevoPago)
-            {
-                pagoMensualidadCBX.Show();
-                ActivarZonaMensualidad(false);
-            }
-            if (tipo == TipoPagoMensualidad.PrimerPago || tipo == TipoPagoMensualidad.NuevaMensualidad)
-            {
-                entregaCBX.Items.Clear();
-                entregaCBX.Items.Add("Entrega total");
-                entregaCBX.Items.Add("Entrega parcial");
-                entregaCBX.Items.Add("Paga después");
-                buscarMensualidadBtn.Hide();
-                vencimientoDTP.Value = DateTimeUtilities.NextMonth(DateTime.Now);
-                totalTbx.Text = cobroNUD.Value + "";
-            }
+
         }
 
         private void EstablecerInterfaz()
         {
-            string cedulaCliente = null;
+
+            string cedulaCliente = "";
             if (datosMensualidad != null && datosMensualidad.Rows.Count != 0)
             {
                 cedulaCliente = datosMensualidad.Rows[0]["cedulaCliente"].ToString();
             }
-            selectorClientes = new SelectorClientes(ObtenerDatosCliente, cedulaCliente);
-            selectorClientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            selectorClientes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            selectorClientes.Location = new System.Drawing.Point(-2, -2);
-            selectorClientes.Margin = new System.Windows.Forms.Padding(0);
-            selectorClientes.Size = new System.Drawing.Size(this.Width, 122);
-            selectorClientes.TabIndex = 30;
-            this.Controls.Add(selectorClientes);
+
+            cedulaTBX.Text = cedulaCliente;
 
             descuentos = sql.Obtener("SELECT nombre, porcentaje, CONCAT(nombre, ' -', porcentaje, '%') AS 'todo' FROM Descuentos");
             foreach (DataRow row in descuentos.Rows)
@@ -201,6 +181,23 @@ namespace Body_Factory_Manager
             cobroCBX.SelectedIndex = 0;
             entregaCBX.SelectedIndex = 0;
             pagoMensualidadCBX.SelectedIndex = 0;
+
+            buscarClienteBTN.Visible = tipo == TipoPagoMensualidad.NuevoPago;
+            if (tipo == TipoPagoMensualidad.NuevoPago)
+            {
+                pagoMensualidadCBX.Show();
+                ActivarZonaMensualidad(false);
+            }
+            if (tipo == TipoPagoMensualidad.PrimerPago || tipo == TipoPagoMensualidad.NuevaMensualidad)
+            {
+                entregaCBX.Items.Clear();
+                entregaCBX.Items.Add("Entrega total");
+                entregaCBX.Items.Add("Entrega parcial");
+                entregaCBX.Items.Add("Paga después");
+                buscarMensualidadBtn.Hide();
+                vencimientoDTP.Value = DateTimeUtilities.NextMonth(DateTime.Now);
+                totalTbx.Text = cobroNUD.Value + "";
+            }
 
         }
 
@@ -294,7 +291,7 @@ namespace Body_Factory_Manager
             }
 
 
-            
+
 
         }
 
@@ -396,7 +393,7 @@ namespace Body_Factory_Manager
 
         private void entregaNUD_ValueChanged(object sender, EventArgs e)
         {
-            if ((datosMensualidad != null && tipo != TipoPagoMensualidad.PrimerPago  && entregaNUD.Value == decimal.Parse(totalTbx.Text) - decimal.Parse(datosMensualidad.Rows[0]["pagado"].ToString()))
+            if ((datosMensualidad != null && tipo != TipoPagoMensualidad.PrimerPago && entregaNUD.Value == decimal.Parse(totalTbx.Text) - decimal.Parse(datosMensualidad.Rows[0]["pagado"].ToString()))
                 || (entregaNUD.Value == decimal.Parse(totalTbx.Text)))
             {
                 entregaCBX.SelectedIndex = 0;
@@ -406,7 +403,7 @@ namespace Body_Factory_Manager
                 entregaCBX.SelectedIndex = 1;
             }
 
-            
+
             ActualizarTotal();
         }
 
@@ -465,7 +462,7 @@ namespace Body_Factory_Manager
             }
 
 
-            if (tipo == TipoPagoMensualidad.PagarCuotaDesdeClientes)
+            if (tipo == TipoPagoMensualidad.PagarCuotaDesdeClientes || tipo == TipoPagoMensualidad.PagarCuotaDesdeListado)
             {
                 consulta = " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) " +
                    "VALUES(@entregaPago, @fechaPago, @cedulaCliente, @idMensualidad);";
@@ -474,7 +471,7 @@ namespace Body_Factory_Manager
 
             if (tipo == TipoPagoMensualidad.NuevoPago)
             {
-                if(pagoMensualidadCBX.SelectedIndex == 0)
+                if (pagoMensualidadCBX.SelectedIndex == 0)
                 {
                     consulta += " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) " +
                    "VALUES(@entregaPago, @fechaPago, @cedulaCliente, @idMensualidad);";
@@ -484,11 +481,12 @@ namespace Body_Factory_Manager
                     consulta = " INSERT INTO Pagos (monto, fecha, cedulaCliente) " +
                    "VALUES(@entregaPago, @fechaPago, @cedulaCliente);";
                 }
-                
-                
+
+
 
             }
-            /*if (true)
+            /*
+            if (false)
             {
 
                  consulta = " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) " +
@@ -496,8 +494,8 @@ namespace Body_Factory_Manager
                 consulta += "EXEC ComprobarMensualidades @c = @cedulaCliente";
                 //Actualizar mensualidad
                 sql.Modificar(consulta, parametros);
-            }
-            */
+            }*/
+
             consulta += " EXEC ComprobarMensualidades @c = @cedulaCliente";
             MessageBox.Show(tipo.ToString());
             try
@@ -525,13 +523,13 @@ namespace Body_Factory_Manager
 
         private void pagoMensualidadCBX_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tipo != TipoPagoMensualidad.EditarPago && tipo != TipoPagoMensualidad.NuevoPago)
+            if (tipo != TipoPagoMensualidad.EditarPago && tipo != TipoPagoMensualidad.NuevoPago)
 
                 return;
-            selectorClientes.Habilitar(pagoMensualidadCBX.SelectedIndex == 1);
+            HabilitarClientes(pagoMensualidadCBX.SelectedIndex == 1);
             if (pagoMensualidadCBX.SelectedIndex == 0)
             {
-                
+
                 buscarMensualidadBtn.Enabled = true;
                 if (datosMensualidad != null)
                 {
@@ -539,7 +537,7 @@ namespace Body_Factory_Manager
                     return;
                 }
             }
-            if(pagoMensualidadCBX.SelectedIndex == 1)
+            if (pagoMensualidadCBX.SelectedIndex == 1)
             {
                 buscarMensualidadBtn.Enabled = false;
             }
@@ -549,29 +547,110 @@ namespace Body_Factory_Manager
         private void buscarMensualidadBtn_Click(object sender, EventArgs e)
         {
             FiltroBusqeda filtro = null;
-            if(cedulaCliente != null)
+            if (cedulaCliente != null)
             {
                 filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedulaCliente");
             }
-            using (ListadoMensualidades selector = new ListadoMensualidades(true, filtro))
+            using (SelectorMensualidad selector = new SelectorMensualidad(filtro))
             {
                 selector.ShowDialog();
-                if(selector.DialogResult == DialogResult.OK)
+                if (selector.DialogResult == DialogResult.OK)
                 {
                     ObtenerDatosMensualidad(selector.id);
 
-                    cobroNUD.Value = (decimal) datosMensualidad.Rows[0]["valor"];
+                    cobroNUD.Value = (decimal)datosMensualidad.Rows[0]["valor"];
                     descuentoNUD.Value = (decimal)datosMensualidad.Rows[0]["descuento"];
                     adjudDTP.Value = (DateTime)datosMensualidad.Rows[0]["fechaCreado"];
 
-                    vencimientoDTP.Value = (DateTime) datosMensualidad.Rows[0]["vencimiento"];
+                    vencimientoDTP.Value = (DateTime)datosMensualidad.Rows[0]["vencimiento"];
                     ActualizarTotal();
                     ActivarZonaMensualidad(true);
-                    selectorClientes.CambiarCliente(datosMensualidad.Rows[0]["cedulaCliente"].ToString());
+                    CambiarCliente(datosMensualidad.Rows[0]["cedulaCliente"].ToString());
                 }
             }
-            
 
+
+        }
+
+        private void cedulaTBX_TextChanged(object sender, EventArgs e)
+        {
+            CambiarCliente(cedulaTBX.Text);
+        }
+
+        private void buscarClienteBTN_Click(object sender, EventArgs e)
+        {
+            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedula");
+            filtro.valor1 = cedulaTBX.Text;
+            using (SelectorClientes listado = new SelectorClientes(filtro))
+            {
+                listado.ShowDialog();
+                if (listado.DialogResult == DialogResult.OK)
+                {
+                    cedulaTBX.Text = listado.cedula;
+                }
+            }
+        }
+
+        public void CambiarCliente(string cedula)
+        {
+            try
+            {
+                cedulaTBX.Text = cedula;
+                DataTable datos = sql.Obtener("SELECT nombre,apellido FROM Clientes WHERE cedula=" + cedula);
+                if (datos.Rows.Count != 0)
+                {
+                    nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
+                    return;
+                }
+
+
+
+                nombreTBX.Text = "N/A";
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sql.CerrarConexion();
+            }
+
+        }
+
+        private void verClienteCompleto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable datos = sql.Obtener("SELECT nombre,apellido FROM Clientes WHERE cedula=" + cedulaTBX.Text);
+                if (datos.Rows.Count == 0)
+                {
+                    return;
+                }
+                using (DatosCliente nuevaVentana = new DatosCliente(cedulaTBX.Text))
+                {
+                    nuevaVentana.ShowDialog();
+                }
+
+                CambiarCliente(cedulaTBX.Text);
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sql.CerrarConexion();
+            }
+
+        }
+
+        private void HabilitarClientes(bool e)
+        {
+            selectorClientes.Enabled = e;
+            verClienteCompleto.Enabled = true;
         }
     }
 

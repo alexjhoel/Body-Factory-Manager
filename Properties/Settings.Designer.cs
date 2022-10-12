@@ -53,17 +53,6 @@ namespace Body_Factory_Manager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=StardustEssentials;Persist Security Info=Tr" +
-            "ue;User ID=stardust;Password=21082004;Pooling=False")]
-        public string StardustEssentialsConnectionString {
-            get {
-                return ((string)(this["StardustEssentialsConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Server=(localdb)\\v11.0;Integrated Security=true;AttachDbFileName=C:\\Program Files" +
             "\\StardustEssentials.mdf;")]
         public string LocalDB {
@@ -81,6 +70,31 @@ namespace Body_Factory_Manager.Properties {
         public string ExternalDatabase {
             get {
                 return ((string)(this["ExternalDatabase"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Usuario {
+            get {
+                return ((string)(this["Usuario"]));
+            }
+            set {
+                this["Usuario"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=StardustEssentials;Persist Security Info=Tr" +
+            "ue;User ID=stardust;Password=admin;Pooling=False")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+            set {
+                this["ConnectionString"] = value;
             }
         }
     }

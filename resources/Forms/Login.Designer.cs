@@ -58,6 +58,7 @@ namespace Body_Factory_Manager
             this.ClientSize = new System.Drawing.Size(558, 517);
             this.Controls.Add(this.loginConfiguracion1);
             this.Controls.Add(this.loginPrincipal1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";

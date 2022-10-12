@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,9 +10,9 @@ namespace Body_Factory_Manager
         //Link de archivo (.mdf) de base de datos en la raiz del proyecto
         Transicion menuTransicion = new Transicion(0);
         List<BotonMenu> botonesMenu = new List<BotonMenu>();
-        SQL sql;
         Point offset;
         string usuario;
+        bool estadoMenu;
 
         protected override CreateParams CreateParams
         {
@@ -27,11 +25,12 @@ namespace Body_Factory_Manager
             }
         }
 
-        public Principal(DataTable datosUsuario)
+        public Principal()
         {
             InitializeComponent();
-            
-            menuTransicion.Establecer(40, 185, 0.05f);
+
+            menuTransicion.Establecer(185, 50, 0.05f);
+            estadoMenu = false;
 
             foreach (Control btn in menuPNL.Controls)
             {
@@ -46,24 +45,9 @@ namespace Body_Factory_Manager
 
             }
             timerMenuPNL.Start();
-
-
-            if (datosUsuario == null)
-            {
-                this.Close();
-                return;
-            }
-            if (datosUsuario.Rows.Count == 0)
-            {
-                this.Close();
-                return;
-            }
-            DataTable datosDeUsuario = datosUsuario;
-            string usuario = datosDeUsuario.Rows[0]["id"].ToString();
-            nombreUsuarioLBL.Text = usuario;
-            sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
-
-            CambiarSección(new MenuClientes(usuario));
+            nombreUsuarioLBL.Text = Properties.Settings.Default.Usuario;
+            adminBTN.Visible = Properties.Settings.Default.Usuario == "admin";
+            CambiarSección(new Inicio(this.InicioSalida));
         }
 
         private void CambiarSección(UserControl userControl)
@@ -83,39 +67,50 @@ namespace Body_Factory_Manager
 
         private void menuBTN_Click(object sender, EventArgs e)
         {
-            if (menuPNL.Width == 185)
+            if (estadoMenu)
             {
                 menuTransicion.Establecer(185, 50, 0.02f);
             }
-            else if (menuPNL.Width == 50)
+            else
             {
                 menuTransicion.Establecer(50, 185, 0.02f);
             }
+            estadoMenu = !estadoMenu;
         }
 
         private void clientesBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new MenuClientes(usuario));
+            CambiarSección(new SeccionClientes());
         }
 
         private void inicioBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new Incio());
+            CambiarSección(new Inicio(this.InicioSalida));
         }
 
-        private void rutinasBTN_Click(object sender, EventArgs e)
+        private void InicioSalida(TipoInicioSalida tipoSalida, string salida)
         {
-            CambiarSección(new MenuRutinas());
+            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedula");
+            filtro.valor1 = salida;
+            switch (tipoSalida)
+            {
+                case TipoInicioSalida.Clientes:
+                    CambiarSección(new SeccionClientes(false, filtro));
+                    break;
+                case TipoInicioSalida.Mensualidades:
+                    CambiarSección(new SeccionMensualidades(false, filtro));
+                    break;
+            }
         }
 
         private void cuotasBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new MenuPagos());
+            CambiarSección(new SeccionMensualidades());
         }
 
         private void asistenciasBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new Asistencias());
+            CambiarSección(new SeccionAsistencias());
         }
 
         private void controlTBLPNL_MouseMove(object sender, MouseEventArgs e)
@@ -144,13 +139,13 @@ namespace Body_Factory_Manager
 
         private void maximizarVentanaBTN_Click(object sender, EventArgs e)
         {
-            if(this.FormBorderStyle == FormBorderStyle.Sizable)
+            if (this.FormBorderStyle == FormBorderStyle.Sizable)
             {
                 this.WindowState = FormWindowState.Maximized;
                 this.MaximumSize = this.Size;
                 this.FormBorderStyle = FormBorderStyle.None;
             }
-            
+
             if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Maximized;
             else this.WindowState = FormWindowState.Normal;
         }
@@ -208,7 +203,10 @@ namespace Body_Factory_Manager
             nueva.ShowDialog();
         }
 
-
+        private void pagosBTN_Click(object sender, EventArgs e)
+        {
+            CambiarSección(new SeccionPagos());
+        }
     }
 
     public class BotonMenu

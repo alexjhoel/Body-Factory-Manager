@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
 {
     public partial class AdminTools : Form
     {
-        SQL sql = new SQL(ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString);
+        SQL sql = new SQL(Properties.Settings.Default.ConnectionString);
         public AdminTools()
         {
             InitializeComponent();

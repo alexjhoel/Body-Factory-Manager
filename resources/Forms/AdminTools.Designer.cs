@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminTools));
             this.consultaTbx = new System.Windows.Forms.TextBox();
             this.enviarBtn = new System.Windows.Forms.Button();
             this.tablaDGV = new System.Windows.Forms.DataGridView();
@@ -80,6 +81,7 @@
             this.Controls.Add(this.tablaDGV);
             this.Controls.Add(this.enviarBtn);
             this.Controls.Add(this.consultaTbx);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminTools";
             this.Text = "AdminTools";
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).EndInit();

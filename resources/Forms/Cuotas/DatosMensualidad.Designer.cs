@@ -1,4 +1,6 @@
-﻿namespace Body_Factory_Manager
+﻿using System.Drawing;
+
+namespace Body_Factory_Manager
 {
     partial class DatosMensualidad
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatosMensualidad));
             this.label4 = new System.Windows.Forms.Label();
             this.cobroCBX = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,19 +60,27 @@
             this.guardarBTN = new System.Windows.Forms.Button();
             this.cobroNUD = new System.Windows.Forms.NumericUpDown();
             this.descuentoNUD = new System.Windows.Forms.NumericUpDown();
-            this.buscarMensualidadBtn = new System.Windows.Forms.Button();
             this.pagoMensualidadCBX = new System.Windows.Forms.ComboBox();
+            this.nombreTBX = new System.Windows.Forms.Label();
+            this.buscarClienteBTN = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cedulaTBX = new System.Windows.Forms.TextBox();
+            this.selectorClientes = new System.Windows.Forms.Panel();
+            this.verClienteCompleto = new System.Windows.Forms.Button();
+            this.buscarMensualidadBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.entregaNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobroNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.descuentoNUD)).BeginInit();
+            this.selectorClientes.SuspendLayout();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 316);
+            this.label4.Location = new System.Drawing.Point(14, 287);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 25);
             this.label4.TabIndex = 46;
@@ -81,7 +92,7 @@
             this.cobroCBX.FormattingEnabled = true;
             this.cobroCBX.Items.AddRange(new object[] {
             "Personalizado"});
-            this.cobroCBX.Location = new System.Drawing.Point(204, 189);
+            this.cobroCBX.Location = new System.Drawing.Point(204, 160);
             this.cobroCBX.Name = "cobroCBX";
             this.cobroCBX.Size = new System.Drawing.Size(154, 28);
             this.cobroCBX.TabIndex = 45;
@@ -91,7 +102,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(15, 192);
+            this.label8.Location = new System.Drawing.Point(15, 163);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(18, 20);
             this.label8.TabIndex = 44;
@@ -101,7 +112,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(159, 252);
+            this.label6.Location = new System.Drawing.Point(159, 223);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 20);
             this.label6.TabIndex = 43;
@@ -114,7 +125,7 @@
             this.descuentoCBX.Items.AddRange(new object[] {
             "Sin descuento",
             "Personalizado"});
-            this.descuentoCBX.Location = new System.Drawing.Point(204, 247);
+            this.descuentoCBX.Location = new System.Drawing.Point(204, 218);
             this.descuentoCBX.Name = "descuentoCBX";
             this.descuentoCBX.Size = new System.Drawing.Size(154, 28);
             this.descuentoCBX.TabIndex = 42;
@@ -123,7 +134,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 292);
+            this.label5.Location = new System.Drawing.Point(9, 263);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 41;
@@ -133,7 +144,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 141);
+            this.label7.Location = new System.Drawing.Point(12, 112);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(66, 29);
             this.label7.TabIndex = 40;
@@ -142,7 +153,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 360);
+            this.label3.Location = new System.Drawing.Point(14, 331);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 37;
@@ -152,7 +163,7 @@
             // 
             this.adjudDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjudDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.adjudDTP.Location = new System.Drawing.Point(17, 376);
+            this.adjudDTP.Location = new System.Drawing.Point(17, 347);
             this.adjudDTP.Name = "adjudDTP";
             this.adjudDTP.Size = new System.Drawing.Size(165, 26);
             this.adjudDTP.TabIndex = 36;
@@ -160,7 +171,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 173);
+            this.label1.Location = new System.Drawing.Point(13, 144);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 35;
@@ -170,7 +181,7 @@
             // 
             this.totalTbx.AutoSize = true;
             this.totalTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalTbx.Location = new System.Drawing.Point(34, 316);
+            this.totalTbx.Location = new System.Drawing.Point(34, 287);
             this.totalTbx.Name = "totalTbx";
             this.totalTbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.totalTbx.Size = new System.Drawing.Size(24, 25);
@@ -180,7 +191,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 233);
+            this.label2.Location = new System.Drawing.Point(12, 204);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 47;
@@ -201,7 +212,7 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.pagoTituloLBL);
             this.panel1.Controls.Add(this.entregaCBX);
-            this.panel1.Location = new System.Drawing.Point(364, 141);
+            this.panel1.Location = new System.Drawing.Point(364, 112);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(197, 270);
             this.panel1.TabIndex = 50;
@@ -308,8 +319,7 @@
             this.entregaCBX.FormattingEnabled = true;
             this.entregaCBX.Items.AddRange(new object[] {
             "Entrega total",
-            "Entrega parcial",
-            "Paga después"});
+            "Entrega parcial"});
             this.entregaCBX.Location = new System.Drawing.Point(14, 48);
             this.entregaCBX.Name = "entregaCBX";
             this.entregaCBX.Size = new System.Drawing.Size(161, 28);
@@ -326,7 +336,7 @@
             this.descartarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.descartarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descartarBTN.ForeColor = System.Drawing.Color.Black;
-            this.descartarBTN.Location = new System.Drawing.Point(204, 432);
+            this.descartarBTN.Location = new System.Drawing.Point(204, 403);
             this.descartarBTN.Name = "descartarBTN";
             this.descartarBTN.Size = new System.Drawing.Size(170, 44);
             this.descartarBTN.TabIndex = 51;
@@ -338,7 +348,7 @@
             // 
             this.vencimientoDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vencimientoDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.vencimientoDTP.Location = new System.Drawing.Point(204, 376);
+            this.vencimientoDTP.Location = new System.Drawing.Point(204, 347);
             this.vencimientoDTP.Name = "vencimientoDTP";
             this.vencimientoDTP.Size = new System.Drawing.Size(154, 26);
             this.vencimientoDTP.TabIndex = 52;
@@ -346,7 +356,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(201, 360);
+            this.label15.Location = new System.Drawing.Point(201, 331);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(115, 13);
             this.label15.TabIndex = 53;
@@ -362,7 +372,7 @@
             this.guardarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guardarBTN.ForeColor = System.Drawing.Color.Black;
-            this.guardarBTN.Location = new System.Drawing.Point(391, 432);
+            this.guardarBTN.Location = new System.Drawing.Point(391, 403);
             this.guardarBTN.Name = "guardarBTN";
             this.guardarBTN.Size = new System.Drawing.Size(170, 44);
             this.guardarBTN.TabIndex = 54;
@@ -373,7 +383,7 @@
             // cobroNUD
             // 
             this.cobroNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cobroNUD.Location = new System.Drawing.Point(39, 190);
+            this.cobroNUD.Location = new System.Drawing.Point(39, 161);
             this.cobroNUD.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -392,27 +402,11 @@
             // descuentoNUD
             // 
             this.descuentoNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descuentoNUD.Location = new System.Drawing.Point(19, 249);
+            this.descuentoNUD.Location = new System.Drawing.Point(19, 220);
             this.descuentoNUD.Name = "descuentoNUD";
             this.descuentoNUD.Size = new System.Drawing.Size(134, 26);
             this.descuentoNUD.TabIndex = 56;
             this.descuentoNUD.ValueChanged += new System.EventHandler(this.descuentoNUD_ValueChanged);
-            // 
-            // buscarMensualidadBtn
-            // 
-            this.buscarMensualidadBtn.BackColor = System.Drawing.Color.Red;
-            this.buscarMensualidadBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buscarMensualidadBtn.FlatAppearance.BorderSize = 0;
-            this.buscarMensualidadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buscarMensualidadBtn.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarMensualidadBtn.Location = new System.Drawing.Point(84, 137);
-            this.buscarMensualidadBtn.Name = "buscarMensualidadBtn";
-            this.buscarMensualidadBtn.Size = new System.Drawing.Size(78, 34);
-            this.buscarMensualidadBtn.TabIndex = 57;
-            this.buscarMensualidadBtn.Text = "Buscar";
-            this.buscarMensualidadBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buscarMensualidadBtn.UseVisualStyleBackColor = false;
-            this.buscarMensualidadBtn.Click += new System.EventHandler(this.buscarMensualidadBtn_Click);
             // 
             // pagoMensualidadCBX
             // 
@@ -421,20 +415,123 @@
             this.pagoMensualidadCBX.Items.AddRange(new object[] {
             "Pago de cuota",
             "Pago sin cuota"});
-            this.pagoMensualidadCBX.Location = new System.Drawing.Point(204, 141);
+            this.pagoMensualidadCBX.Location = new System.Drawing.Point(204, 112);
             this.pagoMensualidadCBX.Name = "pagoMensualidadCBX";
             this.pagoMensualidadCBX.Size = new System.Drawing.Size(154, 28);
             this.pagoMensualidadCBX.TabIndex = 58;
             this.pagoMensualidadCBX.Visible = false;
             this.pagoMensualidadCBX.SelectedIndexChanged += new System.EventHandler(this.pagoMensualidadCBX_SelectedIndexChanged);
             // 
+            // nombreTBX
+            // 
+            this.nombreTBX.AutoSize = true;
+            this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.nombreTBX.Location = new System.Drawing.Point(336, 50);
+            this.nombreTBX.Name = "nombreTBX";
+            this.nombreTBX.Size = new System.Drawing.Size(114, 20);
+            this.nombreTBX.TabIndex = 63;
+            this.nombreTBX.Text = "No encontrado";
+            // 
+            // buscarClienteBTN
+            // 
+            this.buscarClienteBTN.BackColor = System.Drawing.Color.Red;
+            this.buscarClienteBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buscarClienteBTN.FlatAppearance.BorderSize = 0;
+            this.buscarClienteBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buscarClienteBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buscarClienteBTN.Image = ((System.Drawing.Image)(resources.GetObject("buscarClienteBTN.Image")));
+            this.buscarClienteBTN.Location = new System.Drawing.Point(11, 44);
+            this.buscarClienteBTN.Name = "buscarClienteBTN";
+            this.buscarClienteBTN.Size = new System.Drawing.Size(61, 36);
+            this.buscarClienteBTN.TabIndex = 62;
+            this.buscarClienteBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buscarClienteBTN.UseVisualStyleBackColor = false;
+            this.buscarClienteBTN.Visible = false;
+            this.buscarClienteBTN.Click += new System.EventHandler(this.buscarClienteBTN_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(144, 33);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.TabIndex = 61;
+            this.label9.Text = "Cédula";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 29);
+            this.label10.TabIndex = 60;
+            this.label10.Text = "Cliente:";
+            // 
+            // cedulaTBX
+            // 
+            this.cedulaTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cedulaTBX.Location = new System.Drawing.Point(144, 49);
+            this.cedulaTBX.MaxLength = 8;
+            this.cedulaTBX.Name = "cedulaTBX";
+            this.cedulaTBX.Size = new System.Drawing.Size(186, 26);
+            this.cedulaTBX.TabIndex = 59;
+            this.cedulaTBX.TextChanged += new System.EventHandler(this.cedulaTBX_TextChanged);
+            // 
+            // selectorClientes
+            // 
+            this.selectorClientes.Controls.Add(this.label10);
+            this.selectorClientes.Controls.Add(this.nombreTBX);
+            this.selectorClientes.Controls.Add(this.cedulaTBX);
+            this.selectorClientes.Controls.Add(this.buscarClienteBTN);
+            this.selectorClientes.Controls.Add(this.label9);
+            this.selectorClientes.Enabled = false;
+            this.selectorClientes.Location = new System.Drawing.Point(0, 4);
+            this.selectorClientes.Name = "selectorClientes";
+            this.selectorClientes.Size = new System.Drawing.Size(574, 87);
+            this.selectorClientes.TabIndex = 64;
+            // 
+            // verClienteCompleto
+            // 
+            this.verClienteCompleto.BackColor = System.Drawing.Color.Red;
+            this.verClienteCompleto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.verClienteCompleto.FlatAppearance.BorderSize = 0;
+            this.verClienteCompleto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.verClienteCompleto.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verClienteCompleto.Image = ((System.Drawing.Image)(resources.GetObject("verClienteCompleto.Image")));
+            this.verClienteCompleto.Location = new System.Drawing.Point(78, 48);
+            this.verClienteCompleto.Name = "verClienteCompleto";
+            this.verClienteCompleto.Size = new System.Drawing.Size(60, 36);
+            this.verClienteCompleto.TabIndex = 64;
+            this.verClienteCompleto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.verClienteCompleto.UseVisualStyleBackColor = false;
+            this.verClienteCompleto.Click += new System.EventHandler(this.verClienteCompleto_Click);
+            // 
+            // buscarMensualidadBtn
+            // 
+            this.buscarMensualidadBtn.BackColor = System.Drawing.Color.Red;
+            this.buscarMensualidadBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buscarMensualidadBtn.FlatAppearance.BorderSize = 0;
+            this.buscarMensualidadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buscarMensualidadBtn.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buscarMensualidadBtn.Image = ((System.Drawing.Image)(resources.GetObject("buscarMensualidadBtn.Image")));
+            this.buscarMensualidadBtn.Location = new System.Drawing.Point(84, 108);
+            this.buscarMensualidadBtn.Name = "buscarMensualidadBtn";
+            this.buscarMensualidadBtn.Size = new System.Drawing.Size(61, 36);
+            this.buscarMensualidadBtn.TabIndex = 65;
+            this.buscarMensualidadBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buscarMensualidadBtn.UseVisualStyleBackColor = false;
+            this.buscarMensualidadBtn.Click += new System.EventHandler(this.buscarMensualidadBtn_Click);
+            // 
             // DatosMensualidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 488);
-            this.Controls.Add(this.pagoMensualidadCBX);
+            this.ClientSize = new System.Drawing.Size(573, 460);
             this.Controls.Add(this.buscarMensualidadBtn);
+            this.Controls.Add(this.verClienteCompleto);
+            this.Controls.Add(this.selectorClientes);
+            this.Controls.Add(this.pagoMensualidadCBX);
             this.Controls.Add(this.descuentoNUD);
             this.Controls.Add(this.cobroNUD);
             this.Controls.Add(this.guardarBTN);
@@ -455,6 +552,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DatosMensualidad";
@@ -466,6 +564,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.entregaNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobroNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.descuentoNUD)).EndInit();
+            this.selectorClientes.ResumeLayout(false);
+            this.selectorClientes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,7 +602,14 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label pagoTituloLBL;
         private System.Windows.Forms.ComboBox entregaCBX;
-        private System.Windows.Forms.Button buscarMensualidadBtn;
         private System.Windows.Forms.ComboBox pagoMensualidadCBX;
+        private System.Windows.Forms.Label nombreTBX;
+        private System.Windows.Forms.Button buscarClienteBTN;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox cedulaTBX;
+        private System.Windows.Forms.Panel selectorClientes;
+        private System.Windows.Forms.Button verClienteCompleto;
+        private System.Windows.Forms.Button buscarMensualidadBtn;
     }
 }

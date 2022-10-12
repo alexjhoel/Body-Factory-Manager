@@ -9,14 +9,16 @@ namespace Body_Factory_Manager
     public partial class LoginPrincipal : UserControl
     {
         private SQL sql;
-        private Email email = new Email(Properties.Settings.Default.CorreoRecover, Properties.Settings.Default.PasswordRecover);
+        private Comunicacion email = new Comunicacion(Properties.Settings.Default.CorreoRecover, Properties.Settings.Default.PasswordRecover);
 
         public DataTable datosUsuario;
 
         public string usuario = "";
         public LoginPrincipal()
         {
+            sql = new SQL(Properties.Settings.Default.ConnectionString);
             InitializeComponent();
+            //CrearUsuario();
 
         }
 
@@ -24,7 +26,7 @@ namespace Body_Factory_Manager
 
         private void CrearUsuario()
         {
-            sql.Modificar("INSERT INTO Usuarios (id, contrasena, correoElectronico, nombre, apellido) VALUES('admin', ENCRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', 'admin'),'alexanderalmeida20@gmail.com', 'admin', 'admin')");
+            sql.Modificar("INSERT INTO Usuarios (id, contrasena, correoElectronico, nombre, apellido) VALUES('sergio', ENCRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', '12345678'),'', 'Segio', 'Altamirano')");
         }
 
         private void Loguear()
@@ -32,7 +34,7 @@ namespace Body_Factory_Manager
             //SoundPlayer simpleSound = new SoundPlayer(@"D:\Downloads\hihiha.wav");
             //simpleSound.Play();
             datosUsuario = ObtenerUsuario();
-            if (datosUsuario.Rows.Count == 0) MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (datosUsuario == null || datosUsuario.Rows.Count == 0) MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (!claveTBX.Text.Equals(datosUsuario.Rows[0]["contrasena"].ToString())) MessageBox.Show(this, "Clave incorrecta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -43,10 +45,22 @@ namespace Body_Factory_Manager
         private DataTable ObtenerUsuario()
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
-            parametros.Add("@usuario", usuarioTBX.Text);
-            datosUsuario = sql.Obtener("SELECT id, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', contrasena)) AS contrasena, correoElectronico FROM Usuarios WHERE id=@usuario", parametros);
+            try
+            {
+                parametros.Add("@usuario", usuarioTBX.Text);
+                datosUsuario = sql.Obtener("SELECT id, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('" + Properties.Settings.Default.Key + "', contrasena)) AS contrasena, correoElectronico FROM Usuarios WHERE id=@usuario", parametros);
 
-            return datosUsuario;
+                return datosUsuario;
+            }
+            catch(Exception e){
+                MessageBox.Show("Ocurrió un erroor," + e.Message, "Error al iniciar sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sql.CerrarConexion();
+            }
+            return null;
+            
         }
 
         private string EsconderCorreo(string input)
@@ -74,7 +88,7 @@ namespace Body_Factory_Manager
         private void recuperarContraseñaBTN_Click(object sender, EventArgs e)
         {
             datosUsuario = ObtenerUsuario();
-            if (datosUsuario.Rows.Count == 0)
+            if (datosUsuario == null ||  datosUsuario.Rows.Count == 0)
             {
                 MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

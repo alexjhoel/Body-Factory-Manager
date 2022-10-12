@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -16,12 +10,12 @@ namespace Body_Factory_Manager
         public string observacion;
         public DatosAsistencia(bool faltaEstado, string observacion)
         {
-            
+
             InitializeComponent();
             this.faltaEstado = faltaEstado;
             observacionTBX.Text = observacion;
             ActualizarBoton();
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -46,12 +40,12 @@ namespace Body_Factory_Manager
         {
             faltaEstado = !faltaEstado;
             ActualizarBoton();
-            
+
         }
 
         private void guardarBTN_Click(object sender, EventArgs e)
         {
-            
+
             observacion = observacionTBX.Text;
             DialogResult = DialogResult.OK;
             this.Close();

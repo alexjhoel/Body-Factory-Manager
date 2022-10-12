@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -13,14 +12,13 @@ namespace Body_Factory_Manager
 
         SQL sql;
         string idCliente = null;
-        public DatosCliente(string usuario, string id = null)
+        public DatosCliente(string id = null)
         {
             //http://api.textmebot.com/send.php?recipient=+598091056571&apikey=KdsSrQDjhoEN&text=This%20is%20a%20test
             InitializeComponent();
-            string connectionString = ConfigurationManager.ConnectionStrings["Body_Factory_Manager.Properties.Settings.StardustEssentialsConnectionString"].ConnectionString;
-            sql = new SQL(connectionString);
+            sql = new SQL(Properties.Settings.Default.ConnectionString);
 
-            usuarioLBL.Text = usuario;
+            usuarioLBL.Text = Properties.Settings.Default.Usuario;
             if (id != null)
             {
 
@@ -206,6 +204,11 @@ namespace Body_Factory_Manager
                 MessageBox.Show("Ventana abierta|");
             }
 
+        }
+
+        private void borrarBTN_Click(object sender, EventArgs e)
+        {
+            perfilPBX.Image = Properties.Resources.clientePortrait;
         }
     }
 }
