@@ -26,10 +26,9 @@ namespace Body_Factory_Manager
                 calendarioDGV.Rows[i].Height = calendarioDGV.Columns[0].Width;
 
             }
-
-            ActualizarAsistencias();
+            
+            ActualizarAsistencias(true);
             transicion = new Transicion(1);
-            timerTransicion.Start();
         }
 
         private void Assitencias_Load(object sender, EventArgs e)
@@ -71,7 +70,7 @@ namespace Body_Factory_Manager
             {
                 mesCBX.SelectedIndex++;
             }
-            ActualizarAsistencias();
+            ActualizarAsistencias(false);
         }
 
         private void antMesBTN_Click(object sender, EventArgs e)
@@ -85,24 +84,29 @@ namespace Body_Factory_Manager
             {
                 mesCBX.SelectedIndex--;
             }
-            ActualizarAsistencias();
+            ActualizarAsistencias(false);
         }
 
         private void mesCBX_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ActualizarAsistencias();
+            ActualizarAsistencias(false);
 
         }
 
         private void anioNUD_ValueChanged(object sender, EventArgs e)
         {
 
-            ActualizarAsistencias();
+            ActualizarAsistencias(false);
 
         }
 
-        private void ActualizarAsistencias()
+        private void ActualizarAsistencias(bool selectHoy)
         {
+            if (selectHoy)
+            {
+                mesCBX.SelectedIndex = DateTime.Now.Month - 1;
+                anioNUD.Value = DateTime.Now.Year;
+            }
             DataTable datos;
             Dictionary<string, object> parametros = new Dictionary<string, object>();
             parametros.Add("cedulaCliente", cedulaTBX.Text);
@@ -134,6 +138,8 @@ namespace Body_Factory_Manager
                     {
                         calendarioDGV.Rows[j].Cells[i].Style.SelectionBackColor = Color.DarkGray;
                         calendarioDGV.Rows[j].Cells[i].Style.BackColor = Color.DodgerBlue;
+                        if (selectHoy){ calendarioDGV.Rows[j].Cells[i].Selected = true; }
+                        
                     }
                     if (asistencias != null && indexAsistencias != asistencias.Rows.Count && ((DateTime)asistencias.Rows[indexAsistencias]["fecha"]).Day == dia.Day)
                     {
@@ -164,6 +170,7 @@ namespace Body_Factory_Manager
         private void buscarClienteBTN_Click(object sender, EventArgs e)
         {
             FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedula");
+            filtro.valor1 = this.cedulaTBX.Text.Trim();
             using (SelectorClientes listado = new SelectorClientes(filtro))
             {
                 listado.ShowDialog();
@@ -184,7 +191,8 @@ namespace Body_Factory_Manager
                     if (datos.Rows.Count != 0)
                     {
                         nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
-                        ActualizarAsistencias();
+
+                        ActualizarAsistencias(true);
                         anotarBTN.Enabled = true;
                         borrarBTN.Enabled = true;
                         return;
@@ -247,7 +255,7 @@ namespace Body_Factory_Manager
                 parametros.Add("fecha", DateTime.ParseExact(calendarioDGV.SelectedCells[0].Value + "/" + (mesCBX.SelectedIndex + 1) + "/" + anioNUD.Value, "d/M/yyyy", CultureInfo.InvariantCulture));
                 if (calendarioDGV.SelectedCells[0].Tag == String.Empty)
                 {
-                    using (DatosAsistencia nuevaVentana = new DatosAsistencia(true, String.Empty))
+                    using (DatosAsistencia nuevaVentana = new DatosAsistencia(false, String.Empty))
                     {
                         nuevaVentana.ShowDialog();
                         if (nuevaVentana.DialogResult == DialogResult.OK)
@@ -280,7 +288,7 @@ namespace Body_Factory_Manager
 
                 if (consulta == String.Empty) return;
                 sql.Modificar(consulta, parametros);
-                ActualizarAsistencias();
+                ActualizarAsistencias(false);
 
 
 
@@ -297,7 +305,7 @@ namespace Body_Factory_Manager
                 parametros.Add("fecha", DateTime.ParseExact(calendarioDGV.SelectedCells[0].Value + "/" + (mesCBX.SelectedIndex + 1) + "/" + anioNUD.Value, "d/M/yyyy", CultureInfo.InvariantCulture));
                 consulta = "DELETE Asistencias WHERE fecha = @fecha AND cedulaCliente = @cedulaCliente";
                 sql.Modificar(consulta, parametros);
-                ActualizarAsistencias();
+                ActualizarAsistencias(false);
             }
 
 

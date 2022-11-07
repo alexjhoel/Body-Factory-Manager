@@ -32,7 +32,6 @@ namespace Body_Factory_Manager
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeccionAsistencias));
@@ -57,7 +56,6 @@ namespace Body_Factory_Manager
             this.cedulaTBX = new System.Windows.Forms.TextBox();
             this.anotarBTN = new System.Windows.Forms.Button();
             this.borrarBTN = new System.Windows.Forms.Button();
-            this.timerTransicion = new System.Windows.Forms.Timer(this.components);
             this.opcionesPNL = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.calendarioDGV)).BeginInit();
             this.panel1.SuspendLayout();
@@ -97,7 +95,7 @@ namespace Body_Factory_Manager
             this.sabado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Bebas Neue", 17F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -112,7 +110,7 @@ namespace Body_Factory_Manager
             this.calendarioDGV.ReadOnly = true;
             this.calendarioDGV.RowHeadersVisible = false;
             this.calendarioDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.calendarioDGV.Size = new System.Drawing.Size(294, 399);
+            this.calendarioDGV.Size = new System.Drawing.Size(294, 322);
             this.calendarioDGV.TabIndex = 2;
             // 
             // domingo
@@ -288,7 +286,7 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 487);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 410);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -383,7 +381,7 @@ namespace Body_Factory_Manager
             this.borrarBTN.FlatAppearance.BorderSize = 0;
             this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
+            this.borrarBTN.Image = new Bitmap(Properties.Resources.eliminar,new Size(30,30));
             this.borrarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.borrarBTN.Location = new System.Drawing.Point(362, 5);
             this.borrarBTN.Margin = new System.Windows.Forms.Padding(5);
@@ -397,12 +395,6 @@ namespace Body_Factory_Manager
             this.borrarBTN.UseCompatibleTextRendering = true;
             this.borrarBTN.UseVisualStyleBackColor = false;
             this.borrarBTN.Click += new System.EventHandler(this.borrarBTN_Click);
-            // 
-            // timerTransicion
-            // 
-            this.timerTransicion.Enabled = true;
-            this.timerTransicion.Interval = 1;
-            this.timerTransicion.Tick += new System.EventHandler(this.timerTransicion_Tick);
             // 
             // opcionesPNL
             // 
@@ -457,7 +449,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.TextBox cedulaTBX;
         private System.Windows.Forms.Button buscarClienteBTN;
         private System.Windows.Forms.Button anotarBTN;
-        private System.Windows.Forms.Timer timerTransicion;
         private Button borrarBTN;
         private Panel opcionesPNL;
     }

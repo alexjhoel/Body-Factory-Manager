@@ -91,15 +91,16 @@
             // 
             // asisteBTN
             // 
-            this.asisteBTN.BackColor = System.Drawing.Color.Red;
+            this.asisteBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.asisteBTN.FlatAppearance.BorderSize = 0;
             this.asisteBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.asisteBTN.Font = new System.Drawing.Font("Bebas Neue", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asisteBTN.ForeColor = System.Drawing.Color.Black;
             this.asisteBTN.Location = new System.Drawing.Point(71, 25);
             this.asisteBTN.Name = "asisteBTN";
             this.asisteBTN.Size = new System.Drawing.Size(55, 45);
             this.asisteBTN.TabIndex = 41;
-            this.asisteBTN.Text = "no";
+            this.asisteBTN.Text = "si";
             this.asisteBTN.UseVisualStyleBackColor = false;
             this.asisteBTN.Click += new System.EventHandler(this.button1_Click);
             // 

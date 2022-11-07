@@ -11,8 +11,9 @@ namespace Body_Factory_Manager
         Transicion menuTransicion = new Transicion(0);
         List<BotonMenu> botonesMenu = new List<BotonMenu>();
         Point offset;
-        string usuario;
-        bool estadoMenu;
+        bool estadoMenu = false;
+        bool quieto = true;
+        int tiempoQuieto;
 
         protected override CreateParams CreateParams
         {
@@ -30,7 +31,6 @@ namespace Body_Factory_Manager
             InitializeComponent();
 
             menuTransicion.Establecer(185, 50, 0.05f);
-            estadoMenu = false;
 
             foreach (Control btn in menuPNL.Controls)
             {
@@ -45,8 +45,8 @@ namespace Body_Factory_Manager
 
             }
             timerMenuPNL.Start();
+            
             nombreUsuarioLBL.Text = Properties.Settings.Default.Usuario;
-            adminBTN.Visible = Properties.Settings.Default.Usuario == "admin";
             CambiarSección(new Inicio(this.InicioSalida));
         }
 
@@ -54,6 +54,7 @@ namespace Body_Factory_Manager
         {
             paginasPNL.Controls.Clear();
             paginasPNL.Controls.Add(userControl);
+            userControl.SendToBack();
             userControl.Size = paginasPNL.Size;
             userControl.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
         }
@@ -62,14 +63,35 @@ namespace Body_Factory_Manager
         private void timerMenuPNL_Tick(object sender, EventArgs e)
         {
             menuPNL.Width = (int)menuTransicion.Avanzar();
+            if (estadoMenu) return;
+            if (menuPNL.PointToClient(MousePosition).X < 50  && menuPNL.PointToClient(MousePosition).Y > 0 && quieto)
+            {
+                tiempoQuieto++;
+                
+            }
+            if(tiempoQuieto == 60)
+            {
+                tiempoQuieto++;
+                menuTransicion.Establecer(50, 185, 0.02f);
+                quieto = false;
+            }
+            if ((menuPNL.PointToClient(MousePosition).X > 185 ||  menuPNL.PointToClient(MousePosition).Y < 0) && !quieto)
+            {
+                menuTransicion.Establecer(185, 50, 0.02f);
+                quieto = true;
+                tiempoQuieto = 0;
+            }
+
         }
 
 
         private void menuBTN_Click(object sender, EventArgs e)
         {
+            if (!quieto) return;
             if (estadoMenu)
             {
                 menuTransicion.Establecer(185, 50, 0.02f);
+
             }
             else
             {
@@ -80,25 +102,34 @@ namespace Body_Factory_Manager
 
         private void clientesBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new SeccionClientes());
+            CambiarSección(new SeccionClientes(PrimeraMensualidad));
         }
+
+        private void PrimeraMensualidad(string cedula)
+        {
+            CambiarSección(new SeccionMensualidades(cedula));
+        }
+
 
         private void inicioBTN_Click(object sender, EventArgs e)
         {
             CambiarSección(new Inicio(this.InicioSalida));
         }
 
-        private void InicioSalida(TipoInicioSalida tipoSalida, string salida)
+        private void InicioSalida(TipoInicioSalida tipoSalida, string salida = "")
         {
             FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedula");
             filtro.valor1 = salida;
             switch (tipoSalida)
             {
                 case TipoInicioSalida.Clientes:
-                    CambiarSección(new SeccionClientes(false, filtro));
+                    ((Button)menuPNL.Controls[5]).PerformClick();
                     break;
                 case TipoInicioSalida.Mensualidades:
-                    CambiarSección(new SeccionMensualidades(false, filtro));
+                    ((Button)menuPNL.Controls[3]).PerformClick();
+                    break;
+                case TipoInicioSalida.Graficos:
+                    ((Button)menuPNL.Controls[0]).PerformClick();
                     break;
             }
         }
@@ -206,6 +237,16 @@ namespace Body_Factory_Manager
         private void pagosBTN_Click(object sender, EventArgs e)
         {
             CambiarSección(new SeccionPagos());
+        }
+
+        private void configBTN_Click(object sender, EventArgs e)
+        {
+            CambiarSección(new SeccionConfiguracion());
+        }
+
+        private void graficosBTN_Click(object sender, EventArgs e)
+        {
+            CambiarSección(new SeccionGraficos());
         }
     }
 

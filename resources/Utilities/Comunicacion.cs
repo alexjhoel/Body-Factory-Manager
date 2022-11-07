@@ -52,7 +52,8 @@ namespace Body_Factory_Manager
 
         public void Chatear(string numero)
         {
-            System.Diagnostics.Process.Start("https://web.whatsapp.com/send/?phone=598" + numero + "&text&type=phone_number&app_absent=0");
+            
+            System.Diagnostics.Process.Start("https://web.whatsapp.com/send/?phone=598" + numero + "&type=phone_number&app_absent=0");
         }
 
 

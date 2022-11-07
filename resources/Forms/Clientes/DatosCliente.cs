@@ -11,8 +11,8 @@ namespace Body_Factory_Manager
     {
 
         SQL sql;
-        string idCliente = null;
-        public DatosCliente(string id = null)
+        public string cedula = null;
+        public DatosCliente(string id = null, bool eliminable = true)
         {
             //http://api.textmebot.com/send.php?recipient=+598091056571&apikey=KdsSrQDjhoEN&text=This%20is%20a%20test
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace Body_Factory_Manager
             if (id != null)
             {
 
-                idCliente = id;
+                cedula = id;
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
                 parametros.Add("Id", id);
                 DataTable data = sql.Obtener("SELECT * FROM Clientes WHERE cedula=@Id", parametros);
@@ -39,7 +39,7 @@ namespace Body_Factory_Manager
                     nacimientoDTP.Value = DateTime.Now;
                     ingresoDTP.Value = DateTime.Now;
                 }
-
+               
                 correoTBX.Text = data.Rows[0]["correo"].ToString();
                 telefonoTBX.Text = data.Rows[0]["telefono"].ToString();
                 cedulaTBX.Text = data.Rows[0]["cedula"].ToString();
@@ -60,11 +60,24 @@ namespace Body_Factory_Manager
                 {
                     ms.Write(imgData, 0, imgData.Length);
                     image = Image.FromStream(ms, true);
+                    
+
                 }
+
+                estadoPNL.BackColor = !(bool)data.Rows[0]["esActivo"] ? Color.Red : Color.Green;
+                darDeBajaBTN.Text = (bool)data.Rows[0]["esActivo"] ? "Dar de baja" : "Dar de alta"; 
                 perfilPBX.Image = image;
                 usuarioLBL.Text = data.Rows[0]["idUsuario"].ToString();
+                telefonoSaludTBX.Text = data.Rows[0]["telefonoSalud"].ToString();
 
+            }
 
+            if (!eliminable)
+            {
+                borrarBTN.Visible = false;
+                darDeBajaBTN.Visible = false;
+                estadoLBL.Visible = false;
+                estadoPNL.Visible = false;
             }
 
 
@@ -88,7 +101,7 @@ namespace Body_Factory_Manager
 
         private void guardarBTN_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(cedulaTBX.Text, out int c))
+            if (int.TryParse(cedulaTBX.Text, out int c) && ValidarCedulas.ValidarCedula(cedulaTBX.Text))
             {
                 if ((c + "").Length < 8)
                 {
@@ -109,27 +122,29 @@ namespace Body_Factory_Manager
 
             DateTime hoy = DateTime.Now;
             Dictionary<string, object> valores = new Dictionary<string, object>();
-            valores.Add("@nombre", nombreTBX.Text);
-            valores.Add("@apellido", apellidoTBX.Text);
-            valores.Add("@cedula", cedulaTBX.Text);
-            valores.Add("@nacimiento", nacimientoDTP.Value);
-            valores.Add("@ingreso", ingresoDTP.Value);
-            valores.Add("@telefono", telefonoTBX.Text);
-            valores.Add("@correo", correoTBX.Text);
-            valores.Add("@direccion", direccionTBX.Text);
-            valores.Add("@patologias", patologiasTbx.Text);
-            valores.Add("@observaciones", observacionesTbx.Text);
-            valores.Add("@usuario", usuarioLBL.Text);
-            valores.Add("@adjudicado", hoy);
+            valores.Add("nombre", nombreTBX.Text);
+            valores.Add("apellido", apellidoTBX.Text);
+            valores.Add("cedula", cedulaTBX.Text);
+            valores.Add("nacimiento", nacimientoDTP.Value);
+            valores.Add("ingreso", ingresoDTP.Value);
+            valores.Add("telefono", telefonoTBX.Text);
+            valores.Add("correo", correoTBX.Text);
+            valores.Add("direccion", direccionTBX.Text);
+            valores.Add("patologias", patologiasTbx.Text);
+            valores.Add("observaciones", observacionesTbx.Text);
+            valores.Add("usuario", usuarioLBL.Text);
+            valores.Add("adjudicado", hoy);
+            valores.Add("salud", telefonoSaludTBX.Text);
+            valores.Add("esActivo",estadoPNL.BackColor == Color.Green);
 
-            valores.Add("@vencimiento", DateTimeUtilities.NextMonth(hoy));
+            valores.Add("vencimiento", DateTimeUtilities.NextMonth(hoy));
             if (grupoSanguineoCBX.SelectedIndex != 0)
             {
-                valores.Add("@grupoSanguineo", grupoSanguineoCBX.Text);
+                valores.Add("grupoSanguineo", grupoSanguineoCBX.Text);
             }
             else
             {
-                valores.Add("@grupoSanguineo", "NA");
+                valores.Add("grupoSanguineo", "NA");
             }
 
             using (var ms = new MemoryStream())
@@ -137,39 +152,63 @@ namespace Body_Factory_Manager
                 perfilPBX.Image.Save(ms, perfilPBX.Image.RawFormat);
 
                 byte[] data = ms.ToArray();
-                valores.Add("@imagen", data);
+                valores.Add("imagen", data);
             }
-            if (idCliente != null)
+            if (cedula != null)
             {
-                sql.Modificar("UPDATE Clientes SET nombre = @nombre, apellido = @apellido, fechaNacimiento = @nacimiento, fechaIngreso = @ingreso, telefono = @telefono, correo = @correo, foto = @imagen, patologias = @patologias, observaciones = @observaciones, grupoSanguineo = @grupoSanguineo, direccion = @direccion WHERE cedula = @cedula", valores);
-                this.Close();
-                return;
+                try
+                {
+                    sql.Modificar("UPDATE Clientes SET nombre = @nombre, apellido = @apellido, fechaNacimiento = @nacimiento, " +
+                                        "fechaIngreso = @ingreso, telefono = @telefono, correo = @correo, foto = @imagen, patologias = @patologias, " +
+                                        "observaciones = @observaciones, grupoSanguineo = @grupoSanguineo, direccion = @direccion, telefonoSalud = @salud, " +
+                                        "esActivo=@esActivo esOculto=0 WHERE cedula = @cedula", valores);
+                    this.Close();
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Error en la base de datos. Razón: \n" + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    sql.CerrarConexion();
+                }
+                
             }
+            
             if (sql.Obtener("SELECT * FROM Clientes WHERE Cedula=" + cedulaTBX.Text).Rows.Count > 0)
             {
-                MessageBox.Show(this, "No se pueden crear los datos. Ya existe un cliente con dicha cedula.", "Cédula repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(MessageBox.Show(this, "Ya existe un cliente con dicha cedula ¿Quieres editar su información? Los datos que ingresaste se perderán", "Cédula repetida", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {
+                    using (DatosCliente nuevaVentana = new DatosCliente(cedulaTBX.Text, true))
+                    {
+                        nuevaVentana.ShowDialog();
+
+                    }
+                    this.Close();
+                }
+                
                 return;
             }
+
+            
 
             try
             {
                 string consulta = "INSERT INTO Clientes (nombre, apellido, cedula, fechaNacimiento, fechaIngreso," +
-                " telefono, correo, foto,patologias, observaciones, direccion, idUsuario) VALUES(@nombre, @apellido," +
+                " telefono, correo, foto,patologias, observaciones, direccion, idUsuario, telefonoSalud, esActivo) VALUES(@nombre, @apellido," +
                 " @cedula, @nacimiento, @ingreso, @telefono, @correo, @imagen, @patologias, @observaciones, @direccion," +
-                " @usuario);";
-
-                consulta += "INSERT INTO Mensualidades (fechaCreado, vencimiento, cedulaCliente)" +
-                   " VALUES(@adjudicado, @adjudicado, @cedula);";
-
-                consulta += " INSERT INTO Mensualidades (vencimiento, fechaCreado, cedulaCliente)" +
-                   " VALUES(@vencimiento, @adjudicado, @cedula);";
-
-
+                " @usuario, @salud, 0);";
                 sql.Modificar(consulta, valores);
+                if (MessageBox.Show("Cliente agregado con éxito, ¿deseas adjudicarle una cuota?", "Datos guardados", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    cedula = cedulaTBX.Text;
+                    DialogResult = DialogResult.Yes;
+                    this.Close();
+                    return;
+                } 
 
-                DatosMensualidad nuevaVentana = new DatosMensualidad(cedulaTBX.Text, TipoPagoMensualidad.PrimerPago);
-                this.Hide();
-                nuevaVentana.ShowDialog();
+                
                 this.Close();
                 return;
             }
@@ -209,6 +248,47 @@ namespace Body_Factory_Manager
         private void borrarBTN_Click(object sender, EventArgs e)
         {
             perfilPBX.Image = Properties.Resources.clientePortrait;
+        }
+
+        private void borrarBTN_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("¿Está seguro que quiere eliminar este cliente?", "CONFIRMAR BORRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    sql.Modificar("UPDATE Clientes SET esOculto = 1 WHERE cedula = '" + cedulaTBX.Text + "'");
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Error en la base de datos. Razón: \n" + ex.Message.ToString(), "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sql.CerrarConexion();
+            }
+            
+        }
+
+        private void darDeBajaBTN_Click(object sender, EventArgs e)
+        {
+            if(darDeBajaBTN.Text == "Dar de alta")
+            {
+                if(MessageBox.Show("¿Desea dar de alta de servicio al cliente?", "Dar de alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    darDeBajaBTN.Text = "Dar de baja";
+                    estadoPNL.BackColor = Color.Green;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("¿Desea dar baja de servicio al cliente?", "Baja de servicio", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    darDeBajaBTN.Text = "Dar de alta";
+                    estadoPNL.BackColor = Color.Red;
+                }
+            }
         }
     }
 }

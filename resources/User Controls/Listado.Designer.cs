@@ -30,7 +30,6 @@ namespace Body_Factory_Manager
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,17 +41,16 @@ namespace Body_Factory_Manager
             this.opcionesFLP = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTabla = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.valor2DTP = new System.Windows.Forms.DateTimePicker();
-            this.valor2NUD = new System.Windows.Forms.NumericUpDown();
-            this.valor1NUD = new System.Windows.Forms.NumericUpDown();
             this.hastaLBL = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.valor2Tbx = new System.Windows.Forms.TextBox();
             this.filtrosCbx = new System.Windows.Forms.ComboBox();
-            this.valor1Tbx = new System.Windows.Forms.TextBox();
             this.buscarBtn = new System.Windows.Forms.Button();
             this.valor1DTP = new System.Windows.Forms.DateTimePicker();
-            this.timerTransicion = new System.Windows.Forms.Timer(this.components);
+            this.valor2DTP = new System.Windows.Forms.DateTimePicker();
+            this.valor2NUD = new System.Windows.Forms.NumericUpDown();
+            this.valor1NUD = new System.Windows.Forms.NumericUpDown();
+            this.valor1Tbx = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).BeginInit();
             this.panelTabla.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -80,7 +78,7 @@ namespace Body_Factory_Manager
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tablaDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -117,9 +115,11 @@ namespace Body_Factory_Manager
             this.tablaDGV.RowTemplate.ReadOnly = true;
             this.tablaDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaDGV.ShowEditingIcon = false;
-            this.tablaDGV.Size = new System.Drawing.Size(751, 376);
+            this.tablaDGV.Size = new System.Drawing.Size(751, 303);
             this.tablaDGV.TabIndex = 2;
+            this.tablaDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaDGV_CellContentClick);
             this.tablaDGV.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tablaDGV_ColumnHeaderMouseClick);
+            this.tablaDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.tablaDGV_DataBindingComplete);
             this.tablaDGV.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.tablaDGV_RowPostPaint);
             // 
             // cedula
@@ -161,60 +161,20 @@ namespace Body_Factory_Manager
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.valor2DTP);
-            this.panel1.Controls.Add(this.valor2NUD);
-            this.panel1.Controls.Add(this.valor1NUD);
             this.panel1.Controls.Add(this.hastaLBL);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.valor2Tbx);
             this.panel1.Controls.Add(this.filtrosCbx);
-            this.panel1.Controls.Add(this.valor1Tbx);
             this.panel1.Controls.Add(this.buscarBtn);
+            this.panel1.Controls.Add(this.valor2DTP);
+            this.panel1.Controls.Add(this.valor2NUD);
+            this.panel1.Controls.Add(this.valor1NUD);
+            this.panel1.Controls.Add(this.valor1Tbx);
             this.panel1.Controls.Add(this.valor1DTP);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(751, 38);
             this.panel1.TabIndex = 3;
-            // 
-            // valor2DTP
-            // 
-            this.valor2DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor2DTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor2DTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.valor2DTP.Location = new System.Drawing.Point(498, 6);
-            this.valor2DTP.Name = "valor2DTP";
-            this.valor2DTP.Size = new System.Drawing.Size(160, 26);
-            this.valor2DTP.TabIndex = 9;
-            this.valor2DTP.Visible = false;
-            this.valor2DTP.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // valor2NUD
-            // 
-            this.valor2NUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.valor2NUD.Location = new System.Drawing.Point(498, 6);
-            this.valor2NUD.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.valor2NUD.Name = "valor2NUD";
-            this.valor2NUD.Size = new System.Drawing.Size(160, 26);
-            this.valor2NUD.TabIndex = 7;
-            this.valor2NUD.Visible = false;
-            // 
-            // valor1NUD
-            // 
-            this.valor1NUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.valor1NUD.Location = new System.Drawing.Point(291, 7);
-            this.valor1NUD.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.valor1NUD.Name = "valor1NUD";
-            this.valor1NUD.Size = new System.Drawing.Size(160, 26);
-            this.valor1NUD.TabIndex = 6;
-            this.valor1NUD.Visible = false;
             // 
             // hastaLBL
             // 
@@ -260,15 +220,6 @@ namespace Body_Factory_Manager
             this.filtrosCbx.TabIndex = 2;
             this.filtrosCbx.SelectionChangeCommitted += new System.EventHandler(this.filtrosCbx_SelectedIndexChanged);
             // 
-            // valor1Tbx
-            // 
-            this.valor1Tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor1Tbx.Location = new System.Drawing.Point(291, 6);
-            this.valor1Tbx.Name = "valor1Tbx";
-            this.valor1Tbx.Size = new System.Drawing.Size(160, 26);
-            this.valor1Tbx.TabIndex = 1;
-            this.valor1Tbx.Visible = false;
-            // 
             // buscarBtn
             // 
             this.buscarBtn.BackColor = System.Drawing.Color.Red;
@@ -293,11 +244,53 @@ namespace Body_Factory_Manager
             this.valor1DTP.TabIndex = 8;
             this.valor1DTP.Visible = false;
             // 
-            // timerTransicion
+            // valor2DTP
             // 
-            this.timerTransicion.Enabled = true;
-            this.timerTransicion.Interval = 1;
-            this.timerTransicion.Tick += new System.EventHandler(this.timerTransicion_Tick);
+            this.valor2DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor2DTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor2DTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.valor2DTP.Location = new System.Drawing.Point(498, 6);
+            this.valor2DTP.Name = "valor2DTP";
+            this.valor2DTP.Size = new System.Drawing.Size(160, 26);
+            this.valor2DTP.TabIndex = 9;
+            this.valor2DTP.Visible = false;
+            // 
+            // valor2NUD
+            // 
+            this.valor2NUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.valor2NUD.Location = new System.Drawing.Point(498, 6);
+            this.valor2NUD.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.valor2NUD.Name = "valor2NUD";
+            this.valor2NUD.Size = new System.Drawing.Size(160, 26);
+            this.valor2NUD.TabIndex = 7;
+            this.valor2NUD.Visible = false;
+            // 
+            // valor1NUD
+            // 
+            this.valor1NUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.valor1NUD.Location = new System.Drawing.Point(291, 7);
+            this.valor1NUD.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.valor1NUD.Name = "valor1NUD";
+            this.valor1NUD.Size = new System.Drawing.Size(160, 26);
+            this.valor1NUD.TabIndex = 6;
+            this.valor1NUD.Visible = false;
+            // 
+            // valor1Tbx
+            // 
+            this.valor1Tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor1Tbx.Location = new System.Drawing.Point(291, 6);
+            this.valor1Tbx.Name = "valor1Tbx";
+            this.valor1Tbx.Size = new System.Drawing.Size(160, 26);
+            this.valor1Tbx.TabIndex = 1;
+            this.valor1Tbx.Visible = false;
             // 
             // Listado
             // 
@@ -325,7 +318,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.FlowLayoutPanel opcionesFLP;
         private System.Windows.Forms.Panel panelTabla;
-        private System.Windows.Forms.Timer timerTransicion;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox filtrosCbx;
         private System.Windows.Forms.TextBox valor1Tbx;

@@ -31,6 +31,7 @@ namespace Body_Factory_Manager
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatosCliente));
             this.abrirFotoFD = new System.Windows.Forms.OpenFileDialog();
             this.guardarBTN = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@ namespace Body_Factory_Manager
             this.usuarioLBL = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
-            this.revisarEsto = new System.Windows.Forms.TextBox();
             this.observacionesTbx = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,7 +66,13 @@ namespace Body_Factory_Manager
             this.label7 = new System.Windows.Forms.Label();
             this.correoTBX = new System.Windows.Forms.TextBox();
             this.subirFotoBTN = new System.Windows.Forms.Button();
+            this.borrarPerfilBTN = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.borrarBTN = new System.Windows.Forms.Button();
+            this.darDeBajaBTN = new System.Windows.Forms.Button();
+            this.estadoLBL = new System.Windows.Forms.Label();
+            this.estadoPNL = new System.Windows.Forms.Panel();
+            this.telefonoSaludTBX = new System.Windows.Forms.TextBox();
             this.perfilPBX = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).BeginInit();
@@ -85,9 +91,9 @@ namespace Body_Factory_Manager
             this.guardarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guardarBTN.ForeColor = System.Drawing.Color.Black;
-            this.guardarBTN.Location = new System.Drawing.Point(649, 385);
+            this.guardarBTN.Location = new System.Drawing.Point(690, 389);
             this.guardarBTN.Name = "guardarBTN";
-            this.guardarBTN.Size = new System.Drawing.Size(170, 44);
+            this.guardarBTN.Size = new System.Drawing.Size(129, 40);
             this.guardarBTN.TabIndex = 16;
             this.guardarBTN.Text = "Guardar";
             this.guardarBTN.UseVisualStyleBackColor = false;
@@ -102,9 +108,9 @@ namespace Body_Factory_Manager
             this.descartarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.descartarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descartarBTN.ForeColor = System.Drawing.Color.Black;
-            this.descartarBTN.Location = new System.Drawing.Point(473, 385);
+            this.descartarBTN.Location = new System.Drawing.Point(553, 389);
             this.descartarBTN.Name = "descartarBTN";
-            this.descartarBTN.Size = new System.Drawing.Size(170, 44);
+            this.descartarBTN.Size = new System.Drawing.Size(131, 40);
             this.descartarBTN.TabIndex = 17;
             this.descartarBTN.Text = "Descartar";
             this.descartarBTN.UseVisualStyleBackColor = false;
@@ -124,9 +130,9 @@ namespace Body_Factory_Manager
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(9, 228);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(89, 13);
+            this.label15.Size = new System.Drawing.Size(96, 13);
             this.label15.TabIndex = 31;
-            this.label15.Text = "Fecha de ingreso";
+            this.label15.Text = "Fecha de creación";
             // 
             // label16
             // 
@@ -155,7 +161,7 @@ namespace Body_Factory_Manager
             this.panel1.AutoScroll = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.revisarEsto);
+            this.panel1.Controls.Add(this.telefonoSaludTBX);
             this.panel1.Controls.Add(this.observacionesTbx);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label1);
@@ -188,26 +194,16 @@ namespace Body_Factory_Manager
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 439);
+            this.label14.Location = new System.Drawing.Point(5, 428);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(120, 13);
             this.label14.TabIndex = 30;
             this.label14.Text = "Número centro de salud";
             // 
-            // revisarEsto
-            // 
-            this.revisarEsto.BackColor = System.Drawing.Color.Red;
-            this.revisarEsto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.revisarEsto.Location = new System.Drawing.Point(9, 455);
-            this.revisarEsto.Name = "revisarEsto";
-            this.revisarEsto.Size = new System.Drawing.Size(186, 26);
-            this.revisarEsto.TabIndex = 29;
-            this.revisarEsto.Text = "EN PROCESO";
-            // 
             // observacionesTbx
             // 
             this.observacionesTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.observacionesTbx.Location = new System.Drawing.Point(443, 393);
+            this.observacionesTbx.Location = new System.Drawing.Point(440, 382);
             this.observacionesTbx.Multiline = true;
             this.observacionesTbx.Name = "observacionesTbx";
             this.observacionesTbx.Size = new System.Drawing.Size(186, 92);
@@ -216,7 +212,7 @@ namespace Body_Factory_Manager
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(440, 377);
+            this.label13.Location = new System.Drawing.Point(437, 366);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(78, 13);
             this.label13.TabIndex = 27;
@@ -226,7 +222,7 @@ namespace Body_Factory_Manager
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 11);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 29);
             this.label1.TabIndex = 3;
@@ -246,7 +242,7 @@ namespace Body_Factory_Manager
             "B-",
             "AB-",
             "O-"});
-            this.grupoSanguineoCBX.Location = new System.Drawing.Point(9, 391);
+            this.grupoSanguineoCBX.Location = new System.Drawing.Point(6, 380);
             this.grupoSanguineoCBX.Name = "grupoSanguineoCBX";
             this.grupoSanguineoCBX.Size = new System.Drawing.Size(186, 28);
             this.grupoSanguineoCBX.TabIndex = 26;
@@ -254,7 +250,7 @@ namespace Body_Factory_Manager
             // nombreTBX
             // 
             this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombreTBX.Location = new System.Drawing.Point(7, 73);
+            this.nombreTBX.Location = new System.Drawing.Point(4, 62);
             this.nombreTBX.Name = "nombreTBX";
             this.nombreTBX.Size = new System.Drawing.Size(216, 26);
             this.nombreTBX.TabIndex = 2;
@@ -262,7 +258,7 @@ namespace Body_Factory_Manager
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(226, 377);
+            this.label12.Location = new System.Drawing.Point(223, 366);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 13);
             this.label12.TabIndex = 25;
@@ -271,7 +267,7 @@ namespace Body_Factory_Manager
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 55);
+            this.label2.Location = new System.Drawing.Point(1, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 4;
@@ -280,7 +276,7 @@ namespace Body_Factory_Manager
             // patologiasTbx
             // 
             this.patologiasTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.patologiasTbx.Location = new System.Drawing.Point(229, 391);
+            this.patologiasTbx.Location = new System.Drawing.Point(226, 380);
             this.patologiasTbx.Multiline = true;
             this.patologiasTbx.Name = "patologiasTbx";
             this.patologiasTbx.Size = new System.Drawing.Size(186, 95);
@@ -289,7 +285,7 @@ namespace Body_Factory_Manager
             // apellidoTBX
             // 
             this.apellidoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apellidoTBX.Location = new System.Drawing.Point(229, 73);
+            this.apellidoTBX.Location = new System.Drawing.Point(226, 62);
             this.apellidoTBX.Name = "apellidoTBX";
             this.apellidoTBX.Size = new System.Drawing.Size(406, 26);
             this.apellidoTBX.TabIndex = 5;
@@ -297,7 +293,7 @@ namespace Body_Factory_Manager
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 377);
+            this.label11.Location = new System.Drawing.Point(3, 366);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 13);
             this.label11.TabIndex = 23;
@@ -306,7 +302,7 @@ namespace Body_Factory_Manager
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(226, 57);
+            this.label3.Location = new System.Drawing.Point(223, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 6;
@@ -316,7 +312,7 @@ namespace Body_Factory_Manager
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(5, 335);
+            this.label10.Location = new System.Drawing.Point(2, 324);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(142, 29);
             this.label10.TabIndex = 21;
@@ -325,7 +321,7 @@ namespace Body_Factory_Manager
             // cedulaTBX
             // 
             this.cedulaTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cedulaTBX.Location = new System.Drawing.Point(7, 140);
+            this.cedulaTBX.Location = new System.Drawing.Point(4, 129);
             this.cedulaTBX.MaxLength = 8;
             this.cedulaTBX.Name = "cedulaTBX";
             this.cedulaTBX.Size = new System.Drawing.Size(185, 26);
@@ -334,7 +330,7 @@ namespace Body_Factory_Manager
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(322, 124);
+            this.label9.Location = new System.Drawing.Point(319, 113);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 13);
             this.label9.TabIndex = 20;
@@ -343,7 +339,7 @@ namespace Body_Factory_Manager
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 124);
+            this.label4.Location = new System.Drawing.Point(5, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 8;
@@ -352,7 +348,7 @@ namespace Body_Factory_Manager
             // direccionTBX
             // 
             this.direccionTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.direccionTBX.Location = new System.Drawing.Point(325, 140);
+            this.direccionTBX.Location = new System.Drawing.Point(322, 129);
             this.direccionTBX.Name = "direccionTBX";
             this.direccionTBX.Size = new System.Drawing.Size(310, 26);
             this.direccionTBX.TabIndex = 19;
@@ -361,7 +357,7 @@ namespace Body_Factory_Manager
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 205);
+            this.label5.Location = new System.Drawing.Point(2, 194);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 29);
             this.label5.TabIndex = 9;
@@ -375,7 +371,7 @@ namespace Body_Factory_Manager
             this.nacimientoDTP.CalendarTitleForeColor = System.Drawing.Color.White;
             this.nacimientoDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nacimientoDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.nacimientoDTP.Location = new System.Drawing.Point(198, 140);
+            this.nacimientoDTP.Location = new System.Drawing.Point(195, 129);
             this.nacimientoDTP.Name = "nacimientoDTP";
             this.nacimientoDTP.Size = new System.Drawing.Size(121, 26);
             this.nacimientoDTP.TabIndex = 10;
@@ -383,7 +379,7 @@ namespace Body_Factory_Manager
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(195, 124);
+            this.label6.Location = new System.Drawing.Point(192, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 13);
             this.label6.TabIndex = 11;
@@ -392,7 +388,7 @@ namespace Body_Factory_Manager
             // telefonoTBX
             // 
             this.telefonoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.telefonoTBX.Location = new System.Drawing.Point(229, 269);
+            this.telefonoTBX.Location = new System.Drawing.Point(226, 258);
             this.telefonoTBX.MaxLength = 9;
             this.telefonoTBX.Name = "telefonoTBX";
             this.telefonoTBX.Size = new System.Drawing.Size(186, 26);
@@ -401,7 +397,7 @@ namespace Body_Factory_Manager
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 253);
+            this.label8.Location = new System.Drawing.Point(5, 242);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 13);
             this.label8.TabIndex = 15;
@@ -410,7 +406,7 @@ namespace Body_Factory_Manager
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(226, 253);
+            this.label7.Location = new System.Drawing.Point(223, 242);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 13;
@@ -419,7 +415,7 @@ namespace Body_Factory_Manager
             // correoTBX
             // 
             this.correoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.correoTBX.Location = new System.Drawing.Point(9, 269);
+            this.correoTBX.Location = new System.Drawing.Point(6, 258);
             this.correoTBX.Name = "correoTBX";
             this.correoTBX.Size = new System.Drawing.Size(186, 26);
             this.correoTBX.TabIndex = 14;
@@ -441,6 +437,30 @@ namespace Body_Factory_Manager
             this.subirFotoBTN.UseVisualStyleBackColor = false;
             this.subirFotoBTN.Click += new System.EventHandler(this.subirFotoBTN_Click);
             // 
+            // borrarPerfilBTN
+            // 
+            this.borrarPerfilBTN.BackColor = System.Drawing.Color.Red;
+            this.borrarPerfilBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.borrarPerfilBTN.FlatAppearance.BorderSize = 0;
+            this.borrarPerfilBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
+            this.borrarPerfilBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.borrarPerfilBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold);
+            this.borrarPerfilBTN.ForeColor = System.Drawing.Color.Black;
+            this.borrarPerfilBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarPerfilBTN.Image")));
+            this.borrarPerfilBTN.Location = new System.Drawing.Point(104, 167);
+            this.borrarPerfilBTN.Name = "borrarPerfilBTN";
+            this.borrarPerfilBTN.Size = new System.Drawing.Size(36, 34);
+            this.borrarPerfilBTN.TabIndex = 35;
+            this.borrarPerfilBTN.UseVisualStyleBackColor = false;
+            this.borrarPerfilBTN.Click += new System.EventHandler(this.borrarBTN_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipText = "HOLA";
+            this.notifyIcon1.BalloonTipTitle = "HOLA";
+            this.notifyIcon1.Text = "HOLA";
+            this.notifyIcon1.Visible = true;
+            // 
             // borrarBTN
             // 
             this.borrarBTN.BackColor = System.Drawing.Color.Red;
@@ -448,15 +468,60 @@ namespace Body_Factory_Manager
             this.borrarBTN.FlatAppearance.BorderSize = 0;
             this.borrarBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
             this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold);
+            this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.borrarBTN.ForeColor = System.Drawing.Color.Black;
-            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
-            this.borrarBTN.Location = new System.Drawing.Point(104, 167);
+            this.borrarBTN.Location = new System.Drawing.Point(416, 389);
             this.borrarBTN.Name = "borrarBTN";
-            this.borrarBTN.Size = new System.Drawing.Size(36, 34);
-            this.borrarBTN.TabIndex = 35;
+            this.borrarBTN.Size = new System.Drawing.Size(131, 40);
+            this.borrarBTN.TabIndex = 36;
+            this.borrarBTN.Text = "Borrar";
             this.borrarBTN.UseVisualStyleBackColor = false;
-            this.borrarBTN.Click += new System.EventHandler(this.borrarBTN_Click);
+            this.borrarBTN.Click += new System.EventHandler(this.borrarBTN_Click_1);
+            // 
+            // darDeBajaBTN
+            // 
+            this.darDeBajaBTN.BackColor = System.Drawing.Color.Red;
+            this.darDeBajaBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.darDeBajaBTN.FlatAppearance.BorderSize = 0;
+            this.darDeBajaBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
+            this.darDeBajaBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.darDeBajaBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.darDeBajaBTN.ForeColor = System.Drawing.Color.Black;
+            this.darDeBajaBTN.Location = new System.Drawing.Point(279, 389);
+            this.darDeBajaBTN.Name = "darDeBajaBTN";
+            this.darDeBajaBTN.Size = new System.Drawing.Size(131, 40);
+            this.darDeBajaBTN.TabIndex = 37;
+            this.darDeBajaBTN.Text = "Dar de baja";
+            this.darDeBajaBTN.UseVisualStyleBackColor = false;
+            this.darDeBajaBTN.Click += new System.EventHandler(this.darDeBajaBTN_Click);
+            // 
+            // estadoLBL
+            // 
+            this.estadoLBL.AutoSize = true;
+            this.estadoLBL.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estadoLBL.Location = new System.Drawing.Point(166, 397);
+            this.estadoLBL.Name = "estadoLBL";
+            this.estadoLBL.Size = new System.Drawing.Size(75, 29);
+            this.estadoLBL.TabIndex = 38;
+            this.estadoLBL.Text = "Estado:";
+            // 
+            // estadoPNL
+            // 
+            this.estadoPNL.BackColor = System.Drawing.Color.Lime;
+            this.estadoPNL.Location = new System.Drawing.Point(247, 397);
+            this.estadoPNL.Name = "estadoPNL";
+            this.estadoPNL.Size = new System.Drawing.Size(26, 26);
+            this.estadoPNL.TabIndex = 39;
+            // 
+            // telefonoSaludTBX
+            // 
+            this.telefonoSaludTBX.BackColor = System.Drawing.Color.White;
+            this.telefonoSaludTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telefonoSaludTBX.Location = new System.Drawing.Point(6, 449);
+            this.telefonoSaludTBX.MaxLength = 20;
+            this.telefonoSaludTBX.Name = "telefonoSaludTBX";
+            this.telefonoSaludTBX.Size = new System.Drawing.Size(186, 26);
+            this.telefonoSaludTBX.TabIndex = 29;
             // 
             // perfilPBX
             // 
@@ -474,7 +539,11 @@ namespace Body_Factory_Manager
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 442);
+            this.Controls.Add(this.estadoPNL);
+            this.Controls.Add(this.estadoLBL);
+            this.Controls.Add(this.darDeBajaBTN);
             this.Controls.Add(this.borrarBTN);
+            this.Controls.Add(this.borrarPerfilBTN);
             this.Controls.Add(this.subirFotoBTN);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.usuarioLBL);
@@ -511,7 +580,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Label usuarioLBL;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox revisarEsto;
         private System.Windows.Forms.TextBox observacionesTbx;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label1;
@@ -536,6 +604,12 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox correoTBX;
         private System.Windows.Forms.Button subirFotoBTN;
+        private System.Windows.Forms.Button borrarPerfilBTN;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Button borrarBTN;
+        private System.Windows.Forms.Button darDeBajaBTN;
+        private System.Windows.Forms.Label estadoLBL;
+        private System.Windows.Forms.Panel estadoPNL;
+        private System.Windows.Forms.TextBox telefonoSaludTBX;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Body_Factory_Manager
+﻿using System.Drawing;
+
+namespace Body_Factory_Manager
 {
     partial class SeccionMensualidades
     {
@@ -28,6 +30,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeccionMensualidades));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pagasCBX = new System.Windows.Forms.CheckBox();
             this.diasNUD = new System.Windows.Forms.NumericUpDown();
@@ -36,8 +43,43 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.pestaniasTCL = new System.Windows.Forms.TabControl();
+            this.porCliente = new System.Windows.Forms.TabPage();
+            this.opcionesPNL = new System.Windows.Forms.Panel();
+            this.verPagosBTN = new System.Windows.Forms.Button();
+            this.pagarBTN = new System.Windows.Forms.Button();
+            this.anotarBTN = new System.Windows.Forms.Button();
+            this.borrarBTN = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tablaDGV = new System.Windows.Forms.DataGridView();
+            this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Deuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ultimoPaog = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.anioNUD = new System.Windows.Forms.NumericUpDown();
+            this.antMesBTN = new System.Windows.Forms.Button();
+            this.sigMesBTN = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.buscarClienteBTN = new System.Windows.Forms.Button();
+            this.nombreTBX = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cedulaTBX = new System.Windows.Forms.TextBox();
+            this.todo = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diasNUD)).BeginInit();
+            this.pestaniasTCL.SuspendLayout();
+            this.porCliente.SuspendLayout();
+            this.opcionesPNL.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -147,10 +189,399 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "días";
             // 
+            // pestaniasTCL
+            // 
+            this.pestaniasTCL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pestaniasTCL.Controls.Add(this.porCliente);
+            this.pestaniasTCL.Controls.Add(this.todo);
+            this.pestaniasTCL.Location = new System.Drawing.Point(0, 0);
+            this.pestaniasTCL.Name = "pestaniasTCL";
+            this.pestaniasTCL.SelectedIndex = 0;
+            this.pestaniasTCL.Size = new System.Drawing.Size(846, 429);
+            this.pestaniasTCL.TabIndex = 9;
+            // 
+            // porCliente
+            // 
+            this.porCliente.Controls.Add(this.opcionesPNL);
+            this.porCliente.Controls.Add(this.tableLayoutPanel1);
+            this.porCliente.Location = new System.Drawing.Point(4, 22);
+            this.porCliente.Name = "porCliente";
+            this.porCliente.Padding = new System.Windows.Forms.Padding(3);
+            this.porCliente.Size = new System.Drawing.Size(838, 403);
+            this.porCliente.TabIndex = 1;
+            this.porCliente.Text = "Por cliente";
+            this.porCliente.UseVisualStyleBackColor = true;
+            // 
+            // opcionesPNL
+            // 
+            this.opcionesPNL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.opcionesPNL.Controls.Add(this.verPagosBTN);
+            this.opcionesPNL.Controls.Add(this.pagarBTN);
+            this.opcionesPNL.Controls.Add(this.anotarBTN);
+            this.opcionesPNL.Controls.Add(this.borrarBTN);
+            this.opcionesPNL.Location = new System.Drawing.Point(2, 329);
+            this.opcionesPNL.Name = "opcionesPNL";
+            this.opcionesPNL.Size = new System.Drawing.Size(837, 74);
+            this.opcionesPNL.TabIndex = 7;
+            // 
+            // verPagosBTN
+            // 
+            this.verPagosBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.verPagosBTN.BackColor = System.Drawing.Color.Red;
+            this.verPagosBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.verPagosBTN.FlatAppearance.BorderSize = 0;
+            this.verPagosBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.verPagosBTN.Font = new System.Drawing.Font("Bebas Neue", 11F, System.Drawing.FontStyle.Bold);
+            this.verPagosBTN.Image = ((System.Drawing.Image)(resources.GetObject("verPagosBTN.Image")));
+            this.verPagosBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.verPagosBTN.Location = new System.Drawing.Point(154, 5);
+            this.verPagosBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.verPagosBTN.Name = "verPagosBTN";
+            this.verPagosBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.verPagosBTN.Size = new System.Drawing.Size(64, 64);
+            this.verPagosBTN.TabIndex = 3;
+            this.verPagosBTN.Text = "Ver pagos";
+            this.verPagosBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.verPagosBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.verPagosBTN.UseCompatibleTextRendering = true;
+            this.verPagosBTN.UseVisualStyleBackColor = false;
+            // 
+            // pagarBTN
+            // 
+            this.pagarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pagarBTN.BackColor = System.Drawing.Color.Red;
+            this.pagarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pagarBTN.FlatAppearance.BorderSize = 0;
+            this.pagarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pagarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pagarBTN.Image = ((System.Drawing.Image)(resources.GetObject("pagarBTN.Image")));
+            this.pagarBTN.Location = new System.Drawing.Point(80, 5);
+            this.pagarBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.pagarBTN.Name = "pagarBTN";
+            this.pagarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.pagarBTN.Size = new System.Drawing.Size(64, 64);
+            this.pagarBTN.TabIndex = 2;
+            this.pagarBTN.Text = "Pagar";
+            this.pagarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.pagarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.pagarBTN.UseCompatibleTextRendering = true;
+            this.pagarBTN.UseVisualStyleBackColor = false;
+            // 
+            // anotarBTN
+            // 
+            this.anotarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.anotarBTN.BackColor = System.Drawing.Color.Red;
+            this.anotarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.anotarBTN.FlatAppearance.BorderSize = 0;
+            this.anotarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.anotarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.anotarBTN.Image = ((System.Drawing.Image)(resources.GetObject("anotarBTN.Image")));
+            this.anotarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.anotarBTN.Location = new System.Drawing.Point(6, 5);
+            this.anotarBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.anotarBTN.Name = "anotarBTN";
+            this.anotarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.anotarBTN.Size = new System.Drawing.Size(64, 64);
+            this.anotarBTN.TabIndex = 0;
+            this.anotarBTN.Text = "Asignar";
+            this.anotarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.anotarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.anotarBTN.UseCompatibleTextRendering = true;
+            this.anotarBTN.UseVisualStyleBackColor = false;
+            this.anotarBTN.Click += new System.EventHandler(this.anotarBTN_Click);
+            // 
+            // borrarBTN
+            // 
+            this.borrarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.borrarBTN.BackColor = System.Drawing.Color.Red;
+            this.borrarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.borrarBTN.Enabled = false;
+            this.borrarBTN.FlatAppearance.BorderSize = 0;
+            this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
+            this.borrarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.borrarBTN.Location = new System.Drawing.Point(228, 5);
+            this.borrarBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.borrarBTN.Name = "borrarBTN";
+            this.borrarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.borrarBTN.Size = new System.Drawing.Size(64, 64);
+            this.borrarBTN.TabIndex = 1;
+            this.borrarBTN.Text = "Borrar";
+            this.borrarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.borrarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.borrarBTN.UseCompatibleTextRendering = true;
+            this.borrarBTN.UseVisualStyleBackColor = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tablaDGV, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(837, 326);
+            this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // tablaDGV
+            // 
+            this.tablaDGV.AllowUserToAddRows = false;
+            this.tablaDGV.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.tablaDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.tablaDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tablaDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaDGV.BackgroundColor = System.Drawing.Color.White;
+            this.tablaDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.tablaDGV.ColumnHeadersHeight = 30;
+            this.tablaDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cedula,
+            this.diaIngreso,
+            this.Pago,
+            this.Descuento,
+            this.Total,
+            this.Deuda,
+            this.Vencimiento,
+            this.ultimoPaog});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tablaDGV.DefaultCellStyle = dataGridViewCellStyle3;
+            this.tablaDGV.EnableHeadersVisualStyles = false;
+            this.tablaDGV.GridColor = System.Drawing.Color.Black;
+            this.tablaDGV.Location = new System.Drawing.Point(0, 82);
+            this.tablaDGV.Margin = new System.Windows.Forms.Padding(0);
+            this.tablaDGV.MultiSelect = false;
+            this.tablaDGV.Name = "tablaDGV";
+            this.tablaDGV.ReadOnly = true;
+            this.tablaDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.tablaDGV.RowHeadersVisible = false;
+            this.tablaDGV.RowTemplate.Height = 50;
+            this.tablaDGV.RowTemplate.ReadOnly = true;
+            this.tablaDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaDGV.ShowEditingIcon = false;
+            this.tablaDGV.Size = new System.Drawing.Size(837, 244);
+            this.tablaDGV.TabIndex = 4;
+            // 
+            // cedula
+            // 
+            this.cedula.HeaderText = "Mes";
+            this.cedula.Name = "cedula";
+            this.cedula.ReadOnly = true;
+            // 
+            // diaIngreso
+            // 
+            this.diaIngreso.HeaderText = "Día de ingreso";
+            this.diaIngreso.Name = "diaIngreso";
+            this.diaIngreso.ReadOnly = true;
+            // 
+            // Pago
+            // 
+            this.Pago.HeaderText = "Valor($)";
+            this.Pago.Name = "Pago";
+            this.Pago.ReadOnly = true;
+            // 
+            // Descuento
+            // 
+            this.Descuento.HeaderText = "Descuento(%)";
+            this.Descuento.Name = "Descuento";
+            this.Descuento.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total($)";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // Deuda
+            // 
+            this.Deuda.HeaderText = "Deuda($)";
+            this.Deuda.Name = "Deuda";
+            this.Deuda.ReadOnly = true;
+            // 
+            // Vencimiento
+            // 
+            this.Vencimiento.HeaderText = "Vencimiento";
+            this.Vencimiento.Name = "Vencimiento";
+            this.Vencimiento.ReadOnly = true;
+            // 
+            // ultimoPaog
+            // 
+            this.ultimoPaog.HeaderText = "Fecha del pago";
+            this.ultimoPaog.Name = "ultimoPaog";
+            this.ultimoPaog.ReadOnly = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel2.Controls.Add(this.anioNUD);
+            this.panel2.Controls.Add(this.antMesBTN);
+            this.panel2.Controls.Add(this.sigMesBTN);
+            this.panel2.Location = new System.Drawing.Point(313, 43);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(210, 36);
+            this.panel2.TabIndex = 1;
+            // 
+            // anioNUD
+            // 
+            this.anioNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.anioNUD.Location = new System.Drawing.Point(63, 4);
+            this.anioNUD.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.anioNUD.Minimum = new decimal(new int[] {
+            1980,
+            0,
+            0,
+            0});
+            this.anioNUD.Name = "anioNUD";
+            this.anioNUD.Size = new System.Drawing.Size(84, 29);
+            this.anioNUD.TabIndex = 4;
+            this.anioNUD.Value = new decimal(new int[] {
+            2022,
+            0,
+            0,
+            0});
+            // 
+            // antMesBTN
+            // 
+            this.antMesBTN.BackColor = System.Drawing.Color.Red;
+            this.antMesBTN.FlatAppearance.BorderSize = 0;
+            this.antMesBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.antMesBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.antMesBTN.Location = new System.Drawing.Point(3, 4);
+            this.antMesBTN.Name = "antMesBTN";
+            this.antMesBTN.Size = new System.Drawing.Size(54, 29);
+            this.antMesBTN.TabIndex = 1;
+            this.antMesBTN.Text = "<";
+            this.antMesBTN.UseVisualStyleBackColor = false;
+            // 
+            // sigMesBTN
+            // 
+            this.sigMesBTN.BackColor = System.Drawing.Color.Red;
+            this.sigMesBTN.FlatAppearance.BorderSize = 0;
+            this.sigMesBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sigMesBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.sigMesBTN.Location = new System.Drawing.Point(153, 5);
+            this.sigMesBTN.Name = "sigMesBTN";
+            this.sigMesBTN.Size = new System.Drawing.Size(52, 28);
+            this.sigMesBTN.TabIndex = 0;
+            this.sigMesBTN.Text = ">";
+            this.sigMesBTN.UseVisualStyleBackColor = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.buscarClienteBTN);
+            this.panel3.Controls.Add(this.nombreTBX);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.cedulaTBX);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(831, 34);
+            this.panel3.TabIndex = 3;
+            // 
+            // buscarClienteBTN
+            // 
+            this.buscarClienteBTN.BackColor = System.Drawing.Color.Red;
+            this.buscarClienteBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buscarClienteBTN.FlatAppearance.BorderSize = 0;
+            this.buscarClienteBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buscarClienteBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buscarClienteBTN.Location = new System.Drawing.Point(89, 2);
+            this.buscarClienteBTN.Name = "buscarClienteBTN";
+            this.buscarClienteBTN.Size = new System.Drawing.Size(78, 29);
+            this.buscarClienteBTN.TabIndex = 36;
+            this.buscarClienteBTN.Text = "Buscar";
+            this.buscarClienteBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buscarClienteBTN.UseVisualStyleBackColor = false;
+            this.buscarClienteBTN.Click += new System.EventHandler(this.buscarClienteBTN_Click);
+            // 
+            // nombreTBX
+            // 
+            this.nombreTBX.AutoSize = true;
+            this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.nombreTBX.Location = new System.Drawing.Point(365, 6);
+            this.nombreTBX.Name = "nombreTBX";
+            this.nombreTBX.Size = new System.Drawing.Size(114, 20);
+            this.nombreTBX.TabIndex = 35;
+            this.nombreTBX.Text = "No encontrado";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 29);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "Cliente:";
+            // 
+            // cedulaTBX
+            // 
+            this.cedulaTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cedulaTBX.Location = new System.Drawing.Point(173, 3);
+            this.cedulaTBX.MaxLength = 8;
+            this.cedulaTBX.Name = "cedulaTBX";
+            this.cedulaTBX.Size = new System.Drawing.Size(186, 26);
+            this.cedulaTBX.TabIndex = 32;
+            this.cedulaTBX.TextChanged += new System.EventHandler(this.cedulaTBX_TextChanged);
+            // 
+            // todo
+            // 
+            this.todo.Location = new System.Drawing.Point(4, 22);
+            this.todo.Name = "todo";
+            this.todo.Padding = new System.Windows.Forms.Padding(3);
+            this.todo.Size = new System.Drawing.Size(838, 403);
+            this.todo.TabIndex = 0;
+            this.todo.Text = "Todo";
+            this.todo.UseVisualStyleBackColor = true;
+            // 
             // SeccionMensualidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pestaniasTCL);
             this.Controls.Add(this.panel1);
             this.Name = "SeccionMensualidades";
             this.Size = new System.Drawing.Size(846, 473);
@@ -158,6 +589,15 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diasNUD)).EndInit();
+            this.pestaniasTCL.ResumeLayout(false);
+            this.porCliente.ResumeLayout(false);
+            this.opcionesPNL.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -173,5 +613,32 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabControl pestaniasTCL;
+        private System.Windows.Forms.TabPage todo;
+        private System.Windows.Forms.TabPage porCliente;
+        private System.Windows.Forms.Panel opcionesPNL;
+        private System.Windows.Forms.Button anotarBTN;
+        private System.Windows.Forms.Button borrarBTN;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.NumericUpDown anioNUD;
+        private System.Windows.Forms.Button antMesBTN;
+        private System.Windows.Forms.Button sigMesBTN;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button buscarClienteBTN;
+        private System.Windows.Forms.Label nombreTBX;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox cedulaTBX;
+        private System.Windows.Forms.DataGridView tablaDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diaIngreso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Deuda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ultimoPaog;
+        private System.Windows.Forms.Button verPagosBTN;
+        private System.Windows.Forms.Button pagarBTN;
     }
 }

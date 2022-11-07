@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -36,14 +37,14 @@ namespace Body_Factory_Manager
             if (selector)
             {
                 buttonDatos.Add(new ListadoButtonDatos("Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
-                buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.Editar));
+                buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.EntradaSalida));
 
             }
             else
             {
-                buttonDatos.Add(new ListadoButtonDatos("Nuevo", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.Agregar));
+                buttonDatos.Add(new ListadoButtonDatos("Nuevo pago", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.Agregar, 9f));
 
-                buttonDatos.Add(new ListadoButtonDatos("Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
+                buttonDatos.Add(new ListadoButtonDatos("E/S", Body_Factory_Manager.Properties.Resources.RightLeft, this.EntradaSalida));
                 buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.EliminarPago));
             }
 
@@ -54,7 +55,8 @@ namespace Body_Factory_Manager
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha realizado", "fecha"));
             listado = new Listado("id", buttonDatos, Ordenar, filtros, Filtrar);
             this.Controls.Add(listado);
-            listado.Dock = DockStyle.Fill;
+            listado.Size = new Size(this.Size.Width, 420);
+            listado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ActualizarConsulta();
 
 
@@ -64,8 +66,20 @@ namespace Body_Factory_Manager
 
         private void EliminarPago(string id)
         {
-            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-            sql.Modificar("DELETE FROM Pagos WHERE id= " + id);
+            if (string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("Esta acción requiere seleccionar un pago", "Ningún pago seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el movimiento?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+            if (id.StartsWith("A"))
+            {
+                sql.Modificar("DELETE FROM EntradasSalidas WHERE idReal= '" + id + "'");
+
+            }
+            else sql.Modificar("DELETE FROM Pagos WHERE id= " + id);
             CargarListaPagos();
         }
 
@@ -73,13 +87,14 @@ namespace Body_Factory_Manager
         {
             listado.datos = sql.Obtener(consulta);
             listado.Recargar("id");
+            totalLBL.Text = "$" + sql.Obtener("SELECT SUM(Todo.monto) as Total FROM " +
+                "(SELECT monto FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula WHERE Clientes.esOculto = 0 AND " + 
+                filtro.ObtenerWhereConsulta() + " UNION ALL SELECT monto FROM EntradasSalidas) as Todo").Rows[0]["Total"];
         }
 
-        private void Editar(string id)
+        private void EntradaSalida(string id)
         {
-            MessageBox.Show("Esta sección requiere trabajo...");
-            return;
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(id, TipoPagoMensualidad.EditarPago))
+            using (EntradaSalidaDatos nuevaVentana = new EntradaSalidaDatos())
             {
                 nuevaVentana.ShowDialog();
 
@@ -102,9 +117,10 @@ namespace Body_Factory_Manager
         }
         private void ActualizarConsulta()
         {
-            consulta = "SELECT id, CONCAT(nombre, ' ', apellido) as 'Nombre del cliente', cedula as 'Cédula del cliente', monto as 'Monto($)', fecha as Fecha" +
+            consulta = "SELECT CONVERT(VARCHAR(17), id) as id, 'Pago de cuota' as 'Motivo', CONCAT(nombre, ' ', apellido,  ' - ', cedula) as 'Persona', monto as 'Importe($)', fecha as Fecha" +
                 " FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula";
-            consulta += " WHERE " + filtro.ObtenerWhereConsulta();
+            consulta += " WHERE " + filtro.ObtenerWhereConsulta() + "AND Clientes.esOculto = 0 UNION ALL " +
+                "SELECT idReal as id, motivo as 'Motivo', responsable as 'Persona', monto as 'Importe($)', fecha as 'Fecha' FROM EntradasSalidas";
             if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
 
             CargarListaPagos();
@@ -112,7 +128,7 @@ namespace Body_Factory_Manager
 
         private void Agregar(string id)
         {
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(null, TipoPagoMensualidad.NuevoPago))
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(TipoPagoMensualidad.NuevoPago, null, null, null))
             {
                 nuevaVentana.ShowDialog();
 
@@ -121,6 +137,16 @@ namespace Body_Factory_Manager
         }
 
         private void ListadoPagos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SeccionPagos_Load(object sender, EventArgs e)
         {
 
         }

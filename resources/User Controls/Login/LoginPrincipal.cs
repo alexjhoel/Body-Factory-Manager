@@ -35,11 +35,13 @@ namespace Body_Factory_Manager
             //simpleSound.Play();
             datosUsuario = ObtenerUsuario();
             if (datosUsuario == null || datosUsuario.Rows.Count == 0) MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
             else if (!claveTBX.Text.Equals(datosUsuario.Rows[0]["contrasena"].ToString())) MessageBox.Show(this, "Clave incorrecta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 ((Login)ParentForm).ConfirmarLogin(datosUsuario);
             }
+            
         }
 
         private DataTable ObtenerUsuario()

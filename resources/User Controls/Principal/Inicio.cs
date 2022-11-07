@@ -9,7 +9,8 @@ namespace Body_Factory_Manager
     public enum TipoInicioSalida
     {
         Clientes,
-        Mensualidades
+        Mensualidades,
+        Graficos
     }
     public partial class Inicio : UserControl
     {
@@ -35,19 +36,15 @@ namespace Body_Factory_Manager
             vencidasDGV.Columns.Clear();
             Dictionary<string, object> parametros = new Dictionary<string, object>();
             parametros.Add("hoy", DateTime.Now);
-            string consulta = "SELECT FullMensualidades.id, cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', vencimiento as Vencimiento " +
-                "FROM(SELECT Mensualidades.id, pagado, valor, descuento, fechaCreado, vencimiento, cedulaCliente " +
-                "FROM(SELECT Mensualidades.id, (ISNULL(SUM(monto), 0)) AS pagado " +
-                "FROM Mensualidades " +
-                "LEFT JOIN Pagos ON Pagos.idMensualidad = Mensualidades.id  " +
-                "GROUP BY Mensualidades.id) AS PagosMensualidades " +
-                "INNER JOIN Mensualidades ON PagosMensualidades.id = Mensualidades.id) as FullMensualidades " +
-                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula WHERE " +
-                "((valor * (1 - descuento / 100)) - pagado) > 0 AND DATEDIFF(day, @hoy, vencimiento) < 5 " +
-                "AND Clientes.esOculto = 0";
+            string consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.fechaIngreso as Ingreso, vencimiento as Vencimiento " +
+                "FROM(SELECT pagado, valor, descuento, Mensualidades.fechaIngreso, Mensualidades.mes, Mensualidades.anio, vencimiento, Mensualidades.cedulaCliente " +
+                "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
+                "FROM Mensualidades LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
+                "GROUP BY Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades INNER JOIN Mensualidades " +
+                "ON  PagosMensualidades.cedulaCliente = Mensualidades.cedulaCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio) as FullMensualidades " +
+                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula WHERE ((valor * (1 - descuento / 100)) - pagado) > 0 AND DATEDIFF(day, @hoy, vencimiento) < 5 AND Clientes.esOculto = 0";
 
             vencidasDGV.DataSource = sql.Obtener(consulta, parametros);
-            vencidasDGV.Columns[0].Visible = false;
         }
 
         private void CargarCumples()
@@ -59,7 +56,7 @@ namespace Body_Factory_Manager
             string consulta = "SELECT cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', CONVERT(date, CONCAT(DAY(fechaNacimiento), '/', MONTH(fechaNacimiento), '/', YEAR(@hoy)), 103) as 'Cumpleaños'" +
                 " FROM Clientes" +
                 " WHERE DATEDIFF(day, @hoy, CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(@hoy)), 103)) <= 5 " +
-                "AND DATEDIFF(day, @hoy, CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(@hoy)), 103)) >= -3;";
+                "AND DATEDIFF(day, @hoy, CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(@hoy)), 103)) >= -3 AND Clientes.esOculto = 0;";
             cumplesDGV.DataSource = sql.Obtener(consulta, parametros);
 
         }
@@ -173,7 +170,7 @@ namespace Body_Factory_Manager
 
         private void nuevoClienteBTN_Click(object sender, EventArgs e)
         {
-            using (DatosCliente nuevaVentana = new DatosCliente())
+            using (DatosCliente nuevaVentana = new DatosCliente(null, false))
             {
                 nuevaVentana.ShowDialog();
             }
@@ -217,7 +214,7 @@ namespace Body_Factory_Manager
                 nuevaVentana.ShowDialog();
                 if (nuevaVentana.DialogResult == DialogResult.OK)
                 {
-                    using (DatosMensualidad datosMensualidad = new DatosMensualidad(nuevaVentana.cedula, TipoPagoMensualidad.PagarCuotaDesdeClientes))
+                    using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.PagarCuotaDesdeClientes, nuevaVentana.cedula))
                     {
                         datosMensualidad.ShowDialog();
                     }
@@ -233,6 +230,16 @@ namespace Body_Factory_Manager
         private void verMasCumplesBTN_Click(object sender, EventArgs e)
         {
             salida(TipoInicioSalida.Clientes, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["cedula"].ToString());
+        }
+
+        private void verMasClientesNuevos_Click(object sender, EventArgs e)
+        {
+            salida(TipoInicioSalida.Graficos, "");
+        }
+
+        private void verMasIngresos_Click(object sender, EventArgs e)
+        {
+            salida(TipoInicioSalida.Graficos, "");
         }
     }
 }

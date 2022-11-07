@@ -8,7 +8,7 @@ namespace Body_Factory_Manager
         public SelectorClientes(FiltroBusqeda filtro = null)
         {
             InitializeComponent();
-            listado = new SeccionClientes(true, filtro, this.Seleccionar);
+            listado = new SeccionClientes(null,true, filtro, this.Seleccionar);
 
             listado.Dock = DockStyle.Fill;
 
@@ -20,6 +20,11 @@ namespace Body_Factory_Manager
 
         private void Seleccionar(string cedula)
         {
+            if (string.IsNullOrEmpty(cedula))
+            {
+                MessageBox.Show("Ningun cliente seleccionado");
+                return;
+            }
             DialogResult = DialogResult.OK;
             this.cedula = cedula;
             this.Close();

@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -143,10 +143,16 @@
     <Compile Include="resources\Forms\Clientes\SelectorClientes.Designer.cs">
       <DependentUpon>SelectorClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\Configuracion.cs">
+    <Compile Include="resources\Forms\Configuracion\CambiarContrasenia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="resources\Forms\Configuracion.Designer.cs">
+    <Compile Include="resources\Forms\Configuracion\CambiarContrasenia.Designer.cs">
+      <DependentUpon>CambiarContrasenia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\Forms\Configuracion\Configuracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\Configuracion\Configuracion.Designer.cs">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Clientes\DatosCliente.cs">
@@ -173,6 +179,12 @@
     <Compile Include="resources\Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\Forms\Pagos\EntradaSalidaDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resources\Forms\Pagos\EntradaSalidaDatos.Designer.cs">
+      <DependentUpon>EntradaSalidaDatos.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\Forms\Pagos\SelectorPagos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +204,12 @@
     </Compile>
     <Compile Include="resources\User Controls\Clientes\SeccionClientes.Designer.cs">
       <DependentUpon>SeccionClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resources\User Controls\Graficos\SeccionGraficos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\Graficos\SeccionGraficos.Designer.cs">
+      <DependentUpon>SeccionGraficos.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\User Controls\Listado.cs">
       <SubType>UserControl</SubType>
@@ -247,12 +265,19 @@
     <Compile Include="resources\User Controls\Login\LoginPrincipal.Designer.cs">
       <DependentUpon>LoginPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="resources\User Controls\SeccionConfiguracion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="resources\User Controls\SeccionConfiguracion.Designer.cs">
+      <DependentUpon>SeccionConfiguracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="resources\Utilities\ColorUtilites.cs" />
     <Compile Include="resources\Utilities\DataGridViewExtension.cs" />
     <Compile Include="resources\Utilities\DateTimeUtilities.cs" />
     <Compile Include="resources\Utilities\Comunicacion.cs" />
     <Compile Include="resources\Utilities\SQL.cs" />
     <Compile Include="resources\Utilities\Transicion.cs" />
+    <Compile Include="resources\Utilities\ValidarCedulas.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StardustEssentialsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -268,7 +293,10 @@
     <EmbeddedResource Include="resources\Forms\Clientes\SelectorClientes.resx">
       <DependentUpon>SelectorClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\Configuracion.resx">
+    <EmbeddedResource Include="resources\Forms\Configuracion\CambiarContrasenia.resx">
+      <DependentUpon>CambiarContrasenia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\Configuracion\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Clientes\DatosCliente.resx">
@@ -282,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\Forms\Pagos\EntradaSalidaDatos.resx">
+      <DependentUpon>EntradaSalidaDatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Pagos\SelectorPagos.resx">
       <DependentUpon>SelectorPagos.cs</DependentUpon>
@@ -299,6 +330,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="resources\User Controls\Graficos\SeccionGraficos.resx">
+      <DependentUpon>SeccionGraficos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,6 +345,9 @@
     <EmbeddedResource Include="resources\User Controls\Mensualidades\SeccionMensualidades.resx">
       <DependentUpon>SeccionMensualidades.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\Pagos\SeccionPagos.resx">
+      <DependentUpon>SeccionPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Pagos\SelectorCuota.resx">
       <DependentUpon>SelectorCuota.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="resources\User Controls\Principal\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\User Controls\SeccionConfiguracion.resx">
+      <DependentUpon>SeccionConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Body Factory Manager_TemporaryKey.pfx" />
@@ -517,6 +557,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="resources\RightLeft.png" />
+    <None Include="resources\graficas.png" />
+    <None Include="resources\zoom-in %281%29.png" />
+    <None Include="resources\zoom-in.png" />
+    <None Include="resources\zoom-out.png" />
+    <None Include="resources\AltoBajo.png" />
+    <None Include="resources\Bajo.png" />
+    <None Include="resources\boton-de-informacion1.png" />
+    <None Include="resources\boton-de-informacion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

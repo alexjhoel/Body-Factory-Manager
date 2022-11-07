@@ -13,7 +13,7 @@ namespace Body_Factory_Manager
         string identificador;
         Transicion transicion = new Transicion(1);
         bool estado;
-
+        int indexToSelect = 0;
         string propiedadOrden;
         SortOrder orden = SortOrder.None;
 
@@ -44,7 +44,7 @@ namespace Body_Factory_Manager
                 button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 button.FlatAppearance.BorderSize = 0;
                 button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                button.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
+                button.Font = new System.Drawing.Font("Bebas Neue", data.fontSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
                 button.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
                 button.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
                 button.Margin = new System.Windows.Forms.Padding(5);
@@ -59,6 +59,10 @@ namespace Body_Factory_Manager
                     if (tablaDGV.SelectedRows.Count >= 1)
                     {
                         data.onClick(((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index][identificador].ToString());
+                    }
+                    else
+                    {
+                        data.onClick(String.Empty);
                     }
                 };
 
@@ -86,8 +90,7 @@ namespace Body_Factory_Manager
         public void Recargar(string ocultar = null, int dias = -1)
         {
 
-            int index = 0;
-            if (tablaDGV.SelectedRows.Count > 0) index = tablaDGV.SelectedRows[0].Index;
+            if (tablaDGV.SelectedRows.Count > 0) indexToSelect = tablaDGV.SelectedRows[0].Index;
 
             tablaDGV.Columns.Clear();
             tablaDGV.DataSource = datos;
@@ -97,17 +100,19 @@ namespace Body_Factory_Manager
             }
             */
             //tablaDGV.Rows[index].Selected = true;
+
             if (ocultar != null)
             {
                 tablaDGV.Columns[ocultar].Visible = false;
             }
 
 
-            if (dias == -1) return;
+            this.dias = dias;
+            if(dias == -1) return;
             for (int i = 0; i < tablaDGV.Rows.Count; i++)
             {
                 DateTime fecha = (DateTime)tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento");
-                if (DateTime.Now > fecha)
+                if (DateTime.Now > fecha && double.Parse(datos.Rows[i]["Deuda($)"].ToString()) > 0)
                 {
                     tablaDGV.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     tablaDGV.Rows[i].DefaultCellStyle.SelectionBackColor = Color.Red;
@@ -115,7 +120,7 @@ namespace Body_Factory_Manager
 
                     continue;
                 }
-                if (fecha.Subtract(DateTime.Now).Days <= dias)
+                if (fecha.Subtract(DateTime.Now).Days <= dias && double.Parse(datos.Rows[i]["Deuda($)"].ToString()) > 0)
                 {
                     tablaDGV.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                     tablaDGV.Rows[i].DefaultCellStyle.SelectionBackColor = Color.Yellow;
@@ -124,11 +129,7 @@ namespace Body_Factory_Manager
 
                 tablaDGV.Rows[i].Selected = false;
             }
-            if (index < tablaDGV.Rows.Count)
-            {
-                tablaDGV.CurrentCell = tablaDGV.Rows[index].Cells[0];
-
-            }
+            
         }
 
         private void Listado_MouseMove(object sender, MouseEventArgs e)
@@ -159,7 +160,7 @@ namespace Body_Factory_Manager
             if (dias == -1) return;
             DateTime fecha = (DateTime)tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento");
 
-            if (int.Parse(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Deuda($)").ToString()) > 0)
+            if (double.Parse(datos.Rows[e.RowIndex]["Deuda($)"].ToString()) > 0)
             {
                 if (DateTime.Now > fecha)
                 {
@@ -245,10 +246,6 @@ namespace Body_Factory_Manager
 
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void filtrosCbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -308,20 +305,40 @@ namespace Body_Factory_Manager
             }
 
         }
+
+        private void tablaDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tablaDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                tablaDGV.CurrentCell = tablaDGV.Rows[indexToSelect].Cells[1];
+            }
+            catch
+            {
+                tablaDGV.CurrentCell = null;
+            }
+            
+        }
     }
 
     public class ListadoButtonDatos
     {
-        public ListadoButtonDatos(string texto, Image icon, Action<string> onClick)
+        public ListadoButtonDatos(string texto, Image icon, Action<string> onClick, float fontSize = 12)
         {
             this.texto = texto;
             this.icon = icon;
             this.onClick = onClick;
+            this.fontSize = fontSize;
         }
 
         public Image icon;
         public string texto;
         public Action<string> onClick;
+        public float fontSize;
     }
 
     public class FiltroBusqeda

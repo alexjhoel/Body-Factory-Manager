@@ -18,6 +18,12 @@ namespace Body_Factory_Manager
 
         private void Seleccionar(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("Ningun pago seleccionado");
+                return;
+            }
+                
             DialogResult = DialogResult.OK;
             this.id = id;
             this.Close();

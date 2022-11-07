@@ -60,7 +60,6 @@ namespace Body_Factory_Manager
             this.guardarBTN = new System.Windows.Forms.Button();
             this.cobroNUD = new System.Windows.Forms.NumericUpDown();
             this.descuentoNUD = new System.Windows.Forms.NumericUpDown();
-            this.pagoMensualidadCBX = new System.Windows.Forms.ComboBox();
             this.nombreTBX = new System.Windows.Forms.Label();
             this.buscarClienteBTN = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -69,11 +68,22 @@ namespace Body_Factory_Manager
             this.selectorClientes = new System.Windows.Forms.Panel();
             this.verClienteCompleto = new System.Windows.Forms.Button();
             this.buscarMensualidadBtn = new System.Windows.Forms.Button();
+            this.xMesesNUD = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.sinVecimientoCBX = new System.Windows.Forms.CheckBox();
+            this.xMesesPNL = new System.Windows.Forms.Panel();
+            this.mesCBX = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.anioNUD = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.entregaNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobroNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.descuentoNUD)).BeginInit();
             this.selectorClientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xMesesNUD)).BeginInit();
+            this.xMesesPNL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -153,17 +163,17 @@ namespace Body_Factory_Manager
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 331);
+            this.label3.Location = new System.Drawing.Point(14, 405);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 37;
-            this.label3.Text = "Fecha de adjudicación";
+            this.label3.Text = "Fecha de ingreso";
             // 
             // adjudDTP
             // 
             this.adjudDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjudDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.adjudDTP.Location = new System.Drawing.Point(17, 347);
+            this.adjudDTP.Location = new System.Drawing.Point(17, 421);
             this.adjudDTP.Name = "adjudDTP";
             this.adjudDTP.Size = new System.Drawing.Size(165, 26);
             this.adjudDTP.TabIndex = 36;
@@ -212,7 +222,7 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.pagoTituloLBL);
             this.panel1.Controls.Add(this.entregaCBX);
-            this.panel1.Location = new System.Drawing.Point(364, 112);
+            this.panel1.Location = new System.Drawing.Point(364, 148);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(197, 270);
             this.panel1.TabIndex = 50;
@@ -226,6 +236,11 @@ namespace Body_Factory_Manager
             0,
             0,
             0});
+            this.entregaNUD.Minimum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            -2147483648});
             this.entregaNUD.Name = "entregaNUD";
             this.entregaNUD.Size = new System.Drawing.Size(141, 26);
             this.entregaNUD.TabIndex = 60;
@@ -239,7 +254,7 @@ namespace Body_Factory_Manager
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 219);
+            this.label16.Location = new System.Drawing.Point(12, 218);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 13);
             this.label16.TabIndex = 59;
@@ -249,7 +264,7 @@ namespace Body_Factory_Manager
             // 
             this.pagoFechaDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pagoFechaDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pagoFechaDTP.Location = new System.Drawing.Point(15, 235);
+            this.pagoFechaDTP.Location = new System.Drawing.Point(15, 234);
             this.pagoFechaDTP.Name = "pagoFechaDTP";
             this.pagoFechaDTP.Size = new System.Drawing.Size(154, 26);
             this.pagoFechaDTP.TabIndex = 58;
@@ -336,7 +351,7 @@ namespace Body_Factory_Manager
             this.descartarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.descartarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descartarBTN.ForeColor = System.Drawing.Color.Black;
-            this.descartarBTN.Location = new System.Drawing.Point(204, 403);
+            this.descartarBTN.Location = new System.Drawing.Point(204, 481);
             this.descartarBTN.Name = "descartarBTN";
             this.descartarBTN.Size = new System.Drawing.Size(170, 44);
             this.descartarBTN.TabIndex = 51;
@@ -348,7 +363,7 @@ namespace Body_Factory_Manager
             // 
             this.vencimientoDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vencimientoDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.vencimientoDTP.Location = new System.Drawing.Point(204, 347);
+            this.vencimientoDTP.Location = new System.Drawing.Point(204, 421);
             this.vencimientoDTP.Name = "vencimientoDTP";
             this.vencimientoDTP.Size = new System.Drawing.Size(154, 26);
             this.vencimientoDTP.TabIndex = 52;
@@ -356,7 +371,7 @@ namespace Body_Factory_Manager
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(201, 331);
+            this.label15.Location = new System.Drawing.Point(201, 405);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(115, 13);
             this.label15.TabIndex = 53;
@@ -372,7 +387,7 @@ namespace Body_Factory_Manager
             this.guardarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guardarBTN.ForeColor = System.Drawing.Color.Black;
-            this.guardarBTN.Location = new System.Drawing.Point(391, 403);
+            this.guardarBTN.Location = new System.Drawing.Point(391, 481);
             this.guardarBTN.Name = "guardarBTN";
             this.guardarBTN.Size = new System.Drawing.Size(170, 44);
             this.guardarBTN.TabIndex = 54;
@@ -408,20 +423,6 @@ namespace Body_Factory_Manager
             this.descuentoNUD.TabIndex = 56;
             this.descuentoNUD.ValueChanged += new System.EventHandler(this.descuentoNUD_ValueChanged);
             // 
-            // pagoMensualidadCBX
-            // 
-            this.pagoMensualidadCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.pagoMensualidadCBX.FormattingEnabled = true;
-            this.pagoMensualidadCBX.Items.AddRange(new object[] {
-            "Pago de cuota",
-            "Pago sin cuota"});
-            this.pagoMensualidadCBX.Location = new System.Drawing.Point(204, 112);
-            this.pagoMensualidadCBX.Name = "pagoMensualidadCBX";
-            this.pagoMensualidadCBX.Size = new System.Drawing.Size(154, 28);
-            this.pagoMensualidadCBX.TabIndex = 58;
-            this.pagoMensualidadCBX.Visible = false;
-            this.pagoMensualidadCBX.SelectedIndexChanged += new System.EventHandler(this.pagoMensualidadCBX_SelectedIndexChanged);
-            // 
             // nombreTBX
             // 
             this.nombreTBX.AutoSize = true;
@@ -431,6 +432,7 @@ namespace Body_Factory_Manager
             this.nombreTBX.Size = new System.Drawing.Size(114, 20);
             this.nombreTBX.TabIndex = 63;
             this.nombreTBX.Text = "No encontrado";
+            this.nombreTBX.Visible = false;
             // 
             // buscarClienteBTN
             // 
@@ -523,15 +525,124 @@ namespace Body_Factory_Manager
             this.buscarMensualidadBtn.UseVisualStyleBackColor = false;
             this.buscarMensualidadBtn.Click += new System.EventHandler(this.buscarMensualidadBtn_Click);
             // 
+            // xMesesNUD
+            // 
+            this.xMesesNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xMesesNUD.Location = new System.Drawing.Point(28, 3);
+            this.xMesesNUD.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.xMesesNUD.Minimum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            -2147483648});
+            this.xMesesNUD.Name = "xMesesNUD";
+            this.xMesesNUD.Size = new System.Drawing.Size(52, 26);
+            this.xMesesNUD.TabIndex = 66;
+            this.xMesesNUD.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(3, 1);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(23, 29);
+            this.label17.TabIndex = 67;
+            this.label17.Text = "X";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(86, 2);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 29);
+            this.label18.TabIndex = 68;
+            this.label18.Text = "Meses";
+            // 
+            // sinVecimientoCBX
+            // 
+            this.sinVecimientoCBX.AutoSize = true;
+            this.sinVecimientoCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sinVecimientoCBX.Location = new System.Drawing.Point(204, 453);
+            this.sinVecimientoCBX.Name = "sinVecimientoCBX";
+            this.sinVecimientoCBX.Size = new System.Drawing.Size(106, 19);
+            this.sinVecimientoCBX.TabIndex = 69;
+            this.sinVecimientoCBX.Text = "Sin vecimiento";
+            this.sinVecimientoCBX.UseVisualStyleBackColor = true;
+            this.sinVecimientoCBX.CheckedChanged += new System.EventHandler(this.sinVecimientoCBX_CheckedChanged);
+            // 
+            // xMesesPNL
+            // 
+            this.xMesesPNL.Controls.Add(this.xMesesNUD);
+            this.xMesesPNL.Controls.Add(this.label17);
+            this.xMesesPNL.Controls.Add(this.label18);
+            this.xMesesPNL.Location = new System.Drawing.Point(204, 111);
+            this.xMesesPNL.Name = "xMesesPNL";
+            this.xMesesPNL.Size = new System.Drawing.Size(154, 33);
+            this.xMesesPNL.TabIndex = 70;
+            // 
+            // mesCBX
+            // 
+            this.mesCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mesCBX.FormattingEnabled = true;
+            this.mesCBX.Items.AddRange(new object[] {
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Setiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"});
+            this.mesCBX.Location = new System.Drawing.Point(16, 347);
+            this.mesCBX.MaxDropDownItems = 12;
+            this.mesCBX.Name = "mesCBX";
+            this.mesCBX.Size = new System.Drawing.Size(167, 28);
+            this.mesCBX.TabIndex = 71;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(16, 331);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(102, 13);
+            this.label19.TabIndex = 72;
+            this.label19.Text = "Mes y año asignado";
+            // 
+            // anioNUD
+            // 
+            this.anioNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.anioNUD.Location = new System.Drawing.Point(196, 348);
+            this.anioNUD.Name = "anioNUD";
+            this.anioNUD.Size = new System.Drawing.Size(162, 26);
+            this.anioNUD.TabIndex = 73;
+            // 
             // DatosMensualidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 460);
+            this.ClientSize = new System.Drawing.Size(573, 533);
+            this.Controls.Add(this.anioNUD);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.mesCBX);
+            this.Controls.Add(this.xMesesPNL);
+            this.Controls.Add(this.sinVecimientoCBX);
             this.Controls.Add(this.buscarMensualidadBtn);
             this.Controls.Add(this.verClienteCompleto);
             this.Controls.Add(this.selectorClientes);
-            this.Controls.Add(this.pagoMensualidadCBX);
             this.Controls.Add(this.descuentoNUD);
             this.Controls.Add(this.cobroNUD);
             this.Controls.Add(this.guardarBTN);
@@ -566,6 +677,10 @@ namespace Body_Factory_Manager
             ((System.ComponentModel.ISupportInitialize)(this.descuentoNUD)).EndInit();
             this.selectorClientes.ResumeLayout(false);
             this.selectorClientes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xMesesNUD)).EndInit();
+            this.xMesesPNL.ResumeLayout(false);
+            this.xMesesPNL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -602,7 +717,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label pagoTituloLBL;
         private System.Windows.Forms.ComboBox entregaCBX;
-        private System.Windows.Forms.ComboBox pagoMensualidadCBX;
         private System.Windows.Forms.Label nombreTBX;
         private System.Windows.Forms.Button buscarClienteBTN;
         private System.Windows.Forms.Label label9;
@@ -611,5 +725,13 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Panel selectorClientes;
         private System.Windows.Forms.Button verClienteCompleto;
         private System.Windows.Forms.Button buscarMensualidadBtn;
+        private System.Windows.Forms.NumericUpDown xMesesNUD;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox sinVecimientoCBX;
+        private System.Windows.Forms.Panel xMesesPNL;
+        private System.Windows.Forms.ComboBox mesCBX;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown anioNUD;
     }
 }
