@@ -30,11 +30,11 @@ namespace Body_Factory_Manager
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeccionMensualidades));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeccionMensualidades));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pagasCBX = new System.Windows.Forms.CheckBox();
             this.diasNUD = new System.Windows.Forms.NumericUpDown();
@@ -46,10 +46,6 @@ namespace Body_Factory_Manager
             this.pestaniasTCL = new System.Windows.Forms.TabControl();
             this.porCliente = new System.Windows.Forms.TabPage();
             this.opcionesPNL = new System.Windows.Forms.Panel();
-            this.verPagosBTN = new System.Windows.Forms.Button();
-            this.pagarBTN = new System.Windows.Forms.Button();
-            this.anotarBTN = new System.Windows.Forms.Button();
-            this.borrarBTN = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tablaDGV = new System.Windows.Forms.DataGridView();
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,11 +61,16 @@ namespace Body_Factory_Manager
             this.antMesBTN = new System.Windows.Forms.Button();
             this.sigMesBTN = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.estadoPanel = new System.Windows.Forms.Panel();
             this.buscarClienteBTN = new System.Windows.Forms.Button();
             this.nombreTBX = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cedulaTBX = new System.Windows.Forms.TextBox();
             this.todo = new System.Windows.Forms.TabPage();
+            this.verPagosBTN = new System.Windows.Forms.Button();
+            this.pagarBTN = new System.Windows.Forms.Button();
+            this.anotarBTN = new System.Windows.Forms.Button();
+            this.borrarBTN = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diasNUD)).BeginInit();
             this.pestaniasTCL.SuspendLayout();
@@ -216,8 +217,7 @@ namespace Body_Factory_Manager
             // 
             // opcionesPNL
             // 
-            this.opcionesPNL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.opcionesPNL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.opcionesPNL.Controls.Add(this.verPagosBTN);
             this.opcionesPNL.Controls.Add(this.pagarBTN);
             this.opcionesPNL.Controls.Add(this.anotarBTN);
@@ -226,95 +226,6 @@ namespace Body_Factory_Manager
             this.opcionesPNL.Name = "opcionesPNL";
             this.opcionesPNL.Size = new System.Drawing.Size(837, 74);
             this.opcionesPNL.TabIndex = 7;
-            // 
-            // verPagosBTN
-            // 
-            this.verPagosBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.verPagosBTN.BackColor = System.Drawing.Color.Red;
-            this.verPagosBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.verPagosBTN.FlatAppearance.BorderSize = 0;
-            this.verPagosBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.verPagosBTN.Font = new System.Drawing.Font("Bebas Neue", 11F, System.Drawing.FontStyle.Bold);
-            this.verPagosBTN.Image = ((System.Drawing.Image)(resources.GetObject("verPagosBTN.Image")));
-            this.verPagosBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.verPagosBTN.Location = new System.Drawing.Point(154, 5);
-            this.verPagosBTN.Margin = new System.Windows.Forms.Padding(5);
-            this.verPagosBTN.Name = "verPagosBTN";
-            this.verPagosBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.verPagosBTN.Size = new System.Drawing.Size(64, 64);
-            this.verPagosBTN.TabIndex = 3;
-            this.verPagosBTN.Text = "Ver pagos";
-            this.verPagosBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.verPagosBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.verPagosBTN.UseCompatibleTextRendering = true;
-            this.verPagosBTN.UseVisualStyleBackColor = false;
-            // 
-            // pagarBTN
-            // 
-            this.pagarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pagarBTN.BackColor = System.Drawing.Color.Red;
-            this.pagarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pagarBTN.FlatAppearance.BorderSize = 0;
-            this.pagarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pagarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pagarBTN.Image = ((System.Drawing.Image)(resources.GetObject("pagarBTN.Image")));
-            this.pagarBTN.Location = new System.Drawing.Point(80, 5);
-            this.pagarBTN.Margin = new System.Windows.Forms.Padding(5);
-            this.pagarBTN.Name = "pagarBTN";
-            this.pagarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.pagarBTN.Size = new System.Drawing.Size(64, 64);
-            this.pagarBTN.TabIndex = 2;
-            this.pagarBTN.Text = "Pagar";
-            this.pagarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.pagarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.pagarBTN.UseCompatibleTextRendering = true;
-            this.pagarBTN.UseVisualStyleBackColor = false;
-            // 
-            // anotarBTN
-            // 
-            this.anotarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.anotarBTN.BackColor = System.Drawing.Color.Red;
-            this.anotarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.anotarBTN.FlatAppearance.BorderSize = 0;
-            this.anotarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.anotarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.anotarBTN.Image = ((System.Drawing.Image)(resources.GetObject("anotarBTN.Image")));
-            this.anotarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.anotarBTN.Location = new System.Drawing.Point(6, 5);
-            this.anotarBTN.Margin = new System.Windows.Forms.Padding(5);
-            this.anotarBTN.Name = "anotarBTN";
-            this.anotarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.anotarBTN.Size = new System.Drawing.Size(64, 64);
-            this.anotarBTN.TabIndex = 0;
-            this.anotarBTN.Text = "Asignar";
-            this.anotarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.anotarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.anotarBTN.UseCompatibleTextRendering = true;
-            this.anotarBTN.UseVisualStyleBackColor = false;
-            this.anotarBTN.Click += new System.EventHandler(this.anotarBTN_Click);
-            // 
-            // borrarBTN
-            // 
-            this.borrarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.borrarBTN.BackColor = System.Drawing.Color.Red;
-            this.borrarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.borrarBTN.Enabled = false;
-            this.borrarBTN.FlatAppearance.BorderSize = 0;
-            this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
-            this.borrarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.borrarBTN.Location = new System.Drawing.Point(228, 5);
-            this.borrarBTN.Margin = new System.Windows.Forms.Padding(5);
-            this.borrarBTN.Name = "borrarBTN";
-            this.borrarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.borrarBTN.Size = new System.Drawing.Size(64, 64);
-            this.borrarBTN.TabIndex = 1;
-            this.borrarBTN.Text = "Borrar";
-            this.borrarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.borrarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.borrarBTN.UseCompatibleTextRendering = true;
-            this.borrarBTN.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -400,6 +311,7 @@ namespace Body_Factory_Manager
             this.tablaDGV.ShowEditingIcon = false;
             this.tablaDGV.Size = new System.Drawing.Size(837, 244);
             this.tablaDGV.TabIndex = 4;
+            this.tablaDGV.SelectionChanged += new System.EventHandler(this.tablaDGV_SelectionChanged);
             // 
             // cedula
             // 
@@ -482,6 +394,7 @@ namespace Body_Factory_Manager
             0,
             0,
             0});
+            this.anioNUD.ValueChanged += new System.EventHandler(this.anioNUD_ValueChanged);
             // 
             // antMesBTN
             // 
@@ -495,6 +408,7 @@ namespace Body_Factory_Manager
             this.antMesBTN.TabIndex = 1;
             this.antMesBTN.Text = "<";
             this.antMesBTN.UseVisualStyleBackColor = false;
+            this.antMesBTN.Click += new System.EventHandler(this.antMesBTN_Click);
             // 
             // sigMesBTN
             // 
@@ -508,9 +422,11 @@ namespace Body_Factory_Manager
             this.sigMesBTN.TabIndex = 0;
             this.sigMesBTN.Text = ">";
             this.sigMesBTN.UseVisualStyleBackColor = false;
+            this.sigMesBTN.Click += new System.EventHandler(this.sigMesBTN_Click);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.estadoPanel);
             this.panel3.Controls.Add(this.buscarClienteBTN);
             this.panel3.Controls.Add(this.nombreTBX);
             this.panel3.Controls.Add(this.label7);
@@ -520,6 +436,13 @@ namespace Body_Factory_Manager
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(831, 34);
             this.panel3.TabIndex = 3;
+            // 
+            // estadoPanel
+            // 
+            this.estadoPanel.Location = new System.Drawing.Point(365, 3);
+            this.estadoPanel.Name = "estadoPanel";
+            this.estadoPanel.Size = new System.Drawing.Size(29, 28);
+            this.estadoPanel.TabIndex = 37;
             // 
             // buscarClienteBTN
             // 
@@ -541,7 +464,7 @@ namespace Body_Factory_Manager
             // 
             this.nombreTBX.AutoSize = true;
             this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.nombreTBX.Location = new System.Drawing.Point(365, 6);
+            this.nombreTBX.Location = new System.Drawing.Point(400, 6);
             this.nombreTBX.Name = "nombreTBX";
             this.nombreTBX.Size = new System.Drawing.Size(114, 20);
             this.nombreTBX.TabIndex = 35;
@@ -576,6 +499,98 @@ namespace Body_Factory_Manager
             this.todo.TabIndex = 0;
             this.todo.Text = "Todo";
             this.todo.UseVisualStyleBackColor = true;
+            // 
+            // verPagosBTN
+            // 
+            this.verPagosBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.verPagosBTN.BackColor = System.Drawing.Color.Red;
+            this.verPagosBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.verPagosBTN.FlatAppearance.BorderSize = 0;
+            this.verPagosBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.verPagosBTN.Font = new System.Drawing.Font("Bebas Neue", 11F, System.Drawing.FontStyle.Bold);
+            this.verPagosBTN.Image = ((System.Drawing.Image)(resources.GetObject("verPagosBTN.Image")));
+            this.verPagosBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.verPagosBTN.Location = new System.Drawing.Point(151, 5);
+            this.verPagosBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.verPagosBTN.Name = "verPagosBTN";
+            this.verPagosBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.verPagosBTN.Size = new System.Drawing.Size(64, 64);
+            this.verPagosBTN.TabIndex = 3;
+            this.verPagosBTN.Text = "Ver pagos";
+            this.verPagosBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.verPagosBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.verPagosBTN.UseCompatibleTextRendering = true;
+            this.verPagosBTN.UseVisualStyleBackColor = false;
+            this.verPagosBTN.Click += new System.EventHandler(this.verPagosBTN_Click);
+            // 
+            // pagarBTN
+            // 
+            this.pagarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pagarBTN.BackColor = System.Drawing.Color.Red;
+            this.pagarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pagarBTN.FlatAppearance.BorderSize = 0;
+            this.pagarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pagarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pagarBTN.Image = ((System.Drawing.Image)(resources.GetObject("pagarBTN.Image")));
+            this.pagarBTN.Location = new System.Drawing.Point(77, 5);
+            this.pagarBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.pagarBTN.Name = "pagarBTN";
+            this.pagarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.pagarBTN.Size = new System.Drawing.Size(64, 64);
+            this.pagarBTN.TabIndex = 2;
+            this.pagarBTN.Text = "Pagar";
+            this.pagarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.pagarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.pagarBTN.UseCompatibleTextRendering = true;
+            this.pagarBTN.UseVisualStyleBackColor = false;
+            this.pagarBTN.Click += new System.EventHandler(this.pagarBTN_Click);
+            // 
+            // anotarBTN
+            // 
+            this.anotarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.anotarBTN.BackColor = System.Drawing.Color.Red;
+            this.anotarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.anotarBTN.FlatAppearance.BorderSize = 0;
+            this.anotarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.anotarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.anotarBTN.Image = ((System.Drawing.Image)(resources.GetObject("anotarBTN.Image")));
+            this.anotarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.anotarBTN.Location = new System.Drawing.Point(3, 5);
+            this.anotarBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.anotarBTN.Name = "anotarBTN";
+            this.anotarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.anotarBTN.Size = new System.Drawing.Size(64, 64);
+            this.anotarBTN.TabIndex = 0;
+            this.anotarBTN.Text = "Asignar";
+            this.anotarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.anotarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.anotarBTN.UseCompatibleTextRendering = true;
+            this.anotarBTN.UseVisualStyleBackColor = false;
+            this.anotarBTN.Click += new System.EventHandler(this.anotarBTN_Click);
+            // 
+            // borrarBTN
+            // 
+            this.borrarBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.borrarBTN.BackColor = System.Drawing.Color.Red;
+            this.borrarBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.borrarBTN.Enabled = false;
+            this.borrarBTN.FlatAppearance.BorderSize = 0;
+            this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
+            this.borrarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.borrarBTN.Location = new System.Drawing.Point(225, 5);
+            this.borrarBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.borrarBTN.Name = "borrarBTN";
+            this.borrarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.borrarBTN.Size = new System.Drawing.Size(64, 64);
+            this.borrarBTN.TabIndex = 1;
+            this.borrarBTN.Text = "Borrar";
+            this.borrarBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.borrarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.borrarBTN.UseCompatibleTextRendering = true;
+            this.borrarBTN.UseVisualStyleBackColor = false;
+            this.borrarBTN.Click += new System.EventHandler(this.borrarBTN_Click);
             // 
             // SeccionMensualidades
             // 
@@ -640,5 +655,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.DataGridViewTextBoxColumn ultimoPaog;
         private System.Windows.Forms.Button verPagosBTN;
         private System.Windows.Forms.Button pagarBTN;
+        private System.Windows.Forms.Panel estadoPanel;
     }
 }

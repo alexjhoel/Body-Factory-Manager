@@ -288,13 +288,23 @@ namespace Body_Factory_Manager
             parametros.Add("nombre", nombreTBX.Text);
             parametros.Add("apellido", apellidoTBX.Text);
             parametros.Add("correoElctronico", correoTBX.Text);
-            using (var ms = new MemoryStream())
+            try
             {
-                perfilPBX.Image.Save(ms, perfilPBX.Image.RawFormat);
+                using (var ms = new MemoryStream())
+                {
+                    perfilPBX.Image.Save(ms, perfilPBX.Image.RawFormat);
 
-                byte[] data = ms.ToArray();
-                parametros.Add("@foto", data);
+                    byte[] data = ms.ToArray();
+                    parametros.Add("@foto", data);
+                }
+
             }
+            catch
+            {
+                sql.Modificar("UPDATE Usuarios SET nombre = @nombre, apellido = @apellido, correoElectronico = @correoElctronico WHERE id='" + Properties.Settings.Default.Usuario + "'", parametros);
+                return;
+            }
+            
 
             sql.Modificar("UPDATE Usuarios SET nombre = @nombre, apellido = @apellido, correoElectronico = @correoElctronico, foto = @foto WHERE id='" + Properties.Settings.Default.Usuario + "'", parametros);
         }

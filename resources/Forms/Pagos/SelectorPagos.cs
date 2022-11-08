@@ -6,12 +6,12 @@ namespace Body_Factory_Manager
     {
         SeccionPagos listado;
         public string id;
-        public SelectorPagos()
+        public SelectorPagos(FiltroBusqeda filtro = null)
         {
 
             InitializeComponent();
             DialogResult = DialogResult.Cancel;
-            listado = new SeccionPagos(true, this.Seleccionar);
+            listado = new SeccionPagos(false, filtro, this.Seleccionar, false);
             this.Controls.Add(listado);
             listado.Dock = DockStyle.Fill;
         }

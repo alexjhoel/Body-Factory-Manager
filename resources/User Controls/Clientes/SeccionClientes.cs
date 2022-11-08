@@ -31,17 +31,17 @@ namespace Body_Factory_Manager
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
             if (selector)
             {
-                buttonDatos.Add(new ListadoButtonDatos("Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
-                buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.Ver));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Ver", Body_Factory_Manager.Properties.Resources.ver, this.Ver));
             }
             else
             {
-                buttonDatos.Add(new ListadoButtonDatos("Nuevo", Body_Factory_Manager.Properties.Resources.person_add_FILL0_wght400_GRAD0_opsz48, this.Agregar));
-                buttonDatos.Add(new ListadoButtonDatos("Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
-                buttonDatos.Add(new ListadoButtonDatos("Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
-                buttonDatos.Add(new ListadoButtonDatos("Chatear", Body_Factory_Manager.Properties.Resources.chat, this.Chatear));
-                buttonDatos.Add(new ListadoButtonDatos("Servicio", Body_Factory_Manager.Properties.Resources.AltoBajo, this.BajaAlta, 11));
-                buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Borrar));
+                buttonDatos.Add(new ListadoButtonDatos(false, "Nuevo", Body_Factory_Manager.Properties.Resources.person_add_FILL0_wght400_GRAD0_opsz48, this.Agregar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Chatear", Body_Factory_Manager.Properties.Resources.chat, this.Chatear));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Servicio", Body_Factory_Manager.Properties.Resources.AltoBajo, this.BajaAlta, 11));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Borrar));
             }
             List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
 
@@ -51,7 +51,7 @@ namespace Body_Factory_Manager
             filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Teléfono", "telefono"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha de Ingreso", "fechaIngreso"));
             
-            listado = new Listado("Cédula", buttonDatos, Ordenar, filtros, Filtrar);
+            listado = new Listado("Cédula", buttonDatos, Ordenar, filtros, Filtrar, 1);
 
             listado.Dock = DockStyle.Fill;
             this.irMensualidades = irMensualidades;
@@ -69,7 +69,7 @@ namespace Body_Factory_Manager
             try
             {
                 if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-                sql.Modificar("UPDATE Clientes SET esOculto = 1, esActivo = 0 WHERE cedula= " + cedula);
+                sql.Modificar("DELETE FROM Clientes WHERE cedula= " + cedula);
                 CargarListaClientes();
             }
             catch (Exception e)
@@ -97,7 +97,7 @@ namespace Body_Factory_Manager
                 else {
                     if (MessageBox.Show("¿Desea dar de alta el servicio de este cliente? El cliente volverá a generar cuota automáticamente", "Dar de alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        sql.Modificar("UPDATE Clientes SET esActivo=1 WHERE cedula = " + cedula);
+                        sql.Modificar("UPDATE Clientes SET esActivo=1 WHERE cedula = '" + cedula + "';");
                     }
                 }
                 //if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;

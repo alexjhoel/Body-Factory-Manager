@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -12,6 +14,11 @@ namespace Body_Factory_Manager
         DataTable datosMensualidad;
         DataTable descuentos;
         DataTable montos;
+
+        string anteriorCedula;
+        string anteriorMes;
+        string anteriorAnio;
+
         TipoPagoMensualidad tipo;
 
         string cedulaCliente = null;
@@ -20,20 +27,56 @@ namespace Body_Factory_Manager
         {
             this.DialogResult = DialogResult.Cancel;
             InitializeComponent();
-
+            this.tipo = tipo;
             if(tipo == TipoPagoMensualidad.EditarMensualidad)
             {
-                try {
-                if(cedulaCliente != null && mes != null && anio != null)
+                
+                this.Width = 384;
+                try
+                {
+                    if (cedulaCliente != null && mes != null && anio != null)
                     {
-                        datosMensualidad = sql.Obtener("SELECT * FROM Mensualidades WHERE cedulaCliente='" + cedulaCliente + "' AND mes='" + mes + "' AND anio='" + anio + "'");
+
+                        anteriorCedula = cedulaCliente;
+                        anteriorMes = mes;
+                        anteriorAnio = anio;
+
+                        cedulaTBX.Text = cedulaCliente;
+                        CambiarCliente(cedulaCliente);
+                        ObtenerDatosMensualidad(cedulaCliente, mes, anio);
+                       
                         if (datosMensualidad != null && datosMensualidad.Rows.Count != 0)
                         {
-
+                            cobroNUD.Value = (decimal) datosMensualidad.Rows[0]["valor"];
+                            descuentoNUD.Value = (decimal)datosMensualidad.Rows[0]["descuento"];
+                            mesCBX.SelectedIndex = int.Parse(datosMensualidad.Rows[0]["mes"].ToString()) - 1;
+                            anioNUD.Value = int.Parse(datosMensualidad.Rows[0]["anio"].ToString());
+                            if(datosMensualidad.Rows[0]["vencimiento"] == DBNull.Value)
+                            {
+                                vencimientoDTP.Enabled = false;
+                                sinVecimientoCBX.Checked = true;
+                            }
+                            else
+                            {
+                                vencimientoDTP.Enabled = true;
+                                vencimientoDTP.Value = (DateTime)datosMensualidad.Rows[0]["vencimiento"];
+                            }
+                            ingresoDTP.Value = (DateTime)datosMensualidad.Rows[0]["fechaIngreso"];
                         }
+                        else
+                        {
+                            datosMensualidad = null;
+                            mesCBX.SelectedIndex = int.Parse(mes) - 1;
+                            anioNUD.Value = int.Parse(anio);
+                            ingresoDTP.Value = DateTime.ParseExact("01/" + mes + "/" + anio, "dd/M/yyyy", CultureInfo.InvariantCulture);
+                            vencimientoDTP.Value = DateTime.ParseExact("01/" + (int.Parse(mes) + 1) + "/" + anio, "dd/M/yyyy", CultureInfo.InvariantCulture);
+                        }
+                        
                     }
-                
+
                     
+                
+
                 }
                 catch (Exception ex)
                 {
@@ -44,8 +87,57 @@ namespace Body_Factory_Manager
                     sql.CerrarConexion();
                 }
             }
+            else
+            {
+                try
+                {
+                    if (cedulaCliente != null && mes != null && anio != null)
+                    {
 
+                        anteriorCedula = cedulaCliente;
+                        anteriorMes = mes;
+                        anteriorAnio = anio;
 
+                        cedulaTBX.Text = cedulaCliente;
+                        CambiarCliente(cedulaCliente);
+                        ObtenerDatosMensualidad(cedulaCliente, mes, anio);
+
+                        if (datosMensualidad != null && datosMensualidad.Rows.Count != 0)
+                        {
+                            cobroNUD.Value = (decimal)datosMensualidad.Rows[0]["valor"];
+                            descuentoNUD.Value = (decimal)datosMensualidad.Rows[0]["descuento"];
+                            mesCBX.SelectedIndex = int.Parse(datosMensualidad.Rows[0]["mes"].ToString()) - 1;
+                            anioNUD.Value = int.Parse(datosMensualidad.Rows[0]["anio"].ToString());
+                            if (datosMensualidad.Rows[0]["vencimiento"] == DBNull.Value)
+                            {
+                                vencimientoDTP.Enabled = false;
+                                sinVecimientoCBX.Checked = true;
+                            }
+                            else
+                            {
+                                vencimientoDTP.Enabled = true;
+                                vencimientoDTP.Value = (DateTime)datosMensualidad.Rows[0]["vencimiento"];
+                            }
+                            ingresoDTP.Value = (DateTime)datosMensualidad.Rows[0]["fechaIngreso"];
+                        }
+                        else
+                        {
+                            MessageBox.Show("Selecciones una mensualiad activa");
+                            this.Close();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    sql.CerrarConexion();
+                }
+            }
+                ActualizarTotal();
 
             EstablecerInterfaz();
 
@@ -53,15 +145,6 @@ namespace Body_Factory_Manager
 
         private void EstablecerInterfaz()
         {
-
-            string cedulaCliente = "";
-            if (datosMensualidad != null && datosMensualidad.Rows.Count != 0)
-            {
-                cedulaCliente = datosMensualidad.Rows[0]["cedulaCliente"].ToString();
-            }
-
-            cedulaTBX.Text = cedulaCliente;
-
             descuentos = sql.Obtener("SELECT nombre, porcentaje, CONCAT(nombre, ' -', porcentaje, '%') AS 'todo' FROM Descuentos");
             foreach (DataRow row in descuentos.Rows)
             {
@@ -82,22 +165,6 @@ namespace Body_Factory_Manager
             cobroCBX.SelectedIndex = 0;
             entregaCBX.SelectedIndex = 0;
 
-            buscarClienteBTN.Visible = tipo == TipoPagoMensualidad.NuevoPago;
-            if (tipo == TipoPagoMensualidad.NuevoPago)
-            {
-                ActivarZonaMensualidad(false);
-            }
-            if (tipo == TipoPagoMensualidad.PrimerPago || tipo == TipoPagoMensualidad.NuevaMensualidad)
-            {
-                entregaCBX.Items.Clear();
-                entregaCBX.Items.Add("Entrega total");
-                entregaCBX.Items.Add("Entrega parcial");
-                entregaCBX.Items.Add("Paga después");
-                buscarMensualidadBtn.Hide();
-                vencimientoDTP.Value = DateTimeUtilities.NextMonth(DateTime.Now);
-                totalTbx.Text = cobroNUD.Value + "";
-            }
-
         }
 
         private void ActivarZonaMensualidad(bool estado)
@@ -106,8 +173,7 @@ namespace Body_Factory_Manager
             cobroCBX.Enabled = estado;
             descuentoNUD.Enabled = estado;
             descuentoCBX.Enabled = estado;
-            adjudDTP.Enabled = estado;
-            vencimientoDTP.Enabled = estado;
+            ingresoDTP.Enabled = estado;
             totalTbx.Enabled = estado;
             if (!estado)
             {
@@ -117,21 +183,21 @@ namespace Body_Factory_Manager
             }
         }
 
-        private void ObtenerDatosMensualidad(string id)
+        private void ObtenerDatosMensualidad(string cedulaCliente, string mes, string anio)
         {
-            string consulta = "SELECT Mensualidades.id, valor, descuento, fechaCreado, vencimiento, cedulaCliente, pagado " +
-                "FROM (SELECT Mensualidades.id as id, ISNULL(SUM(monto),0) AS pagado " +
+            string consulta = "SELECT Mensualidades.cedulaCliente,Mensualidades.mes,Mensualidades.anio, valor, descuento, fechaIngreso, vencimiento, pagado, (valor - valor * (descuento / 100)) as total " +
+                "FROM (SELECT Mensualidades.cedulaCliente,Mensualidades.mes,Mensualidades.anio, ISNULL(SUM(monto),0) AS pagado " +
                 "FROM Mensualidades " +
                 "LEFT JOIN Pagos " +
-                "ON Pagos.idMensualidad = Mensualidades.id " +
-                "WHERE Mensualidades.id = " + id +
-                " GROUP BY Mensualidades.id) as MensualidadesPagos " +
+                "ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Mensualidades.mes = Pagos.mesMensualidad AND Mensualidades.anio = Pagos.anioMensualidad " +
+                "WHERE Mensualidades.cedulaCliente = '" + cedulaCliente + "' AND Mensualidades.mes = '" + mes + "' AND Mensualidades.anio = '" + anio +
+                "' GROUP BY Mensualidades.cedulaCliente,Mensualidades.mes,Mensualidades.anio) as MensualidadesPagos " +
                 "INNER JOIN Mensualidades " +
-                "ON MensualidadesPagos.id = Mensualidades.id ";
+                "ON MensualidadesPagos.cedulaCliente = Mensualidades.cedulaCliente AND Mensualidades.mes = MensualidadesPagos.mes AND Mensualidades.anio = MensualidadesPagos.anio ";
+            
             try
             {
                 datosMensualidad = sql.Obtener(consulta);
-                Console.WriteLine(datosMensualidad.Rows[0]["valor"]);
             }
             catch (Exception ex)
             {
@@ -308,93 +374,129 @@ namespace Body_Factory_Manager
 
         private void guardarBTN_Click(object sender, EventArgs e)
         {
+
             string consulta = "";
             Dictionary<string, object> parametros = new Dictionary<string, object>();
             parametros.Add("valor", cobroNUD.Value);
             parametros.Add("descuento", descuentoNUD.Value);
-            parametros.Add("adjudicado", adjudDTP.Value);
-            parametros.Add("vencimiento", vencimientoDTP.Value);
+            parametros.Add("fechaIngreso", ingresoDTP.Value);
+            if (sinVecimientoCBX.Checked) parametros.Add("vencimiento", DBNull.Value);
+            else parametros.Add("vencimiento", vencimientoDTP.Value);
             parametros.Add("entregaPago", entregaNUD.Value);
             parametros.Add("fechaPago", pagoFechaDTP.Value);
+            parametros.Add("mes", (mesCBX.SelectedIndex + 1).ToString());
+            parametros.Add("anio", anioNUD.Value.ToString());
+            parametros.Add("cedulaCliente", cedulaTBX.Text);
             if (datosMensualidad != null)
             {
-                parametros.Add("cedulaCliente", datosMensualidad.Rows[0]["cedulaCliente"]);
-                parametros.Add("idMensualidad", datosMensualidad.Rows[0]["id"].ToString());
-                consulta = "UPDATE Mensualidades SET valor = @valor, descuento = @descuento, fechaCreado = @adjudicado WHERE id =" + datosMensualidad.Rows[0]["id"].ToString();
+
+                consulta = "UPDATE Mensualidades SET valor = @valor, " +
+                    "descuento = @descuento, fechaIngreso = @fechaIngreso, vencimiento = @vencimiento, mes = @mes, anio = @anio WHERE cedulaCliente ='" + datosMensualidad.Rows[0]["cedulaCliente"] + "' AND mes = '" + datosMensualidad.Rows[0]["mes"] + "' AND anio =" + datosMensualidad.Rows[0]["anio"];
             }
-            if (tipo == TipoPagoMensualidad.PrimerPago)
+            else
             {
-                consulta += "UPDATE Mensualidades SET valor = @valor, descuento = @descuento, fechaCreado = @adjudicado, vencimiento=@vencimiento WHERE id =" + datosMensualidad.Rows[1]["id"].ToString();
-                if (entregaCBX.SelectedIndex < 2)
-                {
-                    consulta += " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) VALUES(@entregaPago, @fechaPago, @cedulaCliente, " + datosMensualidad.Rows[0]["id"].ToString() + ");";
-                }
-
-                try
-                {
-                    sql.Modificar(consulta, parametros);
-                    this.DialogResult = DialogResult.OK;
-                    MessageBox.Show(this, "Datos guardados", "Datos guardados con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, "Ocurrió un error en la base de datos,no se guardaron los datos, razon: \n" + ex.Message, "Error al guardar datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    sql.CerrarConexion();
-                }
-                return;
-
+                consulta = "INSERT INTO Mensualidades (cedulaCliente, mes, anio, valor, descuento, fechaIngreso, vencimiento) VALUES(@cedulaCliente, @mes, @anio, @valor, @descuento, @fechaIngreso, @vencimiento);";
             }
 
-            if (tipo == TipoPagoMensualidad.NuevaMensualidad)
-            {
-                parametros.Add("cedulaCliente", cedulaCliente);
-                consulta = "INSERT INTO Mensualidades (valor, descuento, fechaCreado, vencimiento, cedulaCliente) VALUES(@valor, @descuento, @adjudicado, @vencimiento, @cedulaCliente)";
-                if (entregaCBX.SelectedIndex < 2)
-                {
-                    consulta += " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) VALUES(@entregaPago, @fechaPago, @cedulaCliente, SCOPE_IDENTITY());";
-                }
-
-
-            }
-
-
-            if (tipo == TipoPagoMensualidad.PagarCuotaDesdeClientes || tipo == TipoPagoMensualidad.PagarCuotaDesdeListado)
-            {
-                consulta = " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) " +
-                   "VALUES(@entregaPago, @fechaPago, @cedulaCliente, @idMensualidad);";
-
-            }
-
-            if (tipo == TipoPagoMensualidad.NuevoPago)
-            {
-                    consulta = " INSERT INTO Pagos (monto, fecha, cedulaCliente) " +
-                   "VALUES(@entregaPago, @fechaPago, @cedulaCliente);";
-                
+            
+            
 
 
 
-            }
-            /*
-            if (false)
-            {
-
-                 consulta = " INSERT INTO Pagos (monto, fecha, cedulaCliente, idMensualidad) " +
-                    "VALUES(@entregaPago, @fechaPago, @cedulaCliente, @idMensualidad);";
-                consulta += "EXEC ComprobarMensualidades @c = @cedulaCliente";
-                //Actualizar mensualidad
-                sql.Modificar(consulta, parametros);
-            }*/
-
-            consulta += " EXEC ComprobarMensualidades @c = @cedulaCliente";
+            
             try
             {
+                //Mensualidades multiples
                 sql.Modificar(consulta, parametros);
+                if (tipo == TipoPagoMensualidad.NuevoPago)
+                {
+                    consulta = " INSERT INTO Pagos (cedulaCliente, mesMensualidad, anioMensualidad, monto, fecha) VALUES(@cedulaCliente, @mes, @anio, @entregaPago, @fechaPago);";
+                    consulta += " EXEC ComprobarMensualidades @c = @cedulaCliente";
+                    sql.Modificar(consulta, parametros);
+                    MessageBox.Show(this, "Pago adjuntado con exito", "Datos guardados con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    /*
+                    ObtenerDatosMensualidad(cedulaCliente, (mesCBX.SelectedIndex + 1).ToString(), anioNUD.Value.ToString());
+                    
+                    decimal sobrante = ((decimal)datosMensualidad.Rows[0]["total"]) - ((decimal)datosMensualidad.Rows[0]["pagado"]);
+                    int i = 0;
+                    if(sobrante < 0)
+                    {
+                        if(MessageBox.Show(this, "El pago excede el total de la mensualidad, ¿Quieres distribuirlo en las posteriores cuotas?", "Datos guardados con éxito", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            while (sobrante < 0)
+                            {
 
-                MessageBox.Show(this, "Datos guardados", "Datos guardados con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                i++;
+                                if (mesCBX.SelectedIndex + i + 1 == 13)
+                                {
+                                    parametros["mes"] = "1";
+                                    parametros["anio"] = (anioNUD.Value + 1).ToString();
+                                }
+                                else parametros["mes"] = (mesCBX.SelectedIndex + i + 1).ToString();
+                                //Pasarle datos de esta mensualidad siguiente a datosMensualidad
+                                ObtenerDatosMensualidad(cedulaTBX.Text, (mesCBX.SelectedIndex + 1).ToString(), anioNUD.Value.ToString());
+                                parametros["valor"] = (decimal)
+                                if(datosMensualidad.Rows.Count != 0) {
+                                    consulta = "INSERT INTO Mensualidades (cedulaCliente, mes, anio, valor, descuento, fechaIngreso, vencimiento) VALUES(@cedulaCliente, @mes, @anio, @valor, @descuento, @fechaIngreso, @vencimiento);";
+
+                                } 
+                            }
+                        }
+                    }
+                    */
+
+                }
+                if (tipo == TipoPagoMensualidad.EditarMensualidad)
+                {
+                    consulta = "INSERT INTO Mensualidades (cedulaCliente, mes, anio, valor, descuento, fechaIngreso, vencimiento) VALUES(@cedulaCliente, @mes, @anio, @valor, @descuento, @fechaIngreso, @vencimiento);";
+
+                    string texto = "Datos guardados";
+                    for (int i = 1; i < (int)xMesesNUD.Value; i++)
+                    {
+                        if (i == 1) texto = "Se agregaron o modificaron las siguientes mensualidades: \n Mes " + parametros["mes"] + " del año " + parametros["anio"] + " a cobrar " + totalTbx.Text + " a vencer " + ((DateTime)parametros["vencimiento"]).ToString("dd/M/yyyy");
+
+                        if (mesCBX.SelectedIndex + i + 1 == 13)
+                        {
+                            parametros["mes"] = "1";
+                            parametros["anio"] = (anioNUD.Value + 1).ToString();
+                        }
+                        else parametros["mes"] = (mesCBX.SelectedIndex + i + 1).ToString();
+                        parametros["fechaIngreso"] = ((DateTime)parametros["fechaIngreso"]).NextMonth();
+
+                        if (sinVecimientoCBX.Checked) parametros["vencimiento"] = parametros["fechaIngreso"];
+                        else { parametros["vencimiento"] = ((DateTime)parametros["vencimiento"]).NextMonth(); }
+
+
+                        try
+                        {
+                            sql.Modificar(consulta, parametros);
+                            texto += "\n Mes " + parametros["mes"] + " del año " + parametros["anio"] + " a cobrar " + totalTbx.Text + " vencimiento " + ((DateTime)parametros["vencimiento"]).ToString("dd/M/yyyy");
+                        }
+
+                        catch (SqlException exc)
+                        {
+                            if (exc.Number == 2627) { MessageBox.Show("La cuota del mes " + parametros["mes"] + " del año " + parametros["anio"] + " no se pudo crear, ya existe otra en su lugar, si desea modificarla edítala desde el listado", "Error de duplicados", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                            else MessageBox.Show("Ocurrió un error al agregar la cuota del mes " + parametros["mes"] + " del año " + parametros["anio"], "Error de base datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            sql.CerrarConexion();
+                        }
+
+
+                    }
+                    if (MessageBox.Show(this, texto + "\n ¿Desea adjuntar un pago a la cuota?", "Datos guardados con éxito", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        ObtenerDatosMensualidad(cedulaTBX.Text, (mesCBX.SelectedIndex + 1).ToString(), anioNUD.Value.ToString());
+                        xMesesPNL.Visible = false;
+                        xMesesNUD.Value = 1;
+                        this.Width = 589;
+                        tipo = TipoPagoMensualidad.NuevoPago;
+                        return;
+                    }
+                }
+                
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -415,36 +517,6 @@ namespace Body_Factory_Manager
         }
 
 
-
-
-
-        private void buscarMensualidadBtn_Click(object sender, EventArgs e)
-        {
-            FiltroBusqeda filtro = null;
-            if (cedulaCliente != null)
-            {
-                filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedulaCliente");
-            }
-            using (SelectorMensualidad selector = new SelectorMensualidad(filtro))
-            {
-                selector.ShowDialog();
-                if (selector.DialogResult == DialogResult.OK)
-                {
-                    ObtenerDatosMensualidad(selector.id);
-
-                    cobroNUD.Value = (decimal)datosMensualidad.Rows[0]["valor"];
-                    descuentoNUD.Value = (decimal)datosMensualidad.Rows[0]["descuento"];
-                    adjudDTP.Value = (DateTime)datosMensualidad.Rows[0]["fechaCreado"];
-
-                    vencimientoDTP.Value = (DateTime)datosMensualidad.Rows[0]["vencimiento"];
-                    ActualizarTotal();
-                    ActivarZonaMensualidad(true);
-                    CambiarCliente(datosMensualidad.Rows[0]["cedulaCliente"].ToString());
-                }
-            }
-
-
-        }
 
         private void cedulaTBX_TextChanged(object sender, EventArgs e)
         {
@@ -473,7 +545,13 @@ namespace Body_Factory_Manager
                 DataTable datos = sql.Obtener("SELECT nombre,apellido FROM Clientes WHERE cedula=" + cedula);
                 if (datos.Rows.Count != 0)
                 {
+                    if (!SePuedeEstablecerMensualidad())
+                    {
+                        MessageBox.Show("Ya existe una mensualidad con el mismo mes y año de vigencia", "No se puede cambiar la cedula", MessageBoxButtons.OK);
+                        cedulaTBX.Text = anteriorCedula;
+                    }
                     nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
+                    anteriorCedula = cedulaTBX.Text;
                     return;
                 }
 
@@ -529,7 +607,47 @@ namespace Body_Factory_Manager
 
         private void sinVecimientoCBX_CheckedChanged(object sender, EventArgs e)
         {
-            vencimientoDTP.Enabled = sinVecimientoCBX.Checked;
+            vencimientoDTP.Enabled = !sinVecimientoCBX.Checked;
+        }
+
+        private void mesCBX_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!SePuedeEstablecerMensualidad())
+            {
+                MessageBox.Show("Ya existe una mensualidad con el mismo mes y año de vigencia", "No se puede el mes", MessageBoxButtons.OK);
+                mesCBX.SelectedIndex = int.Parse(anteriorMes) - 1;
+                return;
+            }
+            anteriorAnio = (mesCBX.SelectedIndex + 1).ToString();
+        }
+
+        private void anioNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (!SePuedeEstablecerMensualidad())
+            {
+                MessageBox.Show("Ya existe una mensualidad con el mismo mes y año de vigencia", "No se puede cambiar el año", MessageBoxButtons.OK);
+                anioNUD.Value = int.Parse(anteriorAnio);
+                return;
+            }
+            anteriorAnio = anioNUD.Value.ToString();
+        }
+
+        private bool SePuedeEstablecerMensualidad()
+        {
+            bool resultado = true;
+            try
+            {
+                DataTable otraMensualidad = sql.Obtener("SELECT * FROM Mensualidades WHERE cedulaCliente = '" + cedulaTBX.Text + "' AND mes = '" + (mesCBX.SelectedIndex + 1) + "' AND anio = '" + anioNUD.Value + "'");
+                resultado = otraMensualidad.Rows.Count == 0 || (datosMensualidad != null && datosMensualidad.Rows[0]["cedulaCliente"].ToString() == cedulaTBX.Text
+                    && datosMensualidad.Rows[0]["mes"].ToString() == (mesCBX.SelectedIndex + 1).ToString()
+                    && datosMensualidad.Rows[0]["anio"].ToString() == anioNUD.Value.ToString());
+
+            }
+            catch 
+            {
+                
+            }
+            return resultado;
         }
     }
 

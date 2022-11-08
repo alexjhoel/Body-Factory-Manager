@@ -16,13 +16,14 @@ namespace Body_Factory_Manager
         int indexToSelect = 0;
         string propiedadOrden;
         SortOrder orden = SortOrder.None;
+        List<ListadoButtonDatos> buttonsDatos;
 
         List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
 
         private Action<string, SortOrder> Ordenar;
         private Action<FiltroBusqeda> Filtrar;
 
-        public Listado(string identificador, List<ListadoButtonDatos> buttonsDatos, Action<string, SortOrder> Ordenar, List<FiltroBusqeda> filtros, Action<FiltroBusqeda> Filtrar)
+        public Listado(string identificador, List<ListadoButtonDatos> buttonsDatos, Action<string, SortOrder> Ordenar, List<FiltroBusqeda> filtros, Action<FiltroBusqeda> Filtrar, int filtroDefault = 0)
 
         {
             this.filtros = filtros;
@@ -34,7 +35,7 @@ namespace Body_Factory_Manager
             {
                 filtrosCbx.Items.Add(filtro.textoAMostrar);
             }
-
+            this.buttonsDatos = buttonsDatos;
             foreach (ListadoButtonDatos data in buttonsDatos)
             {
                 Button button = new Button();
@@ -53,9 +54,9 @@ namespace Body_Factory_Manager
                 button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
                 button.UseVisualStyleBackColor = false;
                 button.Anchor = AnchorStyles.None;
-
                 button.Click += delegate (object sender, EventArgs e)
                 {
+                    
                     if (tablaDGV.SelectedRows.Count >= 1)
                     {
                         data.onClick(((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index][identificador].ToString());
@@ -72,8 +73,9 @@ namespace Body_Factory_Manager
             this.Ordenar = Ordenar;
             this.Filtrar = Filtrar;
 
-            filtrosCbx.SelectedIndex = 0;
-
+            filtrosCbx.SelectedIndex = filtroDefault;
+            ActualizarCambios();
+            ActualizarBotonesDisponibles();
 
 
         }
@@ -129,6 +131,8 @@ namespace Body_Factory_Manager
 
                 tablaDGV.Rows[i].Selected = false;
             }
+
+
             
         }
 
@@ -184,7 +188,6 @@ namespace Body_Factory_Manager
 
         private void tablaDGV_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
             return;
             foreach (DataGridViewColumn dc in tablaDGV.Columns)
             {
@@ -238,17 +241,17 @@ namespace Body_Factory_Manager
             {
                 //MessageBox.Show(ex.Message);
             }
-
+            ActualizarBotonesDisponibles();
         }
 
         private void opcionesFLP_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
 
-
-        private void filtrosCbx_SelectedIndexChanged(object sender, EventArgs e)
+        private void ActualizarCambios() 
         {
+            
             valor1Tbx.Clear();
             valor2Tbx.Clear();
             valor1NUD.Value = 0;
@@ -303,12 +306,32 @@ namespace Body_Factory_Manager
                 hastaLBL.Show();
                 return;
             }
-
         }
 
-        private void tablaDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void filtrosCbx_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            ActualizarCambios();
+        }
+
+
+        private void ActualizarBotonesDisponibles()
+        {
+            if (tablaDGV.SelectedRows.Count == 0)
+            {
+                for (int i = 0; i < opcionesFLP.Controls.Count; i++)
+                {
+                    opcionesFLP.Controls[i].Enabled = !buttonsDatos[i].requiereSeleccion;
+                }
+            }
+            else
+            {
+                foreach (Control c in opcionesFLP.Controls)
+                {
+                    c.Enabled = true;
+                }
+            }
+            
         }
 
         private void tablaDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -321,20 +344,28 @@ namespace Body_Factory_Manager
             {
                 tablaDGV.CurrentCell = null;
             }
-            
+
+            ActualizarBotonesDisponibles();
+        }
+
+        private void tablaDGV_SelectionChanged(object sender, EventArgs e)
+        {
+            ActualizarBotonesDisponibles();
         }
     }
 
     public class ListadoButtonDatos
     {
-        public ListadoButtonDatos(string texto, Image icon, Action<string> onClick, float fontSize = 12)
+        public ListadoButtonDatos(bool requiereSeleccion, string texto, Image icon, Action<string> onClick, float fontSize = 12)
         {
             this.texto = texto;
             this.icon = icon;
             this.onClick = onClick;
             this.fontSize = fontSize;
+            this.requiereSeleccion = requiereSeleccion;
         }
 
+        public bool requiereSeleccion;
         public Image icon;
         public string texto;
         public Action<string> onClick;

@@ -42,6 +42,7 @@ namespace Body_Factory_Manager
             this.usuarioLBL = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
+            this.telefonoSaludTBX = new System.Windows.Forms.TextBox();
             this.observacionesTbx = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@ namespace Body_Factory_Manager
             this.darDeBajaBTN = new System.Windows.Forms.Button();
             this.estadoLBL = new System.Windows.Forms.Label();
             this.estadoPNL = new System.Windows.Forms.Panel();
-            this.telefonoSaludTBX = new System.Windows.Forms.TextBox();
             this.perfilPBX = new Body_Factory_Manager.resources.Custom.RoundPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.perfilPBX)).BeginInit();
@@ -199,6 +199,16 @@ namespace Body_Factory_Manager
             this.label14.Size = new System.Drawing.Size(120, 13);
             this.label14.TabIndex = 30;
             this.label14.Text = "Número centro de salud";
+            // 
+            // telefonoSaludTBX
+            // 
+            this.telefonoSaludTBX.BackColor = System.Drawing.Color.White;
+            this.telefonoSaludTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telefonoSaludTBX.Location = new System.Drawing.Point(6, 449);
+            this.telefonoSaludTBX.MaxLength = 20;
+            this.telefonoSaludTBX.Name = "telefonoSaludTBX";
+            this.telefonoSaludTBX.Size = new System.Drawing.Size(186, 26);
+            this.telefonoSaludTBX.TabIndex = 29;
             // 
             // observacionesTbx
             // 
@@ -513,16 +523,6 @@ namespace Body_Factory_Manager
             this.estadoPNL.Size = new System.Drawing.Size(26, 26);
             this.estadoPNL.TabIndex = 39;
             // 
-            // telefonoSaludTBX
-            // 
-            this.telefonoSaludTBX.BackColor = System.Drawing.Color.White;
-            this.telefonoSaludTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.telefonoSaludTBX.Location = new System.Drawing.Point(6, 449);
-            this.telefonoSaludTBX.MaxLength = 20;
-            this.telefonoSaludTBX.Name = "telefonoSaludTBX";
-            this.telefonoSaludTBX.Size = new System.Drawing.Size(186, 26);
-            this.telefonoSaludTBX.TabIndex = 29;
-            // 
             // perfilPBX
             // 
             this.perfilPBX.BackColor = System.Drawing.Color.DarkGray;
@@ -558,7 +558,7 @@ namespace Body_Factory_Manager
             this.Name = "DatosCliente";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AgregarCliente";
+            this.Text = "Datos de cliente";
             this.Load += new System.EventHandler(this.DatosCliente_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

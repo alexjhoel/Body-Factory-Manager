@@ -39,16 +39,16 @@ namespace Body_Factory_Manager
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
             if (selector)
             {
-                buttonDatos.Add(new ListadoButtonDatos("Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
-                buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.Editar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Ver", Body_Factory_Manager.Properties.Resources.ver, this.Editar));
 
             }
             else
             {
-                buttonDatos.Add(new ListadoButtonDatos("Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
-                buttonDatos.Add(new ListadoButtonDatos("Avisar", Body_Factory_Manager.Properties.Resources.chat, this.Avisar));
-                buttonDatos.Add(new ListadoButtonDatos("Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
-                buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Eliminar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Avisar", Body_Factory_Manager.Properties.Resources.chat, this.Avisar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Eliminar));
             }
 
             List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
@@ -65,7 +65,8 @@ namespace Body_Factory_Manager
 
             diasNUD.Value = 6;
 
-           
+
+
 
 
         }
@@ -76,7 +77,7 @@ namespace Body_Factory_Manager
             InitializeComponent();
             this.filtro = new FiltroBusqeda(TipoFiltro.Nada);
             cedulaTBX.Text = cedulaCliente;
-            
+
             anioNUD.Value = DateTime.Now.Year;
             CargarListaMensualidades();
             tablaDGV.Rows[DateTime.Now.Month - 1].Selected = true;
@@ -106,14 +107,17 @@ namespace Body_Factory_Manager
             {
 
                 tablaDGV.Rows.Add();
-                tablaDGV.Rows[i].Cells[0].Value = DateTime.ParseExact("01/" + (i + 1) + "/2001", "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM"); 
+                tablaDGV.Rows[i].Cells[0].Value = DateTime.ParseExact("01/" + (i + 1) + "/2001", "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM");
                 DataTable datos = sql.Obtener("SELECT fechaIngreso, pagado, valor, descuento, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vecimiento') as vencimiento     , CONVERT(DECIMAL(6, 2), valor * (1 - descuento / 100)) as total, ((valor * (1 - descuento / 100)) - pagado) as deuda, ISNULL(CONVERT(VARCHAR(10),ultimoPago,103),'Sin pagos') as ultimoPago " +
 "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado, MAX(Pagos.fecha) as ultimoPago " +
 "FROM Mensualidades LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
 "WHERE Mensualidades.cedulaCliente = '" + cedulaTBX.Text + "' AND Mensualidades.mes = " + (i + 1) + " AND Mensualidades.anio = " + anioNUD.Value +
 " GROUP BY Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades " +
 "INNER JOIN Mensualidades ON PagosMensualidades.cedulaCliente = Mensualidades.cedulaCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio");
-                if (datos == null || datos.Rows.Count == 0) continue;
+                if (datos == null || datos.Rows.Count == 0) {
+                    tablaDGV.Rows[i].Tag = "Vacío";
+                    continue;
+                }
                 tablaDGV.Rows[i].Cells[1].Value = datos.Rows[0]["fechaIngreso"];
                 tablaDGV.Rows[i].Cells[2].Value = datos.Rows[0]["valor"];
                 tablaDGV.Rows[i].Cells[3].Value = datos.Rows[0]["descuento"];
@@ -136,7 +140,7 @@ namespace Body_Factory_Manager
             using (DatosMensualidad nuevaVentana = new DatosMensualidad(TipoPagoMensualidad.EditarMensualidad, id))
             {
                 nuevaVentana.ShowDialog();
-                if(nuevaVentana.DialogResult == DialogResult.OK) ActualizarConsulta();
+                if (nuevaVentana.DialogResult == DialogResult.OK) ActualizarConsulta();
             }
 
         }
@@ -218,7 +222,7 @@ namespace Body_Factory_Manager
                 "FROM(SELECT Mensualidades.id, pagado, valor, descuento, dia, mes, anio, vencimiento, cedulaCliente " +
                 "FROM(SELECT Mensualidades.id, (ISNULL(SUM(monto), 0)) AS pagado " +
                 "FROM Mensualidades " +
-                "LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio "  +
+                "LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
                 "GROUP BY Mensualidades.id) AS PagosMensualidades " +
                 "INNER JOIN Mensualidades ON PagosMensualidades.id = Mensualidades.id) as FullMensualidades " +
                 "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula WHERE ";
@@ -230,6 +234,7 @@ namespace Body_Factory_Manager
             if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
 
             CargarListaMensualidades();
+            ActualizarDisponibilidadBotones();
         }
 
 
@@ -250,7 +255,7 @@ namespace Body_Factory_Manager
 
         private void buscarClienteBTN_Click(object sender, EventArgs e)
         {
-            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedula");
+            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Nada);
             filtro.valor1 = this.cedulaTBX.Text.Trim();
             using (SelectorClientes listado = new SelectorClientes(filtro))
             {
@@ -268,11 +273,11 @@ namespace Body_Factory_Manager
             {
                 try
                 {
-                    DataTable datos = sql.Obtener("SELECT nombre,apellido FROM Clientes WHERE cedula=" + cedulaTBX.Text);
+                    DataTable datos = sql.Obtener("SELECT nombre,apellido, esActivo FROM Clientes WHERE cedula=" + cedulaTBX.Text);
                     if (datos.Rows.Count != 0)
                     {
                         nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
-
+                        estadoPanel.BackColor = (bool)datos.Rows[0]["esActivo"] ? Color.Green : Color.Red;
                         ActualizarConsulta();
                         anotarBTN.Enabled = true;
                         borrarBTN.Enabled = true;
@@ -298,10 +303,71 @@ namespace Body_Factory_Manager
 
         private void anotarBTN_Click(object sender, EventArgs e)
         {
-            if (tablaDGV.SelectedCells.Count == 0) return;
+            if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0) return;
             using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.EditarMensualidad, cedulaTBX.Text, (tablaDGV.SelectedCells[0].RowIndex + 1).ToString(), anioNUD.Value.ToString()))
             {
-                datosMensualidad.ShowDialog();
+                if (datosMensualidad.ShowDialog() == DialogResult.OK) ActualizarConsulta();
+
+            }
+        }
+
+        private void pagarBTN_Click(object sender, EventArgs e)
+        {
+            if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0) return;
+            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.NuevoPago, cedulaTBX.Text, (tablaDGV.SelectedCells[0].RowIndex + 1).ToString(), anioNUD.Value.ToString()))
+            {
+                if (datosMensualidad.ShowDialog() == DialogResult.OK) ActualizarConsulta();
+
+            }
+        }
+
+        private void borrarBTN_Click(object sender, EventArgs e)
+        {
+            if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0 || tablaDGV.SelectedRows[0].Tag.ToString() == "Vacío") return;
+            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar la mensualidad?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            sql.Modificar("DELETE FROM Mensualidades WHERE cedulaCliente ='" + cedulaTBX.Text + "' AND mes='" + (tablaDGV.SelectedCells[0].RowIndex + 1) + "' AND anio= '" + anioNUD.Value + "'");
+            ActualizarConsulta();
+        }
+
+        private void verPagosBTN_Click(object sender, EventArgs e)
+        {
+            if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0) return;
+            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Numero, "", "cedulaCliente = '" + cedulaTBX.Text + "' AND mesMensualidad= '" + (tablaDGV.SelectedCells[0].RowIndex + 1).ToString() + "' AND anioMensualidad = '" + anioNUD.Value + "' AND 1");
+            filtro.valor1 = "1";
+            using (SelectorPagos selector = new SelectorPagos(filtro))
+            {
+                selector.ShowDialog();
+            }
+        }
+
+        private void anioNUD_ValueChanged(object sender, EventArgs e)
+        {
+            ActualizarConsulta();
+            
+        }
+
+        private void sigMesBTN_Click(object sender, EventArgs e)
+        {
+            anioNUD.Value++;
+        }
+
+        private void antMesBTN_Click(object sender, EventArgs e)
+        {
+            anioNUD.Value--;
+        }
+
+        private void tablaDGV_SelectionChanged(object sender, EventArgs e)
+        {
+            ActualizarDisponibilidadBotones();
+        }
+
+        private void ActualizarDisponibilidadBotones()
+        {
+            int i = 0;
+            foreach(Control c in opcionesPNL.Controls)
+            {
+                c.Enabled =  (tablaDGV.SelectedRows.Count != 0 && tablaDGV.SelectedRows[0].Tag == null) || (tablaDGV.SelectedRows.Count != 0 && tablaDGV.SelectedRows[0].Tag != null && i == 2);
+                i++;
             }
         }
     }

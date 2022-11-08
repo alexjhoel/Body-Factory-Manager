@@ -557,6 +557,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="resources\maximizar2.png" />
+    <None Include="resources\maximizar1.png" />
+    <None Include="resources\maximizar.png" />
     <None Include="resources\RightLeft.png" />
     <None Include="resources\graficas.png" />
     <None Include="resources\zoom-in %281%29.png" />

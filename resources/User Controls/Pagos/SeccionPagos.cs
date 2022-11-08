@@ -14,12 +14,15 @@ namespace Body_Factory_Manager
         string propiedadOrden;
 
         public string id;
+        bool incluirES = false;
 
 
-        public SeccionPagos(bool selector = false, Action<string> seleccionar = null)
+        public SeccionPagos(bool selector = false, FiltroBusqeda filtro = null, Action<string> seleccionar = null, bool incluirES = true)
         {
+
             sql = new SQL(Properties.Settings.Default.ConnectionString);
-            this.filtro = new FiltroBusqeda(TipoFiltro.Nada);
+            this.filtro = filtro;
+
             if (filtro == null)
             {
                 this.filtro = new FiltroBusqeda(TipoFiltro.Nada);
@@ -27,25 +30,17 @@ namespace Body_Factory_Manager
 
             InitializeComponent();
 
-            //DialogResult = DialogResult.Cancel;
-
-
-
-
-
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
             if (selector)
             {
-                buttonDatos.Add(new ListadoButtonDatos("Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
-                buttonDatos.Add(new ListadoButtonDatos("Ver", Body_Factory_Manager.Properties.Resources.ver, this.EntradaSalida));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Ver", Body_Factory_Manager.Properties.Resources.ver, this.EntradaSalida));
 
             }
             else
             {
-                buttonDatos.Add(new ListadoButtonDatos("Nuevo pago", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.Agregar, 9f));
-
-                buttonDatos.Add(new ListadoButtonDatos("E/S", Body_Factory_Manager.Properties.Resources.RightLeft, this.EntradaSalida));
-                buttonDatos.Add(new ListadoButtonDatos("Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.EliminarPago));
+                buttonDatos.Add(new ListadoButtonDatos(false, "E/S", Body_Factory_Manager.Properties.Resources.RightLeft, this.EntradaSalida));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.EliminarPago));
             }
 
             List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
@@ -53,16 +48,17 @@ namespace Body_Factory_Manager
             filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Cédula del cliente", "cedula"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.NumeroRango, "Rango de montos($)", "monto"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha realizado", "fecha"));
-            listado = new Listado("id", buttonDatos, Ordenar, filtros, Filtrar);
+            listado = new Listado("id", buttonDatos, Ordenar, filtros, Filtrar, 1);
             this.Controls.Add(listado);
             listado.Size = new Size(this.Size.Width, 420);
             listado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ActualizarConsulta();
-
+            this.incluirES = incluirES;
 
 
         }
 
+        
 
         private void EliminarPago(string id)
         {
@@ -119,7 +115,8 @@ namespace Body_Factory_Manager
         {
             consulta = "SELECT CONVERT(VARCHAR(17), id) as id, 'Pago de cuota' as 'Motivo', CONCAT(nombre, ' ', apellido,  ' - ', cedula) as 'Persona', monto as 'Importe($)', fecha as Fecha" +
                 " FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula";
-            consulta += " WHERE " + filtro.ObtenerWhereConsulta() + "AND Clientes.esOculto = 0 UNION ALL " +
+            consulta += " WHERE " + filtro.ObtenerWhereConsulta() + " AND Clientes.esOculto = 0 ";
+            if(incluirES) consulta += "UNION ALL " +
                 "SELECT idReal as id, motivo as 'Motivo', responsable as 'Persona', monto as 'Importe($)', fecha as 'Fecha' FROM EntradasSalidas";
             if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
 

@@ -39,7 +39,7 @@ namespace Body_Factory_Manager
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.adjudDTP = new System.Windows.Forms.DateTimePicker();
+            this.ingresoDTP = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.totalTbx = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,7 +67,6 @@ namespace Body_Factory_Manager
             this.cedulaTBX = new System.Windows.Forms.TextBox();
             this.selectorClientes = new System.Windows.Forms.Panel();
             this.verClienteCompleto = new System.Windows.Forms.Button();
-            this.buscarMensualidadBtn = new System.Windows.Forms.Button();
             this.xMesesNUD = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -156,9 +155,9 @@ namespace Body_Factory_Manager
             this.label7.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(12, 112);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 29);
+            this.label7.Size = new System.Drawing.Size(61, 29);
             this.label7.TabIndex = 40;
-            this.label7.Text = "Cuota:";
+            this.label7.Text = "Cuota";
             // 
             // label3
             // 
@@ -169,14 +168,14 @@ namespace Body_Factory_Manager
             this.label3.TabIndex = 37;
             this.label3.Text = "Fecha de ingreso";
             // 
-            // adjudDTP
+            // ingresoDTP
             // 
-            this.adjudDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adjudDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.adjudDTP.Location = new System.Drawing.Point(17, 421);
-            this.adjudDTP.Name = "adjudDTP";
-            this.adjudDTP.Size = new System.Drawing.Size(165, 26);
-            this.adjudDTP.TabIndex = 36;
+            this.ingresoDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ingresoDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.ingresoDTP.Location = new System.Drawing.Point(17, 421);
+            this.ingresoDTP.Name = "ingresoDTP";
+            this.ingresoDTP.Size = new System.Drawing.Size(165, 26);
+            this.ingresoDTP.TabIndex = 36;
             // 
             // label1
             // 
@@ -324,9 +323,9 @@ namespace Body_Factory_Manager
             this.pagoTituloLBL.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pagoTituloLBL.Location = new System.Drawing.Point(3, 0);
             this.pagoTituloLBL.Name = "pagoTituloLBL";
-            this.pagoTituloLBL.Size = new System.Drawing.Size(57, 29);
+            this.pagoTituloLBL.Size = new System.Drawing.Size(181, 29);
             this.pagoTituloLBL.TabIndex = 51;
-            this.pagoTituloLBL.Text = "Pago:";
+            this.pagoTituloLBL.Text = "Asignar nuevo Pago:";
             // 
             // entregaCBX
             // 
@@ -351,7 +350,7 @@ namespace Body_Factory_Manager
             this.descartarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.descartarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descartarBTN.ForeColor = System.Drawing.Color.Black;
-            this.descartarBTN.Location = new System.Drawing.Point(204, 481);
+            this.descartarBTN.Location = new System.Drawing.Point(215, 481);
             this.descartarBTN.Name = "descartarBTN";
             this.descartarBTN.Size = new System.Drawing.Size(170, 44);
             this.descartarBTN.TabIndex = 51;
@@ -509,22 +508,6 @@ namespace Body_Factory_Manager
             this.verClienteCompleto.UseVisualStyleBackColor = false;
             this.verClienteCompleto.Click += new System.EventHandler(this.verClienteCompleto_Click);
             // 
-            // buscarMensualidadBtn
-            // 
-            this.buscarMensualidadBtn.BackColor = System.Drawing.Color.Red;
-            this.buscarMensualidadBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buscarMensualidadBtn.FlatAppearance.BorderSize = 0;
-            this.buscarMensualidadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buscarMensualidadBtn.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarMensualidadBtn.Image = ((System.Drawing.Image)(resources.GetObject("buscarMensualidadBtn.Image")));
-            this.buscarMensualidadBtn.Location = new System.Drawing.Point(84, 108);
-            this.buscarMensualidadBtn.Name = "buscarMensualidadBtn";
-            this.buscarMensualidadBtn.Size = new System.Drawing.Size(61, 36);
-            this.buscarMensualidadBtn.TabIndex = 65;
-            this.buscarMensualidadBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buscarMensualidadBtn.UseVisualStyleBackColor = false;
-            this.buscarMensualidadBtn.Click += new System.EventHandler(this.buscarMensualidadBtn_Click);
-            // 
             // xMesesNUD
             // 
             this.xMesesNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -585,7 +568,7 @@ namespace Body_Factory_Manager
             this.xMesesPNL.Controls.Add(this.xMesesNUD);
             this.xMesesPNL.Controls.Add(this.label17);
             this.xMesesPNL.Controls.Add(this.label18);
-            this.xMesesPNL.Location = new System.Drawing.Point(204, 111);
+            this.xMesesPNL.Location = new System.Drawing.Point(71, 111);
             this.xMesesPNL.Name = "xMesesPNL";
             this.xMesesPNL.Size = new System.Drawing.Size(154, 33);
             this.xMesesPNL.TabIndex = 70;
@@ -612,6 +595,7 @@ namespace Body_Factory_Manager
             this.mesCBX.Name = "mesCBX";
             this.mesCBX.Size = new System.Drawing.Size(167, 28);
             this.mesCBX.TabIndex = 71;
+            this.mesCBX.SelectedIndexChanged += new System.EventHandler(this.mesCBX_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -626,9 +610,25 @@ namespace Body_Factory_Manager
             // 
             this.anioNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anioNUD.Location = new System.Drawing.Point(196, 348);
+            this.anioNUD.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.anioNUD.Minimum = new decimal(new int[] {
+            1999,
+            0,
+            0,
+            0});
             this.anioNUD.Name = "anioNUD";
             this.anioNUD.Size = new System.Drawing.Size(162, 26);
             this.anioNUD.TabIndex = 73;
+            this.anioNUD.Value = new decimal(new int[] {
+            1999,
+            0,
+            0,
+            0});
+            this.anioNUD.ValueChanged += new System.EventHandler(this.anioNUD_ValueChanged);
             // 
             // DatosMensualidad
             // 
@@ -640,7 +640,6 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.mesCBX);
             this.Controls.Add(this.xMesesPNL);
             this.Controls.Add(this.sinVecimientoCBX);
-            this.Controls.Add(this.buscarMensualidadBtn);
             this.Controls.Add(this.verClienteCompleto);
             this.Controls.Add(this.selectorClientes);
             this.Controls.Add(this.descuentoNUD);
@@ -658,7 +657,7 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.adjudDTP);
+            this.Controls.Add(this.ingresoDTP);
             this.Controls.Add(this.descuentoCBX);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
@@ -696,7 +695,7 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker adjudDTP;
+        private System.Windows.Forms.DateTimePicker ingresoDTP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label totalTbx;
         private System.Windows.Forms.Label label2;
@@ -724,7 +723,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.TextBox cedulaTBX;
         private System.Windows.Forms.Panel selectorClientes;
         private System.Windows.Forms.Button verClienteCompleto;
-        private System.Windows.Forms.Button buscarMensualidadBtn;
         private System.Windows.Forms.NumericUpDown xMesesNUD;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;

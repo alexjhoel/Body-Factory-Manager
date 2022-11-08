@@ -161,7 +161,10 @@ namespace Body_Factory_Manager
                     sql.Modificar("UPDATE Clientes SET nombre = @nombre, apellido = @apellido, fechaNacimiento = @nacimiento, " +
                                         "fechaIngreso = @ingreso, telefono = @telefono, correo = @correo, foto = @imagen, patologias = @patologias, " +
                                         "observaciones = @observaciones, grupoSanguineo = @grupoSanguineo, direccion = @direccion, telefonoSalud = @salud, " +
-                                        "esActivo=@esActivo esOculto=0 WHERE cedula = @cedula", valores);
+                                        "esActivo=@esActivo, esOculto=0 WHERE cedula = @cedula"
+                                        
+                                        
+                                        , valores);
                     this.Close();
                     return;
                 }

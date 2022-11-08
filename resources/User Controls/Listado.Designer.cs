@@ -46,11 +46,11 @@ namespace Body_Factory_Manager
             this.valor2Tbx = new System.Windows.Forms.TextBox();
             this.filtrosCbx = new System.Windows.Forms.ComboBox();
             this.buscarBtn = new System.Windows.Forms.Button();
-            this.valor1DTP = new System.Windows.Forms.DateTimePicker();
             this.valor2DTP = new System.Windows.Forms.DateTimePicker();
             this.valor2NUD = new System.Windows.Forms.NumericUpDown();
             this.valor1NUD = new System.Windows.Forms.NumericUpDown();
             this.valor1Tbx = new System.Windows.Forms.TextBox();
+            this.valor1DTP = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).BeginInit();
             this.panelTabla.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,10 +117,11 @@ namespace Body_Factory_Manager
             this.tablaDGV.ShowEditingIcon = false;
             this.tablaDGV.Size = new System.Drawing.Size(751, 303);
             this.tablaDGV.TabIndex = 2;
-            this.tablaDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaDGV_CellContentClick);
+            
             this.tablaDGV.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tablaDGV_ColumnHeaderMouseClick);
             this.tablaDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.tablaDGV_DataBindingComplete);
             this.tablaDGV.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.tablaDGV_RowPostPaint);
+            this.tablaDGV.SelectionChanged += new System.EventHandler(this.tablaDGV_SelectionChanged);
             // 
             // cedula
             // 
@@ -233,17 +234,6 @@ namespace Body_Factory_Manager
             this.buscarBtn.UseVisualStyleBackColor = false;
             this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
             // 
-            // valor1DTP
-            // 
-            this.valor1DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor1DTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valor1DTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.valor1DTP.Location = new System.Drawing.Point(290, 6);
-            this.valor1DTP.Name = "valor1DTP";
-            this.valor1DTP.Size = new System.Drawing.Size(160, 26);
-            this.valor1DTP.TabIndex = 8;
-            this.valor1DTP.Visible = false;
-            // 
             // valor2DTP
             // 
             this.valor2DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -291,6 +281,17 @@ namespace Body_Factory_Manager
             this.valor1Tbx.Size = new System.Drawing.Size(160, 26);
             this.valor1Tbx.TabIndex = 1;
             this.valor1Tbx.Visible = false;
+            // 
+            // valor1DTP
+            // 
+            this.valor1DTP.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor1DTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valor1DTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.valor1DTP.Location = new System.Drawing.Point(290, 6);
+            this.valor1DTP.Name = "valor1DTP";
+            this.valor1DTP.Size = new System.Drawing.Size(160, 26);
+            this.valor1DTP.TabIndex = 8;
+            this.valor1DTP.Visible = false;
             // 
             // Listado
             // 

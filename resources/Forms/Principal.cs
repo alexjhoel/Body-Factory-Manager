@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -14,7 +16,7 @@ namespace Body_Factory_Manager
         bool estadoMenu = false;
         bool quieto = true;
         int tiempoQuieto;
-
+        SQL sql = new SQL(Properties.Settings.Default.ConnectionString);
         protected override CreateParams CreateParams
         {
             get
@@ -47,6 +49,17 @@ namespace Body_Factory_Manager
             timerMenuPNL.Start();
             
             nombreUsuarioLBL.Text = Properties.Settings.Default.Usuario;
+            DataTable data = sql.Obtener("SELECT * FROM Usuarios WHERE id= '" + Properties.Settings.Default.Usuario + "'");
+            byte[] imgData = ((byte[])data.Rows[0]["foto"]);
+
+            Image image = null;
+            using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+            {
+                ms.Write(imgData, 0, imgData.Length);
+                image = Image.FromStream(ms, true);
+            }
+
+            perfilPBX.Image = image;
             CambiarSección(new Inicio(this.InicioSalida));
         }
 
@@ -177,8 +190,14 @@ namespace Body_Factory_Manager
                 this.FormBorderStyle = FormBorderStyle.None;
             }
 
-            if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Maximized;
-            else this.WindowState = FormWindowState.Normal;
+            if (this.WindowState == FormWindowState.Normal) 
+            {
+                maximizarVentanaBTN.Image = Properties.Resources.maximizar1;
+                this.WindowState = FormWindowState.Maximized;
+                return;
+            }
+            maximizarVentanaBTN.Image = Properties.Resources.maximizar2;
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void BotonMenu_Hover(object sender, EventArgs e)
