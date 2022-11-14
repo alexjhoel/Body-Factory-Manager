@@ -117,8 +117,7 @@ namespace Body_Factory_Manager
             this.tablaDGV.ShowEditingIcon = false;
             this.tablaDGV.Size = new System.Drawing.Size(751, 303);
             this.tablaDGV.TabIndex = 2;
-            
-            this.tablaDGV.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tablaDGV_ColumnHeaderMouseClick);
+            this.tablaDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaDGV_CellDoubleClick);
             this.tablaDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.tablaDGV_DataBindingComplete);
             this.tablaDGV.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.tablaDGV_RowPostPaint);
             this.tablaDGV.SelectionChanged += new System.EventHandler(this.tablaDGV_SelectionChanged);

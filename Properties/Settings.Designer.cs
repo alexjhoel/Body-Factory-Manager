@@ -25,7 +25,7 @@ namespace Body_Factory_Manager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("alexjhoel7@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("stardustessentials@outlook.com")]
         public string CorreoRecover {
             get {
                 return ((string)(this["CorreoRecover"]));
@@ -95,6 +95,18 @@ namespace Body_Factory_Manager.Properties {
             }
             set {
                 this["ConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string a {
+            get {
+                return ((string)(this["a"]));
+            }
+            set {
+                this["a"] = value;
             }
         }
     }

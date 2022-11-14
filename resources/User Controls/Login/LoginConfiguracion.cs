@@ -13,6 +13,7 @@ namespace Body_Factory_Manager
             InitializeComponent();
         }
 
+        
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         
         public SqlConnectionStringBuilder SqlConnectionStringBuilder { get; }
@@ -40,6 +41,36 @@ namespace Body_Factory_Manager
             Properties.Settings.Default.Save();
             
             ((Login)ParentForm).OcultarAjustes();
+        }
+
+        private void descartarBTN_Click(object sender, EventArgs e)
+        {
+            ((Login)ParentForm).OcultarAjustes();
+        }
+
+        private void proobarBTN_Click(object sender, EventArgs e)
+        {
+            builder.DataSource = ipTbx.Text;
+            builder.UserID = usuarioTbx.Text;
+            builder.Password = claveTbx.Text;
+            SQL sql = new SQL(builder.ConnectionString);
+            try
+            {
+                if(sql.Obtener("SELECT TOP 1 cedula FROM Clientes") != null)
+                {
+                    MessageBox.Show("Conexión exitosa");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Conexión fallida");
+            }
+            finally
+            {
+                sql.CerrarConexion();
+            }
+            
+
         }
     }
 }

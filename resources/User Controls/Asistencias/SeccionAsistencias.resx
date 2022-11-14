@@ -142,7 +142,7 @@
   <data name="anotarBTN.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAAMpJREFUSEvtkUsKw0AMQ+doPVpv1qOl1cLwMHYyH3cCpQ+0iGaQoqT9IofTFnyp
+        vAAADrwBlbxySQAAAMpJREFUSEvtkUsKw0AMQ+doPVpv1qOl1cLwMHYyH3cCpQ+0iGaQoqT9IofTFnyp
         aQtRsVROFMxCqpQsmD5VShZMPzof5vWRD8nC6fuzIRjylAF4RjK/G1sq+VIjK/HP3TCQpeYR3l0iW8oC
         iWR+NwzoLTUy/5LZpUsweNvnXf2nDxmjMOC/VCKZ380tS4UFbFtq+BAG0xf0p5cKBpEzz/tTZEHes3vS
         0lLDws5gaQl686tAlpYsFQwl9KPzZaKCSOVEJaavsrWstdbeUvLsmsho4ZMAAAAASUVORK5CYII=
@@ -151,10 +151,17 @@
   <data name="borrarBTN.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAAMpJREFUSEvtkUsKw0AMQ+doPVpv1qOl1cLwMHYyH3cCpQ+0iGaQoqT9IofTFnyp
-        aQtRsVROFMxCqpQsmD5VShZMPzof5vWRD8nC6fuzIRjylAF4RjK/G1sq+VIjK/HP3TCQpeYR3l0iW8oC
-        iWR+NwzoLTUy/5LZpUsweNvnXf2nDxmjMOC/VCKZ380tS4UFbFtq+BAG0xf0p5cKBpEzz/tTZEHes3vS
-        0lLDws5gaQl686tAlpYsFQwl9KPzZaKCSOVEJaavsrWstdbeUvLsmsho4ZMAAAAASUVORK5CYII=
+        wgAADsIBFShKgAAAAjpJREFUSEvV10uoTVEcx/Hj/ZhQhJKQZxEGngOP8hiYyGtgQsnERJncGclAGBAT
+        M4+RgUKRiZRMESkDj2KCPAoDz7y+39v517La57bXse/Arz7du37n7LXuOXuvs89tFWQoruAnfmfsrmEY
+        Gs9auMgr3Mu8hI+tR+NZiPPY0jv6OxvhY4t7R/9bNuFww7aiz0zCD6QXThO8+KaiY/ai6sAm9KBjjuBX
+        PzmGPuN+7Q8DUCvTMfcfzUBRlqHqPHVjBWpnKdKDP8DzlHZf8SXrfI7PTbvlqJ1piAOfwnN0KOnku7Ig
+        645iCB4l3WzUzijEgfctyHZEJ/f8mKzbBXMb0Y21qJuBiLfxuQXZgJhMVQvH5/hjOP6OQRYleQEP9pyZ
+        lUgXqVrYO5h5Dcf+LI5vsQf7EToY89vjULXwErhf4916iOJcR0w4GpOTsaoWnoURiB1wE8Xx/hoTToGL
+        x1hVC0/A+GR8AcU5iZjAbeNFkt658oV9lSMxM+lOoTj7EBN4YZn3iC5f+Bs8v4uS7iCKsxsxgVvJPEN0
+        +cJvYNYguj0WpXFPxgQ7LEhc6coXfgKzGdFtsyjNKsQE8Zd7lUaXL3wHZiei89UXZw5igv0W5DKiyxe+
+        AZN+i/GiLM44xATx7eEcossXvghzANFNtCiNd5nYPqctyAnEpPnCZ2COw7Ff8IZbdJN3cJJbcKucbY/l
+        x+O8ZHwJPudqe/wRXecuYuK3ye/6jE9Zlz7nAbrOasRdqoT/S61Dh7RafwA6CGE1LD+zlgAAAABJRU5E
+        rkJggg==
 </value>
   </data>
 </root>

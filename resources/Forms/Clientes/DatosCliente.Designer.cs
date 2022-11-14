@@ -214,6 +214,7 @@ namespace Body_Factory_Manager
             // 
             this.observacionesTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.observacionesTbx.Location = new System.Drawing.Point(440, 382);
+            this.observacionesTbx.MaxLength = 200;
             this.observacionesTbx.Multiline = true;
             this.observacionesTbx.Name = "observacionesTbx";
             this.observacionesTbx.Size = new System.Drawing.Size(186, 92);
@@ -261,6 +262,7 @@ namespace Body_Factory_Manager
             // 
             this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreTBX.Location = new System.Drawing.Point(4, 62);
+            this.nombreTBX.MaxLength = 50;
             this.nombreTBX.Name = "nombreTBX";
             this.nombreTBX.Size = new System.Drawing.Size(216, 26);
             this.nombreTBX.TabIndex = 2;
@@ -287,6 +289,7 @@ namespace Body_Factory_Manager
             // 
             this.patologiasTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patologiasTbx.Location = new System.Drawing.Point(226, 380);
+            this.patologiasTbx.MaxLength = 100;
             this.patologiasTbx.Multiline = true;
             this.patologiasTbx.Name = "patologiasTbx";
             this.patologiasTbx.Size = new System.Drawing.Size(186, 95);
@@ -296,6 +299,7 @@ namespace Body_Factory_Manager
             // 
             this.apellidoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.apellidoTBX.Location = new System.Drawing.Point(226, 62);
+            this.apellidoTBX.MaxLength = 50;
             this.apellidoTBX.Name = "apellidoTBX";
             this.apellidoTBX.Size = new System.Drawing.Size(406, 26);
             this.apellidoTBX.TabIndex = 5;
@@ -359,6 +363,7 @@ namespace Body_Factory_Manager
             // 
             this.direccionTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.direccionTBX.Location = new System.Drawing.Point(322, 129);
+            this.direccionTBX.MaxLength = 50;
             this.direccionTBX.Name = "direccionTBX";
             this.direccionTBX.Size = new System.Drawing.Size(310, 26);
             this.direccionTBX.TabIndex = 19;
@@ -426,6 +431,7 @@ namespace Body_Factory_Manager
             // 
             this.correoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.correoTBX.Location = new System.Drawing.Point(6, 258);
+            this.correoTBX.MaxLength = 100;
             this.correoTBX.Name = "correoTBX";
             this.correoTBX.Size = new System.Drawing.Size(186, 26);
             this.correoTBX.TabIndex = 14;

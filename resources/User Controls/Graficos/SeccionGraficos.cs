@@ -14,8 +14,8 @@ namespace Body_Factory_Manager
     public partial class SeccionGraficos : UserControl
     {
         SQL sql;
-        private Action[] establecerActions = new Action[5];
-        private Action<int>[] cargarActions = new Action<int>[5];
+        private Action[] establecerActions = new Action[6];
+        private Action<int>[] cargarActions = new Action<int>[6];
         DateTime actualFecha = DateTime.Today;
         int zoom = 5;
         int actualValue;
@@ -32,14 +32,16 @@ namespace Body_Factory_Manager
             establecerActions[0] = EstablecerGraficoClientesNuevos;
             establecerActions[1] = EstablecerGraficoClientesEdades;
             establecerActions[2] = EstablecerGraficoIngresosTotales;
-            establecerActions[3] = EstablecerGraficoConcurrencia;
-            establecerActions[4] = EstablecerGraficoConcurrenciaCliente;
+            establecerActions[3] = EstablecerGraficoGanancias;
+            establecerActions[4] = EstablecerGraficoConcurrencia;
+            establecerActions[5] = EstablecerGraficoConcurrenciaCliente;
 
             cargarActions[0] = CargarGraficoClientesNuevos;
             cargarActions[1] = CargarGraficoClientesEdades;
             cargarActions[2] = CargarGraficoIngresosTotales;
-            cargarActions[3] = CargarGraficoConcurrencia;
-            cargarActions[4] = CargarGraficoConcurrenciaCliente;
+            cargarActions[3] = CargarGraficoGanancias;
+            cargarActions[4] = CargarGraficoConcurrencia;
+            cargarActions[5] = CargarGraficoConcurrenciaCliente;
 
             EstablecerGrafico(0);
 
@@ -77,11 +79,11 @@ namespace Body_Factory_Manager
             //graficoDV.Series.Add("Total");
             string consulta;
 
-            if (intervalosCBX.SelectedIndex == 0)
+            /*if (intervalosCBX.SelectedIndex == 0)
             {
                 actualFecha = actualFecha.AddDays(cambio * zoom / 2);
             }
-            else if (intervalosCBX.SelectedIndex == 1)
+            else */if (intervalosCBX.SelectedIndex == 1)
             {
                 actualFecha = actualFecha.AddMonths(cambio);
             }
@@ -97,21 +99,20 @@ namespace Body_Factory_Manager
 
                 for (int i =  - zoom - 1; i < zoom; i++)
                 {
-                    if (intervalosCBX.SelectedIndex == 0)
+                    /*if (intervalosCBX.SelectedIndex == 0)
                     {
                         DateTime actualFecha = this.actualFecha.AddDays(i);
 
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT fecha as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE fecha = @fechaActual GROUP BY fecha";
+                        " WHERE fecha = @fechaActual AND falta=0 GROUP BY fecha";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = actualFecha.ToString("dd/MM/yyyy");
-                        actualFecha = actualFecha.NextMonth();
                         if (total.Rows.Count != 0)
                         {
-
+                            
                             graficoDV.Series["Total"].Points.AddXY(textFecha,
                             total.Rows[0]["y"]);
                             continue;
@@ -119,18 +120,18 @@ namespace Body_Factory_Manager
                         graficoDV.Series["Total"].Points.AddXY(textFecha,
                             0);
                     }
-                    else if (intervalosCBX.SelectedIndex == 1)
+                    else */if (intervalosCBX.SelectedIndex == 0)
                     {
                         DateTime actualFecha = this.actualFecha.AddMonths(i);
 
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT CONCAT(MONTH(fecha), ' ', YEAR(fecha)) as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))";
+                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) AND falta=0 GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = DateTime.ParseExact("01/" + actualFecha.Month + "/" + actualFecha.Year, "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM yyyy");
-                        actualFecha = actualFecha.NextMonth();
+                        
                         if (total.Rows.Count != 0)
                         {
 
@@ -152,11 +153,10 @@ namespace Body_Factory_Manager
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT YEAR(fecha) as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE YEAR(fecha) = YEAR(@fechaActual) GROUP BY YEAR(fecha)";
+                        " WHERE YEAR(fecha) = YEAR(@fechaActual) AND falta=0 GROUP BY YEAR(fecha)";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = actualFecha.Year + "";
-                        actualFecha = actualFecha.AddYears(1);
                         if (total.Rows.Count != 0)
                         {
 
@@ -213,11 +213,11 @@ namespace Body_Factory_Manager
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT CONCAT(MONTH(fecha), ' ', YEAR(fecha)) as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) AND cedulaCliente = '" + cedulaCliente + "' GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))";
+                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) AND falta=0 AND cedulaCliente = '" + cedulaCliente + "' GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = DateTime.ParseExact("01/" + actualFecha.Month + "/" + actualFecha.Year, "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM yyyy");
-                        actualFecha = actualFecha.NextMonth();
+                        
                         if (total.Rows.Count != 0)
                         {
 
@@ -239,11 +239,11 @@ namespace Body_Factory_Manager
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT YEAR(fecha) as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE YEAR(fecha) = YEAR(@fechaActual) AND cedulaCliente = '" + cedulaCliente + "' GROUP BY YEAR(fecha)";
+                        " WHERE YEAR(fecha) = YEAR(@fechaActual) AND falta=0 AND cedulaCliente = '" + cedulaCliente + "' GROUP BY YEAR(fecha)";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = actualFecha.Year + "";
-                        actualFecha = actualFecha.AddYears(1);
+                        
                         if (total.Rows.Count != 0)
                         {
 
@@ -303,7 +303,7 @@ namespace Body_Factory_Manager
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = DateTime.ParseExact("01/" + actualFecha.Month + "/" + actualFecha.Year, "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM yyyy");
-                        actualFecha = actualFecha.NextMonth();
+                        
                         if (total.Rows.Count != 0)
                         {
 
@@ -329,7 +329,98 @@ namespace Body_Factory_Manager
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = actualFecha.Year + "";
-                        actualFecha = actualFecha.AddYears(1);
+                        if (total.Rows.Count != 0)
+                        {
+
+                            graficoDV.Series["Total"].Points.AddXY(textFecha,
+                            total.Rows[0]["y"]);
+                            continue;
+                        }
+                        graficoDV.Series["Total"].Points.AddXY(textFecha,
+                            0);
+                    }
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ocurrió un error, al cargar el gráfico, inténtalo más tarde" + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sql.CerrarConexion();
+            }
+        }
+
+        private void CargarGraficoGanancias(int cambio)
+        {
+            graficoDV.Series["Total"].Points.Clear();
+            //graficoDV.Series.Add("Total");
+            string consulta;
+
+            if (intervalosCBX.SelectedIndex == 0)
+            {
+                actualFecha = actualFecha.AddMonths(cambio);
+            }
+            else
+            {
+                actualFecha = actualFecha.AddYears(cambio);
+            }
+
+            Dictionary<string, object> parametros = new Dictionary<string, object>();
+            try
+            {
+
+
+                for (int i = -zoom - 1; i < zoom; i++)
+                {
+
+                    if (intervalosCBX.SelectedIndex == 0)
+                    {
+                        DateTime actualFecha = this.actualFecha.AddMonths(i);
+
+                        parametros.Clear();
+                        parametros.Add("fechaActual", actualFecha);
+                        consulta = " SELECT m.x, SUM(m.y) as y FROM(SELECT CONCAT(MONTH(fecha), ' ', YEAR(fecha)) as x, SUM(monto) as y FROM Pagos" +
+                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha)) " +
+                        "UNION ALL SELECT CONCAT(MONTH(fecha), ' ', YEAR(fecha)) as x, SUM(monto) as y FROM EntradasSalidas " +
+                        "WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))) as m GROUP BY m.x";
+
+                        
+                        DataTable total = sql.Obtener(consulta, parametros);
+
+                        string textFecha = DateTime.ParseExact("01/" + actualFecha.Month + "/" + actualFecha.Year, "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM yyyy");
+                        
+                        if (total.Rows.Count != 0)
+                        {
+
+                            graficoDV.Series["Total"].Points.AddXY(textFecha,
+                            total.Rows[0]["y"]);
+                            continue;
+                        }
+                        graficoDV.Series["Total"].Points.AddXY(textFecha,
+                            0);
+
+
+
+                    }
+                    else
+                    {
+
+                        DateTime actualFecha = this.actualFecha.AddYears(i);
+
+                        parametros.Clear();
+                        parametros.Add("fechaActual", actualFecha);
+                        consulta = "SELECT m.x, SUM(m.y) as y FROM (SELECT YEAR(fecha) as x, SUM(monto) as y FROM Pagos" +
+                        " WHERE YEAR(fecha) = YEAR(@fechaActual) GROUP BY YEAR(fecha) " +
+                        "UNION ALL SELECT YEAR(fecha) as x, SUM(monto) as y FROM EntradasSalidas " +
+                        " WHERE YEAR(fecha) = YEAR(@fechaActual) GROUP BY YEAR(fecha)) as m GROUP BY m.x"; 
+
+                        DataTable total = sql.Obtener(consulta, parametros);
+
+                        string textFecha = actualFecha.Year + "";
                         if (total.Rows.Count != 0)
                         {
 
@@ -363,7 +454,6 @@ namespace Body_Factory_Manager
             intervalosCBX.Visible = true;
 
             intervalosCBX.Items.Clear();
-            intervalosCBX.Items.Add("Por Días");
             intervalosCBX.Items.Add("Por Meses");
             intervalosCBX.Items.Add("Por Años");
 
@@ -381,6 +471,14 @@ namespace Body_Factory_Manager
             intervalosCBX.Items.Clear();
             intervalosCBX.Items.Add("Por Meses");
             intervalosCBX.Items.Add("Por Años");
+
+
+
+        }
+
+        private void EstablecerGraficoGanancias()
+        {
+            EstablecerGraficoIngresosTotales();
 
 
 
@@ -433,7 +531,7 @@ namespace Body_Factory_Manager
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = DateTime.ParseExact("01/" + actualFecha.Month + "/" + actualFecha.Year, "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM yyyy");
-                        actualFecha = actualFecha.NextMonth();
+                        
                         if (total.Rows.Count != 0)
                         {
 
@@ -459,7 +557,6 @@ namespace Body_Factory_Manager
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = actualFecha.Year + "";
-                        actualFecha = actualFecha.AddYears(1);
                         if (total.Rows.Count != 0)
                         {
 
@@ -594,7 +691,7 @@ namespace Body_Factory_Manager
 
         private void concurrenciaBTN_Click(object sender, EventArgs e)
         {
-            EstablecerGrafico(3);
+            EstablecerGrafico(4);
             foreach (Control cont in botonesPNL.Controls)
             {
                 cont.BackColor = Color.Red;
@@ -610,7 +707,7 @@ namespace Body_Factory_Manager
                 if(selectorClientes.ShowDialog() == DialogResult.OK)
                 {
                     cedulaCliente = selectorClientes.cedula;
-                    EstablecerGrafico(4);
+                    EstablecerGrafico(5);
                     foreach (Control cont in botonesPNL.Controls)
                     {
                         cont.BackColor = Color.Red;
@@ -654,6 +751,17 @@ namespace Body_Factory_Manager
         private void intervalosCBX_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarActions[selectedGraph].Invoke(0);
+        }
+
+        private void ganacniasBTN_Click(object sender, EventArgs e)
+        {
+            EstablecerGrafico(3);
+            foreach (Control cont in botonesPNL.Controls)
+            {
+                cont.BackColor = Color.Red;
+
+            }
+                ((Control)sender).BackColor = Color.White;
         }
     }
 }

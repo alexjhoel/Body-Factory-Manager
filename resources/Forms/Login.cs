@@ -15,11 +15,6 @@ namespace Body_Factory_Manager
             string connectionString;
             sql = new SQL(Properties.Settings.Default.ConnectionString);
             InitializeComponent();
-            using (Principal principal = new Principal())
-            {
-                this.Hide();
-                principal.ShowDialog();
-            }
         }
 
         public SQL ObtenerSQL()

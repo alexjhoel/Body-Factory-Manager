@@ -12,12 +12,11 @@ namespace Body_Factory_Manager
         FiltroBusqeda filtro;
         SortOrder orden = SortOrder.None;
         string propiedadOrden;
-
         public string id;
         bool incluirES = false;
 
 
-        public SeccionPagos(bool selector = false, FiltroBusqeda filtro = null, Action<string> seleccionar = null, bool incluirES = true)
+        public SeccionPagos( FiltroBusqeda filtro = null, bool incluirES = true)
         {
 
             sql = new SQL(Properties.Settings.Default.ConnectionString);
@@ -31,51 +30,38 @@ namespace Body_Factory_Manager
             InitializeComponent();
 
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
-            if (selector)
-            {
-                buttonDatos.Add(new ListadoButtonDatos(true, "Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
-                buttonDatos.Add(new ListadoButtonDatos(true, "Ver", Body_Factory_Manager.Properties.Resources.ver, this.EntradaSalida));
-
-            }
-            else
-            {
+            
                 buttonDatos.Add(new ListadoButtonDatos(false, "E/S", Body_Factory_Manager.Properties.Resources.RightLeft, this.EntradaSalida));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.EliminarPago));
-            }
+            
 
             List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
-            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Nombre del cliente", "CONCAT(nombre, ' ', apellido)"));
-            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Cédula del cliente", "cedula"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Responsable", "CONCAT(nombre, ' ', apellido)"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.NumeroRango, "Rango de montos($)", "monto"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha realizado", "fecha"));
-            listado = new Listado("id", buttonDatos, Ordenar, filtros, Filtrar, 1);
+            listado = new Listado(new List<string>() { "id" }, buttonDatos, 1, filtros, Filtrar, 1);
             this.Controls.Add(listado);
             listado.Size = new Size(this.Size.Width, 420);
             listado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ActualizarConsulta();
             this.incluirES = incluirES;
+            ActualizarConsulta();
+            
 
 
         }
 
         
 
-        private void EliminarPago(string id)
+        private void EliminarPago(Dictionary<string,object> datos)
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                MessageBox.Show("Esta acción requiere seleccionar un pago", "Ningún pago seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el movimiento?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
-            if (id.StartsWith("A"))
+            if (datos["id"].ToString().StartsWith("A"))
             {
-                sql.Modificar("DELETE FROM EntradasSalidas WHERE idReal= '" + id + "'");
+                sql.Modificar("DELETE FROM EntradasSalidas WHERE idReal= '" + datos["id"] + "'");
 
             }
-            else sql.Modificar("DELETE FROM Pagos WHERE id= " + id);
+            else sql.Modificar("DELETE FROM Pagos WHERE id= " + datos["id"]);
             CargarListaPagos();
         }
 
@@ -83,12 +69,20 @@ namespace Body_Factory_Manager
         {
             listado.datos = sql.Obtener(consulta);
             listado.Recargar("id");
-            totalLBL.Text = "$" + sql.Obtener("SELECT SUM(Todo.monto) as Total FROM " +
-                "(SELECT monto FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula WHERE Clientes.esOculto = 0 AND " + 
-                filtro.ObtenerWhereConsulta() + " UNION ALL SELECT monto FROM EntradasSalidas) as Todo").Rows[0]["Total"];
+            string consultaParaTotal = "SELECT SUM(Todo.monto) as Total FROM " +
+                "(SELECT monto FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula WHERE Clientes.esOculto = 0 AND " +
+                filtro.ObtenerWhereConsulta();
+            if (incluirES)
+            {
+                consultaParaTotal+= " UNION ALL SELECT monto FROM EntradasSalidas WHERE ";
+                if (filtro.propiedad == "CONCAT(nombre, ' ', apellido)") consultaParaTotal += " responsable LIKE '%" + filtro.valor1 + "%'";
+                else consultaParaTotal += filtro.ObtenerWhereConsulta();
+            }
+            consultaParaTotal+=") as Todo";
+            totalLBL.Text = "$" + sql.Obtener(consultaParaTotal).Rows[0]["Total"];
         }
 
-        private void EntradaSalida(string id)
+        private void EntradaSalida(Dictionary<string, object> datos)
         {
             using (EntradaSalidaDatos nuevaVentana = new EntradaSalidaDatos())
             {
@@ -99,12 +93,6 @@ namespace Body_Factory_Manager
 
         }
 
-        private void Ordenar(string propiedadOrden, SortOrder orden)
-        {
-            this.propiedadOrden = propiedadOrden;
-            this.orden = orden;
-            CargarListaPagos();
-        }
 
         private void Filtrar(FiltroBusqeda filtro)
         {
@@ -113,12 +101,14 @@ namespace Body_Factory_Manager
         }
         private void ActualizarConsulta()
         {
-            consulta = "SELECT CONVERT(VARCHAR(17), id) as id, 'Pago de cuota' as 'Motivo', CONCAT(nombre, ' ', apellido,  ' - ', cedula) as 'Persona', monto as 'Importe($)', fecha as Fecha" +
+            consulta = "SELECT CONVERT(VARCHAR(17), id) as id, 'Pago de cuota' as 'Motivo', CONCAT(nombre, ' ', apellido,  ' - ', cedula) as 'Responsable', monto as 'Importe($)', fecha as Fecha" +
                 " FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula";
             consulta += " WHERE " + filtro.ObtenerWhereConsulta() + " AND Clientes.esOculto = 0 ";
-            if(incluirES) consulta += "UNION ALL " +
-                "SELECT idReal as id, motivo as 'Motivo', responsable as 'Persona', monto as 'Importe($)', fecha as 'Fecha' FROM EntradasSalidas";
-            if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
+            string esWhere = "1=1";
+            if (filtro.propiedad == "CONCAT(nombre, ' ', apellido)") esWhere = " responsable LIKE '%" + filtro.valor1 + "%'";
+            else esWhere = filtro.ObtenerWhereConsulta(); 
+            if (incluirES) consulta += "UNION ALL " +
+                "SELECT idReal as id, motivo as 'Motivo', responsable as 'Responsable', monto as 'Importe($)', fecha as 'Fecha' FROM EntradasSalidas WHERE " + esWhere;
 
             CargarListaPagos();
         }

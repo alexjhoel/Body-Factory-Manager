@@ -2,39 +2,40 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
 {
+    
     public partial class Listado : UserControl
     {
         public DataTable datos;
         private int dias = -1;
-        string identificador;
+        List<string> identificadores;
         Transicion transicion = new Transicion(1);
         bool estado;
         int indexToSelect = 0;
-        string propiedadOrden;
-        SortOrder orden = SortOrder.None;
+        int dobleClickIndex;
         List<ListadoButtonDatos> buttonsDatos;
 
         List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
 
-        private Action<string, SortOrder> Ordenar;
         private Action<FiltroBusqeda> Filtrar;
 
-        public Listado(string identificador, List<ListadoButtonDatos> buttonsDatos, Action<string, SortOrder> Ordenar, List<FiltroBusqeda> filtros, Action<FiltroBusqeda> Filtrar, int filtroDefault = 0)
+        public Listado(List<string> identificadores, List<ListadoButtonDatos> buttonsDatos, int dobleClickIndex, List<FiltroBusqeda> filtros, Action<FiltroBusqeda> Filtrar, int filtroDefault = 0)
 
         {
             this.filtros = filtros;
-            this.identificador = identificador;
+            this.identificadores = identificadores;
             InitializeComponent();
             tablaDGV.RowTemplate.MinimumHeight = 35;
-
+            this.dobleClickIndex = dobleClickIndex;
             foreach (FiltroBusqeda filtro in filtros)
             {
                 filtrosCbx.Items.Add(filtro.textoAMostrar);
             }
+            filtrosCbx.SelectedIndex = filtroDefault;
             this.buttonsDatos = buttonsDatos;
             foreach (ListadoButtonDatos data in buttonsDatos)
             {
@@ -56,24 +57,26 @@ namespace Body_Factory_Manager
                 button.Anchor = AnchorStyles.None;
                 button.Click += delegate (object sender, EventArgs e)
                 {
-                    
+                    Dictionary<string, object> dict = new Dictionary<string, object>();
+
+
+
                     if (tablaDGV.SelectedRows.Count >= 1)
                     {
-                        data.onClick(((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index][identificador].ToString());
+                        foreach (string id in identificadores)
+                        {
+                            
+                            dict.Add(id, ((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index][id]);
+                        }
                     }
-                    else
-                    {
-                        data.onClick(String.Empty);
-                    }
+
+                    data.onClick(dict);
                 };
 
                 opcionesFLP.Controls.Add(button);
 
             }
-            this.Ordenar = Ordenar;
             this.Filtrar = Filtrar;
-
-            filtrosCbx.SelectedIndex = filtroDefault;
             ActualizarCambios();
             ActualizarBotonesDisponibles();
 
@@ -113,8 +116,13 @@ namespace Body_Factory_Manager
             if(dias == -1) return;
             for (int i = 0; i < tablaDGV.Rows.Count; i++)
             {
-                DateTime fecha = (DateTime)tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento");
-                if (DateTime.Now > fecha && double.Parse(datos.Rows[i]["Deuda($)"].ToString()) > 0)
+                if (tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento") == null) return;
+
+                DateTime fecha = tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento" ?
+                    DateTime.ParseExact(tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now.AddDays(-1);
+
+
+                if (DateTime.Now >= fecha && double.Parse(datos.Rows[i]["Deuda($)"].ToString()) > 0)
                 {
                     tablaDGV.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     tablaDGV.Rows[i].DefaultCellStyle.SelectionBackColor = Color.Red;
@@ -162,11 +170,24 @@ namespace Body_Factory_Manager
         private void tablaDGV_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             if (dias == -1) return;
-            DateTime fecha = (DateTime)tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento");
+            if (tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento") == null) return;
+
+            DateTime fecha = tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento" ?
+                DateTime.ParseExact(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now.AddDays(-1);
+
+            
+            if (tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento")
+            {
+                fecha = DateTime.ParseExact(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                fecha = DateTime.Now;
+            }
 
             if (double.Parse(datos.Rows[e.RowIndex]["Deuda($)"].ToString()) > 0)
             {
-                if (DateTime.Now > fecha)
+                if (DateTime.Now >= fecha)
                 {
                     tablaDGV.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
                     tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Red;
@@ -186,23 +207,6 @@ namespace Body_Factory_Manager
 
         }
 
-        private void tablaDGV_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            return;
-            foreach (DataGridViewColumn dc in tablaDGV.Columns)
-            {
-                dc.SortMode = DataGridViewColumnSortMode.Programmatic;
-                dc.HeaderCell.SortGlyphDirection = SortOrder.None;
-            }
-            if (propiedadOrden != tablaDGV.Columns[e.ColumnIndex].Name || orden == SortOrder.None) orden = SortOrder.Descending;
-            else if (orden == SortOrder.Descending) orden = SortOrder.Ascending;
-            else if (orden == SortOrder.Ascending) orden = SortOrder.None;
-
-            tablaDGV.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
-            propiedadOrden = tablaDGV.Columns[e.ColumnIndex].Name;
-            Ordenar(propiedadOrden, orden);
-        }
-
         private void buscarBtn_Click(object sender, EventArgs e)
         {
             try
@@ -212,6 +216,11 @@ namespace Body_Factory_Manager
                 if (filtro.tipo == TipoFiltro.Fecha)
                 {
                     filtro.valor1 = valor1DTP.Value.ToString("MM-dd-yyyy");
+                }
+
+                if (filtro.tipo == TipoFiltro.FechaMes)
+                {
+                    filtro.valor1 = valor1DTP.Value.ToString("MM/yyyy");
                 }
 
                 if (filtro.tipo == TipoFiltro.Numero)
@@ -266,6 +275,7 @@ namespace Body_Factory_Manager
             valor2DTP.Hide();
             hastaLBL.Hide();
 
+
             if (filtrosCbx.SelectedIndex == 0)
             {
                 Filtrar(new FiltroBusqeda(TipoFiltro.Nada));
@@ -284,6 +294,12 @@ namespace Body_Factory_Manager
                 valor1DTP.Show();
                 valor2DTP.Show();
                 hastaLBL.Show();
+                return;
+            }
+
+            if (filtros[filtrosCbx.SelectedIndex - 1].tipo == TipoFiltro.FechaMes)
+            {
+                valor1DTP.Show();
                 return;
             }
 
@@ -352,11 +368,16 @@ namespace Body_Factory_Manager
         {
             ActualizarBotonesDisponibles();
         }
+
+        private void tablaDGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ((Button)opcionesFLP.Controls[dobleClickIndex]).PerformClick();
+        }
     }
 
     public class ListadoButtonDatos
     {
-        public ListadoButtonDatos(bool requiereSeleccion, string texto, Image icon, Action<string> onClick, float fontSize = 12)
+        public ListadoButtonDatos(bool requiereSeleccion, string texto, Image icon, Action<Dictionary<string, object>> onClick, float fontSize = 12)
         {
             this.texto = texto;
             this.icon = icon;
@@ -368,7 +389,7 @@ namespace Body_Factory_Manager
         public bool requiereSeleccion;
         public Image icon;
         public string texto;
-        public Action<string> onClick;
+        public Action<Dictionary<string,object>> onClick;
         public float fontSize;
     }
 
@@ -397,6 +418,7 @@ namespace Body_Factory_Manager
             if (tipo == TipoFiltro.Numero) return propiedad + "=" + valor1;
             if (tipo == TipoFiltro.NumeroRango) return propiedad + " BETWEEN " + valor1 + " AND " + valor2;
             if (tipo == TipoFiltro.FechaRango) return propiedad + " BETWEEN '" + valor1 + "' AND '" + valor2 + "'";
+            if (tipo == TipoFiltro.FechaMes) return propiedad + " = CONCAT('01/', '" + valor1 + "')"; 
             return "";
         }
 
@@ -410,6 +432,7 @@ namespace Body_Factory_Manager
         Fecha,
         Numero,
         NumeroRango,
-        FechaRango
+        FechaRango,
+        FechaMes
     }
 }

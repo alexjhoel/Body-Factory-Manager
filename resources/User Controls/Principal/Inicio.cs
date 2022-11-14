@@ -29,6 +29,8 @@ namespace Body_Factory_Manager
             CargarGraficoIngresos();
             CargarGraficoClientes();
             fechaHoraLBL.Text = DateTime.Now.ToString("dddd");
+
+            tituloLBL.Text = "Bienvenido, " + Properties.Settings.Default.Usuario;
         }
 
         private void CargarVencidas()
@@ -36,7 +38,7 @@ namespace Body_Factory_Manager
             vencidasDGV.Columns.Clear();
             Dictionary<string, object> parametros = new Dictionary<string, object>();
             parametros.Add("hoy", DateTime.Now);
-            string consulta = "SELECT cedula as Cedula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.fechaIngreso as Ingreso, vencimiento as Vencimiento " +
+            string consulta = "SELECT cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.fechaIngreso as Ingreso, vencimiento as Vencimiento " +
                 "FROM(SELECT pagado, valor, descuento, Mensualidades.fechaIngreso, Mensualidades.mes, Mensualidades.anio, vencimiento, Mensualidades.cedulaCliente " +
                 "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
                 "FROM Mensualidades LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
@@ -173,6 +175,10 @@ namespace Body_Factory_Manager
             using (DatosCliente nuevaVentana = new DatosCliente(null, false))
             {
                 nuevaVentana.ShowDialog();
+                if (nuevaVentana.DialogResult == DialogResult.Yes)
+                {
+                    salida(TipoInicioSalida.Mensualidades, nuevaVentana.cedula);
+                }
             }
 
         }
@@ -214,22 +220,19 @@ namespace Body_Factory_Manager
                 nuevaVentana.ShowDialog();
                 if (nuevaVentana.DialogResult == DialogResult.OK)
                 {
-                    using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.PagarCuotaDesdeClientes, nuevaVentana.cedula))
-                    {
-                        datosMensualidad.ShowDialog();
-                    }
+                    salida(TipoInicioSalida.Mensualidades, nuevaVentana.cedula);
                 }
             }
         }
 
         private void verMasVencidasBTN_Click(object sender, EventArgs e)
         {
-            salida(TipoInicioSalida.Mensualidades, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["cedula"].ToString());
+            salida(TipoInicioSalida.Mensualidades, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
         }
 
         private void verMasCumplesBTN_Click(object sender, EventArgs e)
         {
-            salida(TipoInicioSalida.Clientes, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["cedula"].ToString());
+            salida(TipoInicioSalida.Clientes, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
         }
 
         private void verMasClientesNuevos_Click(object sender, EventArgs e)
@@ -240,6 +243,11 @@ namespace Body_Factory_Manager
         private void verMasIngresos_Click(object sender, EventArgs e)
         {
             salida(TipoInicioSalida.Graficos, "");
+        }
+
+        private void vencidasDGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            salida(TipoInicioSalida.Mensualidades, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
         }
     }
 }

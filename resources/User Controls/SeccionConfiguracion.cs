@@ -270,15 +270,19 @@ namespace Body_Factory_Manager
             superAdminPanel.Visible = datosUsuario.Rows[0]["privilegio"].ToString() == "SuperAdmin";
             tuPerfilLBL.Text = "Rango " + datosUsuario.Rows[0]["privilegio"].ToString();
 
-            byte[] imgData = ((byte[])datosUsuario.Rows[0]["foto"]);
-
-            Image image = null;
-            using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+            if(datosUsuario.Rows[0]["foto"] != DBNull.Value)
             {
-                ms.Write(imgData, 0, imgData.Length);
-                image = Image.FromStream(ms, true);
+                byte[] imgData = ((byte[])datosUsuario.Rows[0]["foto"]);
+
+                Image image = null;
+                using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+                {
+                    ms.Write(imgData, 0, imgData.Length);
+                    image = Image.FromStream(ms, true);
+                }
+                perfilPBX.Image = image;
             }
-            perfilPBX.Image = image;
+            
 
         }
 
@@ -490,9 +494,6 @@ namespace Body_Factory_Manager
             
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
     }
 }

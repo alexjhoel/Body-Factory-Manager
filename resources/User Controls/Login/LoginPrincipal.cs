@@ -95,6 +95,11 @@ namespace Body_Factory_Manager
                 MessageBox.Show(this, "No existe el usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (String.IsNullOrEmpty(datosUsuario.Rows[0]["correoElectronico"].ToString()))
+            {
+                MessageBox.Show(this, "El usuario no tiene un correo electrónico asignado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             email.Mensaje(Properties.Settings.Default.CorreoRecover, datosUsuario.Rows[0]["correoElectronico"].ToString(), "Recupera tu contraseña", "-Recuperación de contraseña-\n Usuario: " + datosUsuario.Rows[0]["id"] +
                 "\nContraeña:" + datosUsuario.Rows[0]["contrasena"] + "\n\nAtentamente,\n el equipo de Stardust Essentials");
             SetearInterfaz(false);

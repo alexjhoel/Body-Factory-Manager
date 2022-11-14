@@ -173,7 +173,6 @@
             this.cuotasPNL.Name = "cuotasPNL";
             this.cuotasPNL.Size = new System.Drawing.Size(392, 189);
             this.cuotasPNL.TabIndex = 0;
-            this.cuotasPNL.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label3
             // 

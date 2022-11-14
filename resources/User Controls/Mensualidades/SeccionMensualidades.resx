@@ -121,7 +121,7 @@
   <data name="verPagosBTN.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAApxJREFUWEfV1lnITkEcx/GHpJCylC1J2a4QibJFLly4kisUkQsiS3oRIksiS5as
+        vAAADrwBlbxySQAAApxJREFUWEfV1lnITkEcx/GHpJCylC1J2a4QibJFLly4kisUkQsiS3oRIksiS5as
         KbmzlOWClOyXSJYL24VsZd+ylPX7e5t//Ttnnvd5zni85V+feuZ/ZubMc+bMzCk1QrRHFzSrLzVSdMRm
         PMXv4CtOYRT+aYzGa9iNn+OGK8s2NEXNYwA+w99sNcbhk8vJRtQ0muAa/E1mYyAmoA/ew679xCDULEbA
         3/wD9AJq7lWeggPhtzmIXEzHx4JWBL7zL9AAnoXyPTwOv43KuZgFX6ka87Enk5O96ICROBxy3g/kQvOW
@@ -138,7 +138,7 @@
   <data name="pagarBTN.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAAmZJREFUWEfV18urTWEYx/Gt3ArFQJkx8AcY8BdQBnIZyECUGVGGbiPFSBm5lJHL
+        vAAADrwBlbxySQAAAmZJREFUWEfV18urTWEYx/Gt3ArFQJkx8AcY8BdQBnIZyECUGVGGbiPFSBm5lJHL
         2GUsSRm5zgykDCQjJkKI8P1unuVd+zxrr3efc3Tyq09nn3ev933X5V3PWnvwP2URtuE8HuItvv/hZ9su
         wm3cdtayHKfwDj8rue1prMCMshseXTZJDfs6xsRZgEvIBp0Ox3LMqrjhLWQDlT5jD64WbePcxHz0pvbI
         n8BsQPZ9xrHHxuuVdcw8hlmP7PsunWvCFdu34H7gNo5gJ8xKHMJZvEHWr+Qc6d3hrZZ1CJ+wBeOyBDeQ
@@ -179,25 +179,25 @@
   <metadata name="cedula.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="diaIngreso.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Nombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Pago.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Descuento.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Total.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Deuda.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Vencimiento.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="ultimoPaog.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
 </root>

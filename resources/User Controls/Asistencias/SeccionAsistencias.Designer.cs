@@ -57,12 +57,22 @@ namespace Body_Factory_Manager
             this.anotarBTN = new System.Windows.Forms.Button();
             this.borrarBTN = new System.Windows.Forms.Button();
             this.opcionesPNL = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.proCliente = new System.Windows.Forms.TabPage();
+            this.todas = new System.Windows.Forms.TabPage();
+            this.opcionesPNL2 = new System.Windows.Forms.Panel();
+            this.faltaCBX = new System.Windows.Forms.CheckBox();
+            this.listadoPNL = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.calendarioDGV)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.opcionesPNL.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.proCliente.SuspendLayout();
+            this.todas.SuspendLayout();
+            this.opcionesPNL2.SuspendLayout();
             this.SuspendLayout();
             // 
             // calendarioDGV
@@ -103,14 +113,14 @@ namespace Body_Factory_Manager
             this.calendarioDGV.DefaultCellStyle = dataGridViewCellStyle2;
             this.calendarioDGV.EnableHeadersVisualStyles = false;
             this.calendarioDGV.GridColor = System.Drawing.Color.Black;
-            this.calendarioDGV.Location = new System.Drawing.Point(209, 85);
+            this.calendarioDGV.Location = new System.Drawing.Point(207, 85);
             this.calendarioDGV.MaximumSize = new System.Drawing.Size(999999, 500);
             this.calendarioDGV.MultiSelect = false;
             this.calendarioDGV.Name = "calendarioDGV";
             this.calendarioDGV.ReadOnly = true;
             this.calendarioDGV.RowHeadersVisible = false;
             this.calendarioDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.calendarioDGV.Size = new System.Drawing.Size(294, 322);
+            this.calendarioDGV.Size = new System.Drawing.Size(294, 296);
             this.calendarioDGV.TabIndex = 2;
             // 
             // domingo
@@ -190,7 +200,7 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.mesCBX);
             this.panel1.Controls.Add(this.antMesBTN);
             this.panel1.Controls.Add(this.sigMesBTN);
-            this.panel1.Location = new System.Drawing.Point(183, 43);
+            this.panel1.Location = new System.Drawing.Point(181, 43);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(345, 36);
             this.panel1.TabIndex = 1;
@@ -286,7 +296,7 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 410);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(708, 384);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -299,7 +309,7 @@ namespace Body_Factory_Manager
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(706, 34);
+            this.panel2.Size = new System.Drawing.Size(702, 34);
             this.panel2.TabIndex = 3;
             // 
             // buscarClienteBTN
@@ -359,7 +369,7 @@ namespace Body_Factory_Manager
             this.anotarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anotarBTN.Image = ((System.Drawing.Image)(resources.GetObject("anotarBTN.Image")));
             this.anotarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.anotarBTN.Location = new System.Drawing.Point(288, 5);
+            this.anotarBTN.Location = new System.Drawing.Point(285, 5);
             this.anotarBTN.Margin = new System.Windows.Forms.Padding(5);
             this.anotarBTN.Name = "anotarBTN";
             this.anotarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
@@ -381,9 +391,9 @@ namespace Body_Factory_Manager
             this.borrarBTN.FlatAppearance.BorderSize = 0;
             this.borrarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.borrarBTN.Image = new Bitmap(Properties.Resources.eliminar,new Size(30,30));
+            this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
             this.borrarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.borrarBTN.Location = new System.Drawing.Point(362, 5);
+            this.borrarBTN.Location = new System.Drawing.Point(359, 5);
             this.borrarBTN.Margin = new System.Windows.Forms.Padding(5);
             this.borrarBTN.Name = "borrarBTN";
             this.borrarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
@@ -402,17 +412,79 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.opcionesPNL.Controls.Add(this.anotarBTN);
             this.opcionesPNL.Controls.Add(this.borrarBTN);
-            this.opcionesPNL.Location = new System.Drawing.Point(0, 413);
+            this.opcionesPNL.Location = new System.Drawing.Point(0, 387);
             this.opcionesPNL.Name = "opcionesPNL";
-            this.opcionesPNL.Size = new System.Drawing.Size(712, 74);
+            this.opcionesPNL.Size = new System.Drawing.Size(707, 74);
             this.opcionesPNL.TabIndex = 5;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.proCliente);
+            this.tabControl1.Controls.Add(this.todas);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(712, 487);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // proCliente
+            // 
+            this.proCliente.Controls.Add(this.tableLayoutPanel1);
+            this.proCliente.Controls.Add(this.opcionesPNL);
+            this.proCliente.Location = new System.Drawing.Point(4, 22);
+            this.proCliente.Name = "proCliente";
+            this.proCliente.Padding = new System.Windows.Forms.Padding(3);
+            this.proCliente.Size = new System.Drawing.Size(704, 461);
+            this.proCliente.TabIndex = 0;
+            this.proCliente.Text = "Por cliente";
+            this.proCliente.UseVisualStyleBackColor = true;
+            // 
+            // todas
+            // 
+            this.todas.Controls.Add(this.listadoPNL);
+            this.todas.Controls.Add(this.opcionesPNL2);
+            this.todas.Location = new System.Drawing.Point(4, 22);
+            this.todas.Name = "todas";
+            this.todas.Size = new System.Drawing.Size(704, 461);
+            this.todas.TabIndex = 1;
+            this.todas.Text = "Todas";
+            this.todas.UseVisualStyleBackColor = true;
+            // 
+            // opcionesPNL2
+            // 
+            this.opcionesPNL2.Controls.Add(this.faltaCBX);
+            this.opcionesPNL2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.opcionesPNL2.Location = new System.Drawing.Point(0, 428);
+            this.opcionesPNL2.Name = "opcionesPNL2";
+            this.opcionesPNL2.Size = new System.Drawing.Size(704, 33);
+            this.opcionesPNL2.TabIndex = 0;
+            // 
+            // faltaCBX
+            // 
+            this.faltaCBX.AutoSize = true;
+            this.faltaCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.faltaCBX.Location = new System.Drawing.Point(576, 3);
+            this.faltaCBX.Name = "faltaCBX";
+            this.faltaCBX.Size = new System.Drawing.Size(125, 24);
+            this.faltaCBX.TabIndex = 0;
+            this.faltaCBX.Text = "Mostrar faltas";
+            this.faltaCBX.UseVisualStyleBackColor = true;
+            this.faltaCBX.CheckedChanged += new System.EventHandler(this.faltaCBX_CheckedChanged);
+            // 
+            // listadoPNL
+            // 
+            this.listadoPNL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listadoPNL.Location = new System.Drawing.Point(0, 0);
+            this.listadoPNL.Name = "listadoPNL";
+            this.listadoPNL.Size = new System.Drawing.Size(704, 428);
+            this.listadoPNL.TabIndex = 1;
             // 
             // SeccionAsistencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.opcionesPNL);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tabControl1);
             this.Name = "SeccionAsistencias";
             this.Size = new System.Drawing.Size(712, 487);
             this.Load += new System.EventHandler(this.Assitencias_Load);
@@ -424,6 +496,11 @@ namespace Body_Factory_Manager
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.opcionesPNL.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.proCliente.ResumeLayout(false);
+            this.todas.ResumeLayout(false);
+            this.opcionesPNL2.ResumeLayout(false);
+            this.opcionesPNL2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -449,7 +526,14 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.TextBox cedulaTBX;
         private System.Windows.Forms.Button buscarClienteBTN;
         private System.Windows.Forms.Button anotarBTN;
+        Listado listado;
         private Button borrarBTN;
         private Panel opcionesPNL;
+        private TabControl tabControl1;
+        private TabPage proCliente;
+        private TabPage todas;
+        private Panel opcionesPNL2;
+        private CheckBox faltaCBX;
+        private Panel listadoPNL;
     }
 }

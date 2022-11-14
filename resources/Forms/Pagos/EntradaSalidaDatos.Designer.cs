@@ -49,12 +49,12 @@
             this.entregaNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entregaNUD.Location = new System.Drawing.Point(31, 117);
             this.entregaNUD.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
             this.entregaNUD.Minimum = new decimal(new int[] {
-            99999999,
+            99999,
             0,
             0,
             -2147483648});
@@ -159,6 +159,7 @@
             this.descartarBTN.TabIndex = 63;
             this.descartarBTN.Text = "Descartar";
             this.descartarBTN.UseVisualStyleBackColor = false;
+            this.descartarBTN.Click += new System.EventHandler(this.descartarBTN_Click);
             // 
             // motivoTBX
             // 

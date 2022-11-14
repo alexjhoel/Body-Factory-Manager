@@ -27,12 +27,12 @@ namespace Body_Factory_Manager
         {
             if (faltaEstado)
             {
-                asisteBTN.Text = "no";
+                asisteBTN.Text = "sí";
                 asisteBTN.BackColor = Color.Red;
             }
             else
             {
-                asisteBTN.Text = "sí";
+                asisteBTN.Text = "no";
                 asisteBTN.BackColor = Color.Green;
             }
         }

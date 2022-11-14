@@ -43,6 +43,7 @@
             this.avanzarBTN = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.retrocederBTN = new System.Windows.Forms.Button();
+            this.ganacniasBTN = new System.Windows.Forms.Button();
             this.botonesPNL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graficoDV)).BeginInit();
             this.panel1.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             this.botonesPNL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.botonesPNL.Controls.Add(this.ganacniasBTN);
             this.botonesPNL.Controls.Add(this.concurrenciaClienteBTN);
             this.botonesPNL.Controls.Add(this.concurrenciaBTN);
             this.botonesPNL.Controls.Add(this.ingresosTotalesBTN);
@@ -76,7 +78,7 @@
             this.concurrenciaClienteBTN.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.concurrenciaClienteBTN.ForeColor = System.Drawing.Color.Black;
             this.concurrenciaClienteBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.concurrenciaClienteBTN.Location = new System.Drawing.Point(0, 127);
+            this.concurrenciaClienteBTN.Location = new System.Drawing.Point(0, 158);
             this.concurrenciaClienteBTN.Name = "concurrenciaClienteBTN";
             this.concurrenciaClienteBTN.Size = new System.Drawing.Size(154, 55);
             this.concurrenciaClienteBTN.TabIndex = 10;
@@ -98,7 +100,7 @@
             this.concurrenciaBTN.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Bold);
             this.concurrenciaBTN.ForeColor = System.Drawing.Color.Black;
             this.concurrenciaBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.concurrenciaBTN.Location = new System.Drawing.Point(0, 96);
+            this.concurrenciaBTN.Location = new System.Drawing.Point(0, 127);
             this.concurrenciaBTN.Name = "concurrenciaBTN";
             this.concurrenciaBTN.Size = new System.Drawing.Size(154, 25);
             this.concurrenciaBTN.TabIndex = 9;
@@ -125,7 +127,7 @@
             this.ingresosTotalesBTN.Size = new System.Drawing.Size(154, 25);
             this.ingresosTotalesBTN.TabIndex = 8;
             this.ingresosTotalesBTN.Tag = "1";
-            this.ingresosTotalesBTN.Text = "Ingresos totales";
+            this.ingresosTotalesBTN.Text = "Ingresos de cuotas";
             this.ingresosTotalesBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ingresosTotalesBTN.UseVisualStyleBackColor = true;
             this.ingresosTotalesBTN.Click += new System.EventHandler(this.ingresosTotalesBTN_Click);
@@ -336,6 +338,28 @@
             this.retrocederBTN.UseVisualStyleBackColor = true;
             this.retrocederBTN.Click += new System.EventHandler(this.retrocederBTN_Click);
             // 
+            // ganacniasBTN
+            // 
+            this.ganacniasBTN.BackColor = System.Drawing.Color.Red;
+            this.ganacniasBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ganacniasBTN.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.ganacniasBTN.FlatAppearance.BorderSize = 0;
+            this.ganacniasBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.ganacniasBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.ganacniasBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ganacniasBTN.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Bold);
+            this.ganacniasBTN.ForeColor = System.Drawing.Color.Black;
+            this.ganacniasBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ganacniasBTN.Location = new System.Drawing.Point(0, 96);
+            this.ganacniasBTN.Name = "ganacniasBTN";
+            this.ganacniasBTN.Size = new System.Drawing.Size(154, 25);
+            this.ganacniasBTN.TabIndex = 11;
+            this.ganacniasBTN.Tag = "1";
+            this.ganacniasBTN.Text = "Ganancias";
+            this.ganacniasBTN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ganacniasBTN.UseVisualStyleBackColor = true;
+            this.ganacniasBTN.Click += new System.EventHandler(this.ganacniasBTN_Click);
+            // 
             // SeccionGraficos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,5 +391,6 @@
         private System.Windows.Forms.Button avanzarBTN;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button retrocederBTN;
+        private System.Windows.Forms.Button ganacniasBTN;
     }
 }

@@ -50,16 +50,20 @@ namespace Body_Factory_Manager
             
             nombreUsuarioLBL.Text = Properties.Settings.Default.Usuario;
             DataTable data = sql.Obtener("SELECT * FROM Usuarios WHERE id= '" + Properties.Settings.Default.Usuario + "'");
-            byte[] imgData = ((byte[])data.Rows[0]["foto"]);
-
-            Image image = null;
-            using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+            if(data.Rows[0]["foto"] != DBNull.Value)
             {
-                ms.Write(imgData, 0, imgData.Length);
-                image = Image.FromStream(ms, true);
-            }
+                byte[] imgData = ((byte[])data.Rows[0]["foto"]);
 
-            perfilPBX.Image = image;
+                Image image = null;
+                using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+                {
+                    ms.Write(imgData, 0, imgData.Length);
+                    image = Image.FromStream(ms, true);
+                }
+
+                perfilPBX.Image = image;
+            }
+            
             CambiarSección(new Inicio(this.InicioSalida));
         }
 
@@ -131,15 +135,13 @@ namespace Body_Factory_Manager
 
         private void InicioSalida(TipoInicioSalida tipoSalida, string salida = "")
         {
-            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.String, "", "cedula");
-            filtro.valor1 = salida;
             switch (tipoSalida)
             {
                 case TipoInicioSalida.Clientes:
                     ((Button)menuPNL.Controls[5]).PerformClick();
                     break;
                 case TipoInicioSalida.Mensualidades:
-                    ((Button)menuPNL.Controls[3]).PerformClick();
+                    CambiarSección(new SeccionMensualidades(salida));
                     break;
                 case TipoInicioSalida.Graficos:
                     ((Button)menuPNL.Controls[0]).PerformClick();
@@ -149,7 +151,7 @@ namespace Body_Factory_Manager
 
         private void cuotasBTN_Click(object sender, EventArgs e)
         {
-            CambiarSección(new SeccionMensualidades());
+            CambiarSección(new SeccionMensualidades(new FiltroBusqeda(TipoFiltro.Nada)));
         }
 
         private void asistenciasBTN_Click(object sender, EventArgs e)

@@ -31,6 +31,7 @@ namespace Body_Factory_Manager
             if(motivoTBX.Text.Trim() == String.Empty || responsableTBX.Text.Trim() == String.Empty)
             {
                 MessageBox.Show("Debe rellenar todos los campos", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             parametos.Add("motivo", motivoTBX.Text);
             parametos.Add("fecha", pagoFechaDTP.Value);
@@ -61,6 +62,11 @@ namespace Body_Factory_Manager
         {
             if (entregaNUD.Value < 0) entregaNUD.Value *= -1;
             entregaCBX.SelectedIndex = 0;
+        }
+
+        private void descartarBTN_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

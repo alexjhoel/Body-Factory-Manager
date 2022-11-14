@@ -12,6 +12,7 @@ namespace Body_Factory_Manager
 
         SQL sql;
         public string cedula = null;
+        DataTable data;
         public DatosCliente(string id = null, bool eliminable = true)
         {
             //http://api.textmebot.com/send.php?recipient=+598091056571&apikey=KdsSrQDjhoEN&text=This%20is%20a%20test
@@ -25,7 +26,7 @@ namespace Body_Factory_Manager
                 cedula = id;
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
                 parametros.Add("Id", id);
-                DataTable data = sql.Obtener("SELECT * FROM Clientes WHERE cedula=@Id", parametros);
+                data = sql.Obtener("SELECT * FROM Clientes WHERE cedula=@Id", parametros);
                 if (data.Rows.Count == 0) return;
                 nombreTBX.Text = data.Rows[0]["nombre"].ToString();
                 apellidoTBX.Text = data.Rows[0]["apellido"].ToString();
@@ -53,20 +54,26 @@ namespace Body_Factory_Manager
                     grupoSanguineoCBX.SelectedIndex = grupoSanguineoCBX.Items.IndexOf(data.Rows[0]["grupoSanguineo"].ToString());
                 }
 
-                byte[] imgData = ((byte[])data.Rows[0]["foto"]);
-
-                Image image = null;
-                using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+                if(data.Rows[0]["foto"] != DBNull.Value)
                 {
-                    ms.Write(imgData, 0, imgData.Length);
-                    image = Image.FromStream(ms, true);
-                    
+                    byte[] imgData = ((byte[])data.Rows[0]["foto"]);
 
+                    Image image = null;
+                    using (MemoryStream ms = new MemoryStream(imgData, 0, imgData.Length))
+                    {
+                        ms.Write(imgData, 0, imgData.Length);
+                        image = Image.FromStream(ms, true);
+
+
+                    }
+
+                    perfilPBX.Image = image;
                 }
+                
 
                 estadoPNL.BackColor = !(bool)data.Rows[0]["esActivo"] ? Color.Red : Color.Green;
                 darDeBajaBTN.Text = (bool)data.Rows[0]["esActivo"] ? "Dar de baja" : "Dar de alta"; 
-                perfilPBX.Image = image;
+                
                 usuarioLBL.Text = data.Rows[0]["idUsuario"].ToString();
                 telefonoSaludTBX.Text = data.Rows[0]["telefonoSalud"].ToString();
 
@@ -147,13 +154,25 @@ namespace Body_Factory_Manager
                 valores.Add("grupoSanguineo", "NA");
             }
 
-            using (var ms = new MemoryStream())
-            {
-                perfilPBX.Image.Save(ms, perfilPBX.Image.RawFormat);
 
-                byte[] data = ms.ToArray();
-                valores.Add("imagen", data);
+            try
+            {
+                using (var ms = new MemoryStream())
+                {
+
+                    Image img = perfilPBX.Image;
+                    img.Save(ms, img.RawFormat);
+
+                    byte[] dataImg = ms.ToArray();
+                    valores.Add("imagen", dataImg);
+                }
             }
+            catch
+            {
+                valores.Add("imagen", data.Rows[0]["foto"]);
+            }
+
+            
             if (cedula != null)
             {
                 try
@@ -171,6 +190,7 @@ namespace Body_Factory_Manager
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, "Error en la base de datos. Razón: \n" + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 finally
                 {
@@ -201,7 +221,7 @@ namespace Body_Factory_Manager
                 string consulta = "INSERT INTO Clientes (nombre, apellido, cedula, fechaNacimiento, fechaIngreso," +
                 " telefono, correo, foto,patologias, observaciones, direccion, idUsuario, telefonoSalud, esActivo) VALUES(@nombre, @apellido," +
                 " @cedula, @nacimiento, @ingreso, @telefono, @correo, @imagen, @patologias, @observaciones, @direccion," +
-                " @usuario, @salud, 0);";
+                " @usuario, @salud, 1);";
                 sql.Modificar(consulta, valores);
                 if (MessageBox.Show("Cliente agregado con éxito, ¿deseas adjudicarle una cuota?", "Datos guardados", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {

@@ -15,8 +15,15 @@ namespace Body_Factory_Manager
         Transicion transicion;
         int tiempoMouse;
         const int tiempoParaSubir = 50;
+
+        string consulta = "";
+        FiltroBusqeda filtro;
+
         public SeccionAsistencias()
         {
+            this.filtro = new FiltroBusqeda(TipoFiltro.FechaRango, "", "fecha");
+            this.filtro.valor1 = DateTime.Now.ToString("MM-dd-yyyy");
+            this.filtro.valor2 = DateTime.Now.ToString("MM-dd-yyyy");
             InitializeComponent();
             sql = new SQL(Properties.Settings.Default.ConnectionString);
             mesCBX.SelectedIndex = 0;
@@ -26,9 +33,87 @@ namespace Body_Factory_Manager
                 calendarioDGV.Rows[i].Height = calendarioDGV.Columns[0].Width;
 
             }
-            
-            ActualizarAsistencias(true);
+
+
             transicion = new Transicion(1);
+            List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
+
+            buttonDatos.Add(new ListadoButtonDatos(true, "Editar", Body_Factory_Manager.Properties.Resources.editar, Editar));
+            buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, Borrar));
+
+            List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
+
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Cedula", "cedulaCliente"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Nombre completo", "CONCAT(nombre, ' ', apellido)"));
+            filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha", "fecha"));
+
+
+            listado = new Listado(new List<string>() { "Cédula", "Fecha" }, buttonDatos, 0, filtros, this.Filtrar, 3);
+
+            listadoPNL.Controls.Add(listado);
+
+
+
+            listado.Location = new Point(0, 0);
+            listado.Dock = DockStyle.Fill;
+            ActualizarAsistencias(true);
+
+            ActualizarConsulta();
+
+        }
+
+        private void ActualizarConsulta()
+        {
+            consulta = "SELECT cedulaCliente as 'Cédula', CONCAT(nombre, ' ', apellido) as 'Nombre completo', fecha as 'Fecha', observacion as 'Observación', IIF(falta=1, 'Sí', 'No') as Falta " +
+                "FROM Asistencias INNER JOIN Clientes ON Asistencias.cedulaCliente = Clientes.cedula";
+
+            consulta += " WHERE " + filtro.ObtenerWhereConsulta();
+            if (!faltaCBX.Checked) consulta += " AND falta=" + 0;
+            CargarListaAsistencias();
+        }
+
+        private void CargarListaAsistencias()
+        {
+            listado.datos = sql.Obtener(consulta);
+            listado.Recargar();
+        }
+
+        private void Filtrar(FiltroBusqeda filtro)
+        {
+            this.filtro = filtro;
+            ActualizarConsulta();
+        }
+
+        private void Editar(Dictionary<string, object> datos)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                { "cedulaCliente", datos["Cédula"] },
+                { "fecha", datos["Fecha"] }
+            };
+            DataTable datosAsistencia = sql.Obtener("SELECT * FROM Asistencias WHERE cedulaCliente =@cedulaCliente AND fecha=@fecha", dict);
+            using (DatosAsistencia nuevaVentana = new DatosAsistencia((bool)datosAsistencia.Rows[0]["falta"], datosAsistencia.Rows[0]["observacion"].ToString()))
+            {
+                nuevaVentana.ShowDialog();
+                dict.Add("observacion", nuevaVentana.observacion);
+                dict.Add("falta", nuevaVentana.faltaEstado);
+                if(nuevaVentana.DialogResult == DialogResult.OK)
+                {
+                    sql.Modificar("UPDATE Asistencias SET observacion=@observacion, falta=@falta WHERE cedulaCliente = @cedulaCliente AND fecha=@fecha", dict);
+                    CargarListaAsistencias();
+                    return;
+                }
+                
+            }
+            
+            
+        }
+
+        private void Borrar(Dictionary<string, object> datos)
+        {
+            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar los datos de asistencia?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            sql.Modificar("DELETE FROM Asistencias WHERE cedulaCliente= '" + datos["Cédula"] + "' AND fecha='" + ((DateTime)datos["Fecha"]).ToString("MM-dd-yyyy") + "'");
+            CargarListaAsistencias();
         }
 
         private void Assitencias_Load(object sender, EventArgs e)
@@ -102,6 +187,8 @@ namespace Body_Factory_Manager
 
         private void ActualizarAsistencias(bool selectHoy)
         {
+            
+
             if (selectHoy)
             {
                 mesCBX.SelectedIndex = DateTime.Now.Month - 1;
@@ -159,6 +246,8 @@ namespace Body_Factory_Manager
                 i = 0;
 
             }
+
+           
 
         }
 
@@ -289,6 +378,7 @@ namespace Body_Factory_Manager
                 if (consulta == String.Empty) return;
                 sql.Modificar(consulta, parametros);
                 ActualizarAsistencias(false);
+                ActualizarConsulta();
 
 
 
@@ -306,11 +396,17 @@ namespace Body_Factory_Manager
                 consulta = "DELETE Asistencias WHERE fecha = @fecha AND cedulaCliente = @cedulaCliente";
                 sql.Modificar(consulta, parametros);
                 ActualizarAsistencias(false);
+                ActualizarConsulta();
             }
 
 
 
 
+        }
+
+        private void faltaCBX_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarConsulta();
         }
     }
 }

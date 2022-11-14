@@ -64,6 +64,7 @@ namespace Body_Factory_Manager
             return tabla;
         }
 
+
         public void CerrarConexion()
         {
             conexion.Close();

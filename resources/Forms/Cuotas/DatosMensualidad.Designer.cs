@@ -231,12 +231,12 @@ namespace Body_Factory_Manager
             this.entregaNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entregaNUD.Location = new System.Drawing.Point(34, 107);
             this.entregaNUD.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
             this.entregaNUD.Minimum = new decimal(new int[] {
-            99999999,
+            99999,
             0,
             0,
             -2147483648});
@@ -399,7 +399,7 @@ namespace Body_Factory_Manager
             this.cobroNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cobroNUD.Location = new System.Drawing.Point(39, 161);
             this.cobroNUD.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
@@ -513,7 +513,7 @@ namespace Body_Factory_Manager
             this.xMesesNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xMesesNUD.Location = new System.Drawing.Point(28, 3);
             this.xMesesNUD.Maximum = new decimal(new int[] {
-            100000,
+            12,
             0,
             0,
             0});

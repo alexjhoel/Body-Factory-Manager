@@ -13,7 +13,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>E:\Body Factory Manager\</PublishUrl>
+    <PublishUrl>G:\Body Factory Manager\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>19</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -167,12 +167,6 @@
     <Compile Include="resources\Forms\Cuotas\DatosMensualidad.Designer.cs">
       <DependentUpon>DatosMensualidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="resources\Forms\Cuotas\SelectorMensualidad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="resources\Forms\Cuotas\SelectorMensualidad.Designer.cs">
-      <DependentUpon>SelectorMensualidad.cs</DependentUpon>
-    </Compile>
     <Compile Include="resources\Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,12 +178,6 @@
     </Compile>
     <Compile Include="resources\Forms\Pagos\EntradaSalidaDatos.Designer.cs">
       <DependentUpon>EntradaSalidaDatos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="resources\Forms\Pagos\SelectorPagos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="resources\Forms\Pagos\SelectorPagos.Designer.cs">
-      <DependentUpon>SelectorPagos.cs</DependentUpon>
     </Compile>
     <Compile Include="resources\Forms\Principal.cs">
       <SubType>Form</SubType>
@@ -305,17 +293,11 @@
     <EmbeddedResource Include="resources\Forms\Cuotas\DatosMensualidad.resx">
       <DependentUpon>DatosMensualidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\Cuotas\SelectorMensualidad.resx">
-      <DependentUpon>SelectorMensualidad.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Pagos\EntradaSalidaDatos.resx">
       <DependentUpon>EntradaSalidaDatos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\Forms\Pagos\SelectorPagos.resx">
-      <DependentUpon>SelectorPagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\Forms\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>

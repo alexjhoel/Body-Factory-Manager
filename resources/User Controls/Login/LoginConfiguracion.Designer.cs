@@ -69,6 +69,7 @@ namespace Body_Factory_Manager
             this.proobarBTN.TabIndex = 30;
             this.proobarBTN.Text = "Probar conexión";
             this.proobarBTN.UseVisualStyleBackColor = true;
+            this.proobarBTN.Click += new System.EventHandler(this.proobarBTN_Click);
             // 
             // claveTbx
             // 
@@ -142,6 +143,7 @@ namespace Body_Factory_Manager
             this.descartarBTN.TabIndex = 33;
             this.descartarBTN.Text = "Descartar";
             this.descartarBTN.UseVisualStyleBackColor = true;
+            this.descartarBTN.Click += new System.EventHandler(this.descartarBTN_Click);
             // 
             // LoginConfiguracion
             // 

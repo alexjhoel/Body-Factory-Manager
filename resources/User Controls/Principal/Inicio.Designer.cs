@@ -32,20 +32,20 @@ namespace Body_Factory_Manager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
-            this.label1 = new System.Windows.Forms.Label();
+            this.tituloLBL = new System.Windows.Forms.Label();
             this.fechaHoraLBL = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.vencidasDGV = new System.Windows.Forms.DataGridView();
@@ -86,16 +86,16 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // tituloLBL
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bebas Neue", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(-3, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(302, 58);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bienvenido, admin";
+            this.tituloLBL.AutoSize = true;
+            this.tituloLBL.Font = new System.Drawing.Font("Bebas Neue", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tituloLBL.Location = new System.Drawing.Point(-3, 0);
+            this.tituloLBL.Margin = new System.Windows.Forms.Padding(12, 12, 12, 0);
+            this.tituloLBL.Name = "tituloLBL";
+            this.tituloLBL.Size = new System.Drawing.Size(302, 58);
+            this.tituloLBL.TabIndex = 0;
+            this.tituloLBL.Text = "Bienvenido, admin";
             // 
             // fechaHoraLBL
             // 
@@ -117,18 +117,18 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(292, 281);
+            this.panel1.Size = new System.Drawing.Size(275, 281);
             this.panel1.TabIndex = 0;
             // 
             // vencidasDGV
             // 
             this.vencidasDGV.AllowUserToAddRows = false;
             this.vencidasDGV.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.vencidasDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.vencidasDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.vencidasDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -136,26 +136,26 @@ namespace Body_Factory_Manager
             this.vencidasDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.vencidasDGV.BackgroundColor = System.Drawing.Color.White;
             this.vencidasDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.vencidasDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.vencidasDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.vencidasDGV.ColumnHeadersHeight = 30;
             this.vencidasDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cedula,
             this.Nombre});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.vencidasDGV.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.vencidasDGV.DefaultCellStyle = dataGridViewCellStyle3;
             this.vencidasDGV.EnableHeadersVisualStyles = false;
             this.vencidasDGV.GridColor = System.Drawing.Color.Black;
             this.vencidasDGV.Location = new System.Drawing.Point(3, 38);
@@ -163,21 +163,22 @@ namespace Body_Factory_Manager
             this.vencidasDGV.Name = "vencidasDGV";
             this.vencidasDGV.ReadOnly = true;
             this.vencidasDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.vencidasDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.vencidasDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.vencidasDGV.RowHeadersVisible = false;
             this.vencidasDGV.RowTemplate.Height = 35;
             this.vencidasDGV.RowTemplate.ReadOnly = true;
             this.vencidasDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vencidasDGV.ShowEditingIcon = false;
-            this.vencidasDGV.Size = new System.Drawing.Size(285, 189);
+            this.vencidasDGV.Size = new System.Drawing.Size(268, 189);
             this.vencidasDGV.TabIndex = 19;
+            this.vencidasDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.vencidasDGV_CellDoubleClick);
             // 
             // cedula
             // 
@@ -201,7 +202,7 @@ namespace Body_Factory_Manager
             this.verMasVencidasBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasVencidasBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasVencidasBTN.ForeColor = System.Drawing.Color.Black;
-            this.verMasVencidasBTN.Location = new System.Drawing.Point(57, 230);
+            this.verMasVencidasBTN.Location = new System.Drawing.Point(48, 230);
             this.verMasVencidasBTN.Name = "verMasVencidasBTN";
             this.verMasVencidasBTN.Size = new System.Drawing.Size(170, 44);
             this.verMasVencidasBTN.TabIndex = 18;
@@ -236,7 +237,7 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 287F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 595);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(562, 595);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel3
@@ -247,9 +248,9 @@ namespace Body_Factory_Manager
             this.panel3.Controls.Add(this.clientesNuevosCHT);
             this.panel3.Controls.Add(this.verMasClientesNuevos);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(301, 290);
+            this.panel3.Location = new System.Drawing.Point(284, 290);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(292, 302);
+            this.panel3.Size = new System.Drawing.Size(275, 302);
             this.panel3.TabIndex = 1;
             // 
             // clientesNuevosCHT
@@ -258,34 +259,34 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.clientesNuevosCHT.BorderSkin.PageColor = System.Drawing.Color.MistyRose;
-            chartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea4.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea4.AxisX.LineWidth = 0;
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisX.MajorTickMark.Enabled = false;
-            chartArea4.AxisX.ScaleBreakStyle.CollapsibleSpaceThreshold = 10;
-            chartArea4.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea4.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea4.AxisY.IsLabelAutoFit = false;
-            chartArea4.AxisY.LabelAutoFitMinFontSize = 5;
-            chartArea4.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea4.AxisY.LineWidth = 0;
-            chartArea4.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea4.AxisY.Title = "Cantidad";
-            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Bebas Neue", 12F);
-            chartArea4.BackColor = System.Drawing.Color.White;
-            chartArea4.Name = "ChartArea1";
-            this.clientesNuevosCHT.ChartAreas.Add(chartArea4);
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.LineWidth = 0;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.ScaleBreakStyle.CollapsibleSpaceThreshold = 10;
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelAutoFitMinFontSize = 5;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.LineWidth = 0;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.Title = "Cantidad";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Bebas Neue", 12F);
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.Name = "ChartArea1";
+            this.clientesNuevosCHT.ChartAreas.Add(chartArea1);
             this.clientesNuevosCHT.Location = new System.Drawing.Point(10, 47);
             this.clientesNuevosCHT.Name = "clientesNuevosCHT";
             this.clientesNuevosCHT.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.clientesNuevosCHT.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Red};
-            series4.ChartArea = "ChartArea1";
-            series4.IsVisibleInLegend = false;
-            series4.Name = "Total";
-            this.clientesNuevosCHT.Series.Add(series4);
-            this.clientesNuevosCHT.Size = new System.Drawing.Size(272, 208);
+            series1.ChartArea = "ChartArea1";
+            series1.IsVisibleInLegend = false;
+            series1.Name = "Total";
+            this.clientesNuevosCHT.Series.Add(series1);
+            this.clientesNuevosCHT.Size = new System.Drawing.Size(255, 208);
             this.clientesNuevosCHT.TabIndex = 19;
             this.clientesNuevosCHT.Text = "chart1";
             // 
@@ -299,7 +300,7 @@ namespace Body_Factory_Manager
             this.verMasClientesNuevos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasClientesNuevos.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasClientesNuevos.ForeColor = System.Drawing.Color.Black;
-            this.verMasClientesNuevos.Location = new System.Drawing.Point(64, 255);
+            this.verMasClientesNuevos.Location = new System.Drawing.Point(55, 255);
             this.verMasClientesNuevos.Name = "verMasClientesNuevos";
             this.verMasClientesNuevos.Size = new System.Drawing.Size(170, 44);
             this.verMasClientesNuevos.TabIndex = 18;
@@ -326,20 +327,20 @@ namespace Body_Factory_Manager
             this.panel2.Controls.Add(this.cumplesDGV);
             this.panel2.Controls.Add(this.verMasCumplesBTN);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(301, 3);
+            this.panel2.Location = new System.Drawing.Point(284, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(292, 281);
+            this.panel2.Size = new System.Drawing.Size(275, 281);
             this.panel2.TabIndex = 1;
             // 
             // cumplesDGV
             // 
             this.cumplesDGV.AllowUserToAddRows = false;
             this.cumplesDGV.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            this.cumplesDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.cumplesDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.cumplesDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -347,26 +348,26 @@ namespace Body_Factory_Manager
             this.cumplesDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.cumplesDGV.BackgroundColor = System.Drawing.Color.White;
             this.cumplesDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cumplesDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cumplesDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.cumplesDGV.ColumnHeadersHeight = 30;
             this.cumplesDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.cumplesDGV.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cumplesDGV.DefaultCellStyle = dataGridViewCellStyle7;
             this.cumplesDGV.EnableHeadersVisualStyles = false;
             this.cumplesDGV.GridColor = System.Drawing.Color.Black;
             this.cumplesDGV.Location = new System.Drawing.Point(0, 38);
@@ -374,20 +375,20 @@ namespace Body_Factory_Manager
             this.cumplesDGV.Name = "cumplesDGV";
             this.cumplesDGV.ReadOnly = true;
             this.cumplesDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cumplesDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cumplesDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.cumplesDGV.RowHeadersVisible = false;
             this.cumplesDGV.RowTemplate.Height = 35;
             this.cumplesDGV.RowTemplate.ReadOnly = true;
             this.cumplesDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.cumplesDGV.ShowEditingIcon = false;
-            this.cumplesDGV.Size = new System.Drawing.Size(292, 189);
+            this.cumplesDGV.Size = new System.Drawing.Size(275, 189);
             this.cumplesDGV.TabIndex = 19;
             // 
             // dataGridViewTextBoxColumn1
@@ -412,7 +413,7 @@ namespace Body_Factory_Manager
             this.verMasCumplesBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasCumplesBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasCumplesBTN.ForeColor = System.Drawing.Color.Black;
-            this.verMasCumplesBTN.Location = new System.Drawing.Point(64, 230);
+            this.verMasCumplesBTN.Location = new System.Drawing.Point(55, 230);
             this.verMasCumplesBTN.Name = "verMasCumplesBTN";
             this.verMasCumplesBTN.Size = new System.Drawing.Size(170, 44);
             this.verMasCumplesBTN.TabIndex = 18;
@@ -441,7 +442,7 @@ namespace Body_Factory_Manager
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(3, 290);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(292, 302);
+            this.panel4.Size = new System.Drawing.Size(275, 302);
             this.panel4.TabIndex = 0;
             // 
             // verMasIngresos
@@ -454,7 +455,7 @@ namespace Body_Factory_Manager
             this.verMasIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasIngresos.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasIngresos.ForeColor = System.Drawing.Color.Black;
-            this.verMasIngresos.Location = new System.Drawing.Point(74, 255);
+            this.verMasIngresos.Location = new System.Drawing.Point(65, 255);
             this.verMasIngresos.Name = "verMasIngresos";
             this.verMasIngresos.Size = new System.Drawing.Size(170, 44);
             this.verMasIngresos.TabIndex = 18;
@@ -468,34 +469,34 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ingresosCHT.BorderSkin.PageColor = System.Drawing.Color.MistyRose;
-            chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea3.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea3.AxisX.LineWidth = 0;
-            chartArea3.AxisX.MajorGrid.Enabled = false;
-            chartArea3.AxisX.MajorTickMark.Enabled = false;
-            chartArea3.AxisX.ScaleBreakStyle.CollapsibleSpaceThreshold = 10;
-            chartArea3.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea3.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea3.AxisY.IsLabelAutoFit = false;
-            chartArea3.AxisY.LabelAutoFitMinFontSize = 5;
-            chartArea3.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea3.AxisY.LineWidth = 0;
-            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea3.AxisY.Title = "Total $";
-            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Bebas Neue", 12F);
-            chartArea3.BackColor = System.Drawing.Color.White;
-            chartArea3.Name = "ChartArea1";
-            this.ingresosCHT.ChartAreas.Add(chartArea3);
+            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisX.LineWidth = 0;
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.MajorTickMark.Enabled = false;
+            chartArea2.AxisX.ScaleBreakStyle.CollapsibleSpaceThreshold = 10;
+            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.AxisY.IsLabelAutoFit = false;
+            chartArea2.AxisY.LabelAutoFitMinFontSize = 5;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisY.LineWidth = 0;
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea2.AxisY.Title = "Total $";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Bebas Neue", 12F);
+            chartArea2.BackColor = System.Drawing.Color.White;
+            chartArea2.Name = "ChartArea1";
+            this.ingresosCHT.ChartAreas.Add(chartArea2);
             this.ingresosCHT.Location = new System.Drawing.Point(8, 41);
             this.ingresosCHT.Name = "ingresosCHT";
             this.ingresosCHT.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.ingresosCHT.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Red};
-            series3.ChartArea = "ChartArea1";
-            series3.IsVisibleInLegend = false;
-            series3.Name = "Total";
-            this.ingresosCHT.Series.Add(series3);
-            this.ingresosCHT.Size = new System.Drawing.Size(272, 208);
+            series2.ChartArea = "ChartArea1";
+            series2.IsVisibleInLegend = false;
+            series2.Name = "Total";
+            this.ingresosCHT.Series.Add(series2);
+            this.ingresosCHT.Size = new System.Drawing.Size(255, 208);
             this.ingresosCHT.TabIndex = 4;
             this.ingresosCHT.Text = "chart1";
             // 
@@ -525,7 +526,7 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel1.Controls.Add(this.pagarCuotaBTN);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 111);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(593, 79);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(559, 79);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // nuevoClienteBTN
@@ -614,9 +615,9 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.fechaHoraLBL);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tituloLBL);
             this.Name = "Inicio";
-            this.Size = new System.Drawing.Size(596, 500);
+            this.Size = new System.Drawing.Size(562, 500);
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -639,7 +640,7 @@ namespace Body_Factory_Manager
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label tituloLBL;
         private System.Windows.Forms.Label fechaHoraLBL;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView vencidasDGV;

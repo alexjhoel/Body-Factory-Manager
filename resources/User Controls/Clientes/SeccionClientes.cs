@@ -31,14 +31,13 @@ namespace Body_Factory_Manager
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
             if (selector)
             {
-                buttonDatos.Add(new ListadoButtonDatos(true, "Listo", Body_Factory_Manager.Properties.Resources.check, seleccionar));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Listo", Body_Factory_Manager.Properties.Resources.check, delegate (Dictionary<string, object> datos) { seleccionar(datos["Cédula"].ToString()); }));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Ver", Body_Factory_Manager.Properties.Resources.ver, this.Ver));
             }
             else
             {
                 buttonDatos.Add(new ListadoButtonDatos(false, "Nuevo", Body_Factory_Manager.Properties.Resources.person_add_FILL0_wght400_GRAD0_opsz48, this.Agregar));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
-                buttonDatos.Add(new ListadoButtonDatos(true, "Pagar", Body_Factory_Manager.Properties.Resources.signo_de_dolar, this.PagarCuota));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Chatear", Body_Factory_Manager.Properties.Resources.chat, this.Chatear));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Servicio", Body_Factory_Manager.Properties.Resources.AltoBajo, this.BajaAlta, 11));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Borrar));
@@ -50,8 +49,8 @@ namespace Body_Factory_Manager
             filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Cédula", "cedula"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Teléfono", "telefono"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha de Ingreso", "fechaIngreso"));
-            
-            listado = new Listado("Cédula", buttonDatos, Ordenar, filtros, Filtrar, 1);
+
+            listado = new Listado(new List<string> { "Cédula" }, buttonDatos, 1, filtros, Filtrar, 1); ;
 
             listado.Dock = DockStyle.Fill;
             this.irMensualidades = irMensualidades;
@@ -59,9 +58,9 @@ namespace Body_Factory_Manager
             ActualizarConsulta();
         }
 
-        private void Borrar(string cedula)
+        private void Borrar(Dictionary<string, object> datos)
         {
-            if (string.IsNullOrEmpty(cedula))
+            if (string.IsNullOrEmpty(datos["Cédula"].ToString()))
             {
                 MessageBox.Show("Esta acción requiere seleccionar un cliente", "Ningún cliente seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -69,7 +68,7 @@ namespace Body_Factory_Manager
             try
             {
                 if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-                sql.Modificar("DELETE FROM Clientes WHERE cedula= " + cedula);
+                sql.Modificar("DELETE FROM Clientes WHERE cedula= " + datos["Cédula"].ToString());
                 CargarListaClientes();
             }
             catch (Exception e)
@@ -78,26 +77,26 @@ namespace Body_Factory_Manager
             }
         }
 
-        private void BajaAlta(string cedula)
+        private void BajaAlta(Dictionary<string, object> datos)
         {
-            if (string.IsNullOrEmpty(cedula))
+            if (string.IsNullOrEmpty(datos["Cédula"].ToString()))
             {
                 MessageBox.Show("Esta acción requiere seleccionar un cliente", "Ningún cliente seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
             {
-                if((bool)sql.Obtener("SELECT * FROM Clientes WHERE cedula='" + cedula + "'").Rows[0]["esActivo"])
+                if((bool)sql.Obtener("SELECT * FROM Clientes WHERE cedula='" + datos["Cédula"].ToString() + "'").Rows[0]["esActivo"])
                 {
                     if(MessageBox.Show("¿Desea dar de baja el servicio de este cliente? El cliente no generará cuota automáticamente","Dar de baja",MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        sql.Modificar("UPDATE Clientes SET esActivo=0 WHERE cedula = " + cedula);
+                        sql.Modificar("UPDATE Clientes SET esActivo=0 WHERE cedula = " + datos["Cédula"].ToString());
                     }
                 }
                 else {
                     if (MessageBox.Show("¿Desea dar de alta el servicio de este cliente? El cliente volverá a generar cuota automáticamente", "Dar de alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        sql.Modificar("UPDATE Clientes SET esActivo=1 WHERE cedula = '" + cedula + "';");
+                        sql.Modificar("UPDATE Clientes SET esActivo=1 WHERE cedula = '" + datos["Cédula"].ToString() + "';");
                     }
                 }
                 //if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar el cliente?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
@@ -118,28 +117,21 @@ namespace Body_Factory_Manager
             listado.Recargar();
         }
 
-        private void Ver(string cedula)
+        private void Ver(Dictionary<string, object> datos)
         {
-            using (DatosCliente nuevaVentana = new DatosCliente(cedula, false))
+            using (DatosCliente nuevaVentana = new DatosCliente(datos["Cédula"].ToString(), false))
             {
                 nuevaVentana.ShowDialog();
             }
         }
 
-        private void Editar(string cedula)
+        private void Editar(Dictionary<string, object> datos)
         {
-            using (DatosCliente nuevaVentana = new DatosCliente(cedula))
+            using (DatosCliente nuevaVentana = new DatosCliente(datos["Cédula"].ToString()))
             {
                 nuevaVentana.ShowDialog();
             }
             CargarListaClientes();
-        }
-
-        private void Ordenar(string propiedadOrden, SortOrder orden)
-        {
-            this.propiedadOrden = propiedadOrden;
-            this.orden = orden;
-            ActualizarConsulta();
         }
 
 
@@ -151,27 +143,14 @@ namespace Body_Factory_Manager
         private void ActualizarConsulta()
         {
             consulta = "SELECT nombre as Nombre, apellido as Apellido, cedula as 'Cédula', telefono as 'Teléfono', fechaIngreso as 'Fecha de ingreso', IIF(esActivo=1, 'Activo', 'Pasivo') as 'Estado de servicio'  FROM Clientes ";
-            if (orden != SortOrder.None) consulta += " ORDER BY " + propiedadOrden + (orden == SortOrder.Ascending ? " asc" : " desc");
+           
             consulta += " WHERE esOculto = 0 AND " + filtro.ObtenerWhereConsulta();
             CargarListaClientes();
         }
 
 
-        private void PagarCuota(string cedula)
-        {
 
-            if (string.IsNullOrEmpty(cedula))
-            {
-                MessageBox.Show("Esta acción requiere seleccionar un cliente", "Ningún cliente seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(TipoPagoMensualidad.PagarCuotaDesdeClientes, cedula, "01", "2022"))
-            {
-                nuevaVentana.ShowDialog();
-            }
-        }
-
-        private void Agregar(string cedula)
+        private void Agregar(Dictionary<string, object> datos)
         {
             using (DatosCliente nuevaVentana = new DatosCliente(null, false))
             {
@@ -187,12 +166,12 @@ namespace Body_Factory_Manager
             ActualizarConsulta();
         }
 
-        private void Chatear(string cedula)
+        private void Chatear(Dictionary<string, object> datos)
         {
             
             try
             {
-                string telefono = sql.Obtener("SELECT * FROM Clientes WHERE cedula='" + cedula + "'").Rows[0]["telefono"].ToString();
+                string telefono = sql.Obtener("SELECT * FROM Clientes WHERE cedula='" + datos["Cédula"].ToString() + "'").Rows[0]["telefono"].ToString();
                 if (String.IsNullOrEmpty(telefono.Trim()))
                 {
                     MessageBox.Show("El cliente no tiene un número registrado", "No se pudo iniciar el chat", MessageBoxButtons.OK, MessageBoxIcon.Error);
