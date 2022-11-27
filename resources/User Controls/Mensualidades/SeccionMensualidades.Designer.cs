@@ -31,10 +31,10 @@ namespace Body_Factory_Manager
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeccionMensualidades));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pagasCBX = new System.Windows.Forms.CheckBox();
             this.diasNUD = new System.Windows.Forms.NumericUpDown();
@@ -52,6 +52,18 @@ namespace Body_Factory_Manager
             this.borrarBTN = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tablaDGV = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.estadoPNL = new System.Windows.Forms.Panel();
+            this.estadoLBL = new System.Windows.Forms.Label();
+            this.anioNUD = new System.Windows.Forms.NumericUpDown();
+            this.antMesBTN = new System.Windows.Forms.Button();
+            this.sigMesBTN = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.buscarClienteBTN = new System.Windows.Forms.Button();
+            this.nombreTBX = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cedulaTBX = new System.Windows.Forms.TextBox();
+            this.todo = new System.Windows.Forms.TabPage();
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,18 +72,8 @@ namespace Body_Factory_Manager
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.anioNUD = new System.Windows.Forms.NumericUpDown();
-            this.antMesBTN = new System.Windows.Forms.Button();
-            this.sigMesBTN = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.estadoPNL = new System.Windows.Forms.Panel();
-            this.buscarClienteBTN = new System.Windows.Forms.Button();
-            this.nombreTBX = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cedulaTBX = new System.Windows.Forms.TextBox();
-            this.todo = new System.Windows.Forms.TabPage();
-            this.estadoLBL = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diasNUD)).BeginInit();
             this.pestaniasTCL.SuspendLayout();
@@ -80,15 +82,17 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).BeginInit();
             this.panel2.SuspendLayout();
+            this.estadoPNL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).BeginInit();
             this.panel3.SuspendLayout();
-            this.estadoPNL.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.pagasCBX);
             this.panel1.Controls.Add(this.diasNUD);
             this.panel1.Controls.Add(this.label1);
@@ -117,7 +121,7 @@ namespace Body_Factory_Manager
             // diasNUD
             // 
             this.diasNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diasNUD.Location = new System.Drawing.Point(616, 5);
+            this.diasNUD.Location = new System.Drawing.Point(711, 5);
             this.diasNUD.Maximum = new decimal(new int[] {
             15,
             0,
@@ -142,7 +146,7 @@ namespace Body_Factory_Manager
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(285, 7);
+            this.label1.Location = new System.Drawing.Point(265, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 20);
             this.label1.TabIndex = 1;
@@ -154,7 +158,7 @@ namespace Body_Factory_Manager
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button2.FlatAppearance.BorderSize = 3;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(387, 5);
+            this.button2.Location = new System.Drawing.Point(479, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(57, 23);
             this.button2.TabIndex = 5;
@@ -164,7 +168,7 @@ namespace Body_Factory_Manager
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(450, 8);
+            this.label2.Location = new System.Drawing.Point(545, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 20);
             this.label2.TabIndex = 2;
@@ -176,7 +180,7 @@ namespace Body_Factory_Manager
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button1.FlatAppearance.BorderSize = 3;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(222, 5);
+            this.button1.Location = new System.Drawing.Point(197, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(57, 23);
             this.button1.TabIndex = 4;
@@ -186,7 +190,7 @@ namespace Body_Factory_Manager
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(677, 8);
+            this.label3.Location = new System.Drawing.Point(772, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 20);
             this.label3.TabIndex = 3;
@@ -344,25 +348,25 @@ namespace Body_Factory_Manager
             // 
             this.tablaDGV.AllowUserToAddRows = false;
             this.tablaDGV.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.tablaDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White;
+            this.tablaDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.tablaDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tablaDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tablaDGV.BackgroundColor = System.Drawing.Color.White;
             this.tablaDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.tablaDGV.ColumnHeadersHeight = 30;
             this.tablaDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cedula,
@@ -373,14 +377,14 @@ namespace Body_Factory_Manager
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tablaDGV.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tablaDGV.DefaultCellStyle = dataGridViewCellStyle15;
             this.tablaDGV.EnableHeadersVisualStyles = false;
             this.tablaDGV.GridColor = System.Drawing.Color.Black;
             this.tablaDGV.Location = new System.Drawing.Point(0, 82);
@@ -389,14 +393,14 @@ namespace Body_Factory_Manager
             this.tablaDGV.Name = "tablaDGV";
             this.tablaDGV.ReadOnly = true;
             this.tablaDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.tablaDGV.RowHeadersVisible = false;
             this.tablaDGV.RowTemplate.Height = 30;
             this.tablaDGV.RowTemplate.ReadOnly = true;
@@ -406,54 +410,6 @@ namespace Body_Factory_Manager
             this.tablaDGV.TabIndex = 4;
             this.tablaDGV.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.tablaDGV_RowPostPaint);
             this.tablaDGV.SelectionChanged += new System.EventHandler(this.tablaDGV_SelectionChanged);
-            // 
-            // cedula
-            // 
-            this.cedula.HeaderText = "Mes";
-            this.cedula.Name = "cedula";
-            this.cedula.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Día de ingreso";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Valor($)";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Descuento(%)";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Total($)";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Deuda($)";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Vencimiento";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Fecha del pago";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // panel2
             // 
@@ -466,6 +422,26 @@ namespace Body_Factory_Manager
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(295, 36);
             this.panel2.TabIndex = 1;
+            // 
+            // estadoPNL
+            // 
+            this.estadoPNL.Controls.Add(this.estadoLBL);
+            this.estadoPNL.Location = new System.Drawing.Point(211, 5);
+            this.estadoPNL.Name = "estadoPNL";
+            this.estadoPNL.Size = new System.Drawing.Size(73, 28);
+            this.estadoPNL.TabIndex = 37;
+            this.estadoPNL.Click += new System.EventHandler(this.estadoPanel_Click);
+            // 
+            // estadoLBL
+            // 
+            this.estadoLBL.AutoSize = true;
+            this.estadoLBL.Font = new System.Drawing.Font("Bebas Neue", 16F, System.Drawing.FontStyle.Bold);
+            this.estadoLBL.Location = new System.Drawing.Point(3, 1);
+            this.estadoLBL.Name = "estadoLBL";
+            this.estadoLBL.Size = new System.Drawing.Size(62, 26);
+            this.estadoLBL.TabIndex = 34;
+            this.estadoLBL.Text = "Activo";
+            this.estadoLBL.Click += new System.EventHandler(this.estadoLBL_Click);
             // 
             // anioNUD
             // 
@@ -531,15 +507,6 @@ namespace Body_Factory_Manager
             this.panel3.Size = new System.Drawing.Size(831, 34);
             this.panel3.TabIndex = 3;
             // 
-            // estadoPNL
-            // 
-            this.estadoPNL.Controls.Add(this.estadoLBL);
-            this.estadoPNL.Location = new System.Drawing.Point(211, 5);
-            this.estadoPNL.Name = "estadoPNL";
-            this.estadoPNL.Size = new System.Drawing.Size(73, 28);
-            this.estadoPNL.TabIndex = 37;
-            this.estadoPNL.Click += new System.EventHandler(this.estadoPanel_Click);
-            // 
             // buscarClienteBTN
             // 
             this.buscarClienteBTN.BackColor = System.Drawing.Color.Red;
@@ -596,16 +563,83 @@ namespace Body_Factory_Manager
             this.todo.Text = "Todo";
             this.todo.UseVisualStyleBackColor = true;
             // 
-            // estadoLBL
+            // cedula
             // 
-            this.estadoLBL.AutoSize = true;
-            this.estadoLBL.Font = new System.Drawing.Font("Bebas Neue", 16F, System.Drawing.FontStyle.Bold);
-            this.estadoLBL.Location = new System.Drawing.Point(3, 1);
-            this.estadoLBL.Name = "estadoLBL";
-            this.estadoLBL.Size = new System.Drawing.Size(62, 26);
-            this.estadoLBL.TabIndex = 34;
-            this.estadoLBL.Text = "Activo";
-            this.estadoLBL.Click += new System.EventHandler(this.estadoLBL_Click);
+            this.cedula.HeaderText = "Mes";
+            this.cedula.Name = "cedula";
+            this.cedula.ReadOnly = true;
+            this.cedula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Día de ingreso";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Valor($)";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Descuento(%)";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Total($)";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Deuda($)";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Vencimiento";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Fecha del pago";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.button3.FlatAppearance.BorderSize = 3;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(346, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(57, 23);
+            this.button3.TabIndex = 7;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(409, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 20);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Pagas";
             // 
             // SeccionMensualidades
             // 
@@ -625,11 +659,11 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablaDGV)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.estadoPNL.ResumeLayout(false);
+            this.estadoPNL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.estadoPNL.ResumeLayout(false);
-            this.estadoPNL.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -665,6 +699,7 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Button pagarBTN;
         private System.Windows.Forms.Panel estadoPNL;
         private System.Windows.Forms.DataGridView tablaDGV;
+        private System.Windows.Forms.Label estadoLBL;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -673,6 +708,7 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Label estadoLBL;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button3;
     }
 }

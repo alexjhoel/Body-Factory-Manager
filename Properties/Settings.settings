@@ -31,8 +31,5 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=localhost;Initial Catalog=StardustEssentials;Persist Security Info=True;User ID=stardust;Password=admin;Pooling=False</Value>
     </Setting>
-    <Setting Name="a" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
   </Settings>
 </SettingsFile>

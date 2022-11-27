@@ -39,6 +39,7 @@ namespace Body_Factory_Manager
                 buttonDatos.Add(new ListadoButtonDatos(false, "Nuevo", Body_Factory_Manager.Properties.Resources.person_add_FILL0_wght400_GRAD0_opsz48, this.Agregar));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Editar", Body_Factory_Manager.Properties.Resources.editar, this.Editar));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Chatear", Body_Factory_Manager.Properties.Resources.chat, this.Chatear));
+                buttonDatos.Add(new ListadoButtonDatos(true, "Correo", Body_Factory_Manager.Properties.Resources.email, this.Email));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Servicio", Body_Factory_Manager.Properties.Resources.AltoBajo, this.BajaAlta, 11));
                 buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.Borrar));
             }
@@ -142,7 +143,7 @@ namespace Body_Factory_Manager
         }
         private void ActualizarConsulta()
         {
-            consulta = "SELECT nombre as Nombre, apellido as Apellido, cedula as 'Cédula', telefono as 'Teléfono', fechaIngreso as 'Fecha de ingreso', IIF(esActivo=1, 'Activo', 'Pasivo') as 'Estado de servicio'  FROM Clientes ";
+            consulta = "SELECT nombre as Nombre, apellido as Apellido, cedula as 'Cédula', telefono as 'Teléfono', correo as 'Correo electrónico', fechaIngreso as 'Fecha de ingreso', IIF(esActivo=1, 'Activo', 'Pasivo') as 'Estado de servicio'  FROM Clientes ";
            
             consulta += " WHERE esOculto = 0 AND " + filtro.ObtenerWhereConsulta();
             CargarListaClientes();
@@ -180,6 +181,34 @@ namespace Body_Factory_Manager
                 comunicacion.Chatear(telefono);
                 MessageBox.Show("Ventana abierta");
             }
+            catch
+            {
+                MessageBox.Show("Ocurrió un error al abrir el navegador");
+            }
+            finally
+            {
+                sql.CerrarConexion();
+            }
+        }
+
+        private void Email(Dictionary<string, object> datos)
+        {
+
+            try
+            {
+                string email = sql.Obtener("SELECT * FROM Clientes WHERE cedula='" + datos["Cédula"].ToString() + "'").Rows[0]["correo"].ToString();
+                if (String.IsNullOrEmpty(email.Trim()))
+                {
+                    MessageBox.Show("El cliente no tiene un email registrado", "No se puede enviar un correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                using (EnviarCorreo nuevaVentana = new EnviarCorreo(email))
+                {
+                    nuevaVentana.ShowDialog();
+    
+                }
+            }
+
             catch
             {
                 MessageBox.Show("Ocurrió un error al abrir el navegador");

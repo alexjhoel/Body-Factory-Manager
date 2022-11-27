@@ -68,8 +68,8 @@ namespace Body_Factory_Manager
                             datosMensualidad = null;
                             mesCBX.SelectedIndex = int.Parse(mes) - 1;
                             anioNUD.Value = int.Parse(anio);
-                            ingresoDTP.Value = DateTime.ParseExact("01/" + mes + "/" + anio, "dd/M/yyyy", CultureInfo.InvariantCulture);
-                            vencimientoDTP.Value = DateTime.ParseExact("01/" + (int.Parse(mes) + 1) + "/" + anio, "dd/M/yyyy", CultureInfo.InvariantCulture);
+                            ingresoDTP.Value = DateTime.ParseExact(DateTime.Today.Day + "/" + mes + "/" + anio, "dd/M/yyyy", CultureInfo.InvariantCulture);
+                            vencimientoDTP.Value = DateTime.ParseExact(DateTime.Today.Day + "/" + (int.Parse(mes) + 1) + "/" + anio, "dd/M/yyyy", CultureInfo.InvariantCulture);
                         }
                         
                     }
@@ -169,22 +169,7 @@ namespace Body_Factory_Manager
             entregaCBX.SelectedIndex = 0;
 
         }
-
-        private void ActivarZonaMensualidad(bool estado)
-        {
-            cobroNUD.Enabled = estado;
-            cobroCBX.Enabled = estado;
-            descuentoNUD.Enabled = estado;
-            descuentoCBX.Enabled = estado;
-            ingresoDTP.Enabled = estado;
-            totalTbx.Enabled = estado;
-            if (!estado)
-            {
-                cobroNUD.Value = cobroNUD.Minimum;
-                descuentoNUD.Value = descuentoNUD.Minimum;
-                totalTbx.Text = "0";
-            }
-        }
+        
 
         private void ObtenerDatosMensualidad(string cedulaCliente, string mes, string anio)
         {
@@ -447,24 +432,31 @@ namespace Body_Factory_Manager
                     consulta = "INSERT INTO Mensualidades (cedulaCliente, mes, anio, valor, fechaIngreso, vencimiento) VALUES(@cedulaCliente, @mes, @anio, @valor, @fechaIngreso, @vencimiento);";
 
                     string texto = "Datos guardados";
+                    int mes = mesCBX.SelectedIndex + 2;
+                    int anio = (int)anioNUD.Value;
                     for (int i = 1; i < (int)xMesesNUD.Value; i++)
                     {
                         if (i == 1) texto = "Se agregaron o modificaron las siguientes mensualidades: \n Mes " + parametros["mes"] + " del año " + parametros["anio"] + " a cobrar " + cobroNUD.Value + " a vencer " + (parametros["vencimiento"] != DBNull.Value ? ((DateTime)parametros["vencimiento"]).ToString("dd/M/yyyy") : ": Sin vecimiento");
 
-                        if (mesCBX.SelectedIndex + i + 1 == 13)
+                        
+                        if (mes == 13)
                         {
-                            parametros["mes"] = "1";
-                            parametros["anio"] = (anioNUD.Value + 1).ToString();
+                            anio++;
+                            
+                            mes = 1;
                         }
-                        else parametros["mes"] = (mesCBX.SelectedIndex + i + 1).ToString();
+                        parametros["mes"] = mes.ToString();
+                        parametros["anio"] = anio.ToString();
                         parametros["fechaIngreso"] = ((DateTime)parametros["fechaIngreso"]).NextMonth();
 
                         if (sinVecimientoCBX.Checked) parametros["vencimiento"] = parametros["fechaIngreso"];
                         else { parametros["vencimiento"] = ((DateTime)parametros["vencimiento"]).NextMonth(); }
+                        mes++;
 
 
                         try
                         {
+                            
                             sql.Modificar(consulta, parametros);
                             texto += "\n Mes " + parametros["mes"] + " del año " + parametros["anio"] + " a cobrar " + totalTbx.Text + " vencimiento " + (parametros["vencimiento"] != DBNull.Value ? ((DateTime)parametros["vencimiento"]).ToString("dd/M/yyyy") : ": Sin vecimiento");
                         }
@@ -472,7 +464,7 @@ namespace Body_Factory_Manager
                         catch (SqlException exc)
                         {
                             if (exc.Number == 2627) { texto += "La cuota del mes " + parametros["mes"] + " del año " + parametros["anio"] + " no se pudo crear, ya existe otra en su lugar, si desea modificarla edítala desde el listado"; }
-                            else MessageBox.Show("La cuota del mes " + parametros["mes"] + " del año " + parametros["anio"] + " no se agregó", "Error de base datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            else MessageBox.Show("La cuota del mes " + parametros["mes"] + " del año " + parametros["anio"] + " no se agregó " + exc.Message, "Error de base datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         finally
                         {
@@ -489,6 +481,7 @@ namespace Body_Factory_Manager
                         xMesesNUD.Value = 1;
                         this.Width = 589;
                         tipo = TipoPagoMensualidad.NuevoPago;
+                        this.DialogResult = DialogResult.OK;
                         return;
                     }
                         this.DialogResult = DialogResult.OK;

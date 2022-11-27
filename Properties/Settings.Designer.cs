@@ -97,17 +97,5 @@ namespace Body_Factory_Manager.Properties {
                 this["ConnectionString"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a {
-            get {
-                return ((string)(this["a"]));
-            }
-            set {
-                this["a"] = value;
-            }
-        }
     }
 }

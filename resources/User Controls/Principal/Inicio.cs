@@ -249,5 +249,13 @@ namespace Body_Factory_Manager
         {
             salida(TipoInicioSalida.Mensualidades, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
         }
+
+        private void emailBTN_Click(object sender, EventArgs e)
+        {
+            using (EnviarCorreo nuevaVentana = new EnviarCorreo())
+            {
+                nuevaVentana.ShowDialog();
+            }
+        }
     }
 }

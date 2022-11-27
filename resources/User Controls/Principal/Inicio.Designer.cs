@@ -73,6 +73,7 @@ namespace Body_Factory_Manager
             this.nuevoClienteBTN = new System.Windows.Forms.Button();
             this.chatBTN = new System.Windows.Forms.Button();
             this.pagarCuotaBTN = new System.Windows.Forms.Button();
+            this.emailBTN = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vencidasDGV)).BeginInit();
@@ -117,7 +118,7 @@ namespace Body_Factory_Manager
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(275, 281);
+            this.panel1.Size = new System.Drawing.Size(258, 281);
             this.panel1.TabIndex = 0;
             // 
             // vencidasDGV
@@ -176,7 +177,7 @@ namespace Body_Factory_Manager
             this.vencidasDGV.RowTemplate.ReadOnly = true;
             this.vencidasDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vencidasDGV.ShowEditingIcon = false;
-            this.vencidasDGV.Size = new System.Drawing.Size(268, 189);
+            this.vencidasDGV.Size = new System.Drawing.Size(251, 189);
             this.vencidasDGV.TabIndex = 19;
             this.vencidasDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.vencidasDGV_CellDoubleClick);
             // 
@@ -202,7 +203,7 @@ namespace Body_Factory_Manager
             this.verMasVencidasBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasVencidasBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasVencidasBTN.ForeColor = System.Drawing.Color.Black;
-            this.verMasVencidasBTN.Location = new System.Drawing.Point(48, 230);
+            this.verMasVencidasBTN.Location = new System.Drawing.Point(40, 230);
             this.verMasVencidasBTN.Name = "verMasVencidasBTN";
             this.verMasVencidasBTN.Size = new System.Drawing.Size(170, 44);
             this.verMasVencidasBTN.TabIndex = 18;
@@ -237,7 +238,7 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 287F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(562, 595);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 595);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel3
@@ -248,9 +249,9 @@ namespace Body_Factory_Manager
             this.panel3.Controls.Add(this.clientesNuevosCHT);
             this.panel3.Controls.Add(this.verMasClientesNuevos);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(284, 290);
+            this.panel3.Location = new System.Drawing.Point(267, 290);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(275, 302);
+            this.panel3.Size = new System.Drawing.Size(258, 302);
             this.panel3.TabIndex = 1;
             // 
             // clientesNuevosCHT
@@ -286,7 +287,7 @@ namespace Body_Factory_Manager
             series1.IsVisibleInLegend = false;
             series1.Name = "Total";
             this.clientesNuevosCHT.Series.Add(series1);
-            this.clientesNuevosCHT.Size = new System.Drawing.Size(255, 208);
+            this.clientesNuevosCHT.Size = new System.Drawing.Size(238, 208);
             this.clientesNuevosCHT.TabIndex = 19;
             this.clientesNuevosCHT.Text = "chart1";
             // 
@@ -300,7 +301,7 @@ namespace Body_Factory_Manager
             this.verMasClientesNuevos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasClientesNuevos.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasClientesNuevos.ForeColor = System.Drawing.Color.Black;
-            this.verMasClientesNuevos.Location = new System.Drawing.Point(55, 255);
+            this.verMasClientesNuevos.Location = new System.Drawing.Point(47, 255);
             this.verMasClientesNuevos.Name = "verMasClientesNuevos";
             this.verMasClientesNuevos.Size = new System.Drawing.Size(170, 44);
             this.verMasClientesNuevos.TabIndex = 18;
@@ -327,9 +328,9 @@ namespace Body_Factory_Manager
             this.panel2.Controls.Add(this.cumplesDGV);
             this.panel2.Controls.Add(this.verMasCumplesBTN);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(284, 3);
+            this.panel2.Location = new System.Drawing.Point(267, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(275, 281);
+            this.panel2.Size = new System.Drawing.Size(258, 281);
             this.panel2.TabIndex = 1;
             // 
             // cumplesDGV
@@ -388,7 +389,7 @@ namespace Body_Factory_Manager
             this.cumplesDGV.RowTemplate.ReadOnly = true;
             this.cumplesDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.cumplesDGV.ShowEditingIcon = false;
-            this.cumplesDGV.Size = new System.Drawing.Size(275, 189);
+            this.cumplesDGV.Size = new System.Drawing.Size(258, 189);
             this.cumplesDGV.TabIndex = 19;
             // 
             // dataGridViewTextBoxColumn1
@@ -413,7 +414,7 @@ namespace Body_Factory_Manager
             this.verMasCumplesBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasCumplesBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasCumplesBTN.ForeColor = System.Drawing.Color.Black;
-            this.verMasCumplesBTN.Location = new System.Drawing.Point(55, 230);
+            this.verMasCumplesBTN.Location = new System.Drawing.Point(47, 230);
             this.verMasCumplesBTN.Name = "verMasCumplesBTN";
             this.verMasCumplesBTN.Size = new System.Drawing.Size(170, 44);
             this.verMasCumplesBTN.TabIndex = 18;
@@ -442,7 +443,7 @@ namespace Body_Factory_Manager
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(3, 290);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(275, 302);
+            this.panel4.Size = new System.Drawing.Size(258, 302);
             this.panel4.TabIndex = 0;
             // 
             // verMasIngresos
@@ -455,7 +456,7 @@ namespace Body_Factory_Manager
             this.verMasIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasIngresos.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasIngresos.ForeColor = System.Drawing.Color.Black;
-            this.verMasIngresos.Location = new System.Drawing.Point(65, 255);
+            this.verMasIngresos.Location = new System.Drawing.Point(57, 255);
             this.verMasIngresos.Name = "verMasIngresos";
             this.verMasIngresos.Size = new System.Drawing.Size(170, 44);
             this.verMasIngresos.TabIndex = 18;
@@ -496,7 +497,7 @@ namespace Body_Factory_Manager
             series2.IsVisibleInLegend = false;
             series2.Name = "Total";
             this.ingresosCHT.Series.Add(series2);
-            this.ingresosCHT.Size = new System.Drawing.Size(255, 208);
+            this.ingresosCHT.Size = new System.Drawing.Size(238, 208);
             this.ingresosCHT.TabIndex = 4;
             this.ingresosCHT.Text = "chart1";
             // 
@@ -524,9 +525,10 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel1.Controls.Add(this.nuevoClienteBTN);
             this.flowLayoutPanel1.Controls.Add(this.chatBTN);
             this.flowLayoutPanel1.Controls.Add(this.pagarCuotaBTN);
+            this.flowLayoutPanel1.Controls.Add(this.emailBTN);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 111);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(559, 79);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(525, 79);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // nuevoClienteBTN
@@ -595,6 +597,28 @@ namespace Body_Factory_Manager
             this.pagarCuotaBTN.UseVisualStyleBackColor = false;
             this.pagarCuotaBTN.Click += new System.EventHandler(this.pagarCuotaBTN_Click);
             // 
+            // emailBTN
+            // 
+            this.emailBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.emailBTN.BackColor = System.Drawing.Color.Red;
+            this.emailBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.emailBTN.FlatAppearance.BorderSize = 0;
+            this.emailBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.emailBTN.Font = new System.Drawing.Font("Bebas Neue", 9F, System.Drawing.FontStyle.Bold);
+            this.emailBTN.Image = ((System.Drawing.Image)(resources.GetObject("emailBTN.Image")));
+            this.emailBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.emailBTN.Location = new System.Drawing.Point(242, 5);
+            this.emailBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.emailBTN.Name = "emailBTN";
+            this.emailBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.emailBTN.Size = new System.Drawing.Size(69, 69);
+            this.emailBTN.TabIndex = 4;
+            this.emailBTN.Text = "Email";
+            this.emailBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.emailBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.emailBTN.UseVisualStyleBackColor = false;
+            this.emailBTN.Click += new System.EventHandler(this.emailBTN_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -617,7 +641,7 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.fechaHoraLBL);
             this.Controls.Add(this.tituloLBL);
             this.Name = "Inicio";
-            this.Size = new System.Drawing.Size(562, 500);
+            this.Size = new System.Drawing.Size(528, 500);
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -669,5 +693,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Button pagarCuotaBTN;
         private System.Windows.Forms.Button chatBTN;
         private System.Windows.Forms.DataVisualization.Charting.Chart clientesNuevosCHT;
+        private System.Windows.Forms.Button emailBTN;
     }
 }

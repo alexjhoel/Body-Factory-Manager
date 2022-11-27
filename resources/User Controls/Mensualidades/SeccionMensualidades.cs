@@ -63,9 +63,13 @@ namespace Body_Factory_Manager
 
             anioNUD.Value = DateTime.Now.Year;
 
+            ActualizarConsulta();
+
             tablaDGV.Rows[DateTime.Now.Month - 1].Selected = true;
 
-            ActualizarConsulta();
+            
+
+            
 
 
         }
@@ -73,6 +77,8 @@ namespace Body_Factory_Manager
         public SeccionMensualidades(string cedulaCliente) : this (new FiltroBusqeda(TipoFiltro.Nada))
         {
             cedulaTBX.Text = cedulaCliente;
+
+            
         }
 
 
@@ -85,8 +91,7 @@ namespace Body_Factory_Manager
 
         private void CargarListaMensualidades()
         {
-            listado.datos = sql.Obtener(consulta);
-            listado.Recargar("mesOculto", (int)diasNUD.Value);
+            
 
             tablaDGV.Rows.Clear();
             for (int i = 0; i < 12; i++)
@@ -94,7 +99,7 @@ namespace Body_Factory_Manager
 
                 tablaDGV.Rows.Add();
                 tablaDGV.Rows[i].Cells[0].Value = DateTime.ParseExact("01/" + (i + 1) + "/2001", "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM");
-                DataTable datos = sql.Obtener("SELECT CONVERT(VARCHAR(MAX),fechaIngreso,103) as fechaIngreso, pagado, valor, descuento, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vecimiento') as vencimiento , CONVERT(DECIMAL(6, 2), valor * (1 - descuento / 100)) as total, ((valor * (1 - descuento / 100)) - pagado) as deuda, ISNULL(CONVERT(VARCHAR(10),ultimoPago,103),'Sin pagos') as ultimoPago " +
+                DataTable datos = sql.Obtener("SELECT CONVERT(VARCHAR(MAX),fechaIngreso,103) as fechaIngreso, pagado, valor, descuento, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vencimiento') as vencimiento , CONVERT(DECIMAL(6, 2), valor * (1 - descuento / 100)) as total, ((valor * (1 - descuento / 100)) - pagado) as deuda, ISNULL(CONVERT(VARCHAR(10),ultimoPago,103),'Sin pagos') as ultimoPago " +
 "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado, MAX(Pagos.fecha) as ultimoPago " +
 "FROM Mensualidades LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
 "WHERE Mensualidades.cedulaCliente = '" + cedulaTBX.Text + "' AND Mensualidades.mes = " + (i + 1) + " AND Mensualidades.anio = " + anioNUD.Value +
@@ -138,42 +143,7 @@ namespace Body_Factory_Manager
 
         }
 
-        private void Avisar(Dictionary<string, object> datos)
-        {
-            try
-            {
-                DataTable datosTelef = sql.Obtener("SELECT cedula, telefono FROM Mensualidades " +
-                    "INNER JOIN Clientes " +
-                    "ON Mensualidades.cedulaCliente = Clientes.cedula " +
-                    "WHERE cedulaCliente = '" + datos["Cédula"] + "' AND mes='" + datos["Mes"] + "' AND anio= '" + datos["Año"] + "'");
-                string telefono = datosTelef.Rows[0]["telefono"].ToString();
-                if (!String.IsNullOrEmpty(telefono))
-                {
-                    comunicacion.Chatear(telefono);
-                    MessageBox.Show("Abriendo navegador web...");
-                    return;
-                }
-
-                if (MessageBox.Show("El cliente no cuenta con un número de teléfono registrado, ¿Desea editar su información?", "Número no encontrado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    using (DatosCliente nuevaVentana = new DatosCliente(datosTelef.Rows[0]["cedula"].ToString()))
-                    {
-                        nuevaVentana.ShowDialog();
-                    }
-                }
-
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Ocurrió un error al abrir el navegador, inténtelo de nuevo más tarde" + e.Message, "No se pudo realizar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                sql.CerrarConexion();
-            }
-        }
+        
 
 
         private void Filtrar(FiltroBusqeda filtro)
@@ -196,7 +166,7 @@ namespace Body_Factory_Manager
         private void ActualizarConsulta()
         {
             consulta = "SET Language 'Spanish'; " +
-                "SELECT DATENAME(month, CONCAT('2022-',mes,'-01')) as Mes, mes as mesOculto, anio as 'Año', cedula as 'Cédula', CONCAT(nombre, ' ', apellido) as 'Nombre completo', valor as 'Cuota($)', descuento as 'Descuento(%)', (CONVERT(DECIMAL(6,2),valor * (1 - descuento / 100))) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', FullMensualidades.fechaIngreso as Ingreso, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vecimiento') as Vencimiento " +
+                "SELECT DATENAME(month, CONCAT('2022-',mes,'-01')) as Mes, mes as mesOculto, anio as 'Año', cedula as 'Cédula', CONCAT(nombre, ' ', apellido) as 'Nombre completo', valor as 'Cuota($)', descuento as 'Descuento(%)', (CONVERT(DECIMAL(6,2),valor * (1 - descuento / 100))) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', FullMensualidades.fechaIngreso as Ingreso, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vencimiento') as Vencimiento " +
                 "FROM(SELECT Mensualidades.cedulaCliente, pagado, valor, descuento, Mensualidades.mes, Mensualidades.anio, vencimiento, fechaIngreso " +
                 "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
                 "FROM Mensualidades " +
@@ -214,6 +184,9 @@ namespace Body_Factory_Manager
             consulta += filtro.ObtenerWhereConsulta();
 
             Console.WriteLine(consulta);
+
+            listado.datos = sql.Obtener(consulta);
+            listado.Recargar("mesOculto", (int)diasNUD.Value);
             CargarListaMensualidades();
             ActualizarDisponibilidadBotones();
         }
@@ -257,18 +230,22 @@ namespace Body_Factory_Manager
                     DataTable datos = sql.Obtener("SELECT nombre,apellido, esActivo FROM Clientes WHERE cedula=" + cedulaTBX.Text);
                     if (datos.Rows.Count != 0)
                     {
+                        anioNUD.Value = DateTime.Now.Year;
+                        
                         nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
                         estadoPNL.BackColor = (bool)datos.Rows[0]["esActivo"] ? Color.Green : Color.Red;
                         estadoLBL.Text = (bool)datos.Rows[0]["esActivo"] ? "Activo" : "Pasivo";
                         ActualizarConsulta();
+                        tablaDGV.Rows[DateTime.Now.Month - 1].Selected = true;
                         anotarBTN.Enabled = true;
                         borrarBTN.Enabled = true;
                         return;
                     }
+                    
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show("Error de base de datos, razón: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -277,7 +254,7 @@ namespace Body_Factory_Manager
 
 
             }
-
+            CargarListaMensualidades();
             nombreTBX.Text = "No encontrado";
             anotarBTN.Enabled = false;
             borrarBTN.Enabled = false;
@@ -378,7 +355,7 @@ namespace Body_Factory_Manager
         {
             if(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento") == null) return;
 
-            DateTime fecha = tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento" ?
+            DateTime fecha = tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vencimiento" ?
                 DateTime.ParseExact(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now.AddDays(-1);
 
             if (double.Parse(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Deuda($)").ToString()) > 0)
@@ -397,6 +374,12 @@ namespace Body_Factory_Manager
                     tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Yellow;
                     tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
                 }
+            }
+            else
+            {
+                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Green;
+                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Green;
+                tablaDGV.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
             }
         }
 

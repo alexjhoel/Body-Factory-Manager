@@ -57,12 +57,13 @@ namespace Body_Factory_Manager
             this.anotarBTN = new System.Windows.Forms.Button();
             this.borrarBTN = new System.Windows.Forms.Button();
             this.opcionesPNL = new System.Windows.Forms.Panel();
+            this.faltaBTN = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.proCliente = new System.Windows.Forms.TabPage();
             this.todas = new System.Windows.Forms.TabPage();
+            this.listadoPNL = new System.Windows.Forms.Panel();
             this.opcionesPNL2 = new System.Windows.Forms.Panel();
             this.faltaCBX = new System.Windows.Forms.CheckBox();
-            this.listadoPNL = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.calendarioDGV)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anioNUD)).BeginInit();
@@ -369,7 +370,7 @@ namespace Body_Factory_Manager
             this.anotarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anotarBTN.Image = ((System.Drawing.Image)(resources.GetObject("anotarBTN.Image")));
             this.anotarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.anotarBTN.Location = new System.Drawing.Point(285, 5);
+            this.anotarBTN.Location = new System.Drawing.Point(247, 5);
             this.anotarBTN.Margin = new System.Windows.Forms.Padding(5);
             this.anotarBTN.Name = "anotarBTN";
             this.anotarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
@@ -393,7 +394,7 @@ namespace Body_Factory_Manager
             this.borrarBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.borrarBTN.Image = ((System.Drawing.Image)(resources.GetObject("borrarBTN.Image")));
             this.borrarBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.borrarBTN.Location = new System.Drawing.Point(359, 5);
+            this.borrarBTN.Location = new System.Drawing.Point(395, 5);
             this.borrarBTN.Margin = new System.Windows.Forms.Padding(5);
             this.borrarBTN.Name = "borrarBTN";
             this.borrarBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
@@ -410,12 +411,37 @@ namespace Body_Factory_Manager
             // 
             this.opcionesPNL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.opcionesPNL.Controls.Add(this.faltaBTN);
             this.opcionesPNL.Controls.Add(this.anotarBTN);
             this.opcionesPNL.Controls.Add(this.borrarBTN);
             this.opcionesPNL.Location = new System.Drawing.Point(0, 387);
             this.opcionesPNL.Name = "opcionesPNL";
             this.opcionesPNL.Size = new System.Drawing.Size(707, 74);
             this.opcionesPNL.TabIndex = 5;
+            // 
+            // faltaBTN
+            // 
+            this.faltaBTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.faltaBTN.BackColor = System.Drawing.Color.Red;
+            this.faltaBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.faltaBTN.Enabled = false;
+            this.faltaBTN.FlatAppearance.BorderSize = 0;
+            this.faltaBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.faltaBTN.Font = new System.Drawing.Font("Bebas Neue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.faltaBTN.Image = ((System.Drawing.Image)(resources.GetObject("faltaBTN.Image")));
+            this.faltaBTN.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.faltaBTN.Location = new System.Drawing.Point(321, 5);
+            this.faltaBTN.Margin = new System.Windows.Forms.Padding(5);
+            this.faltaBTN.Name = "faltaBTN";
+            this.faltaBTN.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.faltaBTN.Size = new System.Drawing.Size(64, 64);
+            this.faltaBTN.TabIndex = 2;
+            this.faltaBTN.Text = "Falta";
+            this.faltaBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.faltaBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.faltaBTN.UseCompatibleTextRendering = true;
+            this.faltaBTN.UseVisualStyleBackColor = false;
+            this.faltaBTN.Click += new System.EventHandler(this.faltaBTN_Click);
             // 
             // tabControl1
             // 
@@ -451,6 +477,14 @@ namespace Body_Factory_Manager
             this.todas.Text = "Todas";
             this.todas.UseVisualStyleBackColor = true;
             // 
+            // listadoPNL
+            // 
+            this.listadoPNL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listadoPNL.Location = new System.Drawing.Point(0, 0);
+            this.listadoPNL.Name = "listadoPNL";
+            this.listadoPNL.Size = new System.Drawing.Size(704, 428);
+            this.listadoPNL.TabIndex = 1;
+            // 
             // opcionesPNL2
             // 
             this.opcionesPNL2.Controls.Add(this.faltaCBX);
@@ -471,14 +505,6 @@ namespace Body_Factory_Manager
             this.faltaCBX.Text = "Mostrar faltas";
             this.faltaCBX.UseVisualStyleBackColor = true;
             this.faltaCBX.CheckedChanged += new System.EventHandler(this.faltaCBX_CheckedChanged);
-            // 
-            // listadoPNL
-            // 
-            this.listadoPNL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listadoPNL.Location = new System.Drawing.Point(0, 0);
-            this.listadoPNL.Name = "listadoPNL";
-            this.listadoPNL.Size = new System.Drawing.Size(704, 428);
-            this.listadoPNL.TabIndex = 1;
             // 
             // SeccionAsistencias
             // 
@@ -535,5 +561,6 @@ namespace Body_Factory_Manager
         private Panel opcionesPNL2;
         private CheckBox faltaCBX;
         private Panel listadoPNL;
+        private Button faltaBTN;
     }
 }

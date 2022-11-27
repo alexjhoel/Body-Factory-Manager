@@ -66,7 +66,7 @@ namespace Body_Factory_Manager
                         foreach (string id in identificadores)
                         {
                             
-                            dict.Add(id, ((DataTable)tablaDGV.DataSource).Rows[tablaDGV.SelectedRows[0].Index][id]);
+                            dict.Add(id, tablaDGV.SelectedRows[0].Cells[id].Value);
                         }
                     }
 
@@ -118,7 +118,7 @@ namespace Body_Factory_Manager
             {
                 if (tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento") == null) return;
 
-                DateTime fecha = tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento" ?
+                DateTime fecha = tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vencimiento" ?
                     DateTime.ParseExact(tablaDGV.Rows[i].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now.AddDays(-1);
 
 
@@ -172,11 +172,11 @@ namespace Body_Factory_Manager
             if (dias == -1) return;
             if (tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento") == null) return;
 
-            DateTime fecha = tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento" ?
+            DateTime fecha = tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vencimiento" ?
                 DateTime.ParseExact(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now.AddDays(-1);
 
             
-            if (tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vecimiento")
+            if (tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vencimiento")
             {
                 fecha = DateTime.ParseExact(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
