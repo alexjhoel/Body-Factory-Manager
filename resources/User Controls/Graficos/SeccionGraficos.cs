@@ -21,7 +21,7 @@ namespace Body_Factory_Manager
         int actualValue;
         int selectedGraph;
 
-        string cedulaCliente;
+        string idCliente;
         public SeccionGraficos()
         {
             InitializeComponent();
@@ -213,7 +213,7 @@ namespace Body_Factory_Manager
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT CONCAT(MONTH(fecha), ' ', YEAR(fecha)) as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) AND falta=0 AND cedulaCliente = '" + cedulaCliente + "' GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))";
+                        " WHERE MONTH(fecha) = MONTH(@fechaActual) AND YEAR(fecha) = YEAR(@fechaActual) AND falta=0 AND idCliente = " + idCliente + " GROUP BY CONCAT(MONTH(fecha), ' ', YEAR(fecha))";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = DateTime.ParseExact("01/" + actualFecha.Month + "/" + actualFecha.Year, "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM yyyy");
@@ -239,7 +239,7 @@ namespace Body_Factory_Manager
                         parametros.Clear();
                         parametros.Add("fechaActual", actualFecha);
                         consulta = "SELECT YEAR(fecha) as x, COUNT(*) as y FROM Asistencias" +
-                        " WHERE YEAR(fecha) = YEAR(@fechaActual) AND falta=0 AND cedulaCliente = '" + cedulaCliente + "' GROUP BY YEAR(fecha)";
+                        " WHERE YEAR(fecha) = YEAR(@fechaActual) AND falta=0 AND idCliente = " + idCliente + " GROUP BY YEAR(fecha)";
                         DataTable total = sql.Obtener(consulta, parametros);
 
                         string textFecha = actualFecha.Year + "";
@@ -706,7 +706,7 @@ namespace Body_Factory_Manager
             {
                 if(selectorClientes.ShowDialog() == DialogResult.OK)
                 {
-                    cedulaCliente = selectorClientes.cedula;
+                    idCliente = selectorClientes.id;
                     EstablecerGrafico(5);
                     foreach (Control cont in botonesPNL.Controls)
                     {

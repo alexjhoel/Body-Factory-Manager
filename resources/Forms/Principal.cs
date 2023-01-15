@@ -10,12 +10,9 @@ namespace Body_Factory_Manager
     public partial class Principal : Form
     {
         //Link de archivo (.mdf) de base de datos en la raiz del proyecto
-        Transicion menuTransicion = new Transicion(0);
         List<BotonMenu> botonesMenu = new List<BotonMenu>();
         Point offset;
         bool estadoMenu = false;
-        bool quieto = true;
-        int tiempoQuieto;
         SQL sql = new SQL(Properties.Settings.Default.ConnectionString);
         protected override CreateParams CreateParams
         {
@@ -32,7 +29,6 @@ namespace Body_Factory_Manager
         {
             InitializeComponent();
 
-            menuTransicion.Establecer(185, 50, 0.05f);
 
             foreach (Control btn in menuPNL.Controls)
             {
@@ -63,7 +59,7 @@ namespace Body_Factory_Manager
 
                 perfilPBX.Image = image;
             }
-            
+            menuPNL.Width = 50;
             CambiarSección(new Inicio(this.InicioSalida));
         }
 
@@ -77,42 +73,18 @@ namespace Body_Factory_Manager
         }
 
         #region Eventos
-        private void timerMenuPNL_Tick(object sender, EventArgs e)
-        {
-            menuPNL.Width = (int)menuTransicion.Avanzar();
-            if (estadoMenu) return;
-            if (menuPNL.PointToClient(MousePosition).X < 50  && menuPNL.PointToClient(MousePosition).Y > 0 && quieto)
-            {
-                tiempoQuieto++;
-                
-            }
-            if(tiempoQuieto == 60)
-            {
-                tiempoQuieto++;
-                menuTransicion.Establecer(50, 185, 0.02f);
-                quieto = false;
-            }
-            if ((menuPNL.PointToClient(MousePosition).X > 185 ||  menuPNL.PointToClient(MousePosition).Y < 0) && !quieto)
-            {
-                menuTransicion.Establecer(185, 50, 0.02f);
-                quieto = true;
-                tiempoQuieto = 0;
-            }
-
-        }
 
 
         private void menuBTN_Click(object sender, EventArgs e)
         {
-            if (!quieto) return;
             if (estadoMenu)
             {
-                menuTransicion.Establecer(185, 50, 0.02f);
+                menuPNL.Width = 50;
 
             }
             else
             {
-                menuTransicion.Establecer(50, 185, 0.02f);
+                menuPNL.Width = 185;
             }
             estadoMenu = !estadoMenu;
         }

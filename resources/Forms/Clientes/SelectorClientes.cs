@@ -4,7 +4,7 @@ namespace Body_Factory_Manager
 {
     public partial class SelectorClientes : Form
     {
-        public string cedula;
+        public string id;
         public SelectorClientes(FiltroBusqeda filtro = null)
         {
             InitializeComponent();
@@ -18,15 +18,15 @@ namespace Body_Factory_Manager
 
         }
 
-        private void Seleccionar(string cedula)
+        private void Seleccionar(string id)
         {
-            if (string.IsNullOrEmpty(cedula))
+            if (string.IsNullOrEmpty(id))
             {
                 MessageBox.Show("Ningun cliente seleccionado");
                 return;
             }
             DialogResult = DialogResult.OK;
-            this.cedula = cedula;
+            this.id = id;
             this.Close();
         }
 

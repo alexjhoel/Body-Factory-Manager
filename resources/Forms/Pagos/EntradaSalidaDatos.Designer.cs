@@ -38,8 +38,6 @@
             this.guardarBTN = new System.Windows.Forms.Button();
             this.descartarBTN = new System.Windows.Forms.Button();
             this.motivoTBX = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.responsableTBX = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.entregaNUD)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +69,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 371);
+            this.label16.Location = new System.Drawing.Point(8, 297);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(37, 13);
             this.label16.TabIndex = 68;
@@ -81,7 +79,7 @@
             // 
             this.pagoFechaDTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pagoFechaDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pagoFechaDTP.Location = new System.Drawing.Point(11, 387);
+            this.pagoFechaDTP.Location = new System.Drawing.Point(11, 313);
             this.pagoFechaDTP.Name = "pagoFechaDTP";
             this.pagoFechaDTP.Size = new System.Drawing.Size(154, 26);
             this.pagoFechaDTP.TabIndex = 4;
@@ -136,7 +134,7 @@
             this.guardarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guardarBTN.ForeColor = System.Drawing.Color.Black;
-            this.guardarBTN.Location = new System.Drawing.Point(183, 440);
+            this.guardarBTN.Location = new System.Drawing.Point(183, 363);
             this.guardarBTN.Name = "guardarBTN";
             this.guardarBTN.Size = new System.Drawing.Size(170, 44);
             this.guardarBTN.TabIndex = 5;
@@ -153,7 +151,7 @@
             this.descartarBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.descartarBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descartarBTN.ForeColor = System.Drawing.Color.Black;
-            this.descartarBTN.Location = new System.Drawing.Point(11, 440);
+            this.descartarBTN.Location = new System.Drawing.Point(11, 363);
             this.descartarBTN.Name = "descartarBTN";
             this.descartarBTN.Size = new System.Drawing.Size(166, 44);
             this.descartarBTN.TabIndex = 63;
@@ -164,34 +162,17 @@
             // motivoTBX
             // 
             this.motivoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.motivoTBX.Location = new System.Drawing.Point(12, 237);
+            this.motivoTBX.Location = new System.Drawing.Point(11, 183);
             this.motivoTBX.MaxLength = 200;
             this.motivoTBX.Multiline = true;
             this.motivoTBX.Name = "motivoTBX";
             this.motivoTBX.Size = new System.Drawing.Size(341, 108);
             this.motivoTBX.TabIndex = 3;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 156);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 13);
-            this.label1.TabIndex = 71;
-            this.label1.Text = "Origen, destino o persona";
-            // 
-            // responsableTBX
-            // 
-            this.responsableTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.responsableTBX.Location = new System.Drawing.Point(12, 172);
-            this.responsableTBX.Name = "responsableTBX";
-            this.responsableTBX.Size = new System.Drawing.Size(340, 26);
-            this.responsableTBX.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 221);
+            this.label2.Location = new System.Drawing.Point(8, 167);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 73;
@@ -201,10 +182,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 490);
+            this.ClientSize = new System.Drawing.Size(359, 415);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.responsableTBX);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.motivoTBX);
             this.Controls.Add(this.entregaNUD);
             this.Controls.Add(this.label16);
@@ -240,8 +219,6 @@
         private System.Windows.Forms.Button guardarBTN;
         private System.Windows.Forms.Button descartarBTN;
         private System.Windows.Forms.TextBox motivoTBX;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox responsableTBX;
         private System.Windows.Forms.Label label2;
     }
 }

@@ -38,28 +38,29 @@ namespace Body_Factory_Manager
             vencidasDGV.Columns.Clear();
             Dictionary<string, object> parametros = new Dictionary<string, object>();
             parametros.Add("hoy", DateTime.Now);
-            string consulta = "SELECT cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', FullMensualidades.fechaIngreso as Ingreso, vencimiento as Vencimiento " +
-                "FROM(SELECT pagado, valor, descuento, Mensualidades.fechaIngreso, Mensualidades.mes, Mensualidades.anio, vencimiento, Mensualidades.cedulaCliente " +
-                "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
-                "FROM Mensualidades LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
-                "GROUP BY Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades INNER JOIN Mensualidades " +
-                "ON  PagosMensualidades.cedulaCliente = Mensualidades.cedulaCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio) as FullMensualidades " +
-                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula WHERE ((valor * (1 - descuento / 100)) - pagado) > 0 AND DATEDIFF(day, @hoy, vencimiento) < 5 AND Clientes.esOculto = 0";
+            string consulta = "SELECT id,cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', vencimiento as Vencimiento " +
+                "FROM(SELECT pagado, valor, descuento, Mensualidades.mes, Mensualidades.anio, vencimiento, Mensualidades.idCliente " +
+                "FROM(SELECT Mensualidades.idCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
+                "FROM Mensualidades LEFT JOIN Pagos ON Pagos.idCliente = Mensualidades.idCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
+                "GROUP BY Mensualidades.idCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades INNER JOIN Mensualidades " +
+                "ON  PagosMensualidades.idCliente = Mensualidades.idCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio) as FullMensualidades " +
+                "INNER JOIN Clientes on FullMensualidades.idCliente = Clientes.id WHERE ((valor * (1 - descuento / 100)) - pagado) > 0 AND DATEDIFF(day, @hoy, vencimiento) < 5 AND Clientes.esOculto = 0";
 
             vencidasDGV.DataSource = sql.Obtener(consulta, parametros);
+            vencidasDGV.Columns[0].Visible = false;
         }
 
         private void CargarCumples()
         {
             cumplesDGV.Columns.Clear();
             Dictionary<string, object> parametros = new Dictionary<string, object>();
-            parametros.Add("hoy", DateTime.Now);
 
-            string consulta = "SELECT cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', CONVERT(date, CONCAT(DAY(fechaNacimiento), '/', MONTH(fechaNacimiento), '/', YEAR(@hoy)), 103) as 'Cumpleaños'" +
+            string consulta = "SELECT id, cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', CONVERT(date, CONCAT(DAY(fechaNacimiento), '/', MONTH(fechaNacimiento), '/', YEAR(GETDATE())), 103) as 'Cumpleaños'" +
                 " FROM Clientes" +
-                " WHERE DATEDIFF(day, @hoy, CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(@hoy)), 103)) <= 5 " +
-                "AND DATEDIFF(day, @hoy, CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(@hoy)), 103)) >= -3 AND Clientes.esOculto = 0;";
+                " WHERE DATEDIFF(day, GETDATE(), CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(GETDATE())), 103)) <= 5 " +
+                "AND DATEDIFF(day, GETDATE(), CONVERT(date, CONCAT(DAY(fechaNacimiento),'/',MONTH(fechaNacimiento),'/',YEAR(GETDATE())), 103)) >= -3 AND Clientes.esOculto = 0;";
             cumplesDGV.DataSource = sql.Obtener(consulta, parametros);
+            cumplesDGV.Columns[0].Visible = false;
 
         }
 
@@ -78,7 +79,7 @@ namespace Body_Factory_Manager
 
                 for (int i = 0; i < 6; i++)
                 {
-                    int mes = DateTime.Now.Month - 5 + i;
+                    int mes = DateTime.Now.AddMonths(-5 + i).Month;
 
                     DataTable total = sql.Obtener("SELECT MONTH(fecha) as Mes, SUM(monto) as Total FROM Pagos WHERE MONTH(fecha) = " + mes + "  GROUP BY MONTH(fecha)");
 
@@ -104,12 +105,15 @@ namespace Body_Factory_Manager
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ocurrió un error, al cargar el gráfico, inténtalo más tarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error, al cargar el gráfico, razón: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 sql.CerrarConexion();
             }
+
+           
+            
         }
 
         private void CargarGraficoClientes()
@@ -119,9 +123,9 @@ namespace Body_Factory_Manager
 
                 for (int i = 0; i < 6; i++)
                 {
-                    int mes = DateTime.Now.Month - 5 + i;
+                    int mes = DateTime.Now.AddMonths(-5 + i).Month;
 
-                    DataTable total = sql.Obtener("SELECT MONTH(fechaIngreso) as Mes, COUNT(cedula) as Cantidad FROM Clientes WHERE MONTH(fechaIngreso) = " + mes + "  GROUP BY MONTH(fechaIngreso)");
+                    DataTable total = sql.Obtener("SELECT MONTH(fechaIngreso) as Mes, COUNT(id) as Cantidad FROM Clientes WHERE MONTH(fechaIngreso) = " + mes + "  GROUP BY MONTH(fechaIngreso)");
 
                     string mesString = DateTime.ParseExact("01/" + mes + "/2022", "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM");
 
@@ -177,7 +181,7 @@ namespace Body_Factory_Manager
                 nuevaVentana.ShowDialog();
                 if (nuevaVentana.DialogResult == DialogResult.Yes)
                 {
-                    salida(TipoInicioSalida.Mensualidades, nuevaVentana.cedula);
+                    salida(TipoInicioSalida.Mensualidades, nuevaVentana.id);
                 }
             }
 
@@ -192,7 +196,7 @@ namespace Body_Factory_Manager
                 {
                     try
                     {
-                        comunicacion.Chatear(sql.Obtener("SELECT * FROM Clientes WHERE cedula =" + nuevaVentana.cedula).Rows[0]["telefono"].ToString());
+                        comunicacion.Chatear(sql.Obtener("SELECT * FROM Clientes WHERE id =" + nuevaVentana.id).Rows[0]["telefono"].ToString());
                         MessageBox.Show("Abriendo ventana...");
                     }
                     catch
@@ -220,7 +224,7 @@ namespace Body_Factory_Manager
                 nuevaVentana.ShowDialog();
                 if (nuevaVentana.DialogResult == DialogResult.OK)
                 {
-                    salida(TipoInicioSalida.Mensualidades, nuevaVentana.cedula);
+                    salida(TipoInicioSalida.Mensualidades, nuevaVentana.id);
                 }
             }
         }
@@ -232,7 +236,7 @@ namespace Body_Factory_Manager
 
         private void verMasCumplesBTN_Click(object sender, EventArgs e)
         {
-            salida(TipoInicioSalida.Clientes, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
+            salida(TipoInicioSalida.Clientes, ((DataTable)cumplesDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
         }
 
         private void verMasClientesNuevos_Click(object sender, EventArgs e)
@@ -247,7 +251,7 @@ namespace Body_Factory_Manager
 
         private void vencidasDGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            salida(TipoInicioSalida.Mensualidades, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["Cédula"].ToString());
+            salida(TipoInicioSalida.Mensualidades, ((DataTable)vencidasDGV.DataSource).Rows[vencidasDGV.SelectedRows[0].Index]["id"].ToString());
         }
 
         private void emailBTN_Click(object sender, EventArgs e)
@@ -256,6 +260,11 @@ namespace Body_Factory_Manager
             {
                 nuevaVentana.ShowDialog();
             }
+        }
+
+        private void vencidasDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

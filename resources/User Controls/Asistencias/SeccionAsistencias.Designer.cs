@@ -53,7 +53,6 @@ namespace Body_Factory_Manager
             this.buscarClienteBTN = new System.Windows.Forms.Button();
             this.nombreTBX = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cedulaTBX = new System.Windows.Forms.TextBox();
             this.anotarBTN = new System.Windows.Forms.Button();
             this.borrarBTN = new System.Windows.Forms.Button();
             this.opcionesPNL = new System.Windows.Forms.Panel();
@@ -306,7 +305,6 @@ namespace Body_Factory_Manager
             this.panel2.Controls.Add(this.buscarClienteBTN);
             this.panel2.Controls.Add(this.nombreTBX);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.cedulaTBX);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
@@ -333,7 +331,7 @@ namespace Body_Factory_Manager
             // 
             this.nombreTBX.AutoSize = true;
             this.nombreTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.nombreTBX.Location = new System.Drawing.Point(365, 6);
+            this.nombreTBX.Location = new System.Drawing.Point(174, 7);
             this.nombreTBX.Name = "nombreTBX";
             this.nombreTBX.Size = new System.Drawing.Size(114, 20);
             this.nombreTBX.TabIndex = 35;
@@ -348,16 +346,6 @@ namespace Body_Factory_Manager
             this.label7.Size = new System.Drawing.Size(80, 29);
             this.label7.TabIndex = 33;
             this.label7.Text = "Cliente:";
-            // 
-            // cedulaTBX
-            // 
-            this.cedulaTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cedulaTBX.Location = new System.Drawing.Point(173, 3);
-            this.cedulaTBX.MaxLength = 8;
-            this.cedulaTBX.Name = "cedulaTBX";
-            this.cedulaTBX.Size = new System.Drawing.Size(186, 26);
-            this.cedulaTBX.TabIndex = 32;
-            this.cedulaTBX.TextChanged += new System.EventHandler(this.cedulaTBX_TextChanged);
             // 
             // anotarBTN
             // 
@@ -549,7 +537,6 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label nombreTBX;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox cedulaTBX;
         private System.Windows.Forms.Button buscarClienteBTN;
         private System.Windows.Forms.Button anotarBTN;
         Listado listado;

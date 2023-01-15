@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Data.SQLite;
 namespace Body_Factory_Manager
 {
     public class SQL
     {
         SqlConnection conexion;
+
         public SQL(string c)
         {
             conexion = new SqlConnection(c);
+
         }
+
+        
 
         public void Modificar(string consulta, Dictionary<string, object> p = null)
         {
@@ -18,8 +22,10 @@ namespace Body_Factory_Manager
             //Realiza consulta que cambie datos en la base de datos
             Dictionary<string, object> parameters = p == null ? new Dictionary<string, object>() : p;
 
-
+            
             SqlCommand sqlComando = new SqlCommand(consulta, conexion);
+
+            
 
             conexion.Open();
 
@@ -42,6 +48,10 @@ namespace Body_Factory_Manager
             DataTable tabla = new DataTable();
             //Realiza consulta que sea de obtención de datos en la base de datos
             Dictionary<string, object> parameters = p == null ? new Dictionary<string, object>() : p;
+
+
+
+
             SqlCommand sqlComando = new SqlCommand(consulta, conexion);
             SqlDataAdapter miAdaptadorSql = new SqlDataAdapter(sqlComando);
 

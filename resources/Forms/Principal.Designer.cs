@@ -87,7 +87,7 @@ namespace Body_Factory_Manager
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.18243F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.81757F));
-            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.controlTBLPNL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.controlTBLPNL.Controls.Add(this.menuBTN, 0, 0);
             this.controlTBLPNL.Controls.Add(this.nombreUsuarioLBL, 2, 0);
@@ -122,7 +122,7 @@ namespace Body_Factory_Manager
             this.nombreUsuarioLBL.Dock = System.Windows.Forms.DockStyle.Right;
             this.nombreUsuarioLBL.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreUsuarioLBL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nombreUsuarioLBL.Location = new System.Drawing.Point(609, 0);
+            this.nombreUsuarioLBL.Location = new System.Drawing.Point(608, 0);
             this.nombreUsuarioLBL.Name = "nombreUsuarioLBL";
             this.nombreUsuarioLBL.Size = new System.Drawing.Size(62, 26);
             this.nombreUsuarioLBL.TabIndex = 7;
@@ -136,7 +136,7 @@ namespace Body_Factory_Manager
             this.perfilPBX.BackgroundImage = global::Body_Factory_Manager.Properties.Resources.clientePortrait;
             this.perfilPBX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.perfilPBX.Image = global::Body_Factory_Manager.Properties.Resources.clientePortrait;
-            this.perfilPBX.Location = new System.Drawing.Point(687, 0);
+            this.perfilPBX.Location = new System.Drawing.Point(686, 0);
             this.perfilPBX.Margin = new System.Windows.Forms.Padding(0);
             this.perfilPBX.Name = "perfilPBX";
             this.perfilPBX.Size = new System.Drawing.Size(26, 26);
@@ -147,7 +147,6 @@ namespace Body_Factory_Manager
             // timerMenuPNL
             // 
             this.timerMenuPNL.Interval = 10;
-            this.timerMenuPNL.Tick += new System.EventHandler(this.timerMenuPNL_Tick);
             // 
             // timedLogin
             // 
@@ -226,7 +225,7 @@ namespace Body_Factory_Manager
             this.menuPNL.Controls.Add(this.panel2);
             this.menuPNL.Location = new System.Drawing.Point(0, 32);
             this.menuPNL.Name = "menuPNL";
-            this.menuPNL.Size = new System.Drawing.Size(186, 409);
+            this.menuPNL.Size = new System.Drawing.Size(186, 555);
             this.menuPNL.TabIndex = 3;
             // 
             // graficosBTN
@@ -426,7 +425,7 @@ namespace Body_Factory_Manager
             this.paginasPNL.Controls.Add(this.notificacionPNL);
             this.paginasPNL.Location = new System.Drawing.Point(50, 32);
             this.paginasPNL.Name = "paginasPNL";
-            this.paginasPNL.Size = new System.Drawing.Size(816, 409);
+            this.paginasPNL.Size = new System.Drawing.Size(816, 555);
             this.paginasPNL.TabIndex = 4;
             // 
             // notificacionPNL
@@ -437,7 +436,7 @@ namespace Body_Factory_Manager
             this.notificacionPNL.Controls.Add(this.pictureBox1);
             this.notificacionPNL.Controls.Add(this.label2);
             this.notificacionPNL.Controls.Add(this.label1);
-            this.notificacionPNL.Location = new System.Drawing.Point(608, 309);
+            this.notificacionPNL.Location = new System.Drawing.Point(608, 455);
             this.notificacionPNL.Name = "notificacionPNL";
             this.notificacionPNL.Size = new System.Drawing.Size(208, 100);
             this.notificacionPNL.TabIndex = 0;
@@ -488,7 +487,7 @@ namespace Body_Factory_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 441);
+            this.ClientSize = new System.Drawing.Size(866, 587);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuPNL);

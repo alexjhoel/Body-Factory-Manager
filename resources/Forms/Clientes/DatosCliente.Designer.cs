@@ -41,6 +41,8 @@ namespace Body_Factory_Manager
             this.label16 = new System.Windows.Forms.Label();
             this.usuarioLBL = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.telefono2TBX = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.telefonoSaludTBX = new System.Windows.Forms.TextBox();
             this.observacionesTbx = new System.Windows.Forms.TextBox();
@@ -130,9 +132,9 @@ namespace Body_Factory_Manager
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(9, 228);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(96, 13);
+            this.label15.Size = new System.Drawing.Size(89, 13);
             this.label15.TabIndex = 31;
-            this.label15.Text = "Fecha de creación";
+            this.label15.Text = "Fecha de ingreso";
             // 
             // label16
             // 
@@ -160,6 +162,8 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.telefono2TBX);
+            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.telefonoSaludTBX);
             this.panel1.Controls.Add(this.observacionesTbx);
@@ -190,6 +194,24 @@ namespace Body_Factory_Manager
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
             this.panel1.Size = new System.Drawing.Size(674, 367);
             this.panel1.TabIndex = 27;
+            // 
+            // telefono2TBX
+            // 
+            this.telefono2TBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telefono2TBX.Location = new System.Drawing.Point(440, 258);
+            this.telefono2TBX.MaxLength = 20;
+            this.telefono2TBX.Name = "telefono2TBX";
+            this.telefono2TBX.Size = new System.Drawing.Size(186, 26);
+            this.telefono2TBX.TabIndex = 31;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(437, 242);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(104, 13);
+            this.label17.TabIndex = 32;
+            this.label17.Text = "Teléfono secundario";
             // 
             // label14
             // 
@@ -266,6 +288,7 @@ namespace Body_Factory_Manager
             this.nombreTBX.Name = "nombreTBX";
             this.nombreTBX.Size = new System.Drawing.Size(216, 26);
             this.nombreTBX.TabIndex = 2;
+            this.nombreTBX.TextChanged += new System.EventHandler(this.nombreTBX_TextChanged);
             // 
             // label12
             // 
@@ -303,6 +326,7 @@ namespace Body_Factory_Manager
             this.apellidoTBX.Name = "apellidoTBX";
             this.apellidoTBX.Size = new System.Drawing.Size(406, 26);
             this.apellidoTBX.TabIndex = 5;
+            this.apellidoTBX.TextChanged += new System.EventHandler(this.apellidoTBX_TextChanged);
             // 
             // label11
             // 
@@ -367,6 +391,7 @@ namespace Body_Factory_Manager
             this.direccionTBX.Name = "direccionTBX";
             this.direccionTBX.Size = new System.Drawing.Size(310, 26);
             this.direccionTBX.TabIndex = 19;
+            this.direccionTBX.TextChanged += new System.EventHandler(this.direccionTBX_TextChanged);
             // 
             // label5
             // 
@@ -404,7 +429,7 @@ namespace Body_Factory_Manager
             // 
             this.telefonoTBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.telefonoTBX.Location = new System.Drawing.Point(226, 258);
-            this.telefonoTBX.MaxLength = 9;
+            this.telefonoTBX.MaxLength = 20;
             this.telefonoTBX.Name = "telefonoTBX";
             this.telefonoTBX.Size = new System.Drawing.Size(186, 26);
             this.telefonoTBX.TabIndex = 12;
@@ -423,9 +448,9 @@ namespace Body_Factory_Manager
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(223, 242);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 13);
+            this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Número de teléfono";
+            this.label7.Text = "Teléfono";
             // 
             // correoTBX
             // 
@@ -617,5 +642,7 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.Label estadoLBL;
         private System.Windows.Forms.Panel estadoPNL;
         private System.Windows.Forms.TextBox telefonoSaludTBX;
+        private System.Windows.Forms.TextBox telefono2TBX;
+        private System.Windows.Forms.Label label17;
     }
 }

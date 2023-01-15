@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Body_Factory_Manager
@@ -11,7 +12,7 @@ namespace Body_Factory_Manager
     {
 
         SQL sql;
-        public string cedula = null;
+        public string id = null;
         DataTable data;
         public DatosCliente(string id = null, bool eliminable = true)
         {
@@ -23,10 +24,9 @@ namespace Body_Factory_Manager
             if (id != null)
             {
 
-                cedula = id;
+                this.id = id;
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
-                parametros.Add("Id", id);
-                data = sql.Obtener("SELECT * FROM Clientes WHERE cedula=@Id", parametros);
+                data = sql.Obtener("SELECT * FROM Clientes WHERE id=" + id);
                 if (data.Rows.Count == 0) return;
                 nombreTBX.Text = data.Rows[0]["nombre"].ToString();
                 apellidoTBX.Text = data.Rows[0]["apellido"].ToString();
@@ -40,11 +40,11 @@ namespace Body_Factory_Manager
                     nacimientoDTP.Value = DateTime.Now;
                     ingresoDTP.Value = DateTime.Now;
                 }
-               
+
                 correoTBX.Text = data.Rows[0]["correo"].ToString();
                 telefonoTBX.Text = data.Rows[0]["telefono"].ToString();
+                telefono2TBX.Text = data.Rows[0]["telefono2"].ToString();
                 cedulaTBX.Text = data.Rows[0]["cedula"].ToString();
-                cedulaTBX.ReadOnly = true;
                 direccionTBX.Text = data.Rows[0]["direccion"].ToString();
                 patologiasTbx.Text = data.Rows[0]["patologias"].ToString();
                 observacionesTbx.Text = data.Rows[0]["observaciones"].ToString();
@@ -54,7 +54,7 @@ namespace Body_Factory_Manager
                     grupoSanguineoCBX.SelectedIndex = grupoSanguineoCBX.Items.IndexOf(data.Rows[0]["grupoSanguineo"].ToString());
                 }
 
-                if(data.Rows[0]["foto"] != DBNull.Value)
+                if (data.Rows[0]["foto"] != DBNull.Value)
                 {
                     byte[] imgData = ((byte[])data.Rows[0]["foto"]);
 
@@ -69,13 +69,14 @@ namespace Body_Factory_Manager
 
                     perfilPBX.Image = image;
                 }
-                
+
 
                 estadoPNL.BackColor = !(bool)data.Rows[0]["esActivo"] ? Color.Red : Color.Green;
-                darDeBajaBTN.Text = (bool)data.Rows[0]["esActivo"] ? "Dar de baja" : "Dar de alta"; 
-                
-                usuarioLBL.Text = data.Rows[0]["idUsuario"].ToString();
+                darDeBajaBTN.Text = (bool)data.Rows[0]["esActivo"] ? "Dar de baja" : "Dar de alta";
                 telefonoSaludTBX.Text = data.Rows[0]["telefonoSalud"].ToString();
+                if (data.Rows[0]["idUsuario"] != DBNull.Value) usuarioLBL.Text = data.Rows[0]["idUsuario"].ToString();
+                else usuarioLBL.Text = "Desconocido";
+                
 
             }
 
@@ -108,33 +109,47 @@ namespace Body_Factory_Manager
 
         private void guardarBTN_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(cedulaTBX.Text, out int c) && ValidarCedulas.ValidarCedula(cedulaTBX.Text))
+            Dictionary<string, object> valores = new Dictionary<string, object>();
+            if (cedulaTBX.Text.Trim() == String.Empty)
             {
-                if ((c + "").Length < 8)
+                valores.Add("cedula", DBNull.Value);
+            }
+            else
+            {
+                if (int.TryParse(cedulaTBX.Text, out int c) && ValidarCedulas.ValidarCedula(cedulaTBX.Text))
+                {
+                    if ((c + "").Length < 8 && (c + "").Length != 0)
+                    {
+                        MessageBox.Show(this, "Ingrese una cédula válida", "Cédula inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    valores.Add("cedula", cedulaTBX.Text);
+                }
+                else
                 {
                     MessageBox.Show(this, "Ingrese una cédula válida", "Cédula inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                
             }
-            else
-            {
-                MessageBox.Show(this, "Ingrese una cédula válida", "Cédula inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+
             if (String.IsNullOrEmpty(nombreTBX.Text) || String.IsNullOrEmpty(apellidoTBX.Text))
             {
                 MessageBox.Show(this, "Ni el nombre ni el apellido pueden ser vacios", "Nombre y apellido vacios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+
             DateTime hoy = DateTime.Now;
-            Dictionary<string, object> valores = new Dictionary<string, object>();
+            
             valores.Add("nombre", nombreTBX.Text);
             valores.Add("apellido", apellidoTBX.Text);
-            valores.Add("cedula", cedulaTBX.Text);
+            
             valores.Add("nacimiento", nacimientoDTP.Value);
             valores.Add("ingreso", ingresoDTP.Value);
             valores.Add("telefono", telefonoTBX.Text);
+            valores.Add("telefono2", telefono2TBX.Text);
             valores.Add("correo", correoTBX.Text);
             valores.Add("direccion", direccionTBX.Text);
             valores.Add("patologias", patologiasTbx.Text);
@@ -173,17 +188,20 @@ namespace Body_Factory_Manager
             }
 
             
-            if (cedula != null)
+            if (id != null)
             {
                 try
                 {
-                    sql.Modificar("UPDATE Clientes SET nombre = @nombre, apellido = @apellido, fechaNacimiento = @nacimiento, " +
-                                        "fechaIngreso = @ingreso, telefono = @telefono, correo = @correo, foto = @imagen, patologias = @patologias, " +
+                    if (sql.Obtener("SELECT * FROM Clientes WHERE cedula='" + cedulaTBX.Text + "' AND NOT id =" + id).Rows.Count > 0 && cedulaTBX.Text.Trim() != String.Empty)
+                    {
+                        MessageBox.Show(this, "Ya existe un cliente con dicha cedula", "Cédula repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    
+                    sql.Modificar("UPDATE Clientes SET cedula = @cedula, nombre = @nombre, apellido = @apellido, fechaNacimiento = @nacimiento, " +
+                                        "fechaIngreso = @ingreso, telefono = @telefono, telefono2 = @telefono2, correo = @correo, foto = @imagen, patologias = @patologias, " +
                                         "observaciones = @observaciones, grupoSanguineo = @grupoSanguineo, direccion = @direccion, telefonoSalud = @salud, " +
-                                        "esActivo=@esActivo, esOculto=0 WHERE cedula = @cedula"
-                                        
-                                        
-                                        , valores);
+                                        "esActivo=@esActivo, esOculto=0 WHERE id = " + id, valores);
                     this.Close();
                     return;
                 }
@@ -199,19 +217,10 @@ namespace Body_Factory_Manager
                 
             }
             
-            if (sql.Obtener("SELECT * FROM Clientes WHERE Cedula=" + cedulaTBX.Text).Rows.Count > 0)
+            if (sql.Obtener("SELECT * FROM Clientes WHERE Cedula='" + cedulaTBX.Text+ "'").Rows.Count > 0)
             {
-                if(MessageBox.Show(this, "Ya existe un cliente con dicha cedula ¿Quieres editar su información? Los datos que ingresaste se perderán", "Cédula repetida", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                {
-                    using (DatosCliente nuevaVentana = new DatosCliente(cedulaTBX.Text, true))
-                    {
-                        nuevaVentana.ShowDialog();
-
-                    }
-                    this.Close();
-                }
-                
-                return;
+                MessageBox.Show(this, "Ya existe un cliente con dicha cedula", "Cédula repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+;                return;
             }
 
             
@@ -219,13 +228,13 @@ namespace Body_Factory_Manager
             try
             {
                 string consulta = "INSERT INTO Clientes (nombre, apellido, cedula, fechaNacimiento, fechaIngreso," +
-                " telefono, correo, foto,patologias, observaciones, direccion, idUsuario, telefonoSalud, esActivo) VALUES(@nombre, @apellido," +
-                " @cedula, @nacimiento, @ingreso, @telefono, @correo, @imagen, @patologias, @observaciones, @direccion," +
-                " @usuario, @salud, 1);";
-                sql.Modificar(consulta, valores);
+                " telefono, telefono2, correo, foto,patologias, observaciones, direccion, idUsuario, telefonoSalud, esActivo) VALUES(@nombre, @apellido," +
+                " @cedula, @nacimiento, @ingreso, @telefono, @telefono2, @correo, @imagen, @patologias, @observaciones, @direccion," +
+                " @usuario, @salud, 1); SELECT SCOPE_IDENTITY() AS id; INSERT INTO IngresosClientes (idCliente, fecha, comentario) VALUES(SCOPE_IDENTITY(),@ingreso,'Primer ingreso')";
+                string id = sql.Obtener(consulta, valores).Rows[0]["id"].ToString();
                 if (MessageBox.Show("Cliente agregado con éxito, ¿deseas adjudicarle una cuota?", "Datos guardados", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    cedula = cedulaTBX.Text;
+                    this.id = id;
                     DialogResult = DialogResult.Yes;
                     this.Close();
                     return;
@@ -279,7 +288,7 @@ namespace Body_Factory_Manager
             {
                 if (MessageBox.Show("¿Está seguro que quiere eliminar este cliente?", "CONFIRMAR BORRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    sql.Modificar("UPDATE Clientes SET esOculto = 1 WHERE cedula = '" + cedulaTBX.Text + "'");
+                    sql.Modificar("DELETE FROM Clientes WHERE id = '" + id + "'");
                     this.Close();
                 }
             }
@@ -312,6 +321,34 @@ namespace Body_Factory_Manager
                     estadoPNL.BackColor = Color.Red;
                 }
             }
+        }
+
+        private void nombreTBX_TextChanged(object sender, EventArgs e)
+        {
+            Capitalizar(sender);
+        }
+
+        private void Capitalizar(object objeto)
+        {
+            Regex regex = new Regex(@"\b\w");
+
+            TextBox textBox = (TextBox)objeto;
+
+            int pos = textBox.SelectionStart;
+
+            textBox.Text = regex.Replace(textBox.Text, (Match match) => match.ToString().ToUpper());
+
+            textBox.SelectionStart = pos; nombreTBX.SelectionLength = 0;
+        }
+
+        private void apellidoTBX_TextChanged(object sender, EventArgs e)
+        {
+            Capitalizar(sender);
+        }
+
+        private void direccionTBX_TextChanged(object sender, EventArgs e)
+        {
+            Capitalizar(sender);
         }
     }
 }

@@ -32,11 +32,11 @@ namespace Body_Factory_Manager
             List<ListadoButtonDatos> buttonDatos = new List<ListadoButtonDatos>();
             
                 buttonDatos.Add(new ListadoButtonDatos(false, "E/S", Body_Factory_Manager.Properties.Resources.RightLeft, this.EntradaSalida));
-                buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.EliminarPago));
+            buttonDatos.Add(new ListadoButtonDatos(true, "Editar", Body_Factory_Manager.Properties.Resources.editar, this.EditarPago));
+            buttonDatos.Add(new ListadoButtonDatos(true, "Borrar", Body_Factory_Manager.Properties.Resources.eliminar, this.EliminarPago));
             
 
             List<FiltroBusqeda> filtros = new List<FiltroBusqeda>();
-            filtros.Add(new FiltroBusqeda(TipoFiltro.String, "Responsable", "CONCAT(nombre, ' ', apellido)"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.NumeroRango, "Rango de montos($)", "monto"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha realizado", "fecha"));
             listado = new Listado(new List<string>() { "id" }, buttonDatos, 1, filtros, Filtrar, 1);
@@ -65,12 +65,28 @@ namespace Body_Factory_Manager
             CargarListaPagos();
         }
 
+        private void EditarPago(Dictionary<string, object> datos)
+        {
+
+            
+                using (EntradaSalidaDatos nuevaVentana = new EntradaSalidaDatos(datos["id"].ToString()))
+                {
+                    nuevaVentana.ShowDialog();
+
+                    ActualizarConsulta();
+                }
+
+            
+
+            CargarListaPagos();
+        }
+
         private void CargarListaPagos()
         {
             listado.datos = sql.Obtener(consulta);
-            listado.Recargar("id");
+            listado.Recargar(new List<string> { "id" });
             string consultaParaTotal = "SELECT SUM(Todo.monto) as Total FROM " +
-                "(SELECT monto FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula WHERE Clientes.esOculto = 0 AND " +
+                "(SELECT monto FROM Pagos INNER JOIN Clientes ON Pagos.idCliente = Clientes.id WHERE Clientes.esOculto = 0 AND " +
                 filtro.ObtenerWhereConsulta();
             if (incluirES)
             {
@@ -101,14 +117,12 @@ namespace Body_Factory_Manager
         }
         private void ActualizarConsulta()
         {
-            consulta = "SELECT CONVERT(VARCHAR(17), id) as id, 'Pago de cuota' as 'Motivo', CONCAT(nombre, ' ', apellido,  ' - ', cedula) as 'Responsable', monto as 'Importe($)', fecha as Fecha" +
-                " FROM Pagos INNER JOIN Clientes ON Pagos.cedulaCliente = Clientes.cedula";
+            consulta = "SELECT CONVERT(VARCHAR(17), Pagos.id) as id, CONCAT('Pago de cuota - ', nombre, ' ', apellido,  ' - ', cedula) as 'Motivo', monto as 'Importe($)', fecha as Fecha" +
+                " FROM Pagos INNER JOIN Clientes ON Pagos.idCliente = Clientes.id";
             consulta += " WHERE " + filtro.ObtenerWhereConsulta() + " AND Clientes.esOculto = 0 ";
-            string esWhere = "1=1";
-            if (filtro.propiedad == "CONCAT(nombre, ' ', apellido)") esWhere = " responsable LIKE '%" + filtro.valor1 + "%'";
-            else esWhere = filtro.ObtenerWhereConsulta(); 
+            string esWhere = filtro.ObtenerWhereConsulta(); 
             if (incluirES) consulta += "UNION ALL " +
-                "SELECT idReal as id, motivo as 'Motivo', responsable as 'Responsable', monto as 'Importe($)', fecha as 'Fecha' FROM EntradasSalidas WHERE " + esWhere;
+                "SELECT idReal as id, motivo as 'Motivo', monto as 'Importe($)', fecha as 'Fecha' FROM EntradasSalidas WHERE " + esWhere;
 
             CargarListaPagos();
         }

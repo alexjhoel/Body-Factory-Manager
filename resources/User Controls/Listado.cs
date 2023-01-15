@@ -92,7 +92,7 @@ namespace Body_Factory_Manager
 
         }
 
-        public void Recargar(string ocultar = null, int dias = -1)
+        public void Recargar(List<string> ocultar = null, int dias = -1)
         {
 
             if (tablaDGV.SelectedRows.Count > 0) indexToSelect = tablaDGV.SelectedRows[0].Index;
@@ -106,9 +106,16 @@ namespace Body_Factory_Manager
             */
             //tablaDGV.Rows[index].Selected = true;
 
+
+
             if (ocultar != null)
             {
-                tablaDGV.Columns[ocultar].Visible = false;
+                
+                foreach(string o in ocultar)
+                {
+                    tablaDGV.Columns[o].Visible = false;
+                }
+                
             }
 
 

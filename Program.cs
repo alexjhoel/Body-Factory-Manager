@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 namespace Body_Factory_Manager
 {
+   
     static class Program
     {
         /// <summary>

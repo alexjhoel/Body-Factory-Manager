@@ -19,6 +19,8 @@ namespace Body_Factory_Manager
         string consulta = "";
         FiltroBusqeda filtro;
 
+        string idCliente;
+
         public SeccionAsistencias()
         {
             this.filtro = new FiltroBusqeda(TipoFiltro.FechaRango, "", "fecha");
@@ -48,7 +50,7 @@ namespace Body_Factory_Manager
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha", "fecha"));
 
 
-            listado = new Listado(new List<string>() { "Cédula", "Fecha" }, buttonDatos, 0, filtros, this.Filtrar, 3);
+            listado = new Listado(new List<string>() { "idCliente", "Fecha" }, buttonDatos, 0, filtros, this.Filtrar, 3);
 
             listadoPNL.Controls.Add(listado);
 
@@ -59,14 +61,34 @@ namespace Body_Factory_Manager
             ActualizarAsistencias(true);
 
             ActualizarConsulta();
+            ActualizarCliente(idCliente);
 
+        }
+
+        private void ActualizarCliente(string idCliente)
+        {
+            this.idCliente = idCliente;
+            
+            if (idCliente == null) return;
+            nombreTBX.Text = sql.Obtener("SELECT CONCAT(nombre, ' ', apellido) as nombre FROM Clientes WHERE id=" + idCliente).Rows[0]["nombre"].ToString();
+
+        }
+
+        private void ActualizarDisponibilidadBotones()
+        {
+            int i = 0;
+            foreach (Control c in opcionesPNL.Controls)
+            {
+                c.Enabled = nombreTBX.Text != "No encontrado" && calendarioDGV.SelectedCells.Count != 0;
+                i++;
+            }
         }
 
         private void ActualizarConsulta()
         {
             //Actualiza la consulta para cargar los datos a mostrar de la tabla
-            consulta = "SELECT cedulaCliente as 'Cédula', CONCAT(nombre, ' ', apellido) as 'Nombre completo', fecha as 'Fecha', observacion as 'Observación', IIF(falta=1, 'Sí', 'No') as Falta " +
-                "FROM Asistencias INNER JOIN Clientes ON Asistencias.cedulaCliente = Clientes.cedula";
+            consulta = "SELECT idCliente, cedula as Cédula, CONCAT(nombre, ' ', apellido) as 'Nombre completo', fecha as 'Fecha', observacion as 'Observación', IIF(falta=1, 'Sí', 'No') as Falta " +
+                "FROM Asistencias INNER JOIN Clientes ON Asistencias.idCliente = Clientes.id";
 
             consulta += " WHERE " + filtro.ObtenerWhereConsulta();
             if (!faltaCBX.Checked) consulta += " AND falta=" + 0;
@@ -76,7 +98,7 @@ namespace Body_Factory_Manager
         private void CargarListaAsistencias()
         {
             listado.datos = sql.Obtener(consulta);
-            listado.Recargar();
+            listado.Recargar(new List<string>() { "idCliente" });
         }
 
         private void Filtrar(FiltroBusqeda filtro)
@@ -89,10 +111,10 @@ namespace Body_Factory_Manager
         {
             Dictionary<string, object> dict = new Dictionary<string, object>()
             {
-                { "cedulaCliente", datos["Cédula"] },
+                { "idCliente", int.Parse(datos["idCliente"].ToString()) },
                 { "fecha", datos["Fecha"] }
             };
-            DataTable datosAsistencia = sql.Obtener("SELECT * FROM Asistencias WHERE cedulaCliente =@cedulaCliente AND fecha=@fecha", dict);
+            DataTable datosAsistencia = sql.Obtener("SELECT * FROM Asistencias WHERE idCliente =@idCliente AND fecha=@fecha", dict);
             using (DatosAsistencia nuevaVentana = new DatosAsistencia((bool)datosAsistencia.Rows[0]["falta"], datosAsistencia.Rows[0]["observacion"].ToString()))
             {
                 nuevaVentana.ShowDialog();
@@ -100,7 +122,7 @@ namespace Body_Factory_Manager
                 dict.Add("falta", nuevaVentana.faltaEstado);
                 if(nuevaVentana.DialogResult == DialogResult.OK)
                 {
-                    sql.Modificar("UPDATE Asistencias SET observacion=@observacion, falta=@falta WHERE cedulaCliente = @cedulaCliente AND fecha=@fecha", dict);
+                    sql.Modificar("UPDATE Asistencias SET observacion=@observacion, falta=@falta WHERE idCliente = @idCliente AND fecha=@fecha", dict);
                     CargarListaAsistencias();
                     return;
                 }
@@ -113,7 +135,7 @@ namespace Body_Factory_Manager
         private void Borrar(Dictionary<string, object> datos)
         {
             if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar los datos de asistencia?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-            sql.Modificar("DELETE FROM Asistencias WHERE cedulaCliente= '" + datos["Cédula"] + "' AND fecha='" + ((DateTime)datos["Fecha"]).ToString("MM-dd-yyyy") + "'");
+            sql.Modificar("DELETE FROM Asistencias WHERE idCliente= '" + datos["id"] + "' AND fecha='" + ((DateTime)datos["Fecha"]).ToString("MM-dd-yyyy") + "'");
             CargarListaAsistencias();
         }
 
@@ -188,19 +210,20 @@ namespace Body_Factory_Manager
 
         private void ActualizarAsistencias(bool selectHoy)
         {
-            
 
+            
             if (selectHoy)
             {
                 mesCBX.SelectedIndex = DateTime.Now.Month - 1;
                 anioNUD.Value = DateTime.Now.Year;
             }
+            
             DataTable datos;
             Dictionary<string, object> parametros = new Dictionary<string, object>();
-            parametros.Add("cedulaCliente", cedulaTBX.Text);
+            parametros.Add("idCliente", int.TryParse(idCliente, out int id) ? id : -1);
             parametros.Add("mes", mesCBX.SelectedIndex + 1);
             parametros.Add("anio", anioNUD.Value);
-            asistencias = sql.Obtener("SELECT cedulaCliente, fecha, falta, observacion FROM Asistencias WHERE MONTH(fecha) = @mes AND YEAR(fecha) = @anio AND cedulaCliente = @cedulaCliente", parametros);
+            asistencias = sql.Obtener("SELECT idCliente, fecha, falta, observacion FROM Asistencias WHERE MONTH(fecha) = @mes AND YEAR(fecha) = @anio AND idCliente = @idCliente", parametros);
 
             for (int x = 0; x < calendarioDGV.Rows.Count; x++)
             {
@@ -264,46 +287,13 @@ namespace Body_Factory_Manager
                 listado.ShowDialog();
                 if (listado.DialogResult == DialogResult.OK)
                 {
-                    cedulaTBX.Text = listado.cedula;
+                    ActualizarCliente(listado.id);
+                    ActualizarAsistencias(true);
+                    ActualizarDisponibilidadBotones();
                 }
             }
         }
 
-        private void cedulaTBX_TextChanged(object sender, EventArgs e)
-        {
-            if (cedulaTBX.Text.Length == 8)
-            {
-                try
-                {
-                    DataTable datos = sql.Obtener("SELECT nombre,apellido FROM Clientes WHERE cedula=" + cedulaTBX.Text);
-                    if (datos.Rows.Count != 0)
-                    {
-                        nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
-
-                        ActualizarAsistencias(true);
-                        anotarBTN.Enabled = true;
-                        borrarBTN.Enabled = true;
-                        faltaBTN.Enabled = true;
-                        return;
-                    }
-                }
-                catch
-                {
-
-                }
-                finally
-                {
-                    sql.CerrarConexion();
-                }
-
-
-            }
-
-            nombreTBX.Text = "No encontrado";
-            anotarBTN.Enabled = false;
-            borrarBTN.Enabled = false;
-            faltaBTN.Enabled = false;
-        }
 
 
         private void timerTransicion_Tick(object sender, EventArgs e)
@@ -341,7 +331,7 @@ namespace Body_Factory_Manager
             {
                 string consulta = String.Empty;
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
-                parametros.Add("cedulaCliente", cedulaTBX.Text);
+                parametros.Add("idCliente", int.Parse(idCliente));
                 parametros.Add("fecha", DateTime.ParseExact(calendarioDGV.SelectedCells[0].Value + "/" + (mesCBX.SelectedIndex + 1) + "/" + anioNUD.Value, "d/M/yyyy", CultureInfo.InvariantCulture));
                 if (calendarioDGV.SelectedCells[0].Tag == String.Empty)
                 {
@@ -352,7 +342,7 @@ namespace Body_Factory_Manager
                         {
                             parametros.Add("falta", nuevaVentana.faltaEstado);
                             parametros.Add("observacion", nuevaVentana.observacion);
-                            consulta = "INSERT INTO Asistencias (cedulaCliente, fecha, falta, observacion) VALUES(@cedulaCliente, @fecha, @falta, @observacion)";
+                            consulta = "INSERT INTO Asistencias (idCliente, fecha, falta, observacion) VALUES(@idCliente, @fecha, @falta, @observacion)";
                         }
                     }
                 }
@@ -366,12 +356,12 @@ namespace Body_Factory_Manager
                         {
                             parametros.Add("falta", nuevaVentana.faltaEstado);
                             parametros.Add("observacion", nuevaVentana.observacion);
-                            consulta = "UPDATE Asistencias SET falta = @falta, observacion = @observacion WHERE cedulaCliente = @cedulaCliente AND fecha = @fecha";
+                            consulta = "UPDATE Asistencias SET falta = @falta, observacion = @observacion WHERE idCliente = @idCliente AND fecha = @fecha";
 
                         }
                         else if (nuevaVentana.DialogResult == DialogResult.No)
                         {
-                            consulta = "DELETE Asistencias WHERE fecha = @fecha AND cedulaCliente = @cedulaCliente";
+                            consulta = "DELETE Asistencias WHERE fecha = @fecha AND idCliente = @idCliente";
                         }
                     }
                 }
@@ -392,9 +382,9 @@ namespace Body_Factory_Manager
             {
                 string consulta = String.Empty;
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
-                parametros.Add("cedulaCliente", cedulaTBX.Text);
+                parametros.Add("idCliente", int.Parse(idCliente));
                 parametros.Add("fecha", DateTime.ParseExact(calendarioDGV.SelectedCells[0].Value + "/" + (mesCBX.SelectedIndex + 1) + "/" + anioNUD.Value, "d/M/yyyy", CultureInfo.InvariantCulture));
-                consulta = "DELETE Asistencias WHERE fecha = @fecha AND cedulaCliente = @cedulaCliente";
+                consulta = "DELETE Asistencias WHERE fecha = @fecha AND idCliente = @idCliente";
                 sql.Modificar(consulta, parametros);
                 ActualizarAsistencias(false);
                 ActualizarConsulta();
@@ -416,17 +406,17 @@ namespace Body_Factory_Manager
             {
                 string consulta = String.Empty;
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
-                parametros.Add("cedulaCliente", cedulaTBX.Text);
+                parametros.Add("idCliente", int.Parse(idCliente));
                 parametros.Add("fecha", DateTime.ParseExact(calendarioDGV.SelectedCells[0].Value + "/" + (mesCBX.SelectedIndex + 1) + "/" + anioNUD.Value, "d/M/yyyy", CultureInfo.InvariantCulture));
                 if (calendarioDGV.SelectedCells[0].Tag == String.Empty)
                 {
                     parametros.Add("falta", false);
-                    consulta = "INSERT INTO Asistencias (cedulaCliente, fecha, falta) VALUES(@cedulaCliente, @fecha, @falta)";
+                    consulta = "INSERT INTO Asistencias (idCliente, fecha, falta) VALUES(@idCliente, @fecha, @falta)";
                 }
                 else
                 {
-                    parametros.Add("falta", !(bool)sql.Obtener("SELECT * FROM Asistencias WHERE cedulaCliente = @cedulaCliente AND fecha = @fecha", parametros).Rows[0]["falta"]);
-                    consulta = "UPDATE Asistencias SET falta = @falta WHERE cedulaCliente = @cedulaCliente AND fecha = @fecha";
+                    parametros.Add("falta", !(bool)sql.Obtener("SELECT * FROM Asistencias WHERE idCliente = @idCliente AND fecha = @fecha", parametros).Rows[0]["falta"]);
+                    consulta = "UPDATE Asistencias SET falta = @falta WHERE idCliente = @idCliente AND fecha = @fecha";
                     
                 }
 

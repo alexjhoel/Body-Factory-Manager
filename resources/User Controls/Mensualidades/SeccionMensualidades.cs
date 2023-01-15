@@ -14,7 +14,7 @@ namespace Body_Factory_Manager
         FiltroBusqeda filtro;
         Comunicacion comunicacion = new Comunicacion();
 
-        public string id;
+        public string idCliente;
 
 
         public SeccionMensualidades(FiltroBusqeda filtro = null)
@@ -51,7 +51,7 @@ namespace Body_Factory_Manager
             filtros.Add(new FiltroBusqeda(TipoFiltro.NumeroRango, "Rango de deudas($)", "((valor * (1 - descuento / 100)) - pagado)"));
             filtros.Add(new FiltroBusqeda(TipoFiltro.FechaRango, "Fecha de vencimiento", "vencimiento"));
 
-            listado = new Listado(new List<string> { "Cédula", "mesOculto", "Año" }, buttonDatos, 1, filtros, Filtrar, 1);
+            listado = new Listado(new List<string> { "idCliente", "mesOculto", "Año" }, buttonDatos, 1, filtros, Filtrar, 1);
 
             this.pestaniasTCL.TabPages[1].Controls.Add(listado);
             listado.Location = new Point(0, 0);
@@ -74,18 +74,29 @@ namespace Body_Factory_Manager
 
         }
 
-        public SeccionMensualidades(string cedulaCliente) : this (new FiltroBusqeda(TipoFiltro.Nada))
+        public SeccionMensualidades(string idCliente) : this(new FiltroBusqeda(TipoFiltro.Nada))
         {
-            cedulaTBX.Text = cedulaCliente;
 
-            
+            ActualizarCliente(idCliente);
+            ActualizarDisponibilidadBotones();
+            ActualizarConsulta();
+
         }
 
+        private void ActualizarCliente(string idCliente)
+        {
+            this.idCliente = idCliente;
+            if (idCliente == null) return;
+                estadoPNL.BackColor = (bool)sql.Obtener("SELECT esActivo FROM Clientes WHERE id=" + idCliente).Rows[0]["esActivo"] ? estadoPNL.BackColor = Color.Green : Color.Red;
+
+            nombreTBX.Text = sql.Obtener("SELECT CONCAT(nombre, ' ', apellido) as nombre FROM Clientes WHERE id=" + idCliente).Rows[0]["nombre"].ToString();
+
+        }
 
         private void Eliminar(Dictionary<string, object> datos)
         {
             if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar los datos de la mensualidad?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-            sql.Modificar("DELETE FROM Mensualidades WHERE cedulaCliente= '" + datos["Cédula"] + "' AND mes='" + datos["Mes"] + "' AND anio='" + datos["Año"] + "'");
+            sql.Modificar("DELETE FROM Mensualidades WHERE idCliente= '" + datos["idCliente"] + "' AND mes='" + datos["mesOculto"] + "' AND anio='" + datos["Año"] + "'");
             CargarListaMensualidades();
         }
 
@@ -96,34 +107,45 @@ namespace Body_Factory_Manager
             tablaDGV.Rows.Clear();
             for (int i = 0; i < 12; i++)
             {
-
-                tablaDGV.Rows.Add();
-                tablaDGV.Rows[i].Cells[0].Value = DateTime.ParseExact("01/" + (i + 1) + "/2001", "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM");
-                DataTable datos = sql.Obtener("SELECT CONVERT(VARCHAR(MAX),fechaIngreso,103) as fechaIngreso, pagado, valor, descuento, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vencimiento') as vencimiento , CONVERT(DECIMAL(6, 2), valor * (1 - descuento / 100)) as total, ((valor * (1 - descuento / 100)) - pagado) as deuda, ISNULL(CONVERT(VARCHAR(10),ultimoPago,103),'Sin pagos') as ultimoPago " +
-"FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado, MAX(Pagos.fecha) as ultimoPago " +
-"FROM Mensualidades LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
-"WHERE Mensualidades.cedulaCliente = '" + cedulaTBX.Text + "' AND Mensualidades.mes = " + (i + 1) + " AND Mensualidades.anio = " + anioNUD.Value +
-" GROUP BY Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades " +
-"INNER JOIN Mensualidades ON PagosMensualidades.cedulaCliente = Mensualidades.cedulaCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio");
-                if (datos == null || datos.Rows.Count == 0) {
-                    tablaDGV.Rows[i].Tag = "Vacío";
-                    continue;
+                try
+                {
+                    tablaDGV.Rows.Add();
+                    tablaDGV.Rows[i].Cells[0].Value = DateTime.ParseExact("01/" + (i + 1) + "/2001", "dd/M/yyyy", CultureInfo.InvariantCulture).ToString("MMMM");
+                    DataTable datos = sql.Obtener("SELECT pagado, valor, descuento, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vencimiento') as vencimiento , CONVERT(DECIMAL(6, 2), valor * (1 - descuento / 100)) as total, ((valor * (1 - descuento / 100)) - pagado) as deuda, ISNULL(CONVERT(VARCHAR(10),ultimoPago,103),'Sin pagos') as ultimoPago " +
+    "FROM(SELECT Mensualidades.idCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado, MAX(Pagos.fecha) as ultimoPago " +
+    "FROM Mensualidades LEFT JOIN Pagos ON Pagos.idCliente = Mensualidades.idCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
+    "WHERE Mensualidades.idCliente = '" + idCliente + "' AND Mensualidades.mes = " + (i + 1) + " AND Mensualidades.anio = " + anioNUD.Value +
+    " GROUP BY Mensualidades.idCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades " +
+    "INNER JOIN Mensualidades ON PagosMensualidades.idCliente = Mensualidades.idCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio");
+                    if (datos == null || datos.Rows.Count == 0)
+                    {
+                        tablaDGV.Rows[i].Tag = "Vacío";
+                        continue;
+                    }
+                    tablaDGV.Rows[i].Cells[1].Value = datos.Rows[0]["valor"];
+                    tablaDGV.Rows[i].Cells[2].Value = datos.Rows[0]["descuento"];
+                    tablaDGV.Rows[i].Cells[3].Value = datos.Rows[0]["total"];
+                    tablaDGV.Rows[i].Cells[4].Value = datos.Rows[0]["deuda"];
+                    tablaDGV.Rows[i].Cells[5].Value = datos.Rows[0]["vencimiento"];
+                    tablaDGV.Rows[i].Cells[6].Value = datos.Rows[0]["ultimoPago"];
                 }
-                tablaDGV.Rows[i].Cells[1].Value = datos.Rows[0]["fechaIngreso"];
-                tablaDGV.Rows[i].Cells[2].Value = datos.Rows[0]["valor"];
-                tablaDGV.Rows[i].Cells[3].Value = datos.Rows[0]["descuento"];
-                tablaDGV.Rows[i].Cells[4].Value = datos.Rows[0]["total"];
-                tablaDGV.Rows[i].Cells[5].Value = datos.Rows[0]["deuda"];
-                tablaDGV.Rows[i].Cells[6].Value = datos.Rows[0]["vencimiento"];
-                tablaDGV.Rows[i].Cells[7].Value = datos.Rows[0]["ultimoPago"];
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error al cargar las cuotas del cliente, razón: \n " + e.Message);
+                }
+                
 
 
             }
+
+            if (anioNUD.Value == DateTime.Now.Year) tablaDGV.Rows[DateTime.Now.Month - 1].Selected = true;
+
+
         }
 
         private void Editar(Dictionary<string, object> datos)
         {
-            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.EditarMensualidad, datos["Cédula"].ToString(), datos["mesOculto"].ToString(), datos["Año"].ToString()))
+            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.EditarMensualidad, datos["idCliente"].ToString(), datos["mesOculto"].ToString(), datos["Año"].ToString()))
             {
                 if (datosMensualidad.ShowDialog() == DialogResult.OK) ActualizarConsulta();
 
@@ -134,7 +156,7 @@ namespace Body_Factory_Manager
         private void VerEnlista(Dictionary<string, object> datos)
         {
             pestaniasTCL.SelectedIndex = 0;
-            cedulaTBX.Text = datos["Cédula"].ToString();
+            ActualizarCliente(datos["idCliente"].ToString());
             anioNUD.Value = int.Parse(datos["Año"].ToString());
             ActualizarConsulta();
             tablaDGV.Rows[int.Parse(datos["mesOculto"].ToString()) - 1].Selected = true;
@@ -155,7 +177,7 @@ namespace Body_Factory_Manager
 
         private void PagarCuota(Dictionary<string, object> datos)
         {
-            using (DatosMensualidad nuevaVentana = new DatosMensualidad(TipoPagoMensualidad.NuevoPago, datos["Cédula"].ToString(), datos["mesOculto"].ToString(), datos["Año"].ToString()))
+            using (DatosMensualidad nuevaVentana = new DatosMensualidad(TipoPagoMensualidad.NuevoPago, datos["idCliente"].ToString(), datos["mesOculto"].ToString(), datos["Año"].ToString()))
             {
                 nuevaVentana.ShowDialog();
                 if (nuevaVentana.DialogResult == DialogResult.OK) ActualizarConsulta();
@@ -166,27 +188,46 @@ namespace Body_Factory_Manager
         private void ActualizarConsulta()
         {
             consulta = "SET Language 'Spanish'; " +
-                "SELECT DATENAME(month, CONCAT('2022-',mes,'-01')) as Mes, mes as mesOculto, anio as 'Año', cedula as 'Cédula', CONCAT(nombre, ' ', apellido) as 'Nombre completo', valor as 'Cuota($)', descuento as 'Descuento(%)', (CONVERT(DECIMAL(6,2),valor * (1 - descuento / 100))) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', FullMensualidades.fechaIngreso as Ingreso, ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vencimiento') as Vencimiento " +
-                "FROM(SELECT Mensualidades.cedulaCliente, pagado, valor, descuento, Mensualidades.mes, Mensualidades.anio, vencimiento, fechaIngreso " +
-                "FROM(SELECT Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
+                "SELECT idCliente, DATENAME(month, CONCAT('2022-',mes,'-01')) as Mes, mes as mesOculto, anio as 'Año', cedula as 'Cédula', CONCAT(nombre, ' ', apellido) as 'Nombre completo', valor as 'Cuota($)', descuento as 'Descuento(%)', (CONVERT(DECIMAL(6,2),valor * (1 - descuento / 100))) as 'Total($)', ((valor * (1 - descuento / 100)) - pagado) as 'Deuda($)', ISNULL(CONVERT(VARCHAR(MAX),vencimiento,103),'Sin vencimiento') as Vencimiento " +
+                "FROM(SELECT Mensualidades.idCliente, pagado, valor, descuento, Mensualidades.mes, Mensualidades.anio, vencimiento " +
+                "FROM(SELECT Mensualidades.idCliente, Mensualidades.mes, Mensualidades.anio, (ISNULL(SUM(monto), 0)) AS pagado " +
                 "FROM Mensualidades " +
-                "LEFT JOIN Pagos ON Pagos.cedulaCliente = Mensualidades.cedulaCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
-                "GROUP BY Mensualidades.cedulaCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades " +
-                "INNER JOIN Mensualidades ON PagosMensualidades.cedulaCliente = Mensualidades.cedulaCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio) as FullMensualidades " +
-                "INNER JOIN Clientes on FullMensualidades.cedulaCliente = Clientes.cedula WHERE ";
+                "LEFT JOIN Pagos ON Pagos.idCliente = Mensualidades.idCliente AND Pagos.mesMensualidad = Mensualidades.mes AND Pagos.anioMensualidad = Mensualidades.anio " +
+                "GROUP BY Mensualidades.idCliente, Mensualidades.mes, Mensualidades.anio) AS PagosMensualidades " +
+                "INNER JOIN Mensualidades ON PagosMensualidades.idCliente = Mensualidades.idCliente AND PagosMensualidades.mes = Mensualidades.mes AND PagosMensualidades.anio = Mensualidades.anio) as FullMensualidades " +
+                "INNER JOIN Clientes on FullMensualidades.idCliente = Clientes.id WHERE ";
             if (!pagasCBX.Checked)
             {
                 consulta += "((valor * (1 - descuento / 100)) - pagado) > 0 AND ";
-                    
+
+            }
+
+
+            consulta += filtro.ObtenerWhereConsulta();
+
+            if(idCliente!=null) 
+            {
+                try
+                {
+                    DataTable ultimoIngreso = sql.Obtener("SELECT MAX(fecha) as fecha FROM IngresosClientes WHERE idCliente=" + idCliente + "GROUP BY idCliente");
+                    if (ultimoIngreso.Rows.Count != 0) ultimoIngresoLBL.Text = "Último ingreso: " + ((DateTime)ultimoIngreso.Rows[0]["fecha"]).ToString("dd/MM/yyyy");
+                    else ultimoIngresoLBL.Text = "Último ingreso: Sin registrar";
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+                    sql.CerrarConexion();
+                }
             }
 
             
-            consulta += filtro.ObtenerWhereConsulta();
-
-            Console.WriteLine(consulta);
+            
 
             listado.datos = sql.Obtener(consulta);
-            listado.Recargar("mesOculto", (int)diasNUD.Value);
+            listado.Recargar(new List<string>{"mesOculto", "idCliente"}, (int)diasNUD.Value);
             CargarListaMensualidades();
             ActualizarDisponibilidadBotones();
         }
@@ -210,61 +251,27 @@ namespace Body_Factory_Manager
         private void buscarClienteBTN_Click(object sender, EventArgs e)
         {
             FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Nada);
-            filtro.valor1 = this.cedulaTBX.Text.Trim();
             using (SelectorClientes listado = new SelectorClientes(filtro))
             {
                 listado.ShowDialog();
                 if (listado.DialogResult == DialogResult.OK)
                 {
-                    cedulaTBX.Text = listado.cedula;
-                }
-            }
-        }
+                   ActualizarCliente(listado.id);
+                    
+                    ActualizarConsulta();
 
-        private void cedulaTBX_TextChanged(object sender, EventArgs e)
-        {
-            if (cedulaTBX.Text.Length == 8)
-            {
-                try
-                {
-                    DataTable datos = sql.Obtener("SELECT nombre,apellido, esActivo FROM Clientes WHERE cedula=" + cedulaTBX.Text);
-                    if (datos.Rows.Count != 0)
-                    {
-                        anioNUD.Value = DateTime.Now.Year;
-                        
-                        nombreTBX.Text = datos.Rows[0]["nombre"].ToString() + " " + datos.Rows[0]["apellido"].ToString();
-                        estadoPNL.BackColor = (bool)datos.Rows[0]["esActivo"] ? Color.Green : Color.Red;
-                        estadoLBL.Text = (bool)datos.Rows[0]["esActivo"] ? "Activo" : "Pasivo";
-                        ActualizarConsulta();
-                        tablaDGV.Rows[DateTime.Now.Month - 1].Selected = true;
-                        anotarBTN.Enabled = true;
-                        borrarBTN.Enabled = true;
-                        return;
-                    }
                     
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error de base de datos, razón: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    sql.CerrarConexion();
-                }
-
-
             }
-            CargarListaMensualidades();
-            nombreTBX.Text = "No encontrado";
-            anotarBTN.Enabled = false;
-            borrarBTN.Enabled = false;
         }
+
+        
 
 
         private void anotarBTN_Click(object sender, EventArgs e)
         {
             if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0) return;
-            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.EditarMensualidad, cedulaTBX.Text, (tablaDGV.SelectedCells[0].RowIndex + 1).ToString(), anioNUD.Value.ToString()))
+            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.EditarMensualidad, idCliente, (tablaDGV.SelectedCells[0].RowIndex + 1).ToString(), anioNUD.Value.ToString()))
             {
                 if (datosMensualidad.ShowDialog() == DialogResult.OK) ActualizarConsulta();
 
@@ -274,7 +281,7 @@ namespace Body_Factory_Manager
         private void pagarBTN_Click(object sender, EventArgs e)
         {
             if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0) return;
-            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.NuevoPago, cedulaTBX.Text, (tablaDGV.SelectedCells[0].RowIndex + 1).ToString(), anioNUD.Value.ToString()))
+            using (DatosMensualidad datosMensualidad = new DatosMensualidad(TipoPagoMensualidad.NuevoPago, idCliente, (tablaDGV.SelectedCells[0].RowIndex + 1).ToString(), anioNUD.Value.ToString()))
             {
                 if (datosMensualidad.ShowDialog() == DialogResult.OK) ActualizarConsulta();
 
@@ -284,15 +291,22 @@ namespace Body_Factory_Manager
         private void borrarBTN_Click(object sender, EventArgs e)
         {
             if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0 || tablaDGV.SelectedRows[0].Tag != null) return;
-            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar la mensualidad?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-            sql.Modificar("DELETE FROM Mensualidades WHERE cedulaCliente ='" + cedulaTBX.Text + "' AND mes='" + (tablaDGV.SelectedCells[0].RowIndex + 1) + "' AND anio= '" + anioNUD.Value + "'");
+            if (MessageBox.Show("Confirmar borrado", "¿Esta seguro que quiere eliminar la o las mensualidades?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            string c = "DELETE FROM Mensualidades WHERE idCliente = " + idCliente + "  AND mes IN ('0'" ;
+            foreach (DataGridViewRow row in tablaDGV.SelectedRows)
+            {
+                c += ",'" + (row.Index + 1) + "'";
+                
+            }
+            c += ") AND anio= '" + anioNUD.Value + "'";
+            sql.Modificar(c);
             ActualizarConsulta();
         }
 
         private void verPagosBTN_Click(object sender, EventArgs e)
         {
             if (nombreTBX.Text == "No encontrado" || tablaDGV.SelectedCells.Count == 0) return;
-            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Numero, "", "cedulaCliente = '" + cedulaTBX.Text + "' AND mesMensualidad= '" + (tablaDGV.SelectedCells[0].RowIndex + 1).ToString() + "' AND anioMensualidad = '" + anioNUD.Value + "' AND 1");
+            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Numero, "", "idCliente = " + idCliente + " AND mesMensualidad= '" + (tablaDGV.SelectedCells[0].RowIndex + 1).ToString() + "' AND anioMensualidad = '" + anioNUD.Value + "' AND 1");
             filtro.valor1 = "1";
             using (Form form = new Form())
             {
@@ -303,11 +317,12 @@ namespace Body_Factory_Manager
                 form.StartPosition = FormStartPosition.CenterScreen;
                 form.ShowDialog();
             }
+            ActualizarConsulta();
         }
 
         private void VerPagos(Dictionary<string, object> datos)
         {
-            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Numero, "", "cedulaCliente = '" + datos["Cédula"] + "' AND mesMensualidad= '" + datos["mesOculto"] + "' AND anioMensualidad = '" + datos["Año"] + "' AND 1");
+            FiltroBusqeda filtro = new FiltroBusqeda(TipoFiltro.Numero, "", "idCliente = " + datos["idCliente"] + " AND mesMensualidad= '" + datos["mesOculto"] + "' AND anioMensualidad = '" + datos["Año"] + "' AND 1");
             filtro.valor1 = "1";
             using (Form form = new Form())
             {
@@ -353,6 +368,7 @@ namespace Body_Factory_Manager
 
         private void tablaDGV_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
+            
             if(tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento") == null) return;
 
             DateTime fecha = tablaDGV.Rows[e.RowIndex].Cells.GetCellValueFromColumnHeader("Vencimiento").ToString() != "Sin vencimiento" ?
@@ -397,15 +413,18 @@ namespace Body_Factory_Manager
             if (nombreTBX.Text == "No encontrado") return;
             try
             {
-                if (estadoPNL.BackColor == Color.Red && MessageBox.Show("¿Desea dar de alta el servicio del cliente? (Volverá a generar cuota automáticamente cuando se pague la última activa", "Alta de servicio", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                if (estadoPNL.BackColor == Color.Red && MessageBox.Show("¿Desea dar de alta el servicio del cliente? (Volverá a generar cuota automáticamente cuando se pague la última activa y se registrará la fecha de hoy como reingreso)", "Alta de servicio", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    sql.Modificar("UPDATE Clientes SET esActivo = 1 WHERE cedula='" + cedulaTBX.Text + "'");
+                    sql.Modificar("UPDATE Clientes SET esActivo = 1 WHERE id=" + idCliente + "" +
+                        " INSERT INTO IngresosClientes (idCliente, fecha, comentario) VALUES(" + idCliente+",GETDATE(), 'Reingreso')");
+                    
                     estadoPNL.BackColor = Color.Green;
                     estadoLBL.Text = "Activo";
+                    ActualizarConsulta();
                 }
                 else if(estadoPNL.BackColor == Color.Green && MessageBox.Show("¿Desea dar de baja el servicio del cliente? (No volverá a generar cuota automáticamente cuando se pague la última activa)", "Baja de servicio", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    sql.Modificar("UPDATE Clientes SET esActivo = 0 WHERE cedula='" + cedulaTBX.Text + "'");
+                    sql.Modificar("UPDATE Clientes SET esActivo = 0 WHERE id=" + idCliente + "");
                     estadoPNL.BackColor = Color.Red;
                     estadoLBL.Text = "Pasivo";
                 }
@@ -420,6 +439,15 @@ namespace Body_Factory_Manager
                 sql.CerrarConexion();
             }
             
+        }
+
+        private void verIngresosLBL_Click(object sender, EventArgs e)
+        {
+            if (idCliente == null) return;
+            using (SelectorIngresosClientes nuevaVentana = new SelectorIngresosClientes(idCliente))
+            {
+                nuevaVentana.ShowDialog();
+            }
         }
     }
 }

@@ -51,7 +51,6 @@ namespace Body_Factory_Manager
             this.vencidasDGV = new System.Windows.Forms.DataGridView();
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verMasVencidasBTN = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -62,7 +61,6 @@ namespace Body_Factory_Manager
             this.cumplesDGV = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verMasCumplesBTN = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.verMasIngresos = new System.Windows.Forms.Button();
@@ -114,11 +112,10 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.vencidasDGV);
-            this.panel1.Controls.Add(this.verMasVencidasBTN);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 281);
+            this.panel1.Size = new System.Drawing.Size(249, 281);
             this.panel1.TabIndex = 0;
             // 
             // vencidasDGV
@@ -177,8 +174,9 @@ namespace Body_Factory_Manager
             this.vencidasDGV.RowTemplate.ReadOnly = true;
             this.vencidasDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vencidasDGV.ShowEditingIcon = false;
-            this.vencidasDGV.Size = new System.Drawing.Size(251, 189);
+            this.vencidasDGV.Size = new System.Drawing.Size(242, 189);
             this.vencidasDGV.TabIndex = 19;
+            this.vencidasDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.vencidasDGV_CellContentClick);
             this.vencidasDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.vencidasDGV_CellDoubleClick);
             // 
             // cedula
@@ -192,24 +190,6 @@ namespace Body_Factory_Manager
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            // 
-            // verMasVencidasBTN
-            // 
-            this.verMasVencidasBTN.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.verMasVencidasBTN.BackColor = System.Drawing.Color.Red;
-            this.verMasVencidasBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.verMasVencidasBTN.FlatAppearance.BorderSize = 0;
-            this.verMasVencidasBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
-            this.verMasVencidasBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.verMasVencidasBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verMasVencidasBTN.ForeColor = System.Drawing.Color.Black;
-            this.verMasVencidasBTN.Location = new System.Drawing.Point(40, 230);
-            this.verMasVencidasBTN.Name = "verMasVencidasBTN";
-            this.verMasVencidasBTN.Size = new System.Drawing.Size(170, 44);
-            this.verMasVencidasBTN.TabIndex = 18;
-            this.verMasVencidasBTN.Text = "Ver más";
-            this.verMasVencidasBTN.UseVisualStyleBackColor = false;
-            this.verMasVencidasBTN.Click += new System.EventHandler(this.verMasVencidasBTN_Click);
             // 
             // label3
             // 
@@ -238,7 +218,7 @@ namespace Body_Factory_Manager
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 287F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 595);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(511, 595);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel3
@@ -249,9 +229,9 @@ namespace Body_Factory_Manager
             this.panel3.Controls.Add(this.clientesNuevosCHT);
             this.panel3.Controls.Add(this.verMasClientesNuevos);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(267, 290);
+            this.panel3.Location = new System.Drawing.Point(258, 290);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(258, 302);
+            this.panel3.Size = new System.Drawing.Size(250, 302);
             this.panel3.TabIndex = 1;
             // 
             // clientesNuevosCHT
@@ -287,7 +267,7 @@ namespace Body_Factory_Manager
             series1.IsVisibleInLegend = false;
             series1.Name = "Total";
             this.clientesNuevosCHT.Series.Add(series1);
-            this.clientesNuevosCHT.Size = new System.Drawing.Size(238, 208);
+            this.clientesNuevosCHT.Size = new System.Drawing.Size(230, 208);
             this.clientesNuevosCHT.TabIndex = 19;
             this.clientesNuevosCHT.Text = "chart1";
             // 
@@ -301,7 +281,7 @@ namespace Body_Factory_Manager
             this.verMasClientesNuevos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasClientesNuevos.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasClientesNuevos.ForeColor = System.Drawing.Color.Black;
-            this.verMasClientesNuevos.Location = new System.Drawing.Point(47, 255);
+            this.verMasClientesNuevos.Location = new System.Drawing.Point(43, 255);
             this.verMasClientesNuevos.Name = "verMasClientesNuevos";
             this.verMasClientesNuevos.Size = new System.Drawing.Size(170, 44);
             this.verMasClientesNuevos.TabIndex = 18;
@@ -326,11 +306,10 @@ namespace Body_Factory_Manager
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.cumplesDGV);
-            this.panel2.Controls.Add(this.verMasCumplesBTN);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(267, 3);
+            this.panel2.Location = new System.Drawing.Point(258, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(258, 281);
+            this.panel2.Size = new System.Drawing.Size(250, 281);
             this.panel2.TabIndex = 1;
             // 
             // cumplesDGV
@@ -389,7 +368,7 @@ namespace Body_Factory_Manager
             this.cumplesDGV.RowTemplate.ReadOnly = true;
             this.cumplesDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.cumplesDGV.ShowEditingIcon = false;
-            this.cumplesDGV.Size = new System.Drawing.Size(258, 189);
+            this.cumplesDGV.Size = new System.Drawing.Size(250, 189);
             this.cumplesDGV.TabIndex = 19;
             // 
             // dataGridViewTextBoxColumn1
@@ -403,24 +382,6 @@ namespace Body_Factory_Manager
             this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // verMasCumplesBTN
-            // 
-            this.verMasCumplesBTN.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.verMasCumplesBTN.BackColor = System.Drawing.Color.Red;
-            this.verMasCumplesBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.verMasCumplesBTN.FlatAppearance.BorderSize = 0;
-            this.verMasCumplesBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(91)))), ((int)(((byte)(79)))));
-            this.verMasCumplesBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.verMasCumplesBTN.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verMasCumplesBTN.ForeColor = System.Drawing.Color.Black;
-            this.verMasCumplesBTN.Location = new System.Drawing.Point(47, 230);
-            this.verMasCumplesBTN.Name = "verMasCumplesBTN";
-            this.verMasCumplesBTN.Size = new System.Drawing.Size(170, 44);
-            this.verMasCumplesBTN.TabIndex = 18;
-            this.verMasCumplesBTN.Text = "Ver más";
-            this.verMasCumplesBTN.UseVisualStyleBackColor = false;
-            this.verMasCumplesBTN.Click += new System.EventHandler(this.verMasCumplesBTN_Click);
             // 
             // label4
             // 
@@ -443,7 +404,7 @@ namespace Body_Factory_Manager
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(3, 290);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(258, 302);
+            this.panel4.Size = new System.Drawing.Size(249, 302);
             this.panel4.TabIndex = 0;
             // 
             // verMasIngresos
@@ -456,7 +417,7 @@ namespace Body_Factory_Manager
             this.verMasIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verMasIngresos.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verMasIngresos.ForeColor = System.Drawing.Color.Black;
-            this.verMasIngresos.Location = new System.Drawing.Point(57, 255);
+            this.verMasIngresos.Location = new System.Drawing.Point(52, 255);
             this.verMasIngresos.Name = "verMasIngresos";
             this.verMasIngresos.Size = new System.Drawing.Size(170, 44);
             this.verMasIngresos.TabIndex = 18;
@@ -497,7 +458,7 @@ namespace Body_Factory_Manager
             series2.IsVisibleInLegend = false;
             series2.Name = "Total";
             this.ingresosCHT.Series.Add(series2);
-            this.ingresosCHT.Size = new System.Drawing.Size(238, 208);
+            this.ingresosCHT.Size = new System.Drawing.Size(229, 208);
             this.ingresosCHT.TabIndex = 4;
             this.ingresosCHT.Text = "chart1";
             // 
@@ -528,7 +489,7 @@ namespace Body_Factory_Manager
             this.flowLayoutPanel1.Controls.Add(this.emailBTN);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 111);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(525, 79);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(508, 79);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // nuevoClienteBTN
@@ -641,7 +602,7 @@ namespace Body_Factory_Manager
             this.Controls.Add(this.fechaHoraLBL);
             this.Controls.Add(this.tituloLBL);
             this.Name = "Inicio";
-            this.Size = new System.Drawing.Size(528, 500);
+            this.Size = new System.Drawing.Size(511, 500);
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -670,14 +631,12 @@ namespace Body_Factory_Manager
         private System.Windows.Forms.DataGridView vencidasDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.Button verMasVencidasBTN;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView cumplesDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.Button verMasCumplesBTN;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timerHora;
         private System.Windows.Forms.DataVisualization.Charting.Chart ingresosCHT;
